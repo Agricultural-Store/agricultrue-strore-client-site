@@ -1,4 +1,18 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {}
+const [protocol, hostWithPort] = process.env.NEXT_PUBLIC_FILE_HOST.split("://");
+const [hostname, port] = hostWithPort.split(":");
 
-module.exports = nextConfig
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol,
+        hostname,
+        port,
+      },
+    ],
+  },
+};
+
+module.exports = nextConfig;
+
