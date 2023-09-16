@@ -1,8 +1,9 @@
-import "./globals.css";
-import type { Metadata } from "next";
 import { NextIntlClientProvider, createTranslator } from "next-intl";
 import { Inter } from "next/font/google";
 import { notFound } from "next/navigation";
+import "@/styles/global.css";
+import MainLayout from "@/components/layouts/MainLayout";
+import AppProviders from "@/providers";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -47,7 +48,9 @@ export default async function RootLayout({
           messages={messages}
           locale={locale}
         >
-          {children}
+          <AppProviders font={inter.style.fontFamily}>
+            <MainLayout>{children}</MainLayout>
+          </AppProviders>
         </NextIntlClientProvider>
       </body>
     </html>
