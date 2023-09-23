@@ -37,6 +37,7 @@ const MainHeader = () => {
         sx={{
           position: "fixed",
           top: 0,
+          zIndex: 1000,
           height: "65px",
           width: "100%",
           bgcolor: "primary.main",

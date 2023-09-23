@@ -16,7 +16,12 @@ const AppBarWeb = () => {
       }}
     >
       {webNavigation.map((nav) => (
-        <CustomizeLink href={nav.href}>{nav.label.toLocaleUpperCase()}</CustomizeLink>
+        <CustomizeLink
+          href={nav.href}
+          key={nav.href}
+        >
+          {nav.label.toLocaleUpperCase()}
+        </CustomizeLink>
       ))}
     </Box>
   );

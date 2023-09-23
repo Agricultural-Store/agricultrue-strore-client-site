@@ -63,6 +63,7 @@ const AppBarMobile = ({ open, onClose }: Props) => {
         {mobileNavigation.map((nav) => (
           <CustomizeLink
             href={nav.href}
+            key={nav.href}
             sx={{ fontWeight: "bold" }}
           >
             {nav.label}
