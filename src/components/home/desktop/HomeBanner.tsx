@@ -33,12 +33,12 @@ const HomeBanner = () => {
         }}
       >
         <Typography
-          sx={{ fontSize: "36px", lineHeight: "54px", color: "color.textWhite" }}
+          sx={{ fontSize: "36px", lineHeight: "54px", color: "color.textWhite",  fontWeight: 600 }}
         >
           Vùng đất lúa gạo tươi tốt
         </Typography>
         <Typography
-          sx={{ fontSize: "42px", lineHeight: "63px", color: "color.textPrimary300" }}
+          sx={{ fontSize: "42px", lineHeight: "63px", color: "color.textPrimary300",  fontWeight: 600 }}
         >
           Sông Cửu Long
         </Typography>

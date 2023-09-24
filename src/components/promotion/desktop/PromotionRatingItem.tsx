@@ -9,7 +9,7 @@ type Props = {
   isActive?: boolean;
 };
 
-const HomeRatingItem = ({ content, isActive }: Props) => {
+const PromotionRatingItem = ({ content, isActive }: Props) => {
   return (
     <Box
       sx={[
@@ -76,4 +76,4 @@ const HomeRatingItem = ({ content, isActive }: Props) => {
   );
 };
 
-export default HomeRatingItem;
+export default PromotionRatingItem;

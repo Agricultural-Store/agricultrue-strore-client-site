@@ -14,7 +14,7 @@ const HomeOutstandingProduct = () => {
         px: "48px",
       }}
     >
-      <Typography sx={{ fontSize: "28px", lineHeight: "42px" }}>
+      <Typography sx={{ fontSize: "28px", lineHeight: "42px",  fontWeight: 600 }}>
         Chứng nhận sản phẩm
       </Typography>
       <Typography sx={{ width: "70%", m: "0 auto", textAlign: "center", my: "16px" }}>

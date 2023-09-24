@@ -36,7 +36,7 @@ const HomeVision = () => {
         position: "relative",
       }}
     >
-      <Typography sx={{ fontSize: "28px", lineHeight: "42px" }}>
+      <Typography sx={{ fontSize: "28px", lineHeight: "42px", fontWeight: 600 }}>
         Tầm nhìn và sứ mệnh
       </Typography>
       <Typography

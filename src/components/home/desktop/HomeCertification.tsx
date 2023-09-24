@@ -9,7 +9,7 @@ const HomeCertification = () => {
         height: "425px",
         py: "48px",
 
-        bgcolor: `rgba(99, 129, 30, 0.08)`,
+        bgcolor: `color.bgPrimaryWithOpacity`,
         mt: "64px",
         display: "flex",
         justifyContent: "center",
@@ -18,7 +18,7 @@ const HomeCertification = () => {
         width: "100%",
       }}
     >
-      <Typography sx={{ fontSize: "28px", lineHeight: "42px" }}>
+      <Typography sx={{ fontSize: "28px", lineHeight: "42px", fontWeight: 600 }}>
         Chứng nhận sản phẩm
       </Typography>
       <Typography

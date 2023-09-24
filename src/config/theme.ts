@@ -13,6 +13,7 @@ declare module "@mui/material/styles" {
 
       bgPrimary?: string;
       bgPrimary400?: string;
+      bgPrimaryWithOpacity?: string;
     };
   }
   interface PaletteOptions {
@@ -23,6 +24,7 @@ declare module "@mui/material/styles" {
 
       bgPrimary?: string;
       bgPrimary400?: string;
+      bgPrimaryWithOpacity?: string;
     };
   }
 }
@@ -49,6 +51,7 @@ export const buildTheme = (font?: string) =>
         textBlack: "#141416",
         bgPrimary: "#265426",
         bgPrimary400: "#63811E",
+        bgPrimaryWithOpacity: "rgba(99, 129, 30, 0.08)",
       },
     },
     typography: {

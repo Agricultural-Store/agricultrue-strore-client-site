@@ -24,12 +24,12 @@ const HomeIntroduce = () => {
         }}
       >
         <Typography
-          sx={{ textTransform: "capitalize", whiteSpace: "pre-line", fontSize: "28px" }}
+          sx={{ textTransform: "capitalize", whiteSpace: "pre-line", fontSize: "28px",  fontWeight: 600 }}
         >
           Sự đặc biệt của{" "}
           <Typography
             component="span"
-            sx={{ color: "color.textPrimary300", fontSize: "inherit" }}
+            sx={{ color: "color.textPrimary300", fontSize: "inherit",  fontWeight: 600 }}
           >
             Lúa gạo vùng đồng bằng
           </Typography>

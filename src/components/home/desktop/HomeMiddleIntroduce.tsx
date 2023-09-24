@@ -18,11 +18,11 @@ const HomeMiddleIntroduce = () => {
         }}
       >
         <Typography
-          sx={{ textTransform: "capitalize", whiteSpace: "pre-line", fontSize: "28px" }}
+          sx={{ textTransform: "capitalize", whiteSpace: "pre-line", fontSize: "28px",  fontWeight: 600 }}
         >
           Sự Kết Hợp Hoàn Mỹ của Vị Ngon và
         </Typography>
-        <Typography sx={{ color: "color.textPrimary300", fontSize: "28px" }}>
+        <Typography sx={{ color: "color.textPrimary300", fontSize: "28px",  fontWeight: 600 }}>
           Lợi Ích Sức Khỏe
         </Typography>
         <Typography

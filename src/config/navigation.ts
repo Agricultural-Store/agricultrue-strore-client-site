@@ -32,7 +32,7 @@ export const webNavigation = [
   },
   {
     label: "Khuyến mãi",
-    href: "/sales",
+    href: "/promotion",
   },
   {
     label: "Sản phẩm",

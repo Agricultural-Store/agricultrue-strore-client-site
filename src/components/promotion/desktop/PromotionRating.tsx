@@ -1,15 +1,15 @@
 import { Box, Typography } from "@mui/material";
 import React, { useState } from "react";
-import HomeRatingItem from "./HomeRatingItem";
+import PromotionRatingItem from "./PromotionRatingItem";
 
-const HomeRating = () => {
+const PromotionRating = () => {
   const [tabIndex, setTabIndex] = useState(0);
 
   return (
     <Box
       sx={{
         py: "48px",
-        bgcolor: `color.bgPrimaryWithOpacity`,
+        bgcolor: `rgba(99, 129, 30, 0.08)`,
         mt: "64px",
         width: "100%",
         overflow: "hidden",
@@ -31,14 +31,14 @@ const HomeRating = () => {
           transform: "translateX(-33.33333%)",
         }}
       >
-        <HomeRatingItem
+        <PromotionRatingItem
           content={` Với tôi, việc chọn gạo không chỉ dừng lại ở chất lượng, mà còn ở sự an toàn thực
         phẩm. Đã có nhiều lần tôi lo lắng khi mua gạo trên thị trường với nhiều thông tin
         về gạo kém chất lượng. Nhưng với gạo Đồng bằng Sông Cửu Long, tôi hoàn toàn yên
         tâm. Không chỉ vì chất lượng tốt mà còn ở sự minh bạch trong quy trình sản xuất.
         Mỗi bữa cơm trở nên an tâm và ngon miệng hơn.`}
         />
-        <HomeRatingItem
+        <PromotionRatingItem
           isActive
           content={` Với tôi, việc chọn gạo không chỉ dừng lại ở chất lượng, mà còn ở sự an toàn thực
         phẩm. Đã có nhiều lần tôi lo lắng khi mua gạo trên thị trường với nhiều thông tin
@@ -46,7 +46,7 @@ const HomeRating = () => {
         tâm. Không chỉ vì chất lượng tốt mà còn ở sự minh bạch trong quy trình sản xuất.
         Mỗi bữa cơm trở nên an tâm và ngon miệng hơn.`}
         />
-        <HomeRatingItem
+        <PromotionRatingItem
           content={` Với tôi, việc chọn gạo không chỉ dừng lại ở chất lượng, mà còn ở sự an toàn thực
         phẩm. Đã có nhiều lần tôi lo lắng khi mua gạo trên thị trường với nhiều thông tin
         về gạo kém chất lượng. Nhưng với gạo Đồng bằng Sông Cửu Long, tôi hoàn toàn yên
@@ -113,4 +113,4 @@ const HomeRating = () => {
   );
 };
 
-export default HomeRating;
+export default PromotionRating;

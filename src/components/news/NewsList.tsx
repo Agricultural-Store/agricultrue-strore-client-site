@@ -35,7 +35,9 @@ const NewsList = () => {
 
   return (
     <Box>
-      <Typography sx={{ my: "48px", textAlign: "center", fontSize: "28px" }}>
+      <Typography
+        sx={{ my: "48px", textAlign: "center", fontSize: "28px", fontWeight: 600 }}
+      >
         Tin Tức
       </Typography>
       <Box
