@@ -33,12 +33,22 @@ const HomeBanner = () => {
         }}
       >
         <Typography
-          sx={{ fontSize: "36px", lineHeight: "54px", color: "color.textWhite",  fontWeight: 600 }}
+          sx={{
+            fontSize: "36px",
+            lineHeight: "54px",
+            color: "color.textWhite",
+            fontWeight: 600,
+          }}
         >
           Vùng đất lúa gạo tươi tốt
         </Typography>
         <Typography
-          sx={{ fontSize: "42px", lineHeight: "63px", color: "color.textPrimary300",  fontWeight: 600 }}
+          sx={{
+            fontSize: "42px",
+            lineHeight: "63px",
+            color: "color.textPrimary300",
+            fontWeight: 600,
+          }}
         >
           Sông Cửu Long
         </Typography>
@@ -74,13 +84,14 @@ const HomeBanner = () => {
           </Button>
           <Button
             variant="outlined"
-            color="secondary"
             sx={{
               height: "42px",
               width: "150px",
               px: "24px",
               textTransform: "capitalize",
               borderWidth: "2px",
+              borderColor: "#D9EDD7",
+              color: "#D9EDD7",
             }}
           >
             Liên Hệ

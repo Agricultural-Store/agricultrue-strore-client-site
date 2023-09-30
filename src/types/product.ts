@@ -1,11 +1,11 @@
 import { ListOptions } from "./shared";
 
 export interface Product {
-  _id: string;
-  name: string;
-  image: string;
-  desc: string;
-  price: string;
+  id: number;
+  productName: string;
+  productImage: string;
+  productPrice: number;
+  productDiscount: number;
 }
 
 export type ProductCreateInput = Omit<Product, "id">;

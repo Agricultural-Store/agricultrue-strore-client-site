@@ -38,3 +38,8 @@ export type FetchOptions<Params = unknown, Body = unknown> = {
     [key: string]: string;
   };
 };
+
+export type OptionType = {
+  value: string | number;
+  label: string;
+};

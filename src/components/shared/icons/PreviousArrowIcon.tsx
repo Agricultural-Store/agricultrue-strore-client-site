@@ -1,6 +1,10 @@
 import React from "react";
 
-const PreviousIcon = () => {
+type Props = {
+  color?: string;
+};
+
+const PreviousIcon = ({ color }: Props) => {
   return (
     <svg
       width={24}
@@ -30,7 +34,7 @@ const PreviousIcon = () => {
           <path
             id="chevron_left_2"
             d="M14 17.6534L8.34619 11.9995L14 6.3457L15.0538 7.39953L10.4538 11.9995L15.0538 16.5995L14 17.6534Z"
-            fill="#141416"
+            fill={color ?? "#141416"}
           />
         </g>
       </g>

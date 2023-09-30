@@ -9,7 +9,7 @@ const PromotionRating = () => {
     <Box
       sx={{
         py: "48px",
-        bgcolor: `rgba(99, 129, 30, 0.08)`,
+        bgcolor: `color.bgPrimaryWithOpacity`,
         mt: "64px",
         width: "100%",
         overflow: "hidden",

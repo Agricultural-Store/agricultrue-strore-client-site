@@ -1,6 +1,10 @@
 import React from "react";
 
-const NextArrowIcon = () => {
+type Props = {
+  color?: string;
+};
+
+const NextArrowIcon = ({ color }: Props) => {
   return (
     <svg
       width={24}
@@ -27,7 +31,7 @@ const NextArrowIcon = () => {
       <g mask="url(#mask0_509_1100)">
         <path
           d="M12.9462 11.9995L8.34619 7.39953L9.40002 6.3457L15.0538 11.9995L9.40002 17.6534L8.34619 16.5995L12.9462 11.9995Z"
-          fill="#141416"
+          fill={color ?? "#141416"}
         />
       </g>
     </svg>
