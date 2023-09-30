@@ -27,20 +27,20 @@ const HomeVision = () => {
   return (
     <Box
       sx={{
-        height: "653px",
-        py: "64px",
-        px: "48px",
+        height: "653rem",
+        py: "64rem",
+        px: "48rem",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
         position: "relative",
       }}
     >
-      <Typography sx={{ fontSize: "28px", lineHeight: "42px", fontWeight: 600 }}>
+      <Typography sx={{ fontSize: "28rem", lineHeight: "42rem", fontWeight: 600 }}>
         Tầm nhìn và sứ mệnh
       </Typography>
       <Typography
-        sx={{ width: "70%", mx: "auto", textAlign: "center", mt: "24px", mb: "48px" }}
+        sx={{ width: "70%", mx: "auto", textAlign: "center", mt: "24rem", mb: "48rem" }}
       >
         Chúng tôi tin vào sức mạnh của sự kết nối. Thông qua việc hợp tác chặt chẽ với các
         nông dân, tổ chức và doanh nghiệp địa phương, chúng tôi muốn tạo ra một mạng lưới
@@ -62,8 +62,8 @@ const HomeVision = () => {
             component="img"
             src="/images/home-vision-1.png"
             sx={{
-              width: "354px",
-              height: "200px",
+              width: "354rem",
+              height: "200rem",
               position: "absolute",
               left: "10%",
             }}
@@ -72,47 +72,47 @@ const HomeVision = () => {
             component="img"
             src="/images/home-vision-2.png"
             sx={{
-              width: "354px",
-              height: "200px",
+              width: "354rem",
+              height: "200rem",
               transform: "scale(1.2)",
               position: "absolute",
               objectFit: "cover",
               left: "20%",
               zIndex: 2,
-              borderRadius: "5px",
+              borderRadius: "5rem",
             }}
           ></Box>
           <Box
             component="img"
             src="/images/home-vision-3.png"
             sx={{
-              width: "354px",
-              height: "200px",
+              width: "354rem",
+              height: "200rem",
               transform: "scale(1.4)",
               position: "absolute",
               zIndex: 3,
-              borderRadius: "5px",
+              borderRadius: "5rem",
             }}
           ></Box>
           <Box
             component="img"
             src="/images/home-vision-4.png"
             sx={{
-              width: "354px",
-              height: "200px",
+              width: "354rem",
+              height: "200rem",
               position: "absolute",
               transform: "scale(1.2)",
               right: "20%",
               zIndex: 2,
-              borderRadius: "5px",
+              borderRadius: "5rem",
             }}
           ></Box>
           <Box
             component="img"
             src="/images/home-vision-5.png"
             sx={{
-              width: "354px",
-              height: "200px",
+              width: "354rem",
+              height: "200rem",
               position: "absolute",
               right: "10%",
             }}
@@ -126,7 +126,7 @@ const HomeVision = () => {
             // transform: "translateY(50%)",
             display: "flex",
             justifyContent: "space-between",
-            px: "18px",
+            px: "18rem",
           }}
         >
           <IconButton onClick={handlePrevious}>
@@ -141,54 +141,54 @@ const HomeVision = () => {
         sx={{
           display: "flex",
           justifyContent: "center",
-          gap: "7px",
+          gap: "7rem",
           alignItems: "center",
-          mt: "24px",
+          mt: "24rem",
           position: "absolute",
           bottom: 0,
         }}
       >
         <Box
           sx={{
-            height: "7px",
-            width: tabIndex == 0 ? "21px" : "7px",
-            borderRadius: "100px",
+            height: "7rem",
+            width: tabIndex == 0 ? "21rem" : "7rem",
+            borderRadius: "100rem",
             bgcolor: "#63811E",
             transition: ".5s",
           }}
         ></Box>
         <Box
           sx={{
-            height: "7px",
-            width: tabIndex == 1 ? "21px" : "7px",
-            borderRadius: "100px",
+            height: "7rem",
+            width: tabIndex == 1 ? "21rem" : "7rem",
+            borderRadius: "100rem",
             bgcolor: "#63811E",
             transition: ".5s",
           }}
         ></Box>
         <Box
           sx={{
-            height: "7px",
-            width: tabIndex == 2 ? "21px" : "7px",
-            borderRadius: "100px",
+            height: "7rem",
+            width: tabIndex == 2 ? "21rem" : "7rem",
+            borderRadius: "100rem",
             bgcolor: "#63811E",
             transition: ".5s",
           }}
         ></Box>
         <Box
           sx={{
-            height: "7px",
-            width: tabIndex == 3 ? "21px" : "7px",
-            borderRadius: "100px",
+            height: "7rem",
+            width: tabIndex == 3 ? "21rem" : "7rem",
+            borderRadius: "100rem",
             bgcolor: "#63811E",
             transition: ".5s",
           }}
         ></Box>
         <Box
           sx={{
-            height: "7px",
-            width: tabIndex == 4 ? "21px" : "7px",
-            borderRadius: "100px",
+            height: "7rem",
+            width: tabIndex == 4 ? "21rem" : "7rem",
+            borderRadius: "100rem",
             bgcolor: "#63811E",
             transition: ".5s",
           }}

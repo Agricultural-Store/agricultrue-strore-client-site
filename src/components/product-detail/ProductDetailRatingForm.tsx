@@ -41,9 +41,9 @@ const ProductDetailRatingForm = () => {
   return (
     <Box>
       <Typography
-        fontSize="16px"
+        fontSize="16rem"
         fontWeight={700}
-        mb="10px"
+        mb="10rem"
       >
         Chất lượng sản phẩm
       </Typography>
@@ -58,7 +58,7 @@ const ProductDetailRatingForm = () => {
         <Divider
           orientation="vertical"
           flexItem
-          sx={{ mx: "10px" }}
+          sx={{ mx: "10rem" }}
         ></Divider>
         <Box
           component="div"
@@ -70,7 +70,7 @@ const ProductDetailRatingForm = () => {
         <Divider
           orientation="vertical"
           flexItem
-          sx={{ mx: "10px" }}
+          sx={{ mx: "10rem" }}
         ></Divider>
         <Box
           component="div"
@@ -82,7 +82,7 @@ const ProductDetailRatingForm = () => {
         <Divider
           orientation="vertical"
           flexItem
-          sx={{ mx: "10px" }}
+          sx={{ mx: "10rem" }}
         ></Divider>
         <Box
           component="div"
@@ -94,7 +94,7 @@ const ProductDetailRatingForm = () => {
         <Divider
           orientation="vertical"
           flexItem
-          sx={{ mx: "10px" }}
+          sx={{ mx: "10rem" }}
         ></Divider>
         <Box
           component="div"
@@ -106,7 +106,7 @@ const ProductDetailRatingForm = () => {
       </Box>
       <Box
         component="form"
-        sx={{ display: "flex", flexDirection: "column", gap: "20px", my: "30px" }}
+        sx={{ display: "flex", flexDirection: "column", gap: "20rem", my: "30rem" }}
       >
         <CustomizedInput
           fullWidth

@@ -5,6 +5,7 @@
   user-select: none;
   -webkit-user-select: none; 
   -ms-user-select: none; 
+  font-size: 1px;
 }
 
 /* width */
@@ -69,8 +70,8 @@
   user-select: none; /* Standard syntax */
 }
 
-/* @media screen and (max-width: 1000px) {
+@media screen and (max-width: 1000px) {
   * {
-    font-size: 10px;
+    font-size: 0.8px;
   }
-} */
+}

@@ -15,7 +15,7 @@ type Props = {
 const CustomizeLink = ({ children, href, sx, activeColor }: Props) => {
   const pathname = usePathname();
   return (
-    <Box sx={{ color: "white", fontSize: "16px", cursor: "pointer" }}>
+    <Box sx={{ color: "white", fontSize: "16rem", cursor: "pointer" }}>
       <NextIntlLink
         href={href}
         style={{
@@ -25,6 +25,7 @@ const CustomizeLink = ({ children, href, sx, activeColor }: Props) => {
             : "white",
           fontWeight: "bold",
           width: "100%",
+          fontSize: "inherit",
           ...sx,
         }}
       >

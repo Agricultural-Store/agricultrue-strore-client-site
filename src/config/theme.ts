@@ -86,26 +86,47 @@ export const buildTheme = (font?: string) =>
     },
     typography: {
       fontFamily: font,
-      // fontSize: "auto",
 
       h1: {
-        fontSize: "14px",
+        fontSize: "14rem",
       },
       h2: {
-        fontSize: "14px",
+        fontSize: "14rem",
       },
       h3: {
-        fontSize: "14px",
+        fontSize: "14rem",
       },
       h4: {
-        fontSize: "14px",
+        fontSize: "14rem",
       },
       h5: {
-        fontSize: "14px",
+        fontSize: "14rem",
         fontWeight: 400,
       },
       h6: {
-        fontSize: "14px",
+        fontSize: "14rem",
       },
+      body2: {
+        fontSize: "16rem",
+      },
+      body1: {
+        fontSize: "16rem",
+      },
+      subtitle1: {
+        fontSize: "16rem",
+      },
+      caption: {
+        fontSize: "16rem",
+      },
+      allVariants: {
+        fontSize: "16rem",
+      },
+      subtitle2: {
+        fontSize: "16rem",
+      },
+      button: {
+        fontSize: "16rem",
+      },
+      htmlFontSize: 16,
     },
   });

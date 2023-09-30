@@ -36,7 +36,7 @@ const NewsList = () => {
   return (
     <Box>
       <Typography
-        sx={{ my: "48px", textAlign: "center", fontSize: "28px", fontWeight: 600 }}
+        sx={{ my: "48rem", textAlign: "center", fontSize: "28rem", fontWeight: 600 }}
       >
         Tin Tức
       </Typography>
@@ -54,7 +54,7 @@ const NewsList = () => {
           <Grid
             container
             justifyContent="space-around"
-            px="48px"
+            px="48rem"
             width={"25%"}
           >
             <NewsItem />
@@ -65,7 +65,7 @@ const NewsList = () => {
           <Grid
             container
             justifyContent="space-around"
-            px="48px"
+            px="48rem"
             width={"25%"}
           >
             <NewsItem />
@@ -76,7 +76,7 @@ const NewsList = () => {
           <Grid
             container
             justifyContent="space-around"
-            px="48px"
+            px="48rem"
             width={"25%"}
           >
             <NewsItem />
@@ -87,7 +87,7 @@ const NewsList = () => {
           <Grid
             container
             justifyContent="space-around"
-            px="48px"
+            px="48rem"
             width={"25%"}
           >
             <NewsItem />
@@ -104,7 +104,7 @@ const NewsList = () => {
             transform: "translateY(50%)",
             display: "flex",
             justifyContent: "space-between",
-            px: "18px",
+            px: "18rem",
           }}
         >
           <IconButton onClick={handlePrevious}>
@@ -119,43 +119,43 @@ const NewsList = () => {
         sx={{
           display: "flex",
           justifyContent: "center",
-          gap: "7px",
+          gap: "7rem",
           alignItems: "center",
-          mt: "24px",
+          mt: "24rem",
         }}
       >
         <Box
           sx={{
-            height: "7px",
-            width: tabIndex == 0 ? "21px" : "7px",
-            borderRadius: "100px",
+            height: "7rem",
+            width: tabIndex == 0 ? "21rem" : "7rem",
+            borderRadius: "100rem",
             bgcolor: "#63811E",
             transition: ".5s",
           }}
         ></Box>
         <Box
           sx={{
-            height: "7px",
-            width: tabIndex == 1 ? "21px" : "7px",
-            borderRadius: "100px",
+            height: "7rem",
+            width: tabIndex == 1 ? "21rem" : "7rem",
+            borderRadius: "100rem",
             bgcolor: "#63811E",
             transition: ".5s",
           }}
         ></Box>
         <Box
           sx={{
-            height: "7px",
-            width: tabIndex == 2 ? "21px" : "7px",
-            borderRadius: "100px",
+            height: "7rem",
+            width: tabIndex == 2 ? "21rem" : "7rem",
+            borderRadius: "100rem",
             bgcolor: "#63811E",
             transition: ".5s",
           }}
         ></Box>
         <Box
           sx={{
-            height: "7px",
-            width: tabIndex == 3 ? "21px" : "7px",
-            borderRadius: "100px",
+            height: "7rem",
+            width: tabIndex == 3 ? "21rem" : "7rem",
+            borderRadius: "100rem",
             bgcolor: "#63811E",
             transition: ".5s",
           }}

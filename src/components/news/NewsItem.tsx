@@ -19,7 +19,7 @@ const NewsItem = () => {
       item
       md={3}
       xs={4}
-      px={"10px"}
+      px={"10rem"}
       display="flex"
       flexDirection="column"
       justifyContent="center"
@@ -28,12 +28,12 @@ const NewsItem = () => {
       <Card
         sx={{
           maxWidth: {
-            lg: "294px",
-            md: "254px",
+            lg: "294rem",
+            md: "254rem",
           },
-          maxHeight: "448px",
+          maxHeight: "448rem",
           height: {
-            md: "350px",
+            md: "350rem",
           },
           borderRadius: 0,
         }}
@@ -44,13 +44,19 @@ const NewsItem = () => {
           sx={{ height: "46%", width: "100%", objectFit: "cover" }}
         />
         <CardContent
-          sx={{ display: "flex", flexDirection: "column", gap: "8px", py: 0, pt: "16px" }}
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "8rem",
+            py: 0,
+            pt: "16rem",
+          }}
         >
           <Typography
             sx={{
               fontSize: {
-                lg: "16px",
-                xs: "14px",
+                lg: "16rem",
+                xs: "14rem",
               },
               textAlign: "justify",
               color: "#777E90",
@@ -62,8 +68,8 @@ const NewsItem = () => {
             className="line-clamp"
             sx={{
               fontSize: {
-                lg: "20px",
-                xs: "16px",
+                lg: "20rem",
+                xs: "16rem",
               },
               textAlign: "justify",
             }}
@@ -74,8 +80,8 @@ const NewsItem = () => {
             className="line-clamp"
             sx={{
               fontSize: {
-                lg: "16px",
-                xs: "14px",
+                lg: "16rem",
+                xs: "14rem",
               },
               textAlign: "justify",
             }}
@@ -83,7 +89,7 @@ const NewsItem = () => {
             Sạch từ sản xuất đến bàn ăn không chỉ là câu chuyện của cây lúa, mà vựa ...
           </Typography>
         </CardContent>
-        <CardActions sx={{ py: 0, pb: "16px" }}>
+        <CardActions sx={{ py: 0, pb: "16rem" }}>
           <Button
             variant="text"
             sx={{ display: "flex", alignItems: "center" }}
@@ -91,10 +97,10 @@ const NewsItem = () => {
             <Box
               sx={{
                 fontSize: {
-                  lg: "16px",
-                  xs: "14px",
+                  lg: "16rem",
+                  xs: "14rem",
                 },
-                paddingRight: "8px",
+                paddingRight: "8rem",
               }}
             >
               XEM CHI TIẾT

@@ -5,7 +5,7 @@ import React from "react";
 const IntroduceMoreContent = () => {
   return (
     <Box>
-      <Box sx={{ height: "500px", px: "48px", py: "64px", display: "flex" }}>
+      <Box sx={{ height: "500rem", px: "48rem", py: "64rem", display: "flex" }}>
         <Box
           component="img"
           src="/images/introduce-more-content-1.png"
@@ -18,7 +18,7 @@ const IntroduceMoreContent = () => {
             justifyContent: "center",
             alignItems: "start",
             flexDirection: "column",
-            ml: "64px",
+            ml: "64rem",
             width: "calc(100% - 50%)",
           }}
         >
@@ -26,7 +26,7 @@ const IntroduceMoreContent = () => {
             sx={{
               textTransform: "capitalize",
               whiteSpace: "pre-line",
-              fontSize: "28px",
+              fontSize: "28rem",
               fontWeight: 600,
             }}
           >
@@ -41,11 +41,11 @@ const IntroduceMoreContent = () => {
           <Typography
             className="line-clamp-5"
             sx={{
-              py: "16px",
-              fontSize: "16px",
-              lineHeight: "28px",
-              fontWeight: "400px",
-              maxHeight: "150px",
+              py: "16rem",
+              fontSize: "16rem",
+              lineHeight: "28rem",
+              fontWeight: "400rem",
+              maxHeight: "150rem",
             }}
           >
             Lựa chọn gạo từ vùng Đồng bằng Sông Cửu Long không chỉ đảm bảo chất lượng mà
@@ -60,10 +60,10 @@ const IntroduceMoreContent = () => {
             <Box
               sx={{
                 fontSize: {
-                  lg: "16px",
-                  xs: "14px",
+                  lg: "16rem",
+                  xs: "14rem",
                 },
-                paddingRight: "8px",
+                paddingRight: "8rem",
                 textTransform: "capitalize",
               }}
             >
@@ -73,7 +73,7 @@ const IntroduceMoreContent = () => {
           </Button>
         </Box>
       </Box>
-      <Box sx={{ height: "558px", px: "48px", py: "64px", display: "flex" }}>
+      <Box sx={{ height: "558rem", px: "48rem", py: "64rem", display: "flex" }}>
         <Box
           sx={{
             height: "100%",
@@ -81,26 +81,26 @@ const IntroduceMoreContent = () => {
             justifyContent: "center",
             alignItems: "start",
             flexDirection: "column",
-            mr: "64px",
+            mr: "64rem",
           }}
         >
           <Typography
             sx={{
               textTransform: "capitalize",
               whiteSpace: "pre-line",
-              fontSize: "28px",
+              fontSize: "28rem",
               fontWeight: 600,
             }}
           >
             Sự Kết Hợp Hoàn Mỹ của Vị Ngon và
           </Typography>
           <Typography
-            sx={{ color: "color.textPrimary300", fontSize: "28px", fontWeight: 600 }}
+            sx={{ color: "color.textPrimary300", fontSize: "28rem", fontWeight: 600 }}
           >
             Lợi Ích Sức Khỏe
           </Typography>
 
-          <List sx={{ ml: "16px" }}>
+          <List sx={{ ml: "16rem" }}>
             <ListItem sx={{ display: "list-item", listStyleType: "disc" }}>
               Nhờ quy trình canh tác và chăm sóc đặc biệt, gạo ở đây có độ dẻo mềm khi
               nấu, tạo cảm giác ngon miệng và dễ tiêu.
@@ -121,10 +121,10 @@ const IntroduceMoreContent = () => {
             <Box
               sx={{
                 fontSize: {
-                  lg: "16px",
-                  xs: "14px",
+                  lg: "16rem",
+                  xs: "14rem",
                 },
-                paddingRight: "8px",
+                paddingRight: "8rem",
                 textTransform: "capitalize",
               }}
             >

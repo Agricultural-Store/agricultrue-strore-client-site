@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import ProductDetailBasicInfo from "./ProductDetailBasicInfo";
 import ProductDetailCenter from "./ProductDetailCenter";
 import { ProductDetail } from "@/types/product-detail";
+import ProductDetailRelated from "./ProductDetailRelated";
 
 const ProductDetailDesktop = () => {
   const [product, setProduct] = useState<ProductDetail>({
@@ -42,6 +43,7 @@ const ProductDetailDesktop = () => {
     <>
       <ProductDetailBasicInfo product={product} />
       <ProductDetailCenter product={product} />
+      <ProductDetailRelated />
     </>
   );
 };

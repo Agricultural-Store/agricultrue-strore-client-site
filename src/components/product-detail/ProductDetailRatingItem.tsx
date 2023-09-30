@@ -12,32 +12,32 @@ const ProductDetailRatingItem = ({ rating }: Props) => {
     <Box
       display="flex"
       flexDirection="column"
-      gap="10px"
+      gap="10rem"
     >
-      <Box sx={{ display: "flex", alignItems: "center", gap: "10px" }}>
+      <Box sx={{ display: "flex", alignItems: "center", gap: "10rem" }}>
         <Box
           component="img"
           src={rating.userImage}
         />
         <Box>
           <Typography
-            fontSize="18px"
+            fontSize="18rem"
             fontWeight={700}
-            lineHeight="27px"
+            lineHeight="27rem"
           >
             {rating.username}
           </Typography>
           <Box>
-            {Array.apply(null, Array(rating.productRating)).map(() => (
-              <YellowStarIcon></YellowStarIcon>
+            {Array.apply(null, Array(rating.productRating)).map((_v, index) => (
+              <YellowStarIcon key={index}></YellowStarIcon>
             ))}
           </Box>
         </Box>
       </Box>
-      <Typography sx={{ textAlign: "justify", lineHeight: "28px" }}>
+      <Typography sx={{ textAlign: "justify", lineHeight: "28rem" }}>
         {rating.feedback}
       </Typography>
-      <Typography sx={{ color: "color.textGrey500", fontSize: "14px" }}>
+      <Typography sx={{ color: "color.textGrey500", fontSize: "14rem" }}>
         Được đánh giá vào{" "}
         <Typography
           component="span"

@@ -12,7 +12,7 @@ const MainLayout = ({ children }: Props) => {
   return (
     <main>
       <MainHeader />
-      <div style={{ position: "relative", top: "65px", minHeight: "710px" }}>
+      <div style={{ position: "relative", top: "65rem", minHeight: "710rem" }}>
         {children}
       </div>
       <MainFooter />

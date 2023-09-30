@@ -52,11 +52,11 @@ const CustomizedQuantityInput = ({
         variant="outlined"
         sx={{
           borderRadius: 0,
-          borderTopLeftRadius: "2px",
-          borderBottomLeftRadius: "2px",
-          minWidth: "35px",
-          maxWidth: "35px",
-          height: "35px",
+          borderTopLeftRadius: "2rem",
+          borderBottomLeftRadius: "2rem",
+          minWidth: "35rem",
+          maxWidth: "35rem",
+          height: "35rem",
           p: 0,
           border: "1px solid",
         }}
@@ -65,9 +65,9 @@ const CustomizedQuantityInput = ({
       >
         <MinusIcon />
       </Button>
-      <Box sx={{ height: "35px", width: "35px", bgcolor: "color.bgPrimary" }}>
+      <Box sx={{ height: "35rem", width: "35rem", bgcolor: "color.bgPrimary" }}>
         <Typography
-          sx={{ color: "color.textWhite", textAlign: "center", lineHeight: "35px" }}
+          sx={{ color: "color.textWhite", textAlign: "center", lineHeight: "35rem" }}
         >
           {value}
         </Typography>
@@ -76,11 +76,11 @@ const CustomizedQuantityInput = ({
         variant="outlined"
         sx={{
           borderRadius: 0,
-          borderTopRightRadius: "2px",
-          borderBottomRightRadius: "2px",
-          minWidth: "35px",
-          maxWidth: "35px",
-          height: "35px",
+          borderTopRightRadius: "2rem",
+          borderBottomRightRadius: "2rem",
+          minWidth: "35rem",
+          maxWidth: "35rem",
+          height: "35rem",
           p: 0,
           border: "1px solid",
         }}

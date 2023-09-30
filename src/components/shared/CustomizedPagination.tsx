@@ -34,7 +34,7 @@ const CustomizedPagination = ({
         ...sx,
       }}
     >
-      <Typography sx={{ fontSize: "12px", color: "#777E90" }}>
+      <Typography sx={{ fontSize: "12rem", color: "#777E90" }}>
         Hiển thị {rowPerPage} trên {itemCount} sản phẩm
       </Typography>
       <Pagination

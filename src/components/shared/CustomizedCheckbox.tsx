@@ -31,12 +31,12 @@ const CustomizedCheckbox = ({
       alignItems="center"
     >
       <Box
-        width="30px"
-        height="30px"
+        width="30rem"
+        height="30rem"
         display="flex"
         justifyContent="center"
         alignItems="center"
-        mr="8px"
+        mr="8rem"
       >
         <Checkbox
           id={value?.toString()}

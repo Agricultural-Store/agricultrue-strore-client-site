@@ -15,15 +15,15 @@ const PromotionRatingItem = ({ content, isActive }: Props) => {
       sx={[
         {
           width: "calc(70vw)",
-          height: isActive ? "220px" : "200px",
+          height: isActive ? "220rem" : "200rem",
           bgcolor: "color.bgPrimary",
           position: "relative",
-          p: "24px 30px",
+          p: "24px 30rem",
           display: "flex",
           alignItems: "center",
           flexDirection: "column",
           justifyContent: "center",
-          borderRadius: "6px",
+          borderRadius: "6rem",
         },
         isActive ?? {
           ":after": {
@@ -62,8 +62,8 @@ const PromotionRatingItem = ({ content, isActive }: Props) => {
           width: "100%",
           display: "flex",
           justifyContent: "center",
-          gap: "20px",
-          mt: "24px",
+          gap: "20rem",
+          mt: "24rem",
         }}
       >
         <YellowStarIcon />

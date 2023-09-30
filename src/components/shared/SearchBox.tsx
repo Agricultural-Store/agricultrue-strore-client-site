@@ -24,15 +24,15 @@ const SearchBox = ({ placeholder, value, onChange, defaultValue }: Props) => {
       placeholder={placeholder}
       inputProps={{
         style: {
-          padding: "10.5px 16px",
+          padding: "10.5px 16rem",
         },
       }}
       endAdornment={
         <Box
           sx={{
             bgcolor: "color.bgPrimary",
-            height: "46px",
-            width: "72px",
+            height: "46rem",
+            width: "72rem",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",

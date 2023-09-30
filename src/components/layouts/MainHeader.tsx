@@ -38,18 +38,18 @@ const MainHeader = () => {
           position: "fixed",
           top: 0,
           zIndex: 1000,
-          height: "65px",
+          height: "65rem",
           width: "100%",
           bgcolor: "primary.main",
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          px: media ? "10px" : "48px",
+          px: media ? "10rem" : "48rem",
         }}
       >
         <Box
           sx={{
-            height: "42px",
+            height: "42rem",
             display: "flex",
             justifyContent: "flex-start",
             alignItems: "center",
@@ -57,31 +57,31 @@ const MainHeader = () => {
         >
           {media && (
             <IconButton onClick={handleOpen}>
-              <MenuIcon sx={{ color: "white", mr: "5px" }} />
+              <MenuIcon sx={{ color: "white", mr: "5rem" }} />
             </IconButton>
           )}
           <Box
             component="img"
             src="/images/logo.png"
-            width={media375 ? "150px" : undefined}
+            width={media375 ? "150rem" : undefined}
           />
           {!media ? <AppBarDesktop /> : <div></div>}
         </Box>
         <Box
           sx={{
-            width: "152px",
+            width: "152rem",
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
           }}
         >
-          <IconButton sx={{ height: "40px", width: "40px" }}>
+          <IconButton sx={{ height: "40rem", width: "40rem" }}>
             <SearchIcon />
           </IconButton>
-          <IconButton sx={{ height: "40px", width: "40px" }}>
+          <IconButton sx={{ height: "40rem", width: "40rem" }}>
             <CartIcon />
           </IconButton>
-          <IconButton sx={{ height: "40px", width: "40px" }}>
+          <IconButton sx={{ height: "40rem", width: "40rem" }}>
             <ProfileIcon />
           </IconButton>
         </Box>

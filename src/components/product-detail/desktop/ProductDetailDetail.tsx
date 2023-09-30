@@ -11,20 +11,20 @@ const ProductDetailDetail = ({ product }: Props) => {
     return (
       <Box
         display="flex"
-        my="1px"
+        my="1rem"
       >
         <Typography
-          width="200px"
-          fontSize="18px"
+          width="200rem"
+          fontSize="18rem"
         >
           {label}
         </Typography>
-        <Typography sx={{ width: "calc(100% - 200px)" }}>{value}</Typography>
+        <Typography sx={{ width: "calc(100% - 200rem)" }}>{value}</Typography>
       </Box>
     );
   };
   return (
-    <Box sx={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+    <Box sx={{ display: "flex", flexDirection: "column", gap: "10rem" }}>
       {renderItem("Loại hạt", product.productDetail?.type)}
       {renderItem("Độ ẩm", product.productDetail?.humidity)}
       {renderItem("Chỉ số dẻo", product.productDetail?.flexibleIndex)}
