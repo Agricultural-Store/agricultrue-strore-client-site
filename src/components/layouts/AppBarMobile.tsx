@@ -46,7 +46,10 @@ const AppBarMobile = ({ open, onClose }: Props) => {
           component="img"
           src="/images/logo.png"
         ></Box>
-        <IconButton onClick={toggleAppBar}>
+        <IconButton
+          onClick={toggleAppBar}
+          sx={{ color: "color.textWhite" }}
+        >
           <CloseIcon />
         </IconButton>
       </Box>

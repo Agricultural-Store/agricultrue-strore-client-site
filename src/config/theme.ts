@@ -88,7 +88,8 @@ export const buildTheme = (font?: string) =>
       fontFamily: font,
 
       h1: {
-        fontSize: "14rem",
+        fontSize: "30rem",
+        fontWeight: 700,
       },
       h2: {
         fontSize: "14rem",

@@ -9,9 +9,11 @@ import SearchIcon from "../shared/icons/SearchIcon";
 import CartIcon from "../shared/icons/CartIcon";
 import ProfileIcon from "../shared/icons/ProfileIcon";
 import MenuIcon from "@mui/icons-material/Menu";
+import Cart from "../cart";
 
 const MainHeader = () => {
   const [open, setOpen] = useState(false);
+  const [openCart, setOpenCart] = useState(false);
   const { media } = useMedia(1000);
   const { media: media375 } = useMedia(375);
 
@@ -57,7 +59,7 @@ const MainHeader = () => {
         >
           {media && (
             <IconButton onClick={handleOpen}>
-              <MenuIcon sx={{ color: "white", mr: "5rem" }} />
+              <MenuIcon sx={{ color: "white", mr: "5rem", fontSize: "25rem" }} />
             </IconButton>
           )}
           <Box
@@ -78,7 +80,10 @@ const MainHeader = () => {
           <IconButton sx={{ height: "40rem", width: "40rem" }}>
             <SearchIcon />
           </IconButton>
-          <IconButton sx={{ height: "40rem", width: "40rem" }}>
+          <IconButton
+            sx={{ height: "40rem", width: "40rem" }}
+            onClick={() => setOpenCart(true)}
+          >
             <CartIcon />
           </IconButton>
           <IconButton sx={{ height: "40rem", width: "40rem" }}>
@@ -86,6 +91,10 @@ const MainHeader = () => {
           </IconButton>
         </Box>
       </Box>
+      <Cart
+        onClose={setOpenCart}
+        open={openCart}
+      />
     </>
   );
 };
