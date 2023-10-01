@@ -12,7 +12,7 @@ const ProductDetailRatingList = ({ ratingList }: Props) => {
     <Box
       display="flex"
       flexDirection="column"
-      gap="20rem"
+      gap="20px"
     >
       {ratingList.map((rating, index) => (
         <ProductDetailRatingItem

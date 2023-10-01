@@ -19,7 +19,7 @@ const NewsItem = () => {
       item
       md={3}
       xs={4}
-      px={"10rem"}
+      px={"10px"}
       display="flex"
       flexDirection="column"
       justifyContent="center"
@@ -28,12 +28,12 @@ const NewsItem = () => {
       <Card
         sx={{
           maxWidth: {
-            lg: "294rem",
-            md: "254rem",
+            lg: "294px",
+            md: "254px",
           },
-          maxHeight: "448rem",
+          maxHeight: "448px",
           height: {
-            md: "350rem",
+            md: "350px",
           },
           borderRadius: 0,
         }}
@@ -47,16 +47,16 @@ const NewsItem = () => {
           sx={{
             display: "flex",
             flexDirection: "column",
-            gap: "8rem",
+            gap: "8px",
             py: 0,
-            pt: "16rem",
+            pt: "16px",
           }}
         >
           <Typography
             sx={{
               fontSize: {
-                lg: "16rem",
-                xs: "14rem",
+                lg: "16px",
+                xs: "14px",
               },
               textAlign: "justify",
               color: "#777E90",
@@ -68,8 +68,8 @@ const NewsItem = () => {
             className="line-clamp"
             sx={{
               fontSize: {
-                lg: "20rem",
-                xs: "16rem",
+                lg: "20px",
+                xs: "16px",
               },
               textAlign: "justify",
             }}
@@ -80,8 +80,8 @@ const NewsItem = () => {
             className="line-clamp"
             sx={{
               fontSize: {
-                lg: "16rem",
-                xs: "14rem",
+                lg: "16px",
+                xs: "14px",
               },
               textAlign: "justify",
             }}
@@ -89,7 +89,7 @@ const NewsItem = () => {
             Sạch từ sản xuất đến bàn ăn không chỉ là câu chuyện của cây lúa, mà vựa ...
           </Typography>
         </CardContent>
-        <CardActions sx={{ py: 0, pb: "16rem" }}>
+        <CardActions sx={{ py: 0, pb: "16px" }}>
           <Button
             variant="text"
             sx={{ display: "flex", alignItems: "center" }}
@@ -97,10 +97,10 @@ const NewsItem = () => {
             <Box
               sx={{
                 fontSize: {
-                  lg: "16rem",
-                  xs: "14rem",
+                  lg: "16px",
+                  xs: "14px",
                 },
-                paddingRight: "8rem",
+                paddingRight: "8px",
               }}
             >
               XEM CHI TIẾT

@@ -11,11 +11,11 @@ const ProductDetailDetail = ({ product }: Props) => {
     return (
       <Box
         display="flex"
-        my="1rem"
+        my="1px"
       >
         <Typography
-          width="200rem"
-          fontSize="18rem"
+          width="200px"
+          fontSize="18px"
         >
           {label}
         </Typography>
@@ -24,7 +24,7 @@ const ProductDetailDetail = ({ product }: Props) => {
     );
   };
   return (
-    <Box sx={{ display: "flex", flexDirection: "column", gap: "10rem" }}>
+    <Box sx={{ display: "flex", flexDirection: "column", gap: "10px" }}>
       {renderItem("Loại hạt", product.productDetail?.type)}
       {renderItem("Độ ẩm", product.productDetail?.humidity)}
       {renderItem("Chỉ số dẻo", product.productDetail?.flexibleIndex)}

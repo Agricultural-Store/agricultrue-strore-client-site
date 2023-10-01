@@ -40,7 +40,7 @@ const ProductItem = ({ product, onClick }: Props) => {
         />
         <CardContent>
           <Typography
-            fontSize="24rem"
+            fontSize="24px"
             fontWeight={600}
             whiteSpace="nowrap"
             overflow="hidden"
@@ -60,7 +60,7 @@ const ProductItem = ({ product, onClick }: Props) => {
               component="span"
               sx={{
                 color: "color.textNeutral400",
-                pl: "8rem",
+                pl: "8px",
                 transform: "translateY(-1px)",
                 textDecoration: "line-through",
               }}

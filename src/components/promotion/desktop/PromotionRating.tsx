@@ -8,16 +8,16 @@ const PromotionRating = () => {
   return (
     <Box
       sx={{
-        py: "48rem",
+        py: "48px",
         bgcolor: `color.bgPrimaryWithOpacity`,
-        mt: "64rem",
+        mt: "64px",
         width: "100%",
         overflow: "hidden",
         position: "relative",
       }}
     >
       <Typography
-        sx={{ mb: "48rem", textAlign: "center", fontSize: "28rem", fontWeight: 600 }}
+        sx={{ mb: "48px", textAlign: "center", fontSize: "28px", fontWeight: 600 }}
       >
         Hơn 1.000+ đánh giá từ khách hàng hài lòng.
       </Typography>
@@ -27,7 +27,7 @@ const PromotionRating = () => {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          gap: "80rem",
+          gap: "80px",
           transform: "translateX(-33.33333%)",
         }}
       >
@@ -58,52 +58,52 @@ const PromotionRating = () => {
         sx={{
           display: "flex",
           justifyContent: "center",
-          gap: "7rem",
+          gap: "7px",
           alignItems: "center",
-          mt: "48rem",
+          mt: "48px",
         }}
       >
         <Box
           sx={{
-            height: "7rem",
-            width: tabIndex == 0 ? "21rem" : "7rem",
-            borderRadius: "100rem",
+            height: "7px",
+            width: tabIndex == 0 ? "21px" : "7px",
+            borderRadius: "100px",
             bgcolor: "#63811E",
             transition: ".5s",
           }}
         ></Box>
         <Box
           sx={{
-            height: "7rem",
-            width: tabIndex == 1 ? "21rem" : "7rem",
-            borderRadius: "100rem",
+            height: "7px",
+            width: tabIndex == 1 ? "21px" : "7px",
+            borderRadius: "100px",
             bgcolor: "#63811E",
             transition: ".5s",
           }}
         ></Box>
         <Box
           sx={{
-            height: "7rem",
-            width: tabIndex == 2 ? "21rem" : "7rem",
-            borderRadius: "100rem",
+            height: "7px",
+            width: tabIndex == 2 ? "21px" : "7px",
+            borderRadius: "100px",
             bgcolor: "#63811E",
             transition: ".5s",
           }}
         ></Box>
         <Box
           sx={{
-            height: "7rem",
-            width: tabIndex == 3 ? "21rem" : "7rem",
-            borderRadius: "100rem",
+            height: "7px",
+            width: tabIndex == 3 ? "21px" : "7px",
+            borderRadius: "100px",
             bgcolor: "#63811E",
             transition: ".5s",
           }}
         ></Box>
         <Box
           sx={{
-            height: "7rem",
-            width: tabIndex == 4 ? "21rem" : "7rem",
-            borderRadius: "100rem",
+            height: "7px",
+            width: tabIndex == 4 ? "21px" : "7px",
+            borderRadius: "100px",
             bgcolor: "#63811E",
             transition: ".5s",
           }}

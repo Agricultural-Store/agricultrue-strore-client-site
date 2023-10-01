@@ -6,7 +6,7 @@ import NextIcon from "../../shared/icons/NextIcon";
 
 const HomeIntroduce = () => {
   return (
-    <Box sx={{ height: "500rem", px: "48rem", py: "64rem", display: "flex" }}>
+    <Box sx={{ height: "500px", px: "48px", py: "64px", display: "flex" }}>
       <Box
         component="img"
         src="/images/home-introduce.png"
@@ -19,7 +19,7 @@ const HomeIntroduce = () => {
           justifyContent: "center",
           alignItems: "start",
           flexDirection: "column",
-          ml: "64rem",
+          ml: "64px",
           width: "calc(100% - 50%)",
         }}
       >
@@ -27,7 +27,7 @@ const HomeIntroduce = () => {
           sx={{
             textTransform: "capitalize",
             whiteSpace: "pre-line",
-            fontSize: "28rem",
+            fontSize: "28px",
             fontWeight: 600,
           }}
         >
@@ -43,11 +43,11 @@ const HomeIntroduce = () => {
         <Typography
           className="line-clamp-5"
           sx={{
-            py: "16rem",
-            fontSize: "16rem",
-            lineHeight: "28rem",
-            fontWeight: "400rem",
-            maxHeight: "150rem",
+            py: "16px",
+            fontSize: "16px",
+            lineHeight: "28px",
+            fontWeight: "400px",
+            maxHeight: "150px",
           }}
         >
           Đồng bằng Sông Cửu Long, nơi được mẹ thiên nhiên ưu đãi với hệ thống sông ngòi
@@ -62,10 +62,10 @@ const HomeIntroduce = () => {
           <Box
             sx={{
               fontSize: {
-                lg: "16rem",
-                xs: "14rem",
+                lg: "16px",
+                xs: "14px",
               },
-              paddingRight: "8rem",
+              paddingRight: "8px",
               textTransform: "capitalize",
             }}
           >

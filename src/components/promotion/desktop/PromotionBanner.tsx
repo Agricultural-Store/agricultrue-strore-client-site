@@ -3,8 +3,8 @@ import React from "react";
 
 const PromotionBanner = () => {
   return (
-    <Box sx={{ height: "600rem", position: "relative" }}>
-      <Box sx={{ height: "600rem", position: "relative" }}>
+    <Box sx={{ height: "600px", position: "relative" }}>
+      <Box sx={{ height: "600px", position: "relative" }}>
         <Box
           component="img"
           src="/images/promotion-banner.png"
@@ -27,13 +27,13 @@ const PromotionBanner = () => {
           position: "absolute",
           top: "50%",
           transform: "translateY(-50%)",
-          left: "48rem",
+          left: "48px",
         }}
       >
         <Typography
           sx={{
-            fontSize: "42rem",
-            lineHeight: "63rem",
+            fontSize: "42px",
+            lineHeight: "63px",
             color: "color.textPrimary300",
             fontWeight: 600,
           }}
@@ -42,8 +42,8 @@ const PromotionBanner = () => {
         </Typography>
         <Typography
           sx={{
-            fontSize: "36rem",
-            lineHeight: "54rem",
+            fontSize: "36px",
+            lineHeight: "54px",
             color: "color.textWhite",
             fontWeight: 600,
           }}
@@ -52,19 +52,19 @@ const PromotionBanner = () => {
         </Typography>
         <Typography
           sx={{
-            fontSize: "16rem",
+            fontSize: "16px",
             fontWeight: 400,
-            lineHeight: "28.80rem",
+            lineHeight: "28.80px",
             color: "color.textWhite",
             whiteSpace: "pre-line",
-            mt: "36rem",
+            mt: "36px",
           }}
         >
           {
             "Cơ hội vàng để bạn và gia đình thêm phần phong phú bữa ăn, thêm \nphần khỏe mạnh cuộc sống."
           }
         </Typography>
-        <Box sx={{ mt: "36rem" }}></Box>
+        <Box sx={{ mt: "36px" }}></Box>
       </Box>
     </Box>
   );

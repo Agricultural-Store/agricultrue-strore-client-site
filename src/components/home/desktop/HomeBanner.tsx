@@ -5,8 +5,8 @@ import React from "react";
 
 const HomeBanner = () => {
   return (
-    <Box sx={{ height: "600rem", position: "relative" }}>
-      <Box sx={{ height: "600rem", position: "relative" }}>
+    <Box sx={{ height: "600px", position: "relative" }}>
+      <Box sx={{ height: "600px", position: "relative" }}>
         <Box
           component="img"
           src="/images/home-banner.png"
@@ -29,13 +29,13 @@ const HomeBanner = () => {
           position: "absolute",
           top: "50%",
           transform: "translateY(-50%)",
-          left: "48rem",
+          left: "48px",
         }}
       >
         <Typography
           sx={{
-            fontSize: "36rem",
-            lineHeight: "54rem",
+            fontSize: "36px",
+            lineHeight: "54px",
             color: "color.textWhite",
             fontWeight: 600,
           }}
@@ -44,8 +44,8 @@ const HomeBanner = () => {
         </Typography>
         <Typography
           sx={{
-            fontSize: "42rem",
-            lineHeight: "63rem",
+            fontSize: "42px",
+            lineHeight: "63px",
             color: "color.textPrimary300",
             fontWeight: 600,
           }}
@@ -58,9 +58,9 @@ const HomeBanner = () => {
         ></Box>
         <Typography
           sx={{
-            fontSize: "16rem",
+            fontSize: "16px",
             fontWeight: 400,
-            lineHeight: "28.80rem",
+            lineHeight: "28.80px",
             color: "color.textWhite",
             whiteSpace: "pre-line",
           }}
@@ -69,15 +69,15 @@ const HomeBanner = () => {
             "Vùng đồng bằng Sông Cửu Long – Nơi bao la của những cánh đồng lúa xanh mướt, là\nnguồn cung cấp gạo ngon cho cả nước và quốc tế."
           }
         </Typography>
-        <Box sx={{ mt: "36rem" }}>
+        <Box sx={{ mt: "36px" }}>
           <Button
             variant="contained"
             sx={{
-              height: "42rem",
-              width: "150rem",
-              px: "24rem",
+              height: "42px",
+              width: "150px",
+              px: "24px",
               textTransform: "capitalize",
-              mr: "12rem",
+              mr: "12px",
             }}
           >
             Mua Ngay
@@ -85,11 +85,11 @@ const HomeBanner = () => {
           <Button
             variant="outlined"
             sx={{
-              height: "42rem",
-              width: "150rem",
-              px: "24rem",
+              height: "42px",
+              width: "150px",
+              px: "24px",
               textTransform: "capitalize",
-              borderWidth: "2rem",
+              borderWidth: "2px",
               borderColor: "#D9EDD7",
               color: "#D9EDD7",
             }}

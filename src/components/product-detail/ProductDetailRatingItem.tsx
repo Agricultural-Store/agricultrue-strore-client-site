@@ -12,18 +12,18 @@ const ProductDetailRatingItem = ({ rating }: Props) => {
     <Box
       display="flex"
       flexDirection="column"
-      gap="10rem"
+      gap="10px"
     >
-      <Box sx={{ display: "flex", alignItems: "center", gap: "10rem" }}>
+      <Box sx={{ display: "flex", alignItems: "center", gap: "10px" }}>
         <Box
           component="img"
           src={rating.userImage}
         />
         <Box>
           <Typography
-            fontSize="18rem"
+            fontSize="18px"
             fontWeight={700}
-            lineHeight="27rem"
+            lineHeight="27px"
           >
             {rating.username}
           </Typography>
@@ -34,10 +34,10 @@ const ProductDetailRatingItem = ({ rating }: Props) => {
           </Box>
         </Box>
       </Box>
-      <Typography sx={{ textAlign: "justify", lineHeight: "28rem" }}>
+      <Typography sx={{ textAlign: "justify", lineHeight: "28px" }}>
         {rating.feedback}
       </Typography>
-      <Typography sx={{ color: "color.textGrey500", fontSize: "14rem" }}>
+      <Typography sx={{ color: "color.textGrey500", fontSize: "14px" }}>
         Được đánh giá vào{" "}
         <Typography
           component="span"

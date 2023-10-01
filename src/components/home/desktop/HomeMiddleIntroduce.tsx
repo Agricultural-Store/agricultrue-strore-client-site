@@ -6,7 +6,7 @@ import NextIcon from "../../shared/icons/NextIcon";
 
 const HomeMiddleIntroduce = () => {
   return (
-    <Box sx={{ height: "558rem", px: "48rem", py: "64rem", display: "flex" }}>
+    <Box sx={{ height: "558px", px: "48px", py: "64px", display: "flex" }}>
       <Box
         sx={{
           height: "100%",
@@ -14,32 +14,32 @@ const HomeMiddleIntroduce = () => {
           justifyContent: "center",
           alignItems: "start",
           flexDirection: "column",
-          mr: "64rem",
+          mr: "64px",
         }}
       >
         <Typography
           sx={{
             textTransform: "capitalize",
             whiteSpace: "pre-line",
-            fontSize: "28rem",
+            fontSize: "28px",
             fontWeight: 600,
           }}
         >
           Sự Kết Hợp Hoàn Mỹ của Vị Ngon và
         </Typography>
         <Typography
-          sx={{ color: "color.textPrimary300", fontSize: "28rem", fontWeight: 600 }}
+          sx={{ color: "color.textPrimary300", fontSize: "28px", fontWeight: 600 }}
         >
           Lợi Ích Sức Khỏe
         </Typography>
         <Typography
           className="line-clamp-5"
           sx={{
-            py: "16rem",
-            fontSize: "16rem",
-            lineHeight: "28rem",
-            fontWeight: "400rem",
-            maxHeight: "150rem",
+            py: "16px",
+            fontSize: "16px",
+            lineHeight: "28px",
+            fontWeight: "400px",
+            maxHeight: "150px",
           }}
         >
           Khi nói đến gạo Đồng Bằng Sông Cửu Long, người ta thường nghĩ đến những hạt gạo
@@ -54,10 +54,10 @@ const HomeMiddleIntroduce = () => {
           <Box
             sx={{
               fontSize: {
-                lg: "16rem",
-                xs: "14rem",
+                lg: "16px",
+                xs: "14px",
               },
-              paddingRight: "8rem",
+              paddingRight: "8px",
               textTransform: "capitalize",
             }}
           >

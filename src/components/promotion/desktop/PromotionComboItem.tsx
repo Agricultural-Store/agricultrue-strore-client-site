@@ -33,7 +33,7 @@ const PromotionComboItem = ({ image, title, description, id }: Props) => {
       />
       <CardContent>
         <Typography
-          fontSize="24rem"
+          fontSize="24px"
           fontWeight={600}
           whiteSpace="nowrap"
           overflow="hidden"
@@ -43,9 +43,9 @@ const PromotionComboItem = ({ image, title, description, id }: Props) => {
         </Typography>
         <Box
           dangerouslySetInnerHTML={{ __html: description }}
-          // p="16rem"
-          minHeight="100rem"
-          fontSize="16rem"
+          // p="16px"
+          minHeight="100px"
+          fontSize="16px"
         ></Box>
       </CardContent>
       <CardActions>

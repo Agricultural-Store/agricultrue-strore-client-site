@@ -20,11 +20,11 @@ const ProductRating = () => {
 
   return (
     <Box>
-      <Typography sx={{ fontWeight: 700, fontSize: "20rem", mb: "20rem" }}>
+      <Typography sx={{ fontWeight: 700, fontSize: "20px", mb: "20px" }}>
         Đánh giá từ người dùng
       </Typography>
       <ProductDetailRatingList ratingList={ratingList} />
-      <Typography sx={{ fontWeight: 700, fontSize: "20rem", mb: "20rem", mt: "50rem" }}>
+      <Typography sx={{ fontWeight: 700, fontSize: "20px", mb: "20px", mt: "50px" }}>
         Đánh giá sản phẩm
       </Typography>
       <ProductDetailRatingForm />

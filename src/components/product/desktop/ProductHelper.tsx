@@ -33,23 +33,23 @@ const ProductHelper = () => {
   return (
     <Box
       sx={{
-        height: "425rem",
-        py: "48rem",
-        px: "30rem",
+        height: "425px",
+        py: "48px",
+        px: "30px",
       }}
     >
       <Typography
         sx={{
           textTransform: "capitalize",
-          fontSize: "32rem",
-          lineHeight: "48rem",
+          fontSize: "32px",
+          lineHeight: "48px",
           textAlign: "center",
           fontWeight: 600,
         }}
       >
         Dịch vụ hỗ trợ
       </Typography>
-      <Box sx={{ my: "48rem", display: "flex", justifyContent: "space-between" }}>
+      <Box sx={{ my: "48px", display: "flex", justifyContent: "space-between" }}>
         {content.map((co) => (
           <Box
             key={co.icon}
@@ -57,7 +57,7 @@ const ProductHelper = () => {
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
-              mx: "18rem",
+              mx: "18px",
             }}
           >
             <Box
@@ -66,10 +66,10 @@ const ProductHelper = () => {
             ></Box>
             <Typography
               sx={{
-                fontSize: "20rem",
-                lineHeight: "30rem",
-                pt: "24rem",
-                pb: "12rem",
+                fontSize: "20px",
+                lineHeight: "30px",
+                pt: "24px",
+                pb: "12px",
                 fontWeight: 600,
               }}
             >

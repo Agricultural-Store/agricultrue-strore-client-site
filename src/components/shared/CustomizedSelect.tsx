@@ -11,7 +11,7 @@ type Props = {
 const CustomizedSelect = ({ width, menuItems }: Props) => {
   return (
     <Select
-      sx={{ borderRadius: 0, width: width ?? "222rem", height: "46rem" }}
+      sx={{ borderRadius: 0, width: width ?? "222px", height: "46px" }}
       size="small"
       IconComponent={(params) => <KeyboardArrowDownIcon {...params} />}
     >

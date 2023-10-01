@@ -4,17 +4,17 @@ import React from "react";
 
 const ProductDetailRelated = () => {
   return (
-    <Box px="48rem">
+    <Box px="48px">
       <Typography
-        fontSize="28rem"
+        fontSize="28px"
         fontWeight={700}
-        px="30rem"
+        px="30px"
       >
         Sản phẩm liên quan
       </Typography>
       <Grid
         container
-        py="48rem"
+        py="48px"
       >
         <Grid
           item
@@ -24,8 +24,8 @@ const ProductDetailRelated = () => {
             sx={{
               width: "80%",
               m: "0 auto",
-              height: "320rem",
-              borderRadius: "5rem",
+              height: "320px",
+              borderRadius: "5px",
             }}
           >
             <ProductItem
@@ -47,8 +47,8 @@ const ProductDetailRelated = () => {
             sx={{
               width: "80%",
               m: "0 auto",
-              height: "320rem",
-              borderRadius: "5rem",
+              height: "320px",
+              borderRadius: "5px",
             }}
           >
             <ProductItem
@@ -70,8 +70,8 @@ const ProductDetailRelated = () => {
             sx={{
               width: "80%",
               m: "0 auto",
-              height: "320rem",
-              borderRadius: "5rem",
+              height: "320px",
+              borderRadius: "5px",
             }}
           >
             <ProductItem
@@ -93,8 +93,8 @@ const ProductDetailRelated = () => {
             sx={{
               width: "80%",
               m: "0 auto",
-              height: "320rem",
-              borderRadius: "5rem",
+              height: "320px",
+              borderRadius: "5px",
             }}
           >
             <ProductItem

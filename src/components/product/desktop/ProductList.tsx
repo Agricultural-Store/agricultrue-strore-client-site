@@ -103,26 +103,26 @@ const ProductList = () => {
   };
 
   return (
-    <Box sx={{ p: "64px 48rem", display: "flex" }}>
-      <Box sx={{ mr: "48rem", width: "300rem" }}>
+    <Box sx={{ p: "64px 48px", display: "flex" }}>
+      <Box sx={{ mr: "48px", width: "300px" }}>
         <Box>
-          <Typography sx={{ fontSize: "20rem", fontWeight: 600, mb: "24rem" }}>
+          <Typography sx={{ fontSize: "20px", fontWeight: 600, mb: "24px" }}>
             Tìm kiếm
           </Typography>
           <SearchBox placeholder="Điền yêu cầu của bạn" />
         </Box>
-        <Divider sx={{ my: "24rem" }} />
+        <Divider sx={{ my: "24px" }} />
         <Box>
           <Typography
-            mb="24rem"
-            fontSize="20rem"
+            mb="24px"
+            fontSize="20px"
             fontWeight={600}
           >
             Loại sản phẩm
           </Typography>
           <Box>
             {categories.map((category) => (
-              <Box mb="8rem">
+              <Box mb="8px">
                 <CustomizedCheckbox
                   label={category.categoryName}
                   value={category.id}
@@ -135,13 +135,13 @@ const ProductList = () => {
       <Box sx={{ width: "calc(100% - 300px)" }}>
         <Box
           sx={{
-            mb: "48rem",
+            mb: "48px",
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
           }}
         >
-          <Typography sx={{ fontSize: "28rem", fontWeight: "bold" }}>Gạo Dẻo</Typography>
+          <Typography sx={{ fontSize: "28px", fontWeight: "bold" }}>Gạo Dẻo</Typography>
           <CustomizedSelect menuItems={menuItems} />
         </Box>
         <Grid
@@ -165,7 +165,7 @@ const ProductList = () => {
           ))}
         </Grid>
         <CustomizedPagination
-          sx={{ mt: "48rem" }}
+          sx={{ mt: "48px" }}
           itemCount={products.length}
           rowPerPage={3}
         />

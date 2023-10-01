@@ -6,11 +6,11 @@ const ProductCertification = () => {
   return (
     <Box
       sx={{
-        height: "425rem",
-        py: "48rem",
+        height: "425px",
+        py: "48px",
 
         bgcolor: `color.bgPrimaryWithOpacity`,
-        mt: "64rem",
+        mt: "64px",
         display: "flex",
         justifyContent: "center",
         flexDirection: "column",
@@ -18,17 +18,17 @@ const ProductCertification = () => {
         width: "100%",
       }}
     >
-      <Typography sx={{ fontSize: "28rem", lineHeight: "42rem", fontWeight: 600 }}>
+      <Typography sx={{ fontSize: "28px", lineHeight: "42px", fontWeight: 600 }}>
         Chứng nhận sản phẩm
       </Typography>
       <Typography
         sx={{
           width: "80%",
           mx: "auto",
-          fontSize: "16rem",
-          lineHeight: "28rem",
+          fontSize: "16px",
+          lineHeight: "28px",
           textAlign: "center",
-          mt: "16rem",
+          mt: "16px",
         }}
       >
         Vùng Đồng Bằng Sông Cửu Long đã có nhiều cố gắng trong việc nâng cao chất lượng và
@@ -39,8 +39,8 @@ const ProductCertification = () => {
           display: "flex",
           justifyContent: "space-around",
           gap: 5,
-          mt: "24rem",
-          py: "24rem",
+          mt: "24px",
+          py: "24px",
         }}
       >
         <Box

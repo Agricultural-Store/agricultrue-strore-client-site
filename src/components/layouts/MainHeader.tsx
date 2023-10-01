@@ -40,18 +40,18 @@ const MainHeader = () => {
           position: "fixed",
           top: 0,
           zIndex: 1000,
-          height: "65rem",
+          height: "65px",
           width: "100%",
           bgcolor: "primary.main",
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          px: media ? "10rem" : "48rem",
+          px: media ? "10px" : "48px",
         }}
       >
         <Box
           sx={{
-            height: "42rem",
+            height: "42px",
             display: "flex",
             justifyContent: "flex-start",
             alignItems: "center",
@@ -59,34 +59,34 @@ const MainHeader = () => {
         >
           {media && (
             <IconButton onClick={handleOpen}>
-              <MenuIcon sx={{ color: "white", mr: "5rem", fontSize: "25rem" }} />
+              <MenuIcon sx={{ color: "white", mr: "5px", fontSize: "25px" }} />
             </IconButton>
           )}
           <Box
             component="img"
             src="/images/logo.png"
-            width={media375 ? "150rem" : undefined}
+            width={media375 ? "150px" : undefined}
           />
           {!media ? <AppBarDesktop /> : <div></div>}
         </Box>
         <Box
           sx={{
-            width: "152rem",
+            width: "152px",
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
           }}
         >
-          <IconButton sx={{ height: "40rem", width: "40rem" }}>
+          <IconButton sx={{ height: "40px", width: "40px" }}>
             <SearchIcon />
           </IconButton>
           <IconButton
-            sx={{ height: "40rem", width: "40rem" }}
+            sx={{ height: "40px", width: "40px" }}
             onClick={() => setOpenCart(true)}
           >
             <CartIcon />
           </IconButton>
-          <IconButton sx={{ height: "40rem", width: "40rem" }}>
+          <IconButton sx={{ height: "40px", width: "40px" }}>
             <ProfileIcon />
           </IconButton>
         </Box>

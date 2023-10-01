@@ -10,21 +10,21 @@ const HomeOutstandingProduct = () => {
         justifyContent: "center",
         flexDirection: "column",
         alignItems: "center",
-        mt: "64rem",
-        px: "48rem",
+        mt: "64px",
+        px: "48px",
       }}
     >
-      <Typography sx={{ fontSize: "28rem", lineHeight: "42rem", fontWeight: 600 }}>
+      <Typography sx={{ fontSize: "28px", lineHeight: "42px", fontWeight: 600 }}>
         Chứng nhận sản phẩm
       </Typography>
-      <Typography sx={{ width: "70%", m: "0 auto", textAlign: "center", my: "16rem" }}>
+      <Typography sx={{ width: "70%", m: "0 auto", textAlign: "center", my: "16px" }}>
         Đồng Bằng Sông Cửu Long, với đất đai màu mỡ và nguồn nước từ hệ thống sông ngòi
         chảy qua, đã tạo ra những giống gạo nổi tiếng không chỉ trong nước mà còn trên thị
         trường quốc tế.
       </Typography>
       <Grid
         container
-        py="48rem"
+        py="48px"
       >
         <Grid
           item
@@ -34,9 +34,9 @@ const HomeOutstandingProduct = () => {
             sx={{
               width: "80%",
               m: "0 auto",
-              height: "320rem",
+              height: "320px",
               bgcolor: "rgba(40, 140, 20, 0.1)",
-              borderRadius: "5rem",
+              borderRadius: "5px",
             }}
           ></Box>
         </Grid>
@@ -48,9 +48,9 @@ const HomeOutstandingProduct = () => {
             sx={{
               width: "80%",
               m: "0 auto",
-              height: "320rem",
+              height: "320px",
               bgcolor: "rgba(40, 140, 20, 0.1)",
-              borderRadius: "5rem",
+              borderRadius: "5px",
             }}
           ></Box>
         </Grid>
@@ -62,9 +62,9 @@ const HomeOutstandingProduct = () => {
             sx={{
               width: "80%",
               m: "0 auto",
-              height: "320rem",
+              height: "320px",
               bgcolor: "rgba(40, 140, 20, 0.1)",
-              borderRadius: "5rem",
+              borderRadius: "5px",
             }}
           ></Box>
         </Grid>
@@ -76,9 +76,9 @@ const HomeOutstandingProduct = () => {
             sx={{
               width: "80%",
               m: "0 auto",
-              height: "320rem",
+              height: "320px",
               bgcolor: "rgba(40, 140, 20, 0.1)",
-              borderRadius: "5rem",
+              borderRadius: "5px",
             }}
           ></Box>
         </Grid>
@@ -91,10 +91,10 @@ const HomeOutstandingProduct = () => {
           <Box
             sx={{
               fontSize: {
-                lg: "16rem",
-                xs: "14rem",
+                lg: "16px",
+                xs: "14px",
               },
-              paddingRight: "8rem",
+              paddingRight: "8px",
               textTransform: "capitalize",
             }}
           >

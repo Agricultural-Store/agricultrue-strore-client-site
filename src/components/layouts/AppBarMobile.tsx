@@ -25,18 +25,18 @@ const AppBarMobile = ({ open, onClose }: Props) => {
       onClose={toggleAppBar}
       PaperProps={{
         sx: {
-          width: media ? "100%" : "350rem",
+          width: media ? "100%" : "350px",
           height: "100svh",
           bgcolor: "rgba(0, 0, 0, 0.4)",
           backdropFilter: "blur(15px)",
-          p: "16rem",
+          p: "16px",
         },
       }}
     >
       <Box
         sx={{
           width: "100%",
-          height: "32rem",
+          height: "32px",
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
@@ -60,7 +60,7 @@ const AppBarMobile = ({ open, onClose }: Props) => {
           justifyContent: "center",
           alignItems: "center",
           flexDirection: "column",
-          gap: "24rem",
+          gap: "24px",
         }}
       >
         {mobileNavigation.map((nav) => (
@@ -77,10 +77,10 @@ const AppBarMobile = ({ open, onClose }: Props) => {
         fullWidth
         variant="contained"
         sx={{
-          height: "41rem",
+          height: "41px",
           boxShadow: 0,
           textTransform: "capitalize",
-          fontSize: "14rem",
+          fontSize: "14px",
         }}
       >
         Liên hệ

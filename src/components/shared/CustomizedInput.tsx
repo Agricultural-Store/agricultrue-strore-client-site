@@ -15,10 +15,10 @@ const CustomizedInput = ({ label, ...props }: Props) => {
           sx={{
             position: "absolute",
             top: -12,
-            left: "16rem",
+            left: "16px",
             bgcolor: "color.bgWhite",
-            px: "5rem",
-            height: "20rem",
+            px: "5px",
+            height: "20px",
             zIndex: 1,
           }}
         >

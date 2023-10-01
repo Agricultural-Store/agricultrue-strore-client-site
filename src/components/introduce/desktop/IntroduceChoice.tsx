@@ -45,11 +45,11 @@ const IntroduceChoice = () => {
   ]);
 
   return (
-    <Box sx={{ bgcolor: "color.bgPrimaryWithOpacity", p: "48rem" }}>
-      <Typography sx={{ fontSize: "28rem", textAlign: "center", fontWeight: 600 }}>
+    <Box sx={{ bgcolor: "color.bgPrimaryWithOpacity", p: "48px" }}>
+      <Typography sx={{ fontSize: "28px", textAlign: "center", fontWeight: 600 }}>
         Tại sao nên chọn hương gạo quê
       </Typography>
-      <Typography sx={{ textAlign: "center", mt: "16rem", mb: "64rem" }}>
+      <Typography sx={{ textAlign: "center", mt: "16px", mb: "64px" }}>
         Kho tàng thiên nhiên nằm giữa trái tim đất Việt, nơi sản xuất những giống gạo tinh
         túy, chất lượng và đặc trưng.
       </Typography>
@@ -65,10 +65,10 @@ const IntroduceChoice = () => {
             key={item.title}
           >
             <Box
-              p="9rem"
-              mb="24rem"
-              width="60rem"
-              height="60rem"
+              p="9px"
+              mb="24px"
+              width="60px"
+              height="60px"
               border="1px solid #C3C2C1"
             >
               <Box
@@ -76,7 +76,7 @@ const IntroduceChoice = () => {
                 src={item.icon}
               />
             </Box>
-            <Typography sx={{ fontSize: "20rem", fontWeight: 500, mb: "8rem" }}>
+            <Typography sx={{ fontSize: "20px", fontWeight: 500, mb: "8px" }}>
               {item.title}
             </Typography>
             <Typography sx={{ fontWeight: 400 }}>{item.content}</Typography>

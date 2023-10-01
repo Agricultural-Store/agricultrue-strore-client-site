@@ -11,8 +11,8 @@ const AppBarWeb = () => {
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
-        pl: "42rem",
-        gap: "42rem",
+        pl: "42px",
+        gap: "42px",
       }}
     >
       {webNavigation.map((nav) => (
