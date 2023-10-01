@@ -1,4 +1,4 @@
-import { Box, Button, Divider, TextField, Typography } from "@mui/material";
+import { Box, Button, Divider, Typography } from "@mui/material";
 import React, { ChangeEvent, useState } from "react";
 import EmptyStarIcon from "../shared/icons/EmptyStarIcon";
 import YellowStarIcon from "../shared/icons/YellowStarIcon";
@@ -7,12 +7,8 @@ import CustomizedInput from "../shared/CustomizedInput";
 
 function renderStarItem(length: number, value: number) {
   if (length == value)
-    return Array.apply(null, Array(length)).map((_v, index) => (
-      <YellowStarIcon key={index} />
-    ));
-  return Array.apply(null, Array(length)).map((_v, index) => (
-    <EmptyStarIcon key={index} />
-  ));
+    return Array(...Array(length)).map((_v, index) => <YellowStarIcon key={index} />);
+  return Array(...Array(length)).map((_v, index) => <EmptyStarIcon key={index} />);
 }
 
 const ProductDetailRatingForm = () => {

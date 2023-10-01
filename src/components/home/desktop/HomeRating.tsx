@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import HomeRatingItem from "./HomeRatingItem";
 
 const HomeRating = () => {
-  const [tabIndex, setTabIndex] = useState(0);
+  const [tabIndex] = useState(0);
 
   return (
     <Box

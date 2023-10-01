@@ -1,6 +1,6 @@
 "use client";
 import { webNavigation } from "@/config/navigation";
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import React from "react";
 import CustomizeLink from "../shared/CustomizeLink";
 

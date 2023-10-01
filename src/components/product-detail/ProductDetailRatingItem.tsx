@@ -28,7 +28,7 @@ const ProductDetailRatingItem = ({ rating }: Props) => {
             {rating.username}
           </Typography>
           <Box>
-            {Array.apply(null, Array(rating.productRating)).map((_v, index) => (
+            {Array(...Array(rating.productRating)).map((_v, index) => (
               <YellowStarIcon key={index}></YellowStarIcon>
             ))}
           </Box>

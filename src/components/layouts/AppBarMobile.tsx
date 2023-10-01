@@ -1,7 +1,7 @@
 "use client";
 import useMedia from "@/hooks/shared/useMedia";
-import { Box, Button, Drawer, IconButton, Typography } from "@mui/material";
-import React, { useState } from "react";
+import { Box, Button, Drawer, IconButton } from "@mui/material";
+import React from "react";
 import CloseIcon from "../shared/icons/CloseIcon";
 import { mobileNavigation } from "@/config/navigation";
 import CustomizeLink from "../shared/CustomizeLink";

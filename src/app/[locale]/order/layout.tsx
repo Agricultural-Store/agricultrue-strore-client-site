@@ -1,11 +1,7 @@
-import React, { ReactNode } from "react";
+import React from "react";
 
-type Props = {
-  children: ReactNode;
-};
-
-const OrderLayout = ({ children }: Props) => {
-  return <>{children}</>;
+const OrderLayout = () => {
+  return <div></div>;
 };
 
 export default OrderLayout;

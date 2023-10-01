@@ -122,7 +122,10 @@ const ProductList = () => {
           </Typography>
           <Box>
             {categories.map((category) => (
-              <Box mb="8px">
+              <Box
+                mb="8px"
+                key={category.id}
+              >
                 <CustomizedCheckbox
                   label={category.categoryName}
                   value={category.id}

@@ -9,10 +9,8 @@ import {
   Typography,
   CardActionArea,
 } from "@mui/material";
-import dynamic from "next/dynamic";
 import React from "react";
 
-// const CardActionArea = dynamic(() => import("@mui/material"), { ssr: false });
 
 type Props = {
   product?: Product;

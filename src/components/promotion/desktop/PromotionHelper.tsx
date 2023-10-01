@@ -3,7 +3,7 @@ import { Box, Typography } from "@mui/material";
 import React, { useState } from "react";
 
 const PromotionHelper = () => {
-  const [content, setContent] = useState([
+  const [content] = useState([
     {
       icon: "/images/promotion-helper-1.png",
       title: "Email hỗ trợ",

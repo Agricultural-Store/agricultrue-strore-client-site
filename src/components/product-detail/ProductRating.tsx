@@ -5,7 +5,7 @@ import ProductDetailRatingList from "./ProductDetailRatingList";
 import { ProductRating } from "@/types/product-rating";
 
 const ProductRating = () => {
-  const [ratingList, setRatingList] = useState<ProductRating[]>([
+  const [ratingList] = useState<ProductRating[]>([
     {
       createdAt: "17 tháng 09 năm 2023",
       feedback: `Loại gạo này rất ngon, tôi thích nó😍 Tôi thực sự ấn tượng với chất lượng của gạo

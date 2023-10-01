@@ -5,7 +5,7 @@ import { ProductDetail } from "@/types/product-detail";
 import ProductDetailRelated from "./ProductDetailRelated";
 
 const ProductDetailDesktop = () => {
-  const [product, setProduct] = useState<ProductDetail>({
+  const [product] = useState<ProductDetail>({
     productDiscount: 0,
     productImages: [
       "/images/product-detail-main.png",

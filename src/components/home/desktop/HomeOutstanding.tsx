@@ -3,7 +3,7 @@ import { Box, Typography } from "@mui/material";
 import React, { useState } from "react";
 
 const HomeOutstanding = () => {
-  const [content, setContent] = useState([
+  const [content] = useState([
     {
       icon: "/images/ic-outstanding-1.svg",
       title: "Bảo Đảm Chất Lượng",

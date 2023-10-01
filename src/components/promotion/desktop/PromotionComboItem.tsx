@@ -7,7 +7,7 @@ import {
   CardMedia,
   Typography,
 } from "@mui/material";
-import React, { ReactNode } from "react";
+import React from "react";
 
 type Props = {
   image?: string;

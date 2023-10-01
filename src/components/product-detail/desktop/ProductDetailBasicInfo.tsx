@@ -3,7 +3,7 @@ import NextArrowIcon from "@/components/shared/icons/NextArrowIcon";
 import PreviousIcon from "@/components/shared/icons/PreviousArrowIcon";
 import { ProductDetail } from "@/types/product-detail";
 import { Box, Button, Grid, IconButton, Typography } from "@mui/material";
-import React, { useState } from "react";
+import React from "react";
 
 type Props = {
   product: ProductDetail;

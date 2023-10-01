@@ -9,18 +9,14 @@ const HomeVision = () => {
   const [tabIndex, setTabIndex] = useState(0);
 
   const handleNext = () => {
-    let position = 0;
     if (tabIndex < 4) {
       setTabIndex((pre) => pre + 1);
-      position = 25 * (tabIndex + 1);
     }
   };
 
   const handlePrevious = () => {
-    let position = 75;
     if (tabIndex > 0) {
       setTabIndex((pre) => pre - 1);
-      position = 25 * (tabIndex - 1);
     }
   };
 

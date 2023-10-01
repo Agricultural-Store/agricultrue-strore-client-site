@@ -51,9 +51,9 @@ const HomeIntroduce = () => {
           }}
         >
           Đồng bằng Sông Cửu Long, nơi được mẹ thiên nhiên ưu đãi với hệ thống sông ngòi
-          dày đặc, mang trong mình vẻ đẹp hùng vĩ của những dòng sông mẹ, là "lá phổi
-          xanh" của cả nước. Khi nhắc đến Cửu Long, người ta không thể không nghĩ ngay đến
-          biểu tượng của nền nông nghiệp: những cánh đồng lúa xanh bát ngát.
+          dày đặc, mang trong mình vẻ đẹp hùng vĩ của những dòng sông mẹ, là &quote;lá
+          phổi xanh&quote; của cả nước. Khi nhắc đến Cửu Long, người ta không thể không
+          nghĩ ngay đến biểu tượng của nền nông nghiệp: những cánh đồng lúa xanh bát ngát.
         </Typography>
         <Button
           variant="text"

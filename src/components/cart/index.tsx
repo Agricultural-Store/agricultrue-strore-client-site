@@ -1,5 +1,5 @@
 "use client";
-import { Box, Button, IconButton, Typography } from "@mui/material";
+import { Box, IconButton, Typography } from "@mui/material";
 import React, { useState } from "react";
 import CustomizedDrawer from "../shared/CustomizedDrawer";
 import CloseIcon from "../shared/icons/CloseIcon";
@@ -14,7 +14,7 @@ type Props = {
 };
 
 const Cart = ({ onClose, open }: Props) => {
-  const [products, setProducts] = useState<ProductInCart[]>([
+  const [products] = useState<ProductInCart[]>([
     {
       id: 1,
       productDiscount: 10,
