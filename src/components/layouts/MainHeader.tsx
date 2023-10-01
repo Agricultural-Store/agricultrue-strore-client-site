@@ -10,6 +10,7 @@ import CartIcon from "../shared/icons/CartIcon";
 import ProfileIcon from "../shared/icons/ProfileIcon";
 import MenuIcon from "@mui/icons-material/Menu";
 import Cart from "../cart";
+import Auth from "../auth";
 
 const MainHeader = () => {
   const [open, setOpen] = useState(false);
@@ -95,6 +96,7 @@ const MainHeader = () => {
         onClose={setOpenCart}
         open={openCart}
       />
+      <Auth />
     </>
   );
 };

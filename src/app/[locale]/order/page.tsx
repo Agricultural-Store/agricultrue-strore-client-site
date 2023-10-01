@@ -2,7 +2,7 @@ import Order from "@/components/order";
 import React from "react";
 
 export const metadata = {
-  title: "Khuyến mãi",
+  title: "Đơn hàng",
 };
 
 const OrderPage = () => {
