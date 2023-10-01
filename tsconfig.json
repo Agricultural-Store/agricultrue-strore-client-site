@@ -28,7 +28,9 @@
     "global.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    ".next/types/**/*.ts"
+    ".next/types/**/*.ts",
+    "commitlint.config.js"
   ],
   "exclude": ["node_modules"]
+
 }

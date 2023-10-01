@@ -1,4 +1,3 @@
-import Introduce from "@/components/introduce";
 import Promotion from "@/components/promotion";
 import React from "react";
 

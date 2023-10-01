@@ -1,5 +1,5 @@
 import { ProductInCart } from "@/types/cart";
-import { Box, Typography } from "@mui/material";
+import { Box, IconButton, Typography } from "@mui/material";
 import React from "react";
 import CustomizedQuantityInput from "../shared/CustomizedQuantityInput";
 import DeleteIcon from "../shared/icons/DeleteIcon";
@@ -35,7 +35,9 @@ const ProductInCartItem = ({ product }: Props) => {
           >
             {product.productName}
           </Typography>
-          <DeleteIcon />
+          <IconButton>
+            <DeleteIcon />
+          </IconButton>
         </Box>
         <Box
           sx={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}

@@ -6,6 +6,7 @@ import CloseIcon from "../shared/icons/CloseIcon";
 import ProductInCartList from "./ProductInCartList";
 import { ProductInCart } from "@/types/cart";
 import CartSummary from "./CartSummary";
+import CartEmpty from "./CartEmpty";
 
 type Props = {
   open: boolean;
@@ -89,19 +90,28 @@ const Cart = ({ onClose, open }: Props) => {
             }}
           >
             <Typography variant="h2">Sản phẩm</Typography>
-            <IconButton sx={{ color: "color.textBlack" }}>
+            <IconButton
+              sx={{ color: "color.textBlack" }}
+              onClick={() => onClose(false)}
+            >
               <CloseIcon />
             </IconButton>
           </Box>
-          <Box
-            height="calc(90vh - 320px)"
-            sx={{ overflowY: "scroll" }}
-          >
-            <ProductInCartList products={products} />
-          </Box>
-          <Box height="320px">
-            <CartSummary products={products} />
-          </Box>
+          {products.length > 0 ? (
+            <>
+              <Box
+                height="calc(90vh - 320px)"
+                sx={{ overflowY: "scroll" }}
+              >
+                <ProductInCartList products={products} />
+              </Box>
+              <Box height="320px">
+                <CartSummary products={products} />
+              </Box>
+            </>
+          ) : (
+            <CartEmpty />
+          )}
         </Box>
       </CustomizedDrawer>
     </div>
