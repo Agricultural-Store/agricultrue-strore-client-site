@@ -1,6 +1,13 @@
 "use client";
 
-import { Box, Grid, IconButton, Typography } from "@mui/material";
+import {
+  Box,
+  Grid,
+  IconButton,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import React, { useRef, useState } from "react";
 import NewsItem from "./NewsItem";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
@@ -10,6 +17,11 @@ import NextArrowIcon from "../shared/icons/NextArrowIcon";
 const NewsList = () => {
   const [tabIndex, setTabIndex] = useState(0);
   const ref = useRef<HTMLDivElement>(null);
+
+  const theme = useTheme();
+  const matchesMd = useMediaQuery(theme.breakpoints.up("md"));
+  const matchesSm = useMediaQuery(theme.breakpoints.up("sm"));
+  const matchesLg = useMediaQuery(theme.breakpoints.up("lg"));
 
   const handleNext = () => {
     let position = 0;
@@ -31,6 +43,40 @@ const NewsList = () => {
     if (ref.current?.style && position < 75) {
       ref.current.style.transform = `translateX(-${position}%)`;
     }
+  };
+
+  const renderItem = () => {
+    if (matchesLg) {
+      return (
+        <>
+          <NewsItem />
+          <NewsItem />
+          <NewsItem />
+          <NewsItem />
+        </>
+      );
+    }
+    if (matchesMd) {
+      return (
+        <>
+          <NewsItem />
+          <NewsItem />
+          <NewsItem />
+        </>
+      );
+    }
+    if (matchesSm) {
+      <>
+        <NewsItem />
+        <NewsItem />
+      </>;
+    }
+    return (
+      <>
+        <NewsItem />
+        <NewsItem />
+      </>
+    );
   };
 
   return (
@@ -57,10 +103,21 @@ const NewsList = () => {
             px="48px"
             width={"25%"}
           >
-            <NewsItem />
-            <NewsItem />
-            <NewsItem />
-            <NewsItem />
+            {renderItem()}
+          </Grid>
+          <Grid
+            container
+            justifyContent="space-around"
+            px="48px"
+            width={"25%"}
+          ></Grid>
+          <Grid
+            container
+            justifyContent="space-around"
+            px="48px"
+            width={"25%"}
+          >
+            {renderItem()}
           </Grid>
           <Grid
             container
@@ -68,32 +125,7 @@ const NewsList = () => {
             px="48px"
             width={"25%"}
           >
-            <NewsItem />
-            <NewsItem />
-            <NewsItem />
-            <NewsItem />
-          </Grid>
-          <Grid
-            container
-            justifyContent="space-around"
-            px="48px"
-            width={"25%"}
-          >
-            <NewsItem />
-            <NewsItem />
-            <NewsItem />
-            <NewsItem />
-          </Grid>
-          <Grid
-            container
-            justifyContent="space-around"
-            px="48px"
-            width={"25%"}
-          >
-            <NewsItem />
-            <NewsItem />
-            <NewsItem />
-            <NewsItem />
+            {renderItem()}
           </Grid>
         </Box>
         <Box

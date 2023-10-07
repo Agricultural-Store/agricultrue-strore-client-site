@@ -1,5 +1,5 @@
 import ProductItem from "@/components/product/ProductItem";
-import { Box, Divider, Grid, Typography } from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
 import React from "react";
 
 const ProductDetailRelated = () => {
@@ -109,7 +109,6 @@ const ProductDetailRelated = () => {
           </Box>
         </Grid>
       </Grid>
-      <Divider />
     </Box>
   );
 };

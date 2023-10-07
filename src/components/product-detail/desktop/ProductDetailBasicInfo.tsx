@@ -1,4 +1,5 @@
 import CustomizedQuantityInput from "@/components/shared/CustomizedQuantityInput";
+import FavoriteIcon from "@/components/shared/icons/FavoriteIcon";
 import NextArrowIcon from "@/components/shared/icons/NextArrowIcon";
 import PreviousIcon from "@/components/shared/icons/PreviousArrowIcon";
 import { ProductDetail } from "@/types/product-detail";
@@ -152,7 +153,7 @@ const ProductDetailBasicInfo = ({ product }: Props) => {
             maxValue={10}
           />
         </Box>
-        <Box sx={{ display: "flex", gap: "16px", mt: "20px" }}>
+        <Box sx={{ display: "flex", gap: "16px", mt: "20px", height: "42px" }}>
           <Button
             sx={{ textTransform: "capitalize" }}
             variant="contained"
@@ -160,10 +161,17 @@ const ProductDetailBasicInfo = ({ product }: Props) => {
             Thêm vào giỏ hàng
           </Button>
           <Button
-            sx={{ textTransform: "capitalize" }}
-            variant="outlined"
+            sx={{
+              textTransform: "capitalize",
+              minWidth: "42px",
+              maxWidth: "42px",
+              p: 0,
+              color: "#FFC3C3",
+            }}
+            variant="contained"
+            color="error"
           >
-            Liên hệ
+            <FavoriteIcon />
           </Button>
         </Box>
         <Box>

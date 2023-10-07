@@ -60,6 +60,17 @@ export const buildTheme = (font?: string) =>
             },
           },
         },
+        MuiAutocomplete: {
+          defaultProps: {
+            componentsProps: {
+              paper: {
+                sx: {
+                  bgcolor: "#F4F5F6",
+                },
+              },
+            },
+          },
+        },
       },
       shadows: defaultShadows.map(() => "none") as Shadows,
       breakpoints: {
@@ -80,7 +91,6 @@ export const buildTheme = (font?: string) =>
         },
         background: {
           default: "#FFFFFF",
-          paper: "#F4F5F6",
         },
         error: {
           main: "#E25C5C",

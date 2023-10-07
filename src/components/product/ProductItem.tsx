@@ -10,7 +10,7 @@ import {
   CardActionArea,
 } from "@mui/material";
 import React from "react";
-
+import FavoriteIcon from "../shared/icons/FavoriteIcon";
 
 type Props = {
   product?: Product;
@@ -37,15 +37,36 @@ const ProductItem = ({ product, onClick }: Props) => {
           width="100%"
         />
         <CardContent>
-          <Typography
-            fontSize="24px"
-            fontWeight={600}
-            whiteSpace="nowrap"
-            overflow="hidden"
-            textOverflow="ellipsis"
+          <Box
+            display="flex"
+            justifyContent="space-between"
+            alignItems="center"
+            height="45px"
           >
-            {product?.productName}
-          </Typography>
+            <Typography
+              fontSize="24px"
+              fontWeight={600}
+              whiteSpace="nowrap"
+              overflow="hidden"
+              textOverflow="ellipsis"
+            >
+              {product?.productName}
+            </Typography>
+            <Box
+              sx={{
+                width: "40px",
+                height: "40px",
+                borderRadius: "50%",
+                bgcolor: "error.main",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                color: "#FFC3C3",
+              }}
+            >
+              <FavoriteIcon />
+            </Box>
+          </Box>
           <Box sx={{ display: "flex" }}>
             <Typography sx={{ color: "error.main", fontWeight: 600 }}>
               Giá:{" "}
