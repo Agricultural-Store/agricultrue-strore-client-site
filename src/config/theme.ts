@@ -21,6 +21,8 @@ declare module "@mui/material/styles" {
       bgPrimary400?: string;
       bgPrimaryWithOpacity?: string;
       bgWhite?: string;
+      bgNeutral200?: string;
+      bgNeutral300?: string;
     };
   }
   interface PaletteOptions {
@@ -39,6 +41,8 @@ declare module "@mui/material/styles" {
       bgPrimary400?: string;
       bgPrimaryWithOpacity?: string;
       bgWhite?: string;
+      bgNeutral200?: string;
+      bgNeutral300?: string;
     };
   }
 }
@@ -46,6 +50,17 @@ declare module "@mui/material/styles" {
 export const buildTheme = (font?: string) =>
   responsiveFontSizes(
     createTheme({
+      components: {
+        MuiButton: {
+          styleOverrides: {
+            // Name of the slot
+            root: {
+              // Some CSS
+              textTransform: "capitalize",
+            },
+          },
+        },
+      },
       shadows: defaultShadows.map(() => "none") as Shadows,
       breakpoints: {
         values: {
@@ -64,7 +79,8 @@ export const buildTheme = (font?: string) =>
           main: "#D9EDD7",
         },
         background: {
-          default: " #FFFFFF",
+          default: "#FFFFFF",
+          paper: "#F4F5F6",
         },
         error: {
           main: "#E25C5C",
@@ -83,6 +99,8 @@ export const buildTheme = (font?: string) =>
           bgPrimary400: "#63811E",
           bgPrimaryWithOpacity: "rgba(99, 129, 30, 0.08)",
           bgWhite: "#FFFFFF",
+          bgNeutral200: "#F4F5F6",
+          bgNeutral300: "#E6E8EC",
         },
       },
       typography: {

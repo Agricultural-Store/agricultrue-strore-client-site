@@ -1,19 +1,27 @@
 import { Box, Collapse, Dialog, DialogContent, IconButton } from "@mui/material";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import AuthLogin from "./AuthLogin";
 import AuthRegister from "./AuthRegister";
 import CloseIcon from "@/components/shared/icons/CloseIcon";
 import useMedia from "@/hooks/shared/useMedia";
+import { AppContext } from "@/providers/AppContext";
 
 const AuthDesktop = () => {
   const [isShowRegister, setIsShowRegister] = useState(false);
 
+  const { openAuth, setOpenAuth } = useContext(AppContext);
+
   const { media } = useMedia(1100);
+
+  const handleCloseAuth = () => {
+    setOpenAuth(false);
+  };
 
   return (
     <Dialog
-      open
+      open={openAuth}
       maxWidth="lg"
+      onClose={handleCloseAuth}
       PaperProps={{
         sx: {
           overflow: "visible",
@@ -21,7 +29,7 @@ const AuthDesktop = () => {
         },
       }}
     >
-      <DialogContent sx={{ p: 0, overflowY: "scroll" }}>
+      <DialogContent sx={{ p: 0, overflowY: "auto", borderRadius: "8px" }}>
         <Box
           sx={{
             position: "absolute",
@@ -33,7 +41,7 @@ const AuthDesktop = () => {
             transform: "translate(50%, -50%)",
           }}
         >
-          <IconButton>
+          <IconButton onClick={handleCloseAuth}>
             <CloseIcon />
           </IconButton>
         </Box>

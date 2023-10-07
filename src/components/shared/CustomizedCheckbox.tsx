@@ -1,7 +1,7 @@
 "use client";
 
 import { Box, Checkbox, Typography } from "@mui/material";
-import React, { ChangeEvent } from "react";
+import React, { ChangeEvent, ReactNode } from "react";
 import CircleCheckedIcon from "./icons/CircleCheckedIcon";
 import CircleUncheckIcon from "./icons/CircleUncheckIcon";
 
@@ -11,6 +11,7 @@ type Props = {
   onChange?: (checked: boolean) => void;
   checked?: boolean;
   defaultChecked?: boolean;
+  checkedIcon?: ReactNode;
 };
 
 const CustomizedCheckbox = ({
@@ -18,6 +19,7 @@ const CustomizedCheckbox = ({
   value,
   defaultChecked,
   checked,
+  checkedIcon,
   onChange,
 }: Props) => {
   const handleChange = (e: ChangeEvent<HTMLInputElement>, checked: boolean) => {
@@ -44,7 +46,7 @@ const CustomizedCheckbox = ({
           defaultChecked={defaultChecked}
           onChange={handleChange}
           icon={<CircleUncheckIcon />}
-          checkedIcon={<CircleCheckedIcon />}
+          checkedIcon={checkedIcon || <CircleCheckedIcon />}
         />
       </Box>
       <Typography

@@ -1,7 +1,7 @@
 "use client";
 
 import useMedia from "@/hooks/shared/useMedia";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import AppBarMobile from "./AppBarMobile";
 import AppBarDesktop from "./AppBarDesktop";
 import { Box, IconButton } from "@mui/material";
@@ -11,15 +11,23 @@ import ProfileIcon from "../shared/icons/ProfileIcon";
 import MenuIcon from "@mui/icons-material/Menu";
 import Cart from "../cart";
 import Auth from "../auth";
+import { AppContext } from "@/providers/AppContext";
 
 const MainHeader = () => {
   const [open, setOpen] = useState(false);
   const [openCart, setOpenCart] = useState(false);
+
+  const { setOpenAuth } = useContext(AppContext);
+
   const { media } = useMedia(1000);
   const { media: media375 } = useMedia(375);
 
   const handleOpen = () => {
     setOpen(true);
+  };
+
+  const handleOpenAuth = () => {
+    setOpenAuth?.(true);
   };
 
   useEffect(() => {
@@ -87,7 +95,10 @@ const MainHeader = () => {
           >
             <CartIcon />
           </IconButton>
-          <IconButton sx={{ height: "40px", width: "40px" }}>
+          <IconButton
+            onClick={handleOpenAuth}
+            sx={{ height: "40px", width: "40px" }}
+          >
             <ProfileIcon />
           </IconButton>
         </Box>

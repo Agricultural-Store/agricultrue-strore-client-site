@@ -32,6 +32,9 @@ dependencies:
   client-only:
     specifier: ^0.0.1
     version: 0.0.1
+  country-state-city:
+    specifier: ^3.2.1
+    version: 3.2.1
   eslint-config-next:
     specifier: 13.4.19
     version: 13.4.19(eslint@8.49.0)(typescript@5.2.2)
@@ -1567,6 +1570,10 @@ packages:
       parse-json: 5.2.0
       path-type: 4.0.0
       yaml: 1.10.2
+    dev: false
+
+  /country-state-city@3.2.1:
+    resolution: {integrity: sha512-kxbanqMc6izjhc/EHkGPCTabSPZ2G6eG4/97akAYHJUN4stzzFEvQPZoF8oXDQ+10gM/O/yUmISCR1ZVxyb6EA==}
     dev: false
 
   /cross-spawn@7.0.3:
