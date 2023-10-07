@@ -12,6 +12,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Cart from "../cart";
 import Auth from "../auth";
 import { AppContext } from "@/providers/AppContext";
+import NextIntlLink from "next-intl/link";
 
 const MainHeader = () => {
   const [open, setOpen] = useState(false);
@@ -71,11 +72,13 @@ const MainHeader = () => {
               <MenuIcon sx={{ color: "white", mr: "5px", fontSize: "25px" }} />
             </IconButton>
           )}
-          <Box
-            component="img"
-            src="/images/logo.png"
-            width={media375 ? "150px" : undefined}
-          />
+          <NextIntlLink href="/">
+            <Box
+              component="img"
+              src="/images/logo.png"
+              width={media375 ? "150px" : undefined}
+            />
+          </NextIntlLink>
           {!media ? <AppBarDesktop /> : <div></div>}
         </Box>
         <Box

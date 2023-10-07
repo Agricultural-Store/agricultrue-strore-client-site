@@ -110,7 +110,9 @@ const NewsList = () => {
             justifyContent="space-around"
             px="48px"
             width={"25%"}
-          ></Grid>
+          >
+            {renderItem()}
+          </Grid>
           <Grid
             container
             justifyContent="space-around"
