@@ -28,7 +28,7 @@ const itemsStepper = [
 ];
 
 const ProfileOrderDetail = () => {
-  const [step, setStep] = useState(1);
+  const [step, ] = useState(1);
 
   return (
     <Box

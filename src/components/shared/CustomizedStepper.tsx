@@ -6,6 +6,7 @@ import React, { ReactNode } from "react";
 type Props = {
   children?: ReactNode;
   activeStep: number;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   connector?: React.ReactElement<any, any>;
 };
 

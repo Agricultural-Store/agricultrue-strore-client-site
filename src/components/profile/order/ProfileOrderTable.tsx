@@ -1,15 +1,12 @@
-import DeleteIcon from "@/components/shared/icons/DeleteIcon";
 import {
   TableContainer,
   Table,
-  tableCellClasses,
   TableHead,
   TableRow,
   TableCell,
   TableBody,
   Box,
   Typography,
-  IconButton,
 } from "@mui/material";
 import React from "react";
 

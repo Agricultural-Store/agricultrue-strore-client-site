@@ -1,8 +1,6 @@
 import CustomizedTab from "@/components/shared/tab/CustomizedTab";
-import { CustomizedTabPanel } from "@/components/shared/tab/CustomizedTabPanel";
 import { Box } from "@mui/material";
 import React, { useState } from "react";
-import ProfileOrderItem from "./ProfileOrderItem";
 import ProfileOrderList from "./ProfileOrderList";
 
 const tabs = [

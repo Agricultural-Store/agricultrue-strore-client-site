@@ -1,4 +1,3 @@
-import { faker } from "@faker-js/faker";
 import { ListOptions, ListResponse } from "@/types/shared";
 import { extractQueryParams } from "@/utils/query";
 import { FetchMockStatic } from "@gr2m/fetch-mock";
@@ -6,16 +5,6 @@ import { Product } from "@/types/product";
 
 export default function mockProducts(fetchMock: FetchMockStatic) {
   const products = [] as Product[];
-
-  for (let index = 0; index < 46; index++) {
-    products.push({
-      _id: faker.database.mongodbObjectId(),
-      name: faker.commerce.productName(),
-      desc: faker.commerce.productDescription(),
-      image: faker.image.urlPicsumPhotos({ width: 128, height: 128 }),
-      price: faker.commerce.price(),
-    });
-  }
 
   return fetchMock.get(
     "path:/api/products",

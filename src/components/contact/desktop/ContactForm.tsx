@@ -4,7 +4,7 @@ import { Box, Button, Typography } from "@mui/material";
 import React, { ChangeEvent, useState } from "react";
 
 const ContactForm = () => {
-  const [input, setInput] = useState<ContactInput>({
+  const [, setInput] = useState<ContactInput>({
     feedback: "",
     mail: "",
     name: "",
