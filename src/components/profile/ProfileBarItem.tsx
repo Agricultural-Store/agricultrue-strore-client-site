@@ -24,9 +24,17 @@ const ProfileBarItem = ({ item }: Props) => {
           textDecoration: "none",
           display: "flex",
           alignItems: "center",
-          color: pathname === item.href ? "#265426" : "#141416",
+          color:
+            pathname.split("/").includes(item.href.split("/")?.[2]) ||
+            (!pathname.split("/")[2] && !item.href.split("/")?.[2])
+              ? "#265426"
+              : "#141416",
           padding: "12px 24px",
-          backgroundColor: pathname === item.href ? "#D9EDD7" : "white",
+          backgroundColor:
+            pathname.split("/").includes(item.href.split("/")?.[2]) ||
+            (!pathname.split("/")[2] && !item.href.split("/")?.[2])
+              ? "#D9EDD7"
+              : "white",
         }}
       >
         {item.icon}

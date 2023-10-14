@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import React from "react";
 
 const CartEmpty = () => {
@@ -29,6 +29,13 @@ const CartEmpty = () => {
       >
         Chưa có sản phẩm nào trong giỏ hàng. Hãy mua sắm để làm đầy giỏ hàng của bạn!
       </Typography>
+      <Button
+        variant="contained"
+        fullWidth
+        sx={{ mt: "24px" }}
+      >
+        Mua Ngay
+      </Button>
     </Box>
   );
 };

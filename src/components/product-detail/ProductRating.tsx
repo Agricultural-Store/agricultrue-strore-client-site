@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import ProductDetailRatingForm from "./ProductDetailRatingForm";
 import ProductDetailRatingList from "./ProductDetailRatingList";
 import { ProductRating } from "@/types/product-rating";
+import useMedia from "@/hooks/shared/useMedia";
 
 const ProductRating = () => {
   const [ratingList] = useState<ProductRating[]>([
@@ -17,14 +18,22 @@ const ProductRating = () => {
       userImage: "/images/profile-avatar.svg",
     },
   ]);
+  const { media } = useMedia();
 
   return (
     <Box>
-      <Typography sx={{ fontWeight: 700, fontSize: "20px", mb: "20px" }}>
+      <Typography sx={{ fontWeight: 700, fontSize: media ? "18px" : "20px", mb: "20px" }}>
         Đánh giá từ người dùng
       </Typography>
       <ProductDetailRatingList ratingList={ratingList} />
-      <Typography sx={{ fontWeight: 700, fontSize: "20px", mb: "20px", mt: "50px" }}>
+      <Typography
+        sx={{
+          fontWeight: 700,
+          fontSize: media ? "18px" : "20px",
+          mb: "20px",
+          mt: "50px",
+        }}
+      >
         Đánh giá sản phẩm
       </Typography>
       <ProductDetailRatingForm />

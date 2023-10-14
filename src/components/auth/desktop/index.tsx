@@ -5,8 +5,23 @@ import AuthRegister from "./AuthRegister";
 import CloseIcon from "@/components/shared/icons/CloseIcon";
 import useMedia from "@/hooks/shared/useMedia";
 import { AppContext } from "@/providers/AppContext";
+import { LoginInput } from "@/types/auth";
 
-const AuthDesktop = () => {
+type Props = {
+  onLogin?: () => void;
+  onLoginChange?: (name: string, value: string) => void;
+  loginData?: LoginInput;
+  loginLoading?: boolean;
+  loginError?: string;
+};
+
+const AuthDesktop = ({
+  onLogin,
+  onLoginChange,
+  loginData,
+  loginError,
+  loginLoading,
+}: Props) => {
   const [isShowRegister, setIsShowRegister] = useState(false);
 
   const { openAuth, setOpenAuth } = useContext(AppContext);
@@ -68,7 +83,14 @@ const AuthDesktop = () => {
                 component="div"
                 sx={{ p: "48px" }}
               >
-                <AuthLogin onShowRegister={setIsShowRegister} />
+                <AuthLogin
+                  onShowRegister={setIsShowRegister}
+                  onLogin={onLogin}
+                  onChange={onLoginChange}
+                  value={loginData}
+                  error={loginError}
+                  loading={loginLoading}
+                />
               </Box>
             </Collapse>
             <Collapse

@@ -20,7 +20,10 @@ const CustomizeLink = ({ children, href, sx, activeColor }: Props) => {
         href={href}
         style={{
           textDecoration: "none",
-          color: pathname.split("/").includes(href.split("/")?.[1])
+          color: pathname
+            .split("/")
+            .slice(1)
+            .includes(href.split("/")?.[1])
             ? activeColor ?? "#0C7345"
             : "white",
           fontWeight: "bold",

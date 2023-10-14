@@ -8,9 +8,10 @@ type Props = {
   value?: string;
   defaultValue?: string;
   onChange?: (value: string) => void;
+  fullWidth?: boolean;
 };
 
-const SearchBox = ({ placeholder, value, onChange, defaultValue }: Props) => {
+const SearchBox = ({ placeholder, value, onChange, defaultValue, fullWidth }: Props) => {
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     onChange?.(e.target.value);
   };
@@ -22,6 +23,7 @@ const SearchBox = ({ placeholder, value, onChange, defaultValue }: Props) => {
       value={value}
       defaultValue={defaultValue}
       placeholder={placeholder}
+      fullWidth={fullWidth}
       inputProps={{
         style: {
           padding: "10.5px 16px",

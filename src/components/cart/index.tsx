@@ -7,6 +7,8 @@ import ProductInCartList from "./ProductInCartList";
 import { ProductInCart } from "@/types/cart";
 import CartSummary from "./CartSummary";
 import CartEmpty from "./CartEmpty";
+import useMedia from "@/hooks/shared/useMedia";
+import ArrowBackIcon from "../shared/icons/ArrowBackIcon";
 
 type Props = {
   open: boolean;
@@ -73,30 +75,63 @@ const Cart = ({ onClose, open }: Props) => {
     },
   ]);
 
+  const { media } = useMedia();
+
   return (
-    <div>
+    <>
       <CustomizedDrawer
         open={open}
         onClose={onClose}
+        width={media ? "100%" : undefined}
       >
-        <Box sx={{ px: "24px" }}>
-          <Box
-            sx={{
-              pt: "26px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              mb: "8px",
-            }}
-          >
-            <Typography variant="h2">Sản phẩm</Typography>
-            <IconButton
-              sx={{ color: "color.textBlack" }}
-              onClick={() => onClose(false)}
+        <Box sx={{ px: media ? "16px" : "24px", width: media ? "100vw" : undefined }}>
+          {media ? (
+            <Box
+              sx={{
+                pt: "16px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "start",
+                mb: "8px",
+              }}
             >
-              <CloseIcon />
-            </IconButton>
-          </Box>
+              <IconButton
+                sx={{ color: "color.textBlack" }}
+                onClick={() => onClose(false)}
+              >
+                <ArrowBackIcon />
+              </IconButton>
+              <Typography
+                variant="h2"
+                textAlign="center"
+                width="100%"
+              >
+                Sản phẩm
+              </Typography>
+              <Box
+                height="40px"
+                width="40px"
+              ></Box>
+            </Box>
+          ) : (
+            <Box
+              sx={{
+                pt: "20px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                mb: "8px",
+              }}
+            >
+              <Typography variant="h2">Sản phẩm</Typography>
+              <IconButton
+                sx={{ color: "color.textBlack" }}
+                onClick={() => onClose(false)}
+              >
+                <CloseIcon />
+              </IconButton>
+            </Box>
+          )}
           {products.length > 0 ? (
             <>
               <Box
@@ -114,7 +149,7 @@ const Cart = ({ onClose, open }: Props) => {
           )}
         </Box>
       </CustomizedDrawer>
-    </div>
+    </>
   );
 };
 

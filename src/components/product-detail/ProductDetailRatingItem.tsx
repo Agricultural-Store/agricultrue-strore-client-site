@@ -2,12 +2,15 @@ import { Box, Typography } from "@mui/material";
 import React from "react";
 import YellowStarIcon from "../shared/icons/YellowStarIcon";
 import { ProductRating } from "@/types/product-rating";
+import useMedia from "@/hooks/shared/useMedia";
 
 type Props = {
   rating: ProductRating;
 };
 
 const ProductDetailRatingItem = ({ rating }: Props) => {
+  const { media } = useMedia();
+
   return (
     <Box
       display="flex"
@@ -21,7 +24,7 @@ const ProductDetailRatingItem = ({ rating }: Props) => {
         />
         <Box>
           <Typography
-            fontSize="18px"
+            fontSize={media ? "14px" : "18px"}
             fontWeight={700}
             lineHeight="27px"
           >
@@ -34,7 +37,13 @@ const ProductDetailRatingItem = ({ rating }: Props) => {
           </Box>
         </Box>
       </Box>
-      <Typography sx={{ textAlign: "justify", lineHeight: "28px" }}>
+      <Typography
+        sx={{
+          textAlign: "justify",
+          lineHeight: "28px",
+          fontSize: media ? "14px" : "16px",
+        }}
+      >
         {rating.feedback}
       </Typography>
       <Typography sx={{ color: "color.textGrey500", fontSize: "14px" }}>

@@ -1,17 +1,36 @@
 import CustomizedInput from "@/components/shared/CustomizedInput";
+import CustomizedProgressLoading from "@/components/shared/CustomizedProgressLoading";
 import GoogleIcon from "@/components/shared/icons/GoogleIcon";
+import { LoginInput } from "@/types/auth";
 import { Box, Button, Divider, Typography } from "@mui/material";
-import React from "react";
+import React, { ChangeEvent } from "react";
 
 type Props = {
   onShowRegister: (bool: boolean) => void;
+  onLogin?: () => void;
+  onChange?: (name: string, value: string) => void;
+  value?: LoginInput;
+  loading?: boolean;
+  error?: string;
 };
 
-const AuthLogin = ({ onShowRegister }: Props) => {
-
+const AuthLogin = ({
+  onShowRegister,
+  onLogin,
+  onChange,
+  value,
+  loading,
+  error,
+}: Props) => {
   const handleShowRegister = () => {
     onShowRegister(true);
   };
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { value, name } = e.target;
+    onChange?.(name, value);
+  };
+
   return (
     <Box>
       <Typography
@@ -24,12 +43,18 @@ const AuthLogin = ({ onShowRegister }: Props) => {
         <CustomizedInput
           label="Email"
           placeholder="Nhập email"
+          name="email"
+          onChange={handleChange}
+          value={value?.email}
           sx={{ width: "400px", height: "48px" }}
         />
         <CustomizedInput
           label="Mật khẩu"
           placeholder="Nhập mật khẩu"
           type="password"
+          name="password"
+          value={value?.password}
+          onChange={handleChange}
           sx={{ width: "400px", height: "48px" }}
         />
       </Box>
@@ -45,7 +70,7 @@ const AuthLogin = ({ onShowRegister }: Props) => {
           color="error.main"
           fontSize="12px"
         >
-          Mật khẩu không đúng
+          {error}
         </Typography>
         <Typography
           color="primary.main"
@@ -57,9 +82,10 @@ const AuthLogin = ({ onShowRegister }: Props) => {
       <Button
         variant="contained"
         fullWidth
-        sx={{ my: "24px", textTransform: "capitalize" }}
+        onClick={onLogin}
+        sx={{ my: "24px", textTransform: "capitalize", height: "42px" }}
       >
-        Đăng nhập
+        {loading ? <CustomizedProgressLoading /> : "Đăng nhập"}
       </Button>
       <Divider sx={{ color: "#777E90", fontSize: "14px", my: "16px" }}>
         Hoặc đăng nhập bằng

@@ -19,6 +19,15 @@ export interface ListResponse<T> {
   options: ListOptions<T>;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export interface ApiResponse<T, Option = any> {
+  data: T;
+  total?: number;
+  message?: string;
+  statusCode: number;
+  filter?: ListOptions<Option>;
+}
+
 export interface ErrorResponse<T> {
   code: string;
   message: string;

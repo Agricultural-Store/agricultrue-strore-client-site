@@ -1,10 +1,15 @@
 import React from "react";
 
-const YellowStarIcon = () => {
+type Props = {
+  width?: number | string;
+  height?: number | string;
+};
+
+const YellowStarIcon = ({ height, width }: Props) => {
   return (
     <svg
-      width="20"
-      height="20"
+      width={width ?? "20"}
+      height={height ?? "20"}
       viewBox="0 0 20 20"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

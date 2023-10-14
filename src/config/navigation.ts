@@ -1,7 +1,7 @@
 export const mobileNavigation = [
   {
     label: "Trang chủ",
-    href: "/home",
+    href: "/",
   },
   {
     label: "Giới thiệu",
@@ -9,7 +9,7 @@ export const mobileNavigation = [
   },
   {
     label: "Khuyến mãi",
-    href: "/sales",
+    href: "/promotion",
   },
   {
     label: "Sản phẩm",

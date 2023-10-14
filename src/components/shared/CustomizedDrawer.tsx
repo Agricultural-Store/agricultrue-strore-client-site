@@ -5,9 +5,10 @@ type Props = {
   open: boolean;
   onClose?: (open: boolean) => void;
   children?: ReactNode;
+  width?: number | string;
 };
 
-const CustomizedDrawer = ({ onClose, open, children }: Props) => {
+const CustomizedDrawer = ({ onClose, open, children, width }: Props) => {
   const handleClose = () => {
     onClose?.(false);
   };
@@ -19,7 +20,7 @@ const CustomizedDrawer = ({ onClose, open, children }: Props) => {
       onClose={handleClose}
     >
       <Box
-        sx={{ width: 450 }}
+        sx={{ width: width ?? 450 }}
         role="presentation"
       >
         {children}

@@ -16,10 +16,11 @@ const ProductDetailDetail = ({ product }: Props) => {
         <Typography
           width="200px"
           fontSize="18px"
+          fontWeight={600}
         >
           {label}
         </Typography>
-        <Typography sx={{ width: "calc(100% - 200rem)" }}>{value}</Typography>
+        <Typography sx={{ width: "calc(100% - 200px)" }}>{value}</Typography>
       </Box>
     );
   };

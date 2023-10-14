@@ -1,7 +1,7 @@
 import appConfig from "@/config/env";
 import { ErrorResponse, FetchOptions } from "@/types/shared";
 import { buildQueryString } from "@/utils/query";
-// import { getSession } from "next-auth/react";
+import { getSession } from "next-auth/react";
 
 export async function fetcher<Data, Params, Body>(
   options: FetchOptions<Params, Body>,
@@ -9,12 +9,12 @@ export async function fetcher<Data, Params, Body>(
   let url = appConfig.API_HOST + options.path;
   let body;
 
-  //   const session = await getSession();
+  const session = await getSession();
   const headers: Record<string, string> = {};
 
-  //   if (session?.user?.at) {
-  //     headers["Authorization"] = `Bearer ${session?.user?.at}`;
-  //   }
+  if (session?.user?.token) {
+    headers["Authorization"] = `Bearer ${session?.user?.token}`;
+  }
 
   if (options.params) {
     url += buildQueryString(options.params as Record<string, string | number>);

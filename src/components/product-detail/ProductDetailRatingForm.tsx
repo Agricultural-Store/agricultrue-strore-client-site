@@ -4,11 +4,24 @@ import EmptyStarIcon from "../shared/icons/EmptyStarIcon";
 import YellowStarIcon from "../shared/icons/YellowStarIcon";
 import { ProductRatingInput } from "@/types/product-rating";
 import CustomizedInput from "../shared/CustomizedInput";
+import useMedia from "@/hooks/shared/useMedia";
 
-function renderStarItem(length: number, value: number) {
+function renderStarItem(length: number, value: number, size?: number) {
   if (length == value)
-    return Array(...Array(length)).map((_v, index) => <YellowStarIcon key={index} />);
-  return Array(...Array(length)).map((_v, index) => <EmptyStarIcon key={index} />);
+    return Array(...Array(length)).map((_v, index) => (
+      <YellowStarIcon
+        width={size}
+        height={size}
+        key={index}
+      />
+    ));
+  return Array(...Array(length)).map((_v, index) => (
+    <EmptyStarIcon
+      width={size}
+      height={size}
+      key={index}
+    />
+  ));
 }
 
 const ProductDetailRatingForm = () => {
@@ -18,6 +31,8 @@ const ProductDetailRatingForm = () => {
     productRating: 0,
     username: "",
   });
+
+  const { media } = useMedia();
 
   const handleClick = (value: number) => {
     setRating((pre) => ({
@@ -37,7 +52,7 @@ const ProductDetailRatingForm = () => {
   return (
     <Box>
       <Typography
-        fontSize="16px"
+        fontSize={media ? "14px" : "16px"}
         fontWeight={700}
         mb="10px"
       >
@@ -49,7 +64,7 @@ const ProductDetailRatingForm = () => {
           sx={{ cursor: "pointer" }}
           onClick={() => handleClick(1)}
         >
-          {renderStarItem(1, rating.productRating)}
+          {renderStarItem(1, rating.productRating, media ? 16 : undefined)}
         </Box>
         <Divider
           orientation="vertical"
@@ -61,7 +76,7 @@ const ProductDetailRatingForm = () => {
           sx={{ cursor: "pointer" }}
           onClick={() => handleClick(2)}
         >
-          {renderStarItem(2, rating.productRating)}
+          {renderStarItem(2, rating.productRating, media ? 16 : undefined)}
         </Box>
         <Divider
           orientation="vertical"
@@ -73,7 +88,7 @@ const ProductDetailRatingForm = () => {
           sx={{ cursor: "pointer" }}
           onClick={() => handleClick(3)}
         >
-          {renderStarItem(3, rating.productRating)}
+          {renderStarItem(3, rating.productRating, media ? 16 : undefined)}
         </Box>
         <Divider
           orientation="vertical"
@@ -85,7 +100,7 @@ const ProductDetailRatingForm = () => {
           sx={{ cursor: "pointer" }}
           onClick={() => handleClick(4)}
         >
-          {renderStarItem(4, rating.productRating)}
+          {renderStarItem(4, rating.productRating, media ? 16 : undefined)}
         </Box>
         <Divider
           orientation="vertical"
@@ -97,7 +112,7 @@ const ProductDetailRatingForm = () => {
           sx={{ cursor: "pointer" }}
           onClick={() => handleClick(5)}
         >
-          {renderStarItem(5, rating.productRating)}
+          {renderStarItem(5, rating.productRating, media ? 16 : undefined)}
         </Box>
       </Box>
       <Box

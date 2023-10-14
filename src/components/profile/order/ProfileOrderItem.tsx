@@ -1,8 +1,15 @@
 import { Box, Typography } from "@mui/material";
 import React from "react";
 import ProfileOrderTable from "./ProfileOrderTable";
+import { useRouter } from "next-intl/client";
 
 const ProfileOrderItem = () => {
+  const router = useRouter();
+
+  const handleClick = () => {
+    router.push("/profile/order/order-detail/");
+  };
+
   return (
     <Box
       sx={{
@@ -10,7 +17,6 @@ const ProfileOrderItem = () => {
         mt: "24px",
         borderRadius: "8px",
         overflow: "hidden",
-        cursor: "pointer",
       }}
     >
       <Box
@@ -21,7 +27,21 @@ const ProfileOrderItem = () => {
         justifyContent="space-between"
         alignItems="center"
       >
-        <Typography variant="h3">Mã vận đơn: #72564</Typography>
+        <Typography variant="h3">
+          Mã vận đơn:{" "}
+          <Typography
+            component="span"
+            onClick={handleClick}
+            sx={{
+              fontWeight: 700,
+              fontSize: "inherit",
+              textDecoration: "underline",
+              cursor: "pointer",
+            }}
+          >
+            #72564
+          </Typography>
+        </Typography>
         <Typography fontWeight={600}>Trạng thái: Đang giao</Typography>
       </Box>
       <ProfileOrderTable />

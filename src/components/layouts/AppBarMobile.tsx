@@ -64,13 +64,17 @@ const AppBarMobile = ({ open, onClose }: Props) => {
         }}
       >
         {mobileNavigation.map((nav) => (
-          <CustomizeLink
-            href={nav.href}
+          <Box
+            onClick={toggleAppBar}
             key={nav.href}
-            sx={{ fontWeight: "bold" }}
           >
-            {nav.label}
-          </CustomizeLink>
+            <CustomizeLink
+              href={nav.href}
+              sx={{ fontWeight: "bold" }}
+            >
+              {nav.label}
+            </CustomizeLink>
+          </Box>
         ))}
       </Box>
       <Button

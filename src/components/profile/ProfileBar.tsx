@@ -2,31 +2,30 @@ import AccountCircleIcon from "@/components/shared/icons/AccountCircleIcon";
 import FavoriteIcon from "@/components/shared/icons/FavoriteIcon";
 import ShoppingCartIcon from "@/components/shared/icons/ShoppingCartIcon";
 import { Box, Typography } from "@mui/material";
-import React, { useMemo, useState } from "react";
+import React, { useMemo } from "react";
 import ProfileBarItem from "./ProfileBarItem";
 import ExitIcon from "../shared/icons/ExitIcon";
 
 const ProfileBar = () => {
-  const [id] = useState(132423);
   const items = useMemo(() => {
     return [
       {
         icon: <AccountCircleIcon />,
         label: "Hồ sơ cá nhân",
-        href: `/profile/${id}`,
+        href: `/profile`,
       },
       {
         icon: <ShoppingCartIcon />,
         label: "Thông tin đơn hàng",
-        href: `/profile/${id}/order`,
+        href: `/profile/order`,
       },
       {
         icon: <FavoriteIcon />,
         label: "Đã thích",
-        href: `/profile/${id}/favorite`,
+        href: `/profile/favorite`,
       },
     ];
-  }, [id]);
+  }, []);
 
   return (
     <Box

@@ -38,12 +38,13 @@ const PromotionComboItem = ({ image, title, description, id }: Props) => {
           whiteSpace="nowrap"
           overflow="hidden"
           textOverflow="ellipsis"
+          mb="16px"
         >
           {title}
         </Typography>
         <Box
           dangerouslySetInnerHTML={{ __html: description }}
-          // p="16px"
+         
           minHeight="100px"
           fontSize="16px"
         ></Box>

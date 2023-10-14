@@ -1,3 +1,4 @@
+import useMedia from "@/hooks/shared/useMedia";
 import { ProductInCart } from "@/types/cart";
 import { Box, Button, Divider, Typography } from "@mui/material";
 import React, { useMemo } from "react";
@@ -7,6 +8,7 @@ type Props = {
 };
 
 const CartSummary = ({ products }: Props) => {
+  const { media } = useMedia();
   const originalPrice = useMemo(
     () => products.reduce((pre, curr) => pre + curr.productPrice, 0),
     [products],
@@ -29,7 +31,7 @@ const CartSummary = ({ products }: Props) => {
         sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}
       >
         <Typography
-          fontSize="18px"
+          fontSize={media ? "14px" : "18px"}
           lineHeight="36px"
         >
           Tạm tính
@@ -37,6 +39,7 @@ const CartSummary = ({ products }: Props) => {
         <Typography
           variant="h4"
           lineHeight="36px"
+          fontSize={media ? "14px" : "16px"}
         >
           {originalPrice.toLocaleString()}đ
         </Typography>
@@ -45,7 +48,7 @@ const CartSummary = ({ products }: Props) => {
         sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}
       >
         <Typography
-          fontSize="18px"
+          fontSize={media ? "14px" : "18px"}
           lineHeight="36px"
         >
           Giảm giá
@@ -53,6 +56,7 @@ const CartSummary = ({ products }: Props) => {
         <Typography
           variant="h4"
           lineHeight="36px"
+          fontSize={media ? "14px" : "16px"}
         >
           {discountPrice.toLocaleString()}đ
         </Typography>
@@ -62,7 +66,7 @@ const CartSummary = ({ products }: Props) => {
         sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}
       >
         <Typography
-          fontSize="18px"
+          fontSize={media ? "14px" : "18px"}
           lineHeight="36px"
         >
           Tổng
@@ -70,6 +74,7 @@ const CartSummary = ({ products }: Props) => {
         <Typography
           variant="h4"
           lineHeight="36px"
+          fontSize={media ? "14px" : "16px"}
         >
           {(originalPrice - discountPrice).toLocaleString()}đ
         </Typography>

@@ -9,12 +9,12 @@ import {
   useTheme,
 } from "@mui/material";
 import React, { useRef, useState } from "react";
-import NewsItem from "./NewsItem";
+import NewsItem from "../NewsItem";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import PreviousIcon from "../shared/icons/PreviousArrowIcon";
-import NextArrowIcon from "../shared/icons/NextArrowIcon";
+import PreviousIcon from "../../shared/icons/PreviousArrowIcon";
+import NextArrowIcon from "../../shared/icons/NextArrowIcon";
 
-const NewsList = () => {
+const NewsListDesktop = () => {
   const [tabIndex, setTabIndex] = useState(0);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -199,4 +199,4 @@ const NewsList = () => {
   );
 };
 
-export default NewsList;
+export default NewsListDesktop;

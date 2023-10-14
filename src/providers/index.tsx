@@ -6,7 +6,7 @@ import { EmotionCacheProvider } from "./EmotionCacheProvider";
 import { buildTheme } from "@/config/theme";
 import SWRProvider from "./SWRProvider";
 import AppProvider from "./AppProvider";
-// import { SessionProvider } from "next-auth/react";
+import { SessionProvider } from "next-auth/react";
 
 type Props = {
   children: React.ReactNode;
@@ -20,7 +20,9 @@ function AppProviders({ children, font }: Props) {
       <EmotionCacheProvider options={{ key: "mui-css" }}>
         <ThemeProvider theme={buildTheme(font)}>
           <SWRProvider>
-            <AppProvider>{children}</AppProvider>
+            <SessionProvider>
+              <AppProvider>{children}</AppProvider>
+            </SessionProvider>
           </SWRProvider>
         </ThemeProvider>
       </EmotionCacheProvider>

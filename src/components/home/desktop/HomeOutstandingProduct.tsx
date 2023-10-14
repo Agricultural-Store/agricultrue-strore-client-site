@@ -15,7 +15,7 @@ const HomeOutstandingProduct = () => {
       }}
     >
       <Typography sx={{ fontSize: "28px", lineHeight: "42px", fontWeight: 600 }}>
-        Chứng nhận sản phẩm
+        Sản phẩm nổi bật
       </Typography>
       <Typography sx={{ width: "70%", m: "0 auto", textAlign: "center", my: "16px" }}>
         Đồng Bằng Sông Cửu Long, với đất đai màu mỡ và nguồn nước từ hệ thống sông ngòi
