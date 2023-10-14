@@ -5,11 +5,14 @@ import SearchGrayIcon from "@/components/shared/icons/SearchGrayIcon";
 import { Box, Typography } from "@mui/material";
 import React from "react";
 import ProfileOrderTab from "./ProfileOrderTab";
+import useMedia from "@/hooks/shared/useMedia";
 
-const ProfileOrder = () => {
+const ProfileOrderDesktop = () => {
+  const { media } = useMedia(1200);
+
   return (
     <Box
-      width="calc(100% - 250px)"
+      width={media ? "100%" : "calc(100% - 250px)"}
       pl="48px"
     >
       <Box
@@ -25,7 +28,7 @@ const ProfileOrder = () => {
           alignItems="center"
         >
           <Typography
-            fontSize="32px"
+            fontSize={media ? "24px" : "32px"}
             fontWeight={700}
           >
             Thông tin đơn hàng
@@ -45,4 +48,4 @@ const ProfileOrder = () => {
   );
 };
 
-export default ProfileOrder;
+export default ProfileOrderDesktop;

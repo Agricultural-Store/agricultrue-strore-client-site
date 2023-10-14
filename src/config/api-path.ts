@@ -1,10 +1,16 @@
-import appConfig from "./env";
+export const authApiBase = `/auth`;
+export const userApiBase = `/user`;
+export const productApiBase = `/product`;
 
 export const authApi = {
-  login: `${appConfig.API_HOST}/auth/login`,
-  signUp: `${appConfig.API_HOST}/auth/sign-up`,
+  login: `${authApiBase}/login`,
+  signUp: `${authApiBase}/sign-up`,
 };
 
 export const userApi = {
-  me: `${appConfig.API_HOST}/user/me`,
+  me: `${userApiBase}/me`,
+};
+
+export const productApi = {
+  list: `${productApiBase}`,
 };

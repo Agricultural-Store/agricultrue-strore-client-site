@@ -27,7 +27,14 @@ const OrderDesktop = () => {
   return (
     <>
       <Typography variant="h1">Địa chỉ giao hàng</Typography>
-      <Box sx={{ display: "flex", justifyContent: "space-between", mt: "64px" }}>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          mt: "64px",
+          width: "100%",
+        }}
+      >
         <Box width="61%">
           <Box width="100%">
             <CustomizedStepper activeStep={step}>

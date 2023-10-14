@@ -1,27 +1,14 @@
 import { Box, Button, Divider, Typography } from "@mui/material";
 import React from "react";
 
-type Props = {
-  onPrevious?: () => void;
-  onNext?: () => void;
-};
-
-const OrderSummary = ({ onNext, onPrevious }: Props) => {
+const ProfileOrderDetailSummary = () => {
   return (
-    <Box
-      width="35%"
-      height="277px"
-      p="24px"
-      borderRadius="6px"
-      position="sticky"
-      ml="40px"
-      top="100px"
-      sx={{ bgcolor: (theme) => `${theme.palette.color?.bgPrimary}14` }}
-    >
+    <Box>
       <Typography
         variant="h3"
         lineHeight="30px"
         mb="16px"
+        mt="24px"
       >
         Tóm tắt
       </Typography>
@@ -35,7 +22,7 @@ const OrderSummary = ({ onNext, onPrevious }: Props) => {
           lineHeight="32px"
         >
           <Typography lineHeight="32px">Tạm tính</Typography>
-          <Typography lineHeight="32px">210.000đ</Typography>
+          <Typography lineHeight="32px">120.000đ</Typography>
         </Box>
         <Box
           mb="8px"
@@ -45,7 +32,7 @@ const OrderSummary = ({ onNext, onPrevious }: Props) => {
           lineHeight="32px"
         >
           <Typography lineHeight="32px">Giảm giá</Typography>
-          <Typography lineHeight="32px">-50,000₫</Typography>
+          <Typography lineHeight="32px">-30,000₫</Typography>
         </Box>
         <Divider></Divider>
       </Box>
@@ -69,32 +56,28 @@ const OrderSummary = ({ onNext, onPrevious }: Props) => {
           fontWeight={700}
           lineHeight="32px"
         >
-          160.000đ
+          90.000đ
         </Typography>
       </Box>
-      <Box
-        display="flex"
-        gap="20px"
-      >
+      <Box>
         <Button
           variant="outlined"
           fullWidth
-          onClick={onPrevious}
-          sx={{ textTransform: "capitalize" }}
+          color="error"
+          sx={{ textTransform: "capitalize", mb: "12px" }}
         >
-          Trở về
+          Hủy đơn hàng
         </Button>
         <Button
           variant="contained"
           fullWidth
-          onClick={onNext}
           sx={{ textTransform: "capitalize" }}
         >
-          Tiếp tục
+          Mua lại
         </Button>
       </Box>
     </Box>
   );
 };
 
-export default OrderSummary;
+export default ProfileOrderDetailSummary;

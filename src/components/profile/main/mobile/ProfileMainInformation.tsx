@@ -1,8 +1,8 @@
 import { Box, Divider, Grid, IconButton, Typography } from "@mui/material";
 import React from "react";
-import EditBlackBorderIcon from "../../shared/icons/EditBlackBorderIcon";
+import EditBlackBorderIcon from "../../../shared/icons/EditBlackBorderIcon";
 
-const ProfileMainAccount = () => {
+const ProfileMainInformation = () => {
   const renderRow = (label?: string, value?: string) => {
     return (
       <Grid
@@ -12,21 +12,24 @@ const ProfileMainAccount = () => {
       >
         <Grid
           item
-          xs={2}
+          xs={4}
           fontWeight={700}
           lineHeight="30px"
+          fontSize="14px"
         >
           {label}
         </Grid>
         <Grid
           item
-          xs={10}
+          xs={8}
+          fontSize="14px"
         >
           {value}
         </Grid>
       </Grid>
     );
   };
+
   return (
     <Box
       mt="24px"
@@ -34,7 +37,7 @@ const ProfileMainAccount = () => {
       overflow="hidden"
       width="100%"
       bgcolor="color.bgWhite"
-      p="12px 24px"
+      p="12px 16px"
       boxShadow="0px 6px 36px 0px rgba(0, 0, 0, 0.08)"
     >
       <Box
@@ -46,18 +49,32 @@ const ProfileMainAccount = () => {
           variant="h3"
           lineHeight="30px"
         >
-          Thông tin tài khoản
+          Thông tin cá nhân
         </Typography>
         <IconButton>
           <EditBlackBorderIcon />
         </IconButton>
       </Box>
       <Divider sx={{ my: "8px" }}></Divider>
-      {renderRow("Tên tài khoản", "")}
+      {renderRow("Họ tên", "")}
       <Divider sx={{ my: "8px" }}></Divider>
-      {renderRow("Mật khẩu", "")}
+      {renderRow("Ngày sinh", "")}
+      <Divider sx={{ my: "8px" }}></Divider>
+      {renderRow("Email", "")}
+      <Divider sx={{ my: "8px" }}></Divider>
+      {renderRow("Số điện thoại", "")}
+      <Divider sx={{ my: "8px" }}></Divider>
+      {renderRow("Địa chỉ", "")}
+      <Divider sx={{ my: "8px" }}></Divider>
+      {renderRow("Phường", "")}
+      <Divider sx={{ my: "8px" }}></Divider>
+      {renderRow("Quận", "")}
+      <Divider sx={{ my: "8px" }}></Divider>
+      {renderRow("Thành phố", "")}
+      <Divider sx={{ my: "8px" }}></Divider>
+      {renderRow("Quốc gia", "")}
     </Box>
   );
 };
 
-export default ProfileMainAccount;
+export default ProfileMainInformation;

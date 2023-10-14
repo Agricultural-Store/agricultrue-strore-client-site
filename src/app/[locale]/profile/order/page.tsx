@@ -1,4 +1,4 @@
-import ProfileOrder from "@/components/profile/order/ProfileOrder";
+import ProfileOrder from "@/components/profile/order";
 import React from "react";
 
 export const metadata = {

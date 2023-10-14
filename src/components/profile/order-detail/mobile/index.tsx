@@ -1,12 +1,12 @@
 "use client";
 
-import CustomizedStepper, { Connector2 } from "@/components/shared/CustomizedStepper";
-import { Box, Divider, Step, StepLabel, Typography } from "@mui/material";
+import CustomizedStepper, { Connector3 } from "@/components/shared/CustomizedStepper";
+import { Box, Step, StepLabel, Typography } from "@mui/material";
 import React, { useState } from "react";
 import ProfileOrderStepIcon from "./ProfileOrderStepIcon";
-import ProfileOrderDetailTable from "./ProfileOrderDetailTable";
 import ProfileOrderDetailInformation from "./ProfileOrderDetailInformation";
 import ProfileOrderDetailSummary from "./ProfileOrderDetailSummary";
+import ProfileOrderDetailList from "./ProfileOrderDetailList";
 
 const itemsStepper = [
   {
@@ -27,14 +27,11 @@ const itemsStepper = [
   },
 ];
 
-const ProfileOrderDetail = () => {
-  const [step, ] = useState(1);
+const ProfileOrderDetailMobile = () => {
+  const [step] = useState(1);
 
   return (
-    <Box
-      width="calc(100% - 250px)"
-      pl="48px"
-    >
+    <Box width="calc(100%)">
       <Box
         bgcolor="color.bgWhite"
         width="100%"
@@ -49,12 +46,13 @@ const ProfileOrderDetail = () => {
         <Box>
           <CustomizedStepper
             activeStep={step}
-            connector={<Connector2 />}
+            orientation="vertical"
+            connector={<Connector3 />}
           >
             {itemsStepper.map((item) => (
               <Step
                 key={item.label}
-                sx={{ display: "flex", flexDirection: "column" }}
+                sx={{ display: "flex" }}
               >
                 <StepLabel
                   StepIconComponent={ProfileOrderStepIcon}
@@ -66,35 +64,39 @@ const ProfileOrderDetail = () => {
                     },
                   }}
                 ></StepLabel>
-                <Typography
-                  fontSize="16px"
-                  lineHeight="25px"
-                  fontWeight={700}
+                <Box
+                  display="flex"
+                  ml="8px"
+                  flexDirection="column"
+                  justifyContent="space-evenly"
                 >
-                  {item.label}
-                </Typography>
-                <Typography
-                  fontSize="14px"
-                  lineHeight="25px"
-                >
-                  <span style={{ fontWeight: "bold", fontSize: "inherit" }}>
-                    Dự kiến:
-                  </span>{" "}
-                  {item.date}
-                </Typography>
+                  <Typography
+                    fontSize="14px"
+                    lineHeight="25px"
+                    fontWeight={700}
+                  >
+                    {item.label}
+                  </Typography>
+                  <Typography
+                    fontSize="12px"
+                    lineHeight="25px"
+                  >
+                    <span style={{ fontWeight: "bold", fontSize: "inherit" }}>
+                      Dự kiến:
+                    </span>{" "}
+                    {item.date}
+                  </Typography>
+                </Box>
               </Step>
             ))}
           </CustomizedStepper>
         </Box>
-        <Divider sx={{ my: "16px" }}></Divider>
         <ProfileOrderDetailInformation />
-        <Divider sx={{ my: "16px" }}></Divider>
-        <ProfileOrderDetailTable />
-        <Divider sx={{ my: "16px" }}></Divider>
+        <ProfileOrderDetailList />
         <ProfileOrderDetailSummary />
       </Box>
     </Box>
   );
 };
 
-export default ProfileOrderDetail;
+export default ProfileOrderDetailMobile;

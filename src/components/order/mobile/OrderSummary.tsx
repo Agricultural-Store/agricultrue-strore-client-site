@@ -9,12 +9,11 @@ type Props = {
 const OrderSummary = ({ onNext, onPrevious }: Props) => {
   return (
     <Box
-      width="35%"
+      width="100%"
       height="277px"
       p="24px"
       borderRadius="6px"
       position="sticky"
-      ml="40px"
       top="100px"
       sx={{ bgcolor: (theme) => `${theme.palette.color?.bgPrimary}14` }}
     >

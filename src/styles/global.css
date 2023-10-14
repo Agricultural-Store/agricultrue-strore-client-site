@@ -31,6 +31,17 @@
 
 /* ------- */
 
+.line-clamp-1 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  align-items: center;
+  -webkit-line-clamp: 1 !important; /* number of lines to show */
+  line-clamp: 1;
+  -webkit-box-orient: vertical;
+  white-space: pre-wrap;
+}
+
 .line-clamp {
   overflow: hidden;
   text-overflow: ellipsis;

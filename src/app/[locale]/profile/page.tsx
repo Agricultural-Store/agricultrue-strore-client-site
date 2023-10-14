@@ -1,4 +1,4 @@
-import ProfileMain from "@/components/profile/main/ProfileMain";
+import ProfileMain from "@/components/profile/main";
 import React from "react";
 
 export const metadata = {

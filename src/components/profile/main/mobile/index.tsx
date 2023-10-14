@@ -2,23 +2,27 @@
 
 import { Avatar, Box, Button, IconButton, Typography } from "@mui/material";
 import React, { useState } from "react";
-import EditBorderIcon from "../../shared/icons/EditBorderIcon";
-import EditPenIcon from "../../shared/icons/EditPenIcon";
+import EditBorderIcon from "../../../shared/icons/EditBorderIcon";
+import EditPenIcon from "../../../shared/icons/EditPenIcon";
 import ProfileMainInformation from "./ProfileMainInformation";
 import ProfileMainAccount from "./ProfileMainAccount";
 import ProfileMainImageDialog from "./ProfileMainImageDialog";
-import ProfileSetting from "./ProfileSetting";
+// import ProfileSetting from "./ProfileSetting";
 
-const ProfileMain = () => {
+const ProfileMainMobile = () => {
   const [open, setOpen] = useState(false);
 
   return (
     <>
-      <Box
-        width="calc(100% - 400px - 250px)"
-        pr="24px"
-        pl="48px"
-      >
+      <Box width="100%">
+        <Typography
+          fontSize="18px"
+          fontWeight={600}
+          textAlign="center"
+          my="16px"
+        >
+          Hồ sơ cá nhân
+        </Typography>
         <Box
           bgcolor="color.bgWhite"
           width="100%"
@@ -89,9 +93,9 @@ const ProfileMain = () => {
           onOpen={setOpen}
         ></ProfileMainImageDialog>
       </Box>
-      <ProfileSetting />
+      {/* <ProfileSetting /> */}
     </>
   );
 };
 
-export default ProfileMain;
+export default ProfileMainMobile;

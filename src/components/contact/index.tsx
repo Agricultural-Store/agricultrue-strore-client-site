@@ -3,12 +3,13 @@
 import useMedia from "@/hooks/shared/useMedia";
 import React from "react";
 import ContactDesktop from "./desktop";
+import ContactMobile from "./mobile";
 
 const Contact = () => {
   const { media } = useMedia();
 
   if (media) {
-    return null;
+    return <ContactMobile />;
   }
   return <ContactDesktop />;
 };

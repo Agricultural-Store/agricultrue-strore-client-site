@@ -1,3 +1,8 @@
+export enum SortOrderEnum {
+  ASC = "asc",
+  DESC = "desc",
+}
+
 export interface SortOptions<T> {
   sortBy: keyof T;
   sortOrder: "asc" | "desc";
@@ -8,9 +13,11 @@ export type ListOptions<T = any> = Partial<T> & {
   limit?: number;
   offset?: number;
   search?: string;
-  searchBy?: (keyof T)[];
-  sortBy?: keyof T;
-  sortOrder?: "asc" | "desc";
+  sortField?: keyof T;
+  sortOrder?: SortOrderEnum;
+  searchValue?: string;
+  searchField?: keyof T;
+  relation?: string;
 };
 
 export interface ListResponse<T> {
