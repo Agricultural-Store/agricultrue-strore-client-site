@@ -31,10 +31,7 @@ const NewsItem = () => {
             lg: "294px",
             md: "254px",
           },
-          maxHeight: "448px",
-          height: {
-            md: "350px",
-          },
+
           borderRadius: 0,
         }}
       >

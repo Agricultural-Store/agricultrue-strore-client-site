@@ -109,6 +109,7 @@ const ProductDetailRelated = () => {
           </Box>
         </Grid>
       </Grid>
+      <Box height="98px"></Box>
     </Box>
   );
 };

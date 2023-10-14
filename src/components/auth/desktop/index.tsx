@@ -30,12 +30,21 @@ const AuthDesktop = ({
 
   const handleCloseAuth = () => {
     setOpenAuth(false);
+    setIsShowRegister(false);
   };
 
   return (
     <Dialog
       open={openAuth}
       maxWidth="lg"
+      componentsProps={{
+        backdrop: {
+          sx: {
+            backdropFilter: "blur(4px)",
+            backgroundColor: "rgba(20, 20, 22, 0.64)",
+          },
+        },
+      }}
       onClose={handleCloseAuth}
       PaperProps={{
         sx: {

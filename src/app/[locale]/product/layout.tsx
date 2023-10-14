@@ -1,3 +1,5 @@
+import News from "@/components/news";
+import { Box } from "@mui/material";
 import React, { ReactNode } from "react";
 
 type Props = {

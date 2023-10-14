@@ -8,6 +8,7 @@ import { signIn } from "next-auth/react";
 import { AppContext } from "@/providers/AppContext";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next-intl/client";
+import AuthMobile from "./mobile";
 
 const Auth = () => {
   const [loginInput, setLoginInput] = useState<LoginInput>({
@@ -59,7 +60,15 @@ const Auth = () => {
   };
 
   if (media) {
-    return null;
+    return (
+      <AuthMobile
+        onLogin={handleLogin}
+        loginData={loginInput}
+        loginLoading={loginLoading}
+        onLoginChange={handleLoginChange}
+        loginError={loginError}
+      />
+    );
   }
 
   return (

@@ -32,7 +32,7 @@ export async function fetcher<Data, Params, Body>(
   return fetch(url, {
     method: options?.method || "GET",
     // credentials: "include", // include, same-origin, omit
-    // mode: "no-cors", // no-cors, cors, same-origin
+    mode: "cors", // no-cors, cors, same-origin
     headers: {
       ...headers,
       ...options?.headers,
