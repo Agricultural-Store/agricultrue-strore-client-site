@@ -10,6 +10,7 @@ import { useRouter } from "next-intl/client";
 import useProductList from "@/hooks/product/useProductList";
 import useQueryParams from "@/hooks/shared/useQueryParams";
 import { Product, ProductFilterParams } from "@/types/product";
+import useMedia from "@/hooks/shared/useMedia";
 
 const menuItems: OptionType[] = [
   {
@@ -57,16 +58,25 @@ const ProductList = () => {
 
   const router = useRouter();
 
-  const [options] = useQueryParams<ProductFilterParams>({
+  const [options, setOptions] = useQueryParams<ProductFilterParams>({
     limit: 10,
     offset: 0,
   });
+  const { media } = useMedia(1000);
 
   const { data } = useProductList(options);
 
+  const pageSize = data?.filter?.limit || 30;
+  const currentPage = Math.floor(data?.filter?.offset ?? 0 / pageSize);
+
   const handleClick = (id?: number) => {
-    console.log(id);
     router.push(`/product/${id}`);
+  };
+
+  const handleChangePage = (page: number) => {
+    setOptions({
+      offset: (page - 1) * pageSize,
+    });
   };
 
   useEffect(() => {
@@ -76,39 +86,61 @@ const ProductList = () => {
   }, [data]);
 
   return (
-    <Box sx={{ p: "64px 48px", display: "flex" }}>
-      <Box sx={{ mr: "48px", width: "300px" }}>
+    <Box sx={{ p: "64px 48px", display: media ? "block" : "flex" }}>
+      <Box sx={{ mr: "48px", width: media ? "100%" : "300px" }}>
         <Box>
           <Typography sx={{ fontSize: "20px", fontWeight: 600, mb: "24px" }}>
             Tìm kiếm
           </Typography>
           <SearchBox placeholder="Điền yêu cầu của bạn" />
         </Box>
-        <Divider sx={{ my: "24px" }} />
+        {!media && <Divider sx={{ my: "24px" }} />}
         <Box>
           <Typography
             mb="24px"
             fontSize="20px"
             fontWeight={600}
+            mt={media ? "24px" : undefined}
           >
             Loại sản phẩm
           </Typography>
-          <Box>
-            {categories.map((category) => (
-              <Box
-                mb="8px"
-                key={category.id}
-              >
-                <CustomizedCheckbox
-                  label={category.categoryName}
-                  value={category.id}
-                />
-              </Box>
-            ))}
+          <Box
+            sx={[
+              media && {
+                width: "100%",
+                overflowX: "scroll",
+                "::-webkit-scrollbar": {
+                  height: "3px",
+                },
+              },
+            ]}
+          >
+            <Box
+              display={media ? "flex" : "block"}
+              gap="30px"
+              width="150%"
+            >
+              {categories.map((category) => (
+                <Box
+                  mb="8px"
+                  key={category.id}
+                >
+                  <CustomizedCheckbox
+                    label={category.categoryName}
+                    value={category.id}
+                  />
+                </Box>
+              ))}
+            </Box>
           </Box>
         </Box>
       </Box>
-      <Box sx={{ width: "calc(100% - 300px)" }}>
+      <Box
+        sx={{
+          width: media ? "100%" : "calc(100% - 300px)",
+          mt: media ? "24px" : undefined,
+        }}
+      >
         <Box
           sx={{
             mb: "48px",
@@ -142,8 +174,10 @@ const ProductList = () => {
         </Grid>
         <CustomizedPagination
           sx={{ mt: "48px" }}
-          itemCount={products.length}
-          rowPerPage={3}
+          itemCount={data?.total}
+          rowPerPage={pageSize}
+          onPageChange={handleChangePage}
+          page={currentPage}
         />
       </Box>
     </Box>

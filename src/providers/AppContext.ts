@@ -6,4 +6,6 @@ export const AppContext = createContext<AppContextType>({
   setOpenAuth: () => null,
   isLoading: false,
   setIsLoading: () => null,
+  isCompleted: false,
+  setIsCompleted: () => null,
 });

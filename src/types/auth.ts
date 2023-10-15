@@ -12,3 +12,10 @@ export interface SignUpInput {
   name: string;
   password: string;
 }
+
+export interface SignUpValidateInput {
+  email: string;
+  name: string;
+  password: string;
+  confirmPassword: string;
+}

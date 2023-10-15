@@ -22,7 +22,7 @@ function SWRProvider({ children }: Props) {
           const _error = error as ErrorResponse<unknown>;
 
           // Only retry on error 500-599
-          if (!_error.code?.startsWith("5")) return;
+          if (!_error.statusCode?.toString().startsWith("5")) return;
 
           // Only retry up to 5 times.
           if (retryCount >= 5) return;

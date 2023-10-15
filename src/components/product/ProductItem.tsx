@@ -54,7 +54,7 @@ const ProductItem = ({ product, onClick }: Props) => {
             </Typography>
             <Box
               sx={{
-                width: "40px",
+                minWidth: "40px",
                 height: "40px",
                 borderRadius: "50%",
                 bgcolor: "error.main",
@@ -68,7 +68,12 @@ const ProductItem = ({ product, onClick }: Props) => {
             </Box>
           </Box>
           <Box sx={{ display: "flex" }}>
-            <Typography sx={{ color: "error.main", fontWeight: 600 }}>
+            <Typography
+              whiteSpace="nowrap"
+              overflow="hidden"
+              textOverflow="ellipsis"
+              sx={{ color: "error.main", fontWeight: 600 }}
+            >
               Giá:{" "}
               {product?.productDiscount &&
                 product.productPrice &&

@@ -3,17 +3,26 @@ import CustomizedDrawer from "@/components/shared/CustomizedDrawer";
 import CloseIcon from "@/components/shared/icons/CloseIcon";
 import { AppContext } from "@/providers/AppContext";
 import { Box, Collapse, IconButton } from "@mui/material";
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import AuthLogin from "./AuthLogin";
 import AuthRegister from "./AuthRegister";
-import { LoginInput } from "@/types/auth";
+import { LoginInput, SignUpValidateInput } from "@/types/auth";
+import { UseFormReturn } from "react-hook-form";
 
 type Props = {
   onLogin?: () => void;
   onLoginChange?: (name: string, value: string) => void;
   loginData?: LoginInput;
   loginLoading?: boolean;
+  signUpLoading?: boolean;
   loginError?: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  formValidate?: UseFormReturn<SignUpValidateInput, any, undefined>;
+  onSubmit: (data: SignUpValidateInput) => void;
+  isShowRegister: boolean;
+  setIsShowRegister: (bool: boolean) => void;
+  signUpError?: string;
+  onClear?: () => void;
 };
 
 const AuthMobile = ({
@@ -22,13 +31,20 @@ const AuthMobile = ({
   loginData,
   loginError,
   loginLoading,
+  formValidate,
+  onSubmit,
+  signUpLoading,
+  isShowRegister,
+  setIsShowRegister,
+  onClear,
+  signUpError,
 }: Props) => {
-  const [isShowRegister, setIsShowRegister] = useState(false);
   const { openAuth, setOpenAuth } = useContext(AppContext);
 
   const handleCloseAuth = () => {
     setOpenAuth(false);
     setIsShowRegister(false);
+    onClear?.();
   };
   return (
     <>
@@ -75,7 +91,13 @@ const AuthMobile = ({
                   component="div"
                   sx={{ width: "calc(100vw - 32px)" }}
                 >
-                  <AuthRegister onShowRegister={setIsShowRegister} />
+                  <AuthRegister
+                    onShowRegister={setIsShowRegister}
+                    formValidate={formValidate}
+                    onSubmit={onSubmit}
+                    loading={signUpLoading}
+                    error={signUpError}
+                  />
                 </Box>
               </Collapse>
             </Box>

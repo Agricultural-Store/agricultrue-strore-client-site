@@ -5,6 +5,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import { authApi, userApi } from "./api-path";
 import { ApiResponse } from "@/types/shared";
 import { Me } from "@/types/user";
+import appConfig from "./env";
 
 const log = (action: string, message: string, data?: unknown) => {
   console.log(
@@ -31,11 +32,12 @@ const authOptions: AuthOptions = {
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials, req) {
-        log("authorize", `${credentials?.email} | ${req.headers?.["user-agent"]}`);
+        log("authorize", `${credentials?.email} | ${req.headers}`);
 
         try {
-          const res = await fetch(authApi.login, {
+          const res = await fetch(appConfig.API_HOST + authApi.login, {
             method: "POST",
+            mode: "cors",
             body: JSON.stringify({
               email: credentials?.email,
               password: credentials?.password,
@@ -67,7 +69,7 @@ const authOptions: AuthOptions = {
       if (user) {
         token.token = user.token;
         console.log(token.token);
-        const profile = await fetch(userApi.me, {
+        const profile = await fetch(appConfig.API_HOST + userApi.me, {
           method: "GET",
           mode: "cors",
           headers: {

@@ -8,9 +8,24 @@ type Props = {
 const AppProvider = ({ children }: Props) => {
   const [openAuth, setOpenAuth] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [isCompleted, setIsCompleted] = useState(false);
+
+  const handleCompleted = (isCompleted: boolean, callback?: () => void) => {
+    setIsCompleted(isCompleted);
+    callback?.();
+  };
 
   return (
-    <AppContext.Provider value={{ openAuth, setOpenAuth, isLoading, setIsLoading }}>
+    <AppContext.Provider
+      value={{
+        openAuth,
+        setOpenAuth,
+        isLoading,
+        setIsLoading,
+        isCompleted,
+        setIsCompleted: handleCompleted,
+      }}
+    >
       {children}
     </AppContext.Provider>
   );

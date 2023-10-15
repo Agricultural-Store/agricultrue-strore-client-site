@@ -24,6 +24,9 @@ const ProfileBarItem = ({ item }: Props) => {
           textDecoration: "none",
           display: "flex",
           alignItems: "center",
+          whiteSpace: "nowrap",
+          overflow: "hidden",
+          textOverflow: "ellipsis",
           color:
             pathname.split("/").includes(item.href.split("/")?.[2]) ||
             (!pathname.split("/")[2] && !item.href.split("/")?.[2])

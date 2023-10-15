@@ -41,6 +41,7 @@ const ProfileOrderTab = () => {
       <CustomizedTab
         value={tabActive}
         onChange={setTabActive}
+        
         labels={tabs.map((tab) => tab.label)}
       >
         <ProfileOrderList />

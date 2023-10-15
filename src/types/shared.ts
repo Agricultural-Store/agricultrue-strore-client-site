@@ -33,10 +33,11 @@ export interface ApiResponse<T, Option = any> {
   message?: string;
   statusCode: number;
   filter?: ListOptions<Option>;
+
 }
 
 export interface ErrorResponse<T> {
-  code: string;
+  statusCode?: number;
   message: string;
   details?: {
     [Key in keyof T]: string;

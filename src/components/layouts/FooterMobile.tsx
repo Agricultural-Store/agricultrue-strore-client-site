@@ -1,6 +1,5 @@
 import { Box, Typography, Divider } from "@mui/material";
 import React from "react";
-import News from "../news";
 import FacebookIcon from "../shared/icons/FacebookIcon";
 import InstagramIcon from "../shared/icons/InstagramIcon";
 import YoutubeIcon from "../shared/icons/YoutubeIcon";
@@ -8,9 +7,6 @@ import YoutubeIcon from "../shared/icons/YoutubeIcon";
 const FooterMobile = () => {
   return (
     <Box position="relative">
-      <Box sx={{ pb: "48px", mt: "120px" }}>
-        <News />
-      </Box>
       <Box sx={{}}>
         <Box
           component="img"

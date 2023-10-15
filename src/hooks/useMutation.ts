@@ -1,8 +1,9 @@
 import "client-only";
-import { ErrorResponse, FetchOptions, ListResponse } from "@/types/shared";
+import { ErrorResponse, FetchOptions } from "@/types/shared";
 import useSWRMutation, { SWRMutationConfiguration } from "swr/mutation";
 import { fetcher } from "@/utils/fetcher";
 import { useSWRConfig } from "swr";
+import { ApiResponse } from "../types/shared";
 
 export type MutateRelatedDataList<T> = {
   /** The (API) path of the data list which should be mutated */
@@ -17,7 +18,7 @@ export type MutateRelatedDataList<T> = {
   shouldRevalidate?: boolean;
 };
 
-export type WithID = { _id: unknown };
+export type WithID = { data: { _id: unknown } };
 
 /** Wrapped mutation of SWR, see more at https://swr.vercel.app/docs/mutation#useswrmutation */
 function useMutation<Data extends WithID, Body = unknown, Params = unknown>(
@@ -47,7 +48,7 @@ function useMutation<Data extends WithID, Body = unknown, Params = unknown>(
     {
       ...config,
       revalidate: false,
-      onSuccess: (_data, _key, _config) => {
+      onSuccess: (_response, _key, _config) => {
         mutate<Data>(
           (key) =>
             typeof key === "object" &&
@@ -55,7 +56,7 @@ function useMutation<Data extends WithID, Body = unknown, Params = unknown>(
           (currentData) => {
             return {
               ...currentData,
-              ..._data,
+              ..._response,
             };
           },
           {
@@ -83,7 +84,7 @@ function useMutation<Data extends WithID, Body = unknown, Params = unknown>(
             );
           }
 
-          mutate<ListResponse<Data>>(
+          mutate<ApiResponse<Data>>(
             (key) =>
               typeof key === "object" &&
               (key as FetchOptions<Params, Body>)?.path == mutatePath,
@@ -92,38 +93,46 @@ function useMutation<Data extends WithID, Body = unknown, Params = unknown>(
                 return currentData;
               }
 
-              const index = currentData.items.findIndex((item) => {
+              if (!Array.isArray(currentData.data)) {
+                return currentData;
+              }
+
+              const index = currentData.data?.findIndex((item) => {
                 if (!!isEqual) {
-                  return isEqual(item, _data);
+                  return isEqual(item, _response);
                 }
-                return item._id === _data._id;
+                return item._id === _response.data._id;
               });
 
               if (shouldRemove) {
                 return {
                   ...currentData,
-                  total: currentData.total - 1,
+                  total: currentData?.total ? currentData.total - 1 : 0,
                   items: [
-                    ...currentData.items.slice(0, index),
-                    ...currentData.items.slice(index + 1),
+                    ...currentData.data?.slice(0, index),
+                    ...currentData.data?.slice(index + 1),
                   ],
                 };
               }
 
               const updatedData = { ...currentData };
 
+              if (!Array.isArray(updatedData.data)) {
+                return updatedData;
+              }
+
               if (index < 0) {
                 if (insertOnNotFound) {
-                  updatedData.total += 1;
+                  if (updatedData.total) updatedData.total += 1;
                   if (insertOnNotFound == "start") {
-                    updatedData.items.unshift(_data);
+                    updatedData.data?.unshift(_response.data);
                   }
                   if (insertOnNotFound == "end") {
-                    updatedData.items.push(_data);
+                    updatedData.data?.push(_response.data);
                   }
                 }
               } else {
-                updatedData.items[index] = _data;
+                if (updatedData.data) updatedData.data[index] = _response.data;
               }
 
               return updatedData;
@@ -134,7 +143,7 @@ function useMutation<Data extends WithID, Body = unknown, Params = unknown>(
           );
         }
         if (!!config?.onSuccess) {
-          config?.onSuccess(_data, _key, _config);
+          config?.onSuccess(_response, _key, _config);
         }
       },
     } as SWRMutationConfiguration<Data, ErrorResponse<Data>>,

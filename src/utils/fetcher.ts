@@ -45,7 +45,7 @@ export async function fetcher<Data, Params, Body>(
         throw error;
       } else {
         const error: ErrorResponse<Data> = {
-          code: `${res.status}`,
+          statusCode: res.status,
           message: res.statusText,
         };
         throw error;

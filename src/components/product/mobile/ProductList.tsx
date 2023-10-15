@@ -1,12 +1,15 @@
 import SearchBox from "@/components/shared/SearchBox";
 import { Box, Divider, Grid, Typography } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ProductItem from "../ProductItem";
 import CustomizedSelect from "@/components/shared/CustomizedSelect";
 import { OptionType } from "@/types/shared";
 import CustomizedPagination from "@/components/shared/CustomizedPagination";
 import CustomizedCheckbox from "@/components/shared/CustomizedCheckbox";
 import { useRouter } from "next-intl/client";
+import { Product, ProductFilterParams } from "@/types/product";
+import useProductList from "@/hooks/product/useProductList";
+import useQueryParams from "@/hooks/shared/useQueryParams";
 
 const menuItems: OptionType[] = [
   {
@@ -50,57 +53,36 @@ const ProductList = () => {
       id: 7,
     },
   ]);
-  const [products] = useState([
-    {
-      productImage: "/images/image.png",
-      productName: "Lua",
-      productPrice: 2000,
-      productDiscount: 10,
-      id: 1,
-    },
-    {
-      productImage: "/images/image.png",
-      productName: "Lua",
-      productPrice: 2000,
-      productDiscount: 10,
-      id: 2,
-    },
-    {
-      productImage: "/images/image.png",
-      productName: "Lua",
-      productPrice: 2000,
-      productDiscount: 10,
-      id: 3,
-    },
-    {
-      productImage: "/images/image.png",
-      productName: "Lua",
-      productPrice: 2000,
-      productDiscount: 10,
-      id: 4,
-    },
-    {
-      productImage: "/images/image.png",
-      productName: "Lua",
-      productPrice: 2000,
-      productDiscount: 10,
-      id: 5,
-    },
-    {
-      productImage: "/images/image.png",
-      productName: "Lua",
-      productPrice: 2000,
-      productDiscount: 10,
-      id: 5,
-    },
-  ]);
+
+  const [products, setProducts] = useState<Product[]>([]);
 
   const router = useRouter();
 
+  const [options, setOptions] = useQueryParams<ProductFilterParams>({
+    limit: 10,
+    offset: 0,
+  });
+
+  const { data } = useProductList(options);
+
+  const pageSize = data?.filter?.limit || 30;
+  const currentPage = Math.floor(data?.filter?.offset ?? 0 / pageSize);
+
   const handleClick = (id?: number) => {
-    console.log(id);
     router.push(`/product/${id}`);
   };
+
+  const handleChangePage = (page: number) => {
+    setOptions({
+      offset: (page - 1) * pageSize,
+    });
+  };
+
+  useEffect(() => {
+    if (data?.data) {
+      setProducts(data.data);
+    }
+  }, [data]);
 
   return (
     <Box sx={{ p: "48px 16px" }}>
@@ -125,7 +107,14 @@ const ProductList = () => {
           </Typography>
           <Box
             width="100%"
-            sx={{ overflowX: "auto", overflowY: "hidden" }}
+            sx={{
+              overflowX: "auto",
+              overflowY: "hidden",
+              height: "50px",
+              "::-webkit-scrollbar": {
+                height: "0px",
+              },
+            }}
           >
             <Box
               display="flex"
@@ -168,7 +157,7 @@ const ProductList = () => {
           container
           spacing={3}
         >
-          {products.map((product) => (
+          {products?.map((product) => (
             <Grid
               item
               key={product.id}
@@ -186,8 +175,10 @@ const ProductList = () => {
         </Grid>
         <CustomizedPagination
           sx={{ mt: "48px" }}
-          itemCount={products.length}
-          rowPerPage={3}
+          itemCount={data?.total}
+          rowPerPage={pageSize}
+          onPageChange={handleChangePage}
+          page={currentPage}
         />
       </Box>
     </Box>

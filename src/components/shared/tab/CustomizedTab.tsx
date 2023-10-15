@@ -24,6 +24,8 @@ export default function CustomizedTab({ children, value, onChange, labels }: Pro
           value={value}
           onChange={handleChange}
           aria-label="basic tabs example"
+          variant="scrollable"
+          scrollButtons={false}
         >
           {labels.map((value) => (
             <Tab

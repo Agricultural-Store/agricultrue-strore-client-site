@@ -6,13 +6,14 @@ import MainFooter from "./MainFooter";
 import { AppContext } from "@/providers/AppContext";
 import RootLoading from "@/app/[locale]/loading";
 import useMedia from "@/hooks/shared/useMedia";
+import CustomizedSuccess from "../shared/CustomizedSuccess";
 
 type Props = {
   children: ReactNode;
 };
 
 const MainLayout = ({ children }: Props) => {
-  const { isLoading } = useContext(AppContext);
+  const { isLoading, isCompleted, setIsCompleted } = useContext(AppContext);
   const { media } = useMedia();
   const [loadingResponsive, setLoadingResponsive] = useState("loading");
 
@@ -32,6 +33,12 @@ const MainLayout = ({ children }: Props) => {
       <div style={{ position: "relative", top: "65px" }}>{children}</div>
       <MainFooter />
       {isLoading && <RootLoading />}
+      {isCompleted && (
+        <CustomizedSuccess
+          open={isCompleted}
+          onCompleted={setIsCompleted}
+        />
+      )}
     </main>
   );
 };
