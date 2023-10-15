@@ -6,6 +6,7 @@ import { authApi, userApi } from "./api-path";
 import { ApiResponse } from "@/types/shared";
 import { Me } from "@/types/user";
 import appConfig from "./env";
+import axios from "axios";
 
 const log = (action: string, message: string, data?: unknown) => {
   console.log(
@@ -35,19 +36,20 @@ const authOptions: AuthOptions = {
         log("authorize", `${credentials?.email} | ${req.headers}`);
 
         try {
-          const res = await fetch(appConfig.API_HOST + authApi.login, {
-            method: "POST",
-            mode: "cors",
-            body: JSON.stringify({
+          const res = await axios({
+            data: JSON.stringify({
               email: credentials?.email,
               password: credentials?.password,
             }),
+            method: "POST",
+            url: appConfig.API_HOST + authApi.login,
+            // mode: "cors",
             headers: { "Content-Type": "application/json" },
           });
-          const user = await res.json();
+          const user = res.data;
 
           // If no error and we have user data, return it
-          if (res.ok && user) {
+          if (res.status === 201 && user) {
             return user.data;
           }
         } catch (error) {
