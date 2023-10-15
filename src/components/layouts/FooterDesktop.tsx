@@ -7,14 +7,11 @@ import YoutubeIcon from "../shared/icons/YoutubeIcon";
 
 const FooterDesktop = () => {
   return (
-    <Box position="relative">
-      <Box sx={{}}>
-        <Box
-          component="img"
-          width="100%"
-          src="/images/footer-image.png"
-        ></Box>
-      </Box>
+    <Box
+      position="relative"
+      height="400px"
+      bgcolor="#F4F5F6"
+    >
       <Box
         sx={{
           width: "100%",

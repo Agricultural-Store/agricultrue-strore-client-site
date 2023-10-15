@@ -1,7 +1,6 @@
-import mockAPI from "@/mocks";
 import { ErrorResponse } from "@/types/shared";
 import { fetcher } from "@/utils/fetcher";
-import React, { ReactNode, useEffect } from "react";
+import React, { ReactNode } from "react";
 import { SWRConfig } from "swr";
 
 type Props = {
@@ -9,11 +8,6 @@ type Props = {
 };
 
 function SWRProvider({ children }: Props) {
-  // Mocking API Responses
-  useEffect(() => {
-    mockAPI();
-  }, []);
-
   return (
     <SWRConfig
       value={{

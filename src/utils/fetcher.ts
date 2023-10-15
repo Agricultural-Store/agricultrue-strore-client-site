@@ -1,7 +1,6 @@
 import appConfig from "@/config/env";
 import { ErrorResponse, FetchOptions } from "@/types/shared";
 import { buildQueryString } from "@/utils/query";
-import axios, { AxiosError } from "axios";
 import { getSession } from "next-auth/react";
 
 export async function fetcher<Data, Params, Body>(
@@ -30,58 +29,30 @@ export async function fetcher<Data, Params, Body>(
     }
   }
 
-  return axios({
-    url,
+
+  return fetch(url, {
     method: options?.method || "GET",
+    // credentials: "include", // include, same-origin, omit
+    mode: "cors", // no-cors, cors, same-origin
     headers: {
       ...headers,
       ...options?.headers,
     },
-    data: body,
-  })
-    .then((res) => res.data)
-    .catch((err) => {
-      if (err instanceof AxiosError) {
-        if (err.response?.data) {
-          const error: ErrorResponse<Data> = err.response?.data;
-          throw error;
-        }
+    body,
+  }).then(async (res) => {
+    if (!res.ok) {
+      if (res.body && res.headers.get("Content-Type")?.includes("application/json")) {
+        const error: ErrorResponse<Data> = await res.json();
+        throw error;
+      } else {
         const error: ErrorResponse<Data> = {
-          statusCode: err.status,
-          message: err.message,
+          statusCode: res.status,
+          message: res.statusText,
         };
         throw error;
       }
-      const error: ErrorResponse<Data> = {
-        statusCode: 400,
-        message: err.message,
-      };
-      throw error;
-    });
+    }
 
-  // return fetch(url, {
-  //   method: options?.method || "GET",
-  //   // credentials: "include", // include, same-origin, omit
-  //   mode: "cors", // no-cors, cors, same-origin
-  //   headers: {
-  //     ...headers,
-  //     ...options?.headers,
-  //   },
-  //   body,
-  // }).then(async (res) => {
-  //   if (!res.ok) {
-  //     if (res.body && res.headers.get("Content-Type")?.includes("application/json")) {
-  //       const error: ErrorResponse<Data> = await res.json();
-  //       throw error;
-  //     } else {
-  //       const error: ErrorResponse<Data> = {
-  //         statusCode: res.status,
-  //         message: res.statusText,
-  //       };
-  //       throw error;
-  //     }
-  //   }
-
-  //   return res.json();
-  // });
+    return res.json();
+  });
 }

@@ -6,14 +6,10 @@ import YoutubeIcon from "../shared/icons/YoutubeIcon";
 
 const FooterMobile = () => {
   return (
-    <Box position="relative">
-      <Box sx={{}}>
-        <Box
-          component="img"
-          width="100%"
-          src="/images/footer-image-mobile.png"
-        ></Box>
-      </Box>
+    <Box
+      position="relative"
+      bgcolor="#F4F5F6"
+    >
       <Box
         sx={{
           width: "100%",

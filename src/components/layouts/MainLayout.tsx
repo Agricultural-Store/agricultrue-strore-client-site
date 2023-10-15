@@ -30,8 +30,10 @@ const MainLayout = ({ children }: Props) => {
   return (
     <main>
       <MainHeader />
-      <div style={{ position: "relative", top: "65px" }}>{children}</div>
-      <MainFooter />
+      <div style={{ position: "relative", top: "65px" }}>
+        {children}
+        <MainFooter />
+      </div>
       {isLoading && <RootLoading />}
       {isCompleted && (
         <CustomizedSuccess

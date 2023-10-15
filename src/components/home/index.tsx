@@ -7,6 +7,7 @@ import { useSearchParams } from "next/navigation";
 import HomeMobile from "./mobile";
 import { Box } from "@mui/material";
 import News from "../news";
+import FooterImage from "../layouts/FooterImage";
 
 const Home = () => {
   const { media } = useMedia();
@@ -24,9 +25,10 @@ const Home = () => {
     return (
       <>
         <HomeMobile />;
-        <Box sx={{ pb: "48px", mt: "120px" }}>
+        <Box sx={{ pb: "48px", mt: "48px" }}>
           <News />
         </Box>
+        <FooterImage />
       </>
     );
   }
@@ -34,9 +36,10 @@ const Home = () => {
   return (
     <>
       <HomeDesktop />;
-      <Box sx={{ pb: "48px", mt: "120px" }}>
+      <Box sx={{ pb: "48px", mt: "48px" }}>
         <News />
       </Box>
+      <FooterImage />
     </>
   );
 };
