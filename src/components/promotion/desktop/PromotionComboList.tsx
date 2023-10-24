@@ -22,7 +22,9 @@ const PromotionComboList = () => {
         flexWrap="wrap"
       >
         {(isLoading || isValidating) && (
-          <Box
+          <Grid
+            item
+            xs={12}
             textAlign="center"
             display="flex"
             justifyContent="center"
@@ -31,7 +33,7 @@ const PromotionComboList = () => {
               color="green"
               size="small"
             />
-          </Box>
+          </Grid>
         )}
 
         {!isLoading && !isValidating && data?.data.length == 0 && (

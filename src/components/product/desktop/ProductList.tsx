@@ -64,7 +64,7 @@ const ProductList = () => {
   }, [data]);
 
   return (
-    <Box sx={{ p: "64px 48px", display: media ? "block" : "flex" }}>
+    <Box sx={{ p: "64px 0px", display: media ? "block" : "flex" }}>
       <Box sx={{ mr: "48px", width: media ? "100%" : "300px" }}>
         <ProductFilter />
       </Box>
@@ -96,7 +96,6 @@ const ProductList = () => {
               xs={12}
               sm={6}
               md={4}
-              lg={3}
             >
               <ProductItem
                 product={product}

@@ -7,18 +7,28 @@ import HomeOutstanding from "./HomeOutstanding";
 import HomeVision from "./HomeVision";
 import HomeOutstandingProduct from "./HomeOutstandingProduct";
 import HomeRating from "./HomeRating";
+import { Container } from "@mui/material";
 
 const HomeDesktop = () => {
   return (
     <>
       <HomeBanner />
-      <HomeIntroduce />
-      <HomeOutstanding />
-      <HomeMiddleIntroduce />
-      <HomeVision />
-      <HomeCertification />
-      <HomeOutstandingProduct />
-      <HomeRating />
+      <Container
+        sx={{
+          paddingX: {
+            sm: "48px !important",
+            lg: "0px !important",
+          },
+        }}
+      >
+        <HomeIntroduce />
+        <HomeOutstanding />
+        <HomeMiddleIntroduce />
+        <HomeVision />
+        <HomeCertification />
+        <HomeOutstandingProduct />
+        <HomeRating />
+      </Container>
     </>
   );
 };

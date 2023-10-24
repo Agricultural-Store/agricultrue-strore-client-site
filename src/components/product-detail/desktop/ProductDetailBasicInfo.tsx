@@ -15,7 +15,7 @@ const ProductDetailBasicInfo = ({ product }: Props) => {
   return (
     <Grid
       container
-      sx={{ p: "48px", height: "auto" }}
+      sx={{ py: "48px", height: "auto" }}
       columnSpacing={6}
     >
       <Grid

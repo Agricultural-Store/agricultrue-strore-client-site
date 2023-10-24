@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box, Container } from "@mui/material";
 import React from "react";
 import ContactForm from "./ContactForm";
 import ContactInformation from "./ContactInformation";
@@ -11,13 +11,22 @@ const ContactDesktop = () => {
         src="/images/contact.png"
         width="100%"
       />
-      <Box
-        p="64px 48px"
-        sx={{ display: "flex", justifyContent: "space-between" }}
+      <Container
+        sx={{
+          paddingX: {
+            sm: "48px !important",
+            lg: "0px !important",
+          },
+        }}
       >
-        <ContactInformation />
-        <ContactForm />
-      </Box>
+        <Box
+          p="64px 0px"
+          sx={{ display: "flex", justifyContent: "space-between" }}
+        >
+          <ContactInformation />
+          <ContactForm />
+        </Box>
+      </Container>
     </Box>
   );
 };

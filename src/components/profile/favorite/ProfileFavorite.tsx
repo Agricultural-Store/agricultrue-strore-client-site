@@ -65,7 +65,7 @@ const ProfileFavorite = () => {
 
   return (
     <Box
-      width={media ? "100%" : "calc(100% - 250px)"}
+      width={media ? "100%" : "calc(100%)"}
       pr={media ? "0" : "24px"}
       pl={media ? "0" : "48px"}
     >
@@ -111,7 +111,7 @@ const ProfileFavorite = () => {
               xs={12}
               sm={6}
               md={4}
-              lg={3}
+              lg={4}
             >
               <ProductItem
                 product={product}
