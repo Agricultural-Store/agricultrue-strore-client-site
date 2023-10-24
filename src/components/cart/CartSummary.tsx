@@ -1,27 +1,36 @@
 import useMedia from "@/hooks/shared/useMedia";
 import { ProductInCart } from "@/types/cart";
+import { calcPriceDiscount } from "@/utils/count";
 import { Box, Button, Divider, Typography } from "@mui/material";
+import { useRouter } from "next-intl/client";
 import React, { useMemo } from "react";
 
 type Props = {
   products: ProductInCart[];
+  onClose?: (bool: boolean) => void;
 };
 
-const CartSummary = ({ products }: Props) => {
+const CartSummary = ({ products, onClose }: Props) => {
   const { media } = useMedia();
+  const router = useRouter();
   const originalPrice = useMemo(
-    () => products.reduce((pre, curr) => pre + curr.productPrice, 0),
+    () => products.reduce((pre, curr) => pre + (curr?.productPrice || 0), 0),
     [products],
   );
 
   const discountPrice = useMemo(
     () =>
       products.reduce(
-        (pre, curr) => pre + (curr.productPrice * curr.productDiscount) / 100,
+        (pre, curr) => pre + calcPriceDiscount(curr.productPrice, curr.productDiscount),
         0,
       ),
     [products],
   );
+
+  const handlePayment = () => {
+    onClose?.(false);
+    router.push("/order");
+  };
 
   return (
     <Box py="24px">
@@ -82,6 +91,7 @@ const CartSummary = ({ products }: Props) => {
       <Button
         variant="contained"
         fullWidth
+        onClick={handlePayment}
         sx={{ mt: "16px", textTransform: "capitalize" }}
       >
         Thanh toán

@@ -8,10 +8,11 @@ import CircleUncheckIcon from "./icons/CircleUncheckIcon";
 type Props = {
   label?: string;
   value?: string | number;
-  onChange?: (checked: boolean) => void;
+  onChange?: (e: ChangeEvent<HTMLInputElement>, checked: boolean) => void;
   checked?: boolean;
   defaultChecked?: boolean;
   checkedIcon?: ReactNode;
+  name?: string;
 };
 
 const CustomizedCheckbox = ({
@@ -21,11 +22,8 @@ const CustomizedCheckbox = ({
   checked,
   checkedIcon,
   onChange,
+  name,
 }: Props) => {
-  const handleChange = (e: ChangeEvent<HTMLInputElement>, checked: boolean) => {
-    onChange?.(checked);
-  };
-
   return (
     <Box
       display="flex"
@@ -44,8 +42,10 @@ const CustomizedCheckbox = ({
           id={value?.toString()}
           checked={checked}
           defaultChecked={defaultChecked}
-          onChange={handleChange}
+          onChange={onChange}
+          value={value}
           icon={<CircleUncheckIcon />}
+          name={name}
           checkedIcon={checkedIcon || <CircleCheckedIcon />}
         />
       </Box>

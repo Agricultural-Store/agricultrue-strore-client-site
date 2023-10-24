@@ -6,7 +6,7 @@ import { Box, Button } from "@mui/material";
 import React, { ChangeEvent, useEffect, useState } from "react";
 import { State, City } from "country-state-city";
 import { AutoCompleteOption } from "@/types/components/autocomplete";
-import { AddressInput } from "@/types/address";
+import { AddressCreateInput } from "@/types/address";
 
 const states = State.getStatesOfCountry("VN").map((state) => ({
   label: state.name,
@@ -22,7 +22,7 @@ const OrderAddressForm = () => {
     street: "",
     home: "",
   });
-  const [input, setInput] = useState<AddressInput>({
+  const [input, setInput] = useState<AddressCreateInput>({
     address: "",
     customerName: "",
     mail: "",

@@ -28,9 +28,16 @@ const MainLayout = ({ children }: Props) => {
   }
 
   return (
-    <main>
+    <main style={{ height: "100vh", overflow: "hidden" }}>
       <MainHeader />
-      <div style={{ position: "relative", top: "65px" }}>
+      <div
+        style={{
+          position: "relative",
+          top: "65px",
+          height: "calc(100vh - 65px)",
+          overflow: "scroll",
+        }}
+      >
         {children}
         <MainFooter />
       </div>

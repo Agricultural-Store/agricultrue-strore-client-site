@@ -12,7 +12,7 @@ import React from "react";
 type Props = {
   image?: string;
   title?: string;
-  description: string;
+  description?: string;
   id?: string;
 };
 
@@ -43,8 +43,7 @@ const PromotionComboItem = ({ image, title, description, id }: Props) => {
           {title}
         </Typography>
         <Box
-          dangerouslySetInnerHTML={{ __html: description }}
-         
+          dangerouslySetInnerHTML={{ __html: description || "" }}
           minHeight="100px"
           fontSize="16px"
         ></Box>

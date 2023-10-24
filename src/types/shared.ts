@@ -54,7 +54,7 @@ export type FetchOptions<Params = unknown, Body = unknown> = {
   headers?: {
     [key: string]: string;
   };
-};
+} | null;
 
 export type OptionType = {
   value: string | number;

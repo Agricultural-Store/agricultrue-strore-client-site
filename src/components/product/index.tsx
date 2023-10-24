@@ -6,6 +6,7 @@ import ProductMobile from "./mobile";
 
 const Product = () => {
   const { media } = useMedia();
+  
 
   if (media) {
     return <ProductMobile />;

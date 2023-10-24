@@ -3,11 +3,12 @@ import FavoriteIcon from "@/components/shared/icons/FavoriteIcon";
 import NextArrowIcon from "@/components/shared/icons/NextArrowIcon";
 import PreviousIcon from "@/components/shared/icons/PreviousArrowIcon";
 import { ProductDetail } from "@/types/product-detail";
+import { calcPrice } from "@/utils/count";
 import { Box, Button, Grid, IconButton, Typography } from "@mui/material";
 import React from "react";
 
 type Props = {
-  product: ProductDetail;
+  product?: ProductDetail;
 };
 
 const ProductDetailBasicInfo = ({ product }: Props) => {
@@ -21,12 +22,13 @@ const ProductDetailBasicInfo = ({ product }: Props) => {
         item
         lg={5}
         sm={6}
+        width="100%"
       >
-        <Box>
-          <Box sx={{ position: "relative" }}>
+        <Box width="100%">
+          <Box sx={{ position: "relative", width: "100%" }}>
             <Box
               component="img"
-              src="/images/product-detail-main.png"
+              src={product?.productImages?.[0] || "/images/product-detail-main.png"}
               sx={{ width: "100%", height: "400px" }}
             />
             <Box
@@ -128,17 +130,17 @@ const ProductDetailBasicInfo = ({ product }: Props) => {
         }}
       >
         <Typography sx={{ fontSize: "14px", fontStyle: "italic" }}>
-          {product.productCategory}
+          {product?.productCategory}
         </Typography>
         <Typography sx={{ fontSize: "28px", fontWeight: 700 }}>
-          {product.productName}
+          {product?.productName}
         </Typography>
         <Box sx={{ display: "flex", gap: "8px", alignItems: "center" }}>
           <Typography sx={{ color: "color.textPrimary", fontSize: "20px" }}>
-            Giá: {product.productPrice}đ/kg
+            Giá: {calcPrice(product?.productPrice, product?.productDiscount)}đ/kg
           </Typography>
           <Typography sx={{ color: "color.textPrimary300" }}>
-            {product.productDiscount}đ/kg
+            {product?.productPrice}đ/kg
           </Typography>
         </Box>
         <Typography sx={{ lineHeight: "28px" }}>

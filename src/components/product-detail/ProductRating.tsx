@@ -1,31 +1,26 @@
 import { Box, Typography } from "@mui/material";
-import React, { useState } from "react";
+import React from "react";
 import ProductDetailRatingForm from "./ProductDetailRatingForm";
 import ProductDetailRatingList from "./ProductDetailRatingList";
-import { ProductRating } from "@/types/product-rating";
 import useMedia from "@/hooks/shared/useMedia";
+import useProductRatingList from "@/hooks/product/useProductRatingList";
+import { useParams } from "next/navigation";
 
 const ProductRating = () => {
-  const [ratingList] = useState<ProductRating[]>([
-    {
-      createdAt: "17 tháng 09 năm 2023",
-      feedback: `Loại gạo này rất ngon, tôi thích nó😍 Tôi thực sự ấn tượng với chất lượng của gạo
-      ST25. Khi nấu, hạt gạo giữ nguyên hình dáng, không bị nát hay dính vào nhau. Điều
-      tôi yêu thích nhất là hương thơm dễ chịu và độc đáo của nó, khó có thể so sánh
-      được với bất kỳ loại gạo nào khác.`,
-      productRating: 4,
-      username: "Đinh Phúc Khang",
-      userImage: "/images/profile-avatar.svg",
-    },
-  ]);
   const { media } = useMedia();
+  const params = useParams();
+
+  const { data, isLoading, isValidating } = useProductRatingList(+(params.id as string));
 
   return (
     <Box>
       <Typography sx={{ fontWeight: 700, fontSize: media ? "18px" : "20px", mb: "20px" }}>
         Đánh giá từ người dùng
       </Typography>
-      <ProductDetailRatingList ratingList={ratingList} />
+      <ProductDetailRatingList
+        ratingList={data?.data}
+        isLoading={isLoading || isValidating}
+      />
       <Typography
         sx={{
           fontWeight: 700,

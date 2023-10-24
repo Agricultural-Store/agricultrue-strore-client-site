@@ -11,6 +11,7 @@ import {
 } from "@mui/material";
 import React from "react";
 import FavoriteIcon from "../shared/icons/FavoriteIcon";
+import { calcPrice } from "@/utils/count";
 
 type Props = {
   product?: Product;
@@ -35,6 +36,8 @@ const ProductItem = ({ product, onClick }: Props) => {
           component="img"
           src={product?.productImage}
           width="100%"
+          height="230px"
+          sx={{ objectFit: "cover" }}
         />
         <CardContent>
           <Box
@@ -44,7 +47,7 @@ const ProductItem = ({ product, onClick }: Props) => {
             height="45px"
           >
             <Typography
-              fontSize="24px"
+              fontSize="18px"
               fontWeight={600}
               whiteSpace="nowrap"
               overflow="hidden"
@@ -72,12 +75,9 @@ const ProductItem = ({ product, onClick }: Props) => {
               whiteSpace="nowrap"
               overflow="hidden"
               textOverflow="ellipsis"
-              sx={{ color: "error.main", fontWeight: 600 }}
+              sx={{ color: "error.main", fontWeight: 600, fontSize: "16px" }}
             >
-              Giá:{" "}
-              {product?.productDiscount &&
-                product.productPrice &&
-                (product.productPrice * product.productDiscount) / 100}
+              Giá: {calcPrice(product?.productPrice, product?.productDiscount)}
               đ/kg
             </Typography>
             <Typography

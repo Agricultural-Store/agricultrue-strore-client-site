@@ -6,17 +6,17 @@ import { getSession } from "next-auth/react";
 export async function fetcher<Data, Params, Body>(
   options: FetchOptions<Params, Body>,
 ): Promise<Data> {
-  let url = appConfig.API_HOST + options.path;
+  let url = appConfig.API_HOST + options?.path;
   let body;
 
   const session = await getSession();
   const headers: Record<string, string> = {};
 
-  if (session?.user?.token) {
-    headers["Authorization"] = `Bearer ${session?.user?.token}`;
+  if (session?.token) {
+    headers["Authorization"] = `Bearer ${session?.token}`;
   }
 
-  if (options.params) {
+  if (options?.params) {
     url += buildQueryString(options.params as Record<string, string | number>);
   }
 
@@ -28,7 +28,6 @@ export async function fetcher<Data, Params, Body>(
       headers["Content-Type"] = "application/json";
     }
   }
-
 
   return fetch(url, {
     method: options?.method || "GET",

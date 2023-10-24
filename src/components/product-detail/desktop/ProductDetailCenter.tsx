@@ -8,7 +8,7 @@ import { ProductDetail } from "@/types/product-detail";
 import ProductRating from "../ProductRating";
 
 type Props = {
-  product: ProductDetail;
+  product?: ProductDetail;
 };
 
 const ProductDetailCenter = ({ product }: Props) => {
@@ -25,7 +25,7 @@ const ProductDetailCenter = ({ product }: Props) => {
           index={0}
           value={tabActive}
         >
-          <ProductDetailDescription />
+          <ProductDetailDescription product={product} />
         </CustomizedTabPanel>
         <CustomizedTabPanel
           index={1}

@@ -4,16 +4,19 @@ import OrderAddressItem from "./OrderAddressItem";
 import ArrowUpIcon from "@/components/shared/icons/ArrowUpIcon";
 import OrderAddressForm from "./OrderAddressForm";
 import CustomizedInput from "@/components/shared/CustomizedInput";
+import useUserAddress from "@/hooks/user/useUserAddress";
 
 const OrderAddress = () => {
   const [showAddressForm, setShowAddressForm] = useState(false);
-  const [addressCurrentId, setAddressCurrentId] = useState(1);
+  const [addressCurrentId, setAddressCurrentId] = useState<number>();
+
+  const { data } = useUserAddress();
 
   const handleToggleOrderAddress = () => {
     setShowAddressForm((pre) => !pre);
   };
 
-  const handleAddressChecked = (id: number) => {
+  const handleAddressChecked = (id?: number) => {
     setAddressCurrentId(id);
   };
 
@@ -43,31 +46,15 @@ const OrderAddress = () => {
           // flexWrap="wrap"
           gap="16px"
         >
-          <OrderAddressItem
-            id={1}
-            currentId={addressCurrentId}
-            onChecked={handleAddressChecked}
-          />
-          <OrderAddressItem
-            id={2}
-            currentId={addressCurrentId}
-            onChecked={handleAddressChecked}
-          />
-          <OrderAddressItem
-            id={3}
-            currentId={addressCurrentId}
-            onChecked={handleAddressChecked}
-          />
-          <OrderAddressItem
-            id={4}
-            currentId={addressCurrentId}
-            onChecked={handleAddressChecked}
-          />
-          <OrderAddressItem
-            id={5}
-            currentId={addressCurrentId}
-            onChecked={handleAddressChecked}
-          />
+          {data?.data.map((address) => (
+            <OrderAddressItem
+              id={address.id}
+              key={address.id + Math.random() * 100000}
+              address={address}
+              currentId={addressCurrentId}
+              onChecked={handleAddressChecked}
+            />
+          ))}
         </Box>
       </Box>
       <Box mt="20px">

@@ -1,10 +1,10 @@
 "use client";
 
-import CustomizedLoading from "@/components/shared/CustomizedLoading";
+import CustomizedLoadingOverlay from "@/components/shared/CustomizedLoadingOverlay";
 import React from "react";
 
 const RootLoading = () => {
-  return <CustomizedLoading />;
+  return <CustomizedLoadingOverlay />;
 };
 
 export default RootLoading;

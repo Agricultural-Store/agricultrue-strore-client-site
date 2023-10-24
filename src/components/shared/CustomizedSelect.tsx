@@ -14,6 +14,16 @@ const CustomizedSelect = ({ width, menuItems }: Props) => {
       sx={{ borderRadius: 0, width: width ?? "222px", height: "46px" }}
       size="small"
       IconComponent={(params) => <KeyboardArrowDownIcon {...params} />}
+      MenuProps={{
+        slotProps: {
+          paper: {
+            sx: {
+              // bgcolor: "color.bgNeutral200",
+              boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px",
+            },
+          },
+        },
+      }}
     >
       {menuItems.map((menuItem) => (
         <MenuItem

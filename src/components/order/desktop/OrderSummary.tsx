@@ -15,7 +15,7 @@ const OrderSummary = ({ onNext, onPrevious }: Props) => {
       borderRadius="6px"
       position="sticky"
       ml="40px"
-      top="100px"
+      top="20px"
       sx={{ bgcolor: (theme) => `${theme.palette.color?.bgPrimary}14` }}
     >
       <Typography

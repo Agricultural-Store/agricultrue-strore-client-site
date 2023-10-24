@@ -76,7 +76,7 @@ export const buildTheme = (font?: string) =>
       breakpoints: {
         values: {
           xs: 0,
-          sm: 870,
+          sm: 600,
           md: 1100,
           lg: 1200,
           xl: 1536,

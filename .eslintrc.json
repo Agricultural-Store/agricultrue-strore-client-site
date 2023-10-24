@@ -6,6 +6,6 @@
   ],
   "rules": {
     "@typescript-eslint/ban-ts-comment": "off",
-    "max-lines": ["error", 250]
+    "max-lines": ["error", 300]
   }
 }

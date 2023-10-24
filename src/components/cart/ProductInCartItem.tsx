@@ -3,13 +3,14 @@ import { Box, IconButton, Typography } from "@mui/material";
 import React from "react";
 import CustomizedQuantityInput from "../shared/CustomizedQuantityInput";
 import DeleteIcon from "../shared/icons/DeleteIcon";
-import { countDiscount } from "@/utils/count";
+import { calcPrice } from "@/utils/count";
 
 type Props = {
   product: ProductInCart;
 };
 
 const ProductInCartItem = ({ product }: Props) => {
+  console.log(product);
   return (
     <Box sx={{ display: "flex", justifyContent: "space-between", my: "24px" }}>
       <Box
@@ -44,17 +45,15 @@ const ProductInCartItem = ({ product }: Props) => {
         >
           <CustomizedQuantityInput />
           <Box>
-            <Typography>{product.productPrice.toLocaleString()}đ</Typography>
+            <Typography>
+              {calcPrice(product.productPrice, product.productDiscount).toLocaleString()}đ
+            </Typography>
             <Typography
               fontSize="12px"
               color="color.textPrimary"
               sx={{ textDecoration: "line-through", textAlign: "right" }}
             >
-              {countDiscount(
-                product.productPrice,
-                product.productDiscount,
-              ).toLocaleString()}
-              đ
+              {(+(product.productPrice || 0)).toLocaleString()}đ
             </Typography>
           </Box>
         </Box>

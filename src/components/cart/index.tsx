@@ -9,6 +9,7 @@ import CartSummary from "./CartSummary";
 import CartEmpty from "./CartEmpty";
 import useMedia from "@/hooks/shared/useMedia";
 import ArrowBackIcon from "../shared/icons/ArrowBackIcon";
+import useUserCar from "@/hooks/user/useUserCar";
 
 type Props = {
   open: boolean;
@@ -77,6 +78,8 @@ const Cart = ({ onClose, open }: Props) => {
 
   const { media } = useMedia();
 
+  const { data } = useUserCar();
+
   return (
     <>
       <CustomizedDrawer
@@ -132,7 +135,7 @@ const Cart = ({ onClose, open }: Props) => {
               </IconButton>
             </Box>
           )}
-          {products.length > 0 ? (
+          {data?.data.length && data.data.length > 0 ? (
             <>
               <Box
                 height="calc(90vh - 320px)"
@@ -141,7 +144,10 @@ const Cart = ({ onClose, open }: Props) => {
                 <ProductInCartList products={products} />
               </Box>
               <Box height="320px">
-                <CartSummary products={products} />
+                <CartSummary
+                  products={products}
+                  onClose={onClose}
+                />
               </Box>
             </>
           ) : (

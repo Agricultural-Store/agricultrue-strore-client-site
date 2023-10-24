@@ -1,8 +1,4 @@
-export type ParamValue = string | number;
-export type ParamValueList = string[] | number[];
-export type ParamObject = Record<string, ParamValue | ParamValueList>;
-
-export function buildQueryString(options?: ParamObject) {
+export function buildQueryString(options?: Record<string, string | number>) {
   if (!options) {
     return "";
   }
@@ -11,23 +7,14 @@ export function buildQueryString(options?: ParamObject) {
 
   for (const key in options) {
     if (options[key] != undefined) {
-      if (Array.isArray(options[key])) {
-        (options[key] as ParamValueList).forEach((value) =>
-          searchParams.append(key, `${value}`),
-        );
-      } else {
-        searchParams.append(key, `${options[key]}`);
-      }
+      searchParams.append(key, `${options[key]}`);
     }
   }
 
   return `?${searchParams}`;
 }
 
-export function extractQueryParams(
-  pathOrParamString: string,
-  defaultValue?: Partial<ParamObject>,
-) {
+export function extractQueryParams(pathOrParamString: string) {
   if (!pathOrParamString || !pathOrParamString.includes("=")) {
     return {};
   }
@@ -44,38 +31,27 @@ export function extractQueryParams(
 
   const searchParams = new URLSearchParams(paramString);
 
-  const params = {} as ParamObject;
+  const params = {} as Record<string, string | number>;
 
-  searchParams.forEach((value, key) => {
-    const newValue = isNaN(Number(value)) || value === "" ? value : Number(value);
-    if (!params[key] && !Array.isArray(defaultValue?.[key])) {
-      params[key] = newValue;
-    } else {
-      if (Array.isArray(params[key])) {
-        (params[key] as ParamValueList).push(newValue as never);
-      } else {
-        params[key] = [newValue as ParamValue] as ParamValueList;
-      }
-    }
-  });
+  searchParams.forEach(
+    (value, key) =>
+      (params[key] = isNaN(Number(value)) || value === "" ? value : Number(value)),
+  );
 
   return params;
 }
 
-export function combineQueryParams(paramString: string, replacement: ParamObject) {
-  console.log({ paramString, replacement });
+export function combineQueryParams(
+  paramString: string,
+  replacement: Record<string, string | number>,
+) {
   const searchParams = new URLSearchParams(paramString);
   for (const key in replacement) {
     const value = replacement[key];
     if (value == undefined) {
       searchParams.delete(key);
     } else {
-      if (Array.isArray(value)) {
-        searchParams.delete(key);
-        value.forEach((item) => searchParams.append(key, `${item}`));
-      } else {
-        searchParams.set(key, `${value}`);
-      }
+      searchParams.set(key, `${value}`);
     }
   }
   return searchParams;

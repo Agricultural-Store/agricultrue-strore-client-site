@@ -4,13 +4,13 @@ import ProductInCartItem from "./ProductInCartItem";
 import { Box } from "@mui/material";
 
 type Props = {
-  products: ProductInCart[];
+  products?: ProductInCart[];
 };
 
 const ProductInCartList = ({ products }: Props) => {
   return (
     <Box>
-      {products.map((product) => (
+      {products?.map((product) => (
         <ProductInCartItem
           product={product}
           key={product.id}

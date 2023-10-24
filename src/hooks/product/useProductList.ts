@@ -3,7 +3,7 @@ import { Product, ProductFilterParams } from "@/types/product";
 import { productApi } from "@/config/api-path";
 import useSWR from "swr";
 
-const useProductList = (params: ProductFilterParams) => {
+const useProductList = (params?: ProductFilterParams) => {
   return useSWR<
     ApiResponse<Product[]>,
     ErrorResponse<ProductFilterParams>,

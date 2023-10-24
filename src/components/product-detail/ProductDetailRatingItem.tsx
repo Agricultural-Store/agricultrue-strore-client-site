@@ -20,7 +20,7 @@ const ProductDetailRatingItem = ({ rating }: Props) => {
       <Box sx={{ display: "flex", alignItems: "center", gap: "10px" }}>
         <Box
           component="img"
-          src={rating.userImage}
+          src={rating.userImage || "/images/profile-avatar.svg"}
         />
         <Box>
           <Typography
@@ -28,7 +28,7 @@ const ProductDetailRatingItem = ({ rating }: Props) => {
             fontWeight={700}
             lineHeight="27px"
           >
-            {rating.username}
+            {rating.username || "Harry"}
           </Typography>
           <Box>
             {Array(...Array(rating.productRating)).map((_v, index) => (

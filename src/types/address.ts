@@ -1,12 +1,15 @@
 export interface Address {
-  id?: string;
+  id: number;
   customerName?: string;
   address?: string;
 }
 
-export interface AddressInput {
+export interface AddressCreateInput {
   customerName: string;
   address: string;
   mail: string;
   phone: string;
+  city?: string;
+  district?: string;
+  commune?: string;
 }

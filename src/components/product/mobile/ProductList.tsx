@@ -1,15 +1,14 @@
-import SearchBox from "@/components/shared/SearchBox";
-import { Box, Divider, Grid, Typography } from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import ProductItem from "../ProductItem";
 import CustomizedSelect from "@/components/shared/CustomizedSelect";
 import { OptionType } from "@/types/shared";
 import CustomizedPagination from "@/components/shared/CustomizedPagination";
-import CustomizedCheckbox from "@/components/shared/CustomizedCheckbox";
 import { useRouter } from "next-intl/client";
 import { Product, ProductFilterParams } from "@/types/product";
 import useProductList from "@/hooks/product/useProductList";
 import useQueryParams from "@/hooks/shared/useQueryParams";
+import ProductFilter from "../ProductFilter";
 
 const menuItems: OptionType[] = [
   {
@@ -20,40 +19,17 @@ const menuItems: OptionType[] = [
     value: 2,
     label: "Giá từ thấp đến cao",
   },
+  {
+    value: 3,
+    label: "Giá từ cao đến thấp",
+  },
+  {
+    value: 3,
+    label: "Giá từ theo thứ tự chữ cái (A-Z)",
+  },
 ];
 
 const ProductList = () => {
-  const [categories] = useState([
-    {
-      categoryName: "Gạo Tấm",
-      id: 1,
-    },
-    {
-      categoryName: "Gạo Lứt",
-      id: 2,
-    },
-    {
-      categoryName: "Gạo Dẻo",
-      id: 3,
-    },
-    {
-      categoryName: "Gạo Khô",
-      id: 4,
-    },
-    {
-      categoryName: "Gạo Nấu Cơm",
-      id: 5,
-    },
-    {
-      categoryName: "Gạo Nấu Xôi, Chè",
-      id: 6,
-    },
-    {
-      categoryName: "Gạo Làm Bánh",
-      id: 7,
-    },
-  ]);
-
   const [products, setProducts] = useState<Product[]>([]);
 
   const router = useRouter();
@@ -86,58 +62,10 @@ const ProductList = () => {
 
   return (
     <Box sx={{ p: "48px 16px" }}>
-      <Box sx={{}}>
-        <Box>
-          <Typography sx={{ fontSize: "18px", fontWeight: 600, mb: "24px" }}>
-            Tìm kiếm
-          </Typography>
-          <SearchBox
-            placeholder="Điền yêu cầu của bạn"
-            fullWidth
-          />
-        </Box>
-        <Divider sx={{ my: "24px" }} />
-        <Box>
-          <Typography
-            mb="24px"
-            fontSize="18px"
-            fontWeight={600}
-          >
-            Loại sản phẩm
-          </Typography>
-          <Box
-            width="100%"
-            sx={{
-              overflowX: "auto",
-              overflowY: "hidden",
-              height: "50px",
-              "::-webkit-scrollbar": {
-                height: "0px",
-              },
-            }}
-          >
-            <Box
-              display="flex"
-              justifyContent="start"
-              width="300%"
-              sx={{ gap: "10px" }}
-            >
-              {categories.map((category) => (
-                <Box
-                  mb="8px"
-                  key={category.id}
-                >
-                  <CustomizedCheckbox
-                    label={category.categoryName}
-                    value={category.id}
-                  />
-                </Box>
-              ))}
-            </Box>
-          </Box>
-        </Box>
+      <Box>
+        <ProductFilter />
       </Box>
-      <Box sx={{}}>
+      <Box>
         <Box
           sx={{
             mb: "48px",

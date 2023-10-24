@@ -1,17 +1,16 @@
-import SearchBox from "@/components/shared/SearchBox";
-import { Box, Divider, Grid, Typography } from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import ProductItem from "../ProductItem";
 import CustomizedSelect from "@/components/shared/CustomizedSelect";
 import { OptionType } from "@/types/shared";
 import CustomizedPagination from "@/components/shared/CustomizedPagination";
-import CustomizedCheckbox from "@/components/shared/CustomizedCheckbox";
 import { useRouter } from "next-intl/client";
 import useProductList from "@/hooks/product/useProductList";
 import useQueryParams from "@/hooks/shared/useQueryParams";
 import { Product, ProductFilterParams } from "@/types/product";
 import useMedia from "@/hooks/shared/useMedia";
-
+import ProductFilter from "../ProductFilter";
+import FindInPageOutlinedIcon from "@mui/icons-material/FindInPageOutlined";
 const menuItems: OptionType[] = [
   {
     value: 1,
@@ -21,39 +20,17 @@ const menuItems: OptionType[] = [
     value: 2,
     label: "Giá từ thấp đến cao",
   },
+  {
+    value: 3,
+    label: "Giá từ cao đến thấp",
+  },
+  {
+    value: 3,
+    label: "Theo thứ tự chữ cái (A-Z)",
+  },
 ];
 
 const ProductList = () => {
-  const [categories] = useState([
-    {
-      categoryName: "Gạo Tấm",
-      id: 1,
-    },
-    {
-      categoryName: "Gạo Lứt",
-      id: 2,
-    },
-    {
-      categoryName: "Gạo Dẻo",
-      id: 3,
-    },
-    {
-      categoryName: "Gạo Khô",
-      id: 4,
-    },
-    {
-      categoryName: "Gạo Nấu Cơm",
-      id: 5,
-    },
-    {
-      categoryName: "Gạo Nấu Xôi, Chè",
-      id: 6,
-    },
-    {
-      categoryName: "Gạo Làm Bánh",
-      id: 7,
-    },
-  ]);
   const [products, setProducts] = useState<Product[]>([]);
 
   const router = useRouter();
@@ -61,6 +38,7 @@ const ProductList = () => {
   const [options, setOptions] = useQueryParams<ProductFilterParams>({
     limit: 10,
     offset: 0,
+    searchField: "productName",
   });
   const { media } = useMedia(1000);
 
@@ -88,52 +66,7 @@ const ProductList = () => {
   return (
     <Box sx={{ p: "64px 48px", display: media ? "block" : "flex" }}>
       <Box sx={{ mr: "48px", width: media ? "100%" : "300px" }}>
-        <Box>
-          <Typography sx={{ fontSize: "20px", fontWeight: 600, mb: "24px" }}>
-            Tìm kiếm
-          </Typography>
-          <SearchBox placeholder="Điền yêu cầu của bạn" />
-        </Box>
-        {!media && <Divider sx={{ my: "24px" }} />}
-        <Box>
-          <Typography
-            mb="24px"
-            fontSize="20px"
-            fontWeight={600}
-            mt={media ? "24px" : undefined}
-          >
-            Loại sản phẩm
-          </Typography>
-          <Box
-            sx={[
-              media && {
-                width: "100%",
-                overflowX: "scroll",
-                "::-webkit-scrollbar": {
-                  height: "3px",
-                },
-              },
-            ]}
-          >
-            <Box
-              display={media ? "flex" : "block"}
-              gap="30px"
-              width="150%"
-            >
-              {categories.map((category) => (
-                <Box
-                  mb="8px"
-                  key={category.id}
-                >
-                  <CustomizedCheckbox
-                    label={category.categoryName}
-                    value={category.id}
-                  />
-                </Box>
-              ))}
-            </Box>
-          </Box>
-        </Box>
+        <ProductFilter />
       </Box>
       <Box
         sx={{
@@ -171,6 +104,18 @@ const ProductList = () => {
               />
             </Grid>
           ))}
+          <Grid
+            item
+            xs={12}
+            textAlign="center"
+            color="color.textNeutral500"
+          >
+            <FindInPageOutlinedIcon
+              color="inherit"
+              sx={{ fontSize: "60px" }}
+            />
+            <Typography>Không tìm thấy kết quả nào</Typography>
+          </Grid>
         </Grid>
         <CustomizedPagination
           sx={{ mt: "48px" }}

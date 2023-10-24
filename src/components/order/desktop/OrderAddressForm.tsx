@@ -3,18 +3,22 @@ import CustomizedInput from "@/components/shared/CustomizedInput";
 import DeleteIcon from "@/components/shared/icons/DeleteIcon";
 import SaveIcon from "@/components/shared/icons/SaveIcon";
 import { Box, Button } from "@mui/material";
-import React, { ChangeEvent, useEffect, useState } from "react";
+import React, { ChangeEvent, useContext, useEffect, useState } from "react";
 import { State, City } from "country-state-city";
 import { AutoCompleteOption } from "@/types/components/autocomplete";
-import { AddressInput } from "@/types/address";
+import { AddressCreateInput } from "@/types/address";
+import useUserAddressCreate from "@/hooks/user/useUserAddressCreate";
+import { AppContext } from "@/providers/AppContext";
 
 const states = State.getStatesOfCountry("VN").map((state) => ({
   label: state.name,
   value: state.isoCode,
 }));
-
 const OrderAddressForm = () => {
   const [cities, setCities] = useState<AutoCompleteOption[]>([]);
+  const [disabledSubmit, setDisabledSubmit] = useState(true);
+  const [mailError, setMailError] = useState("");
+  const [phoneError, setPhoneError] = useState("");
   const [address, setAddress] = useState({
     state: "",
     city: "",
@@ -22,12 +26,16 @@ const OrderAddressForm = () => {
     street: "",
     home: "",
   });
-  const [input, setInput] = useState<AddressInput>({
+  const [input, setInput] = useState<AddressCreateInput>({
     address: "",
     customerName: "",
     mail: "",
     phone: "",
   });
+
+  const { setIsLoading } = useContext(AppContext);
+
+  const { trigger } = useUserAddressCreate();
 
   const handleChangeInput = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -45,6 +53,17 @@ const OrderAddressForm = () => {
       ...pre,
       [name]: value,
     }));
+  };
+  const handleChangePhone = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const regexp = /^[0-9]{0,11}$/;
+    const { value } = e.target;
+    if (regexp.test(value)) {
+      console.log(regexp.test(value));
+      setInput((pre) => ({
+        ...pre,
+        phone: value,
+      }));
+    }
   };
 
   const handleChangeState = (value: string | AutoCompleteOption | null) => {
@@ -75,8 +94,52 @@ const OrderAddressForm = () => {
     }
   };
 
+  const handleChangeWard = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setAddress((pre) => ({
+      ...pre,
+      ward: e.target.value,
+    }));
+  };
+
   const handleSubmit = () => {
-    console.log(input);
+    const mailRegexp =
+      /^[A-Za-z\d]{1,}[A-Za-z\d!@#$%^&*()_+-=\[\]{};':"\\|,\.<>\/?]{1,}[A-Za-z\d]{1,}\@[A-Za-z\d]{1,}\.[A-Za-z\d]{1,}$/;
+    const phoneRegexp = /^[0-9]{10,11}$/;
+    if (!mailRegexp.test(input.mail)) {
+      setMailError("Email không hơp lệ");
+      return;
+    } else {
+      setMailError("");
+    }
+
+    if (!phoneRegexp.test(input.phone)) {
+      setPhoneError("Số điện thoại không hơp lệ");
+      return;
+    } else {
+      setPhoneError("");
+    }
+
+    setIsLoading(true);
+    trigger(
+      {
+        body: {
+          ...input,
+          city: address.city,
+          district: address.state,
+          commune: address.ward,
+        },
+      },
+      {
+        onError: (error) => {
+          console.log(error);
+          setIsLoading(false);
+        },
+      },
+    ).then((res) => {
+      if (res.statusCode === 201) {
+        setIsLoading(false);
+      }
+    });
   };
 
   useEffect(() => {
@@ -86,6 +149,16 @@ const OrderAddressForm = () => {
       address: _address,
     }));
   }, [address]);
+
+  useEffect(() => {
+    const isEmptyAddress = Object.values(address).some((add) => add === "");
+    const isEmptyInput = Object.values(input).some((inp) => inp === "");
+    if (isEmptyAddress || isEmptyInput) {
+      setDisabledSubmit(true);
+    } else {
+      setDisabledSubmit(false);
+    }
+  }, [address, input]);
 
   return (
     <Box
@@ -106,6 +179,7 @@ const OrderAddressForm = () => {
         fullWidth
         name="mail"
         value={input.mail}
+        error={!!mailError}
         onChange={handleChangeInput}
       />
       <CustomizedInput
@@ -113,7 +187,8 @@ const OrderAddressForm = () => {
         placeholder="Nhập số điện thoại"
         fullWidth
         name="phone"
-        onChange={handleChangeInput}
+        onChange={handleChangePhone}
+        error={!!phoneError}
         value={input.phone}
       />
       <CustomizedAutocomplete
@@ -130,11 +205,11 @@ const OrderAddressForm = () => {
           fullWidth
           onChange={handleChangeCity}
         />
-        <CustomizedAutocomplete
-          options={cities}
+        <CustomizedInput
           label="Phường"
-          placeholder="Chọn phường"
+          placeholder="Nhập phường"
           fullWidth
+          onChange={handleChangeWard}
         />
       </Box>
       <Box sx={{ display: "flex", gap: "16px" }}>
@@ -176,6 +251,7 @@ const OrderAddressForm = () => {
             },
           }}
           fullWidth
+          disabled={disabledSubmit}
           onClick={handleSubmit}
         >
           <SaveIcon /> &nbsp; Lưu
