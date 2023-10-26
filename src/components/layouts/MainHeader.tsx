@@ -18,10 +18,9 @@ import ProfilePopup from "./ProfilePopup";
 
 const MainHeader = () => {
   const [open, setOpen] = useState(false);
-  const [openCart, setOpenCart] = useState(false);
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
 
-  const { setOpenAuth } = useContext(AppContext);
+  const { setOpenAuth, openCart, setOpenCart } = useContext(AppContext);
 
   const { status } = useSession();
   const { media } = useMedia(1000);
@@ -132,7 +131,6 @@ const MainHeader = () => {
       <Cart
         onClose={setOpenCart}
         open={openCart}
-        
       />
       <Auth />
     </>

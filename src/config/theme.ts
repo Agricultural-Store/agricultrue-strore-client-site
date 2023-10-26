@@ -19,6 +19,7 @@ declare module "@mui/material/styles" {
 
       bgPrimary?: string;
       bgPrimary400?: string;
+      bgPrimary300?: string;
       bgPrimaryWithOpacity?: string;
       bgWhite?: string;
       bgNeutral200?: string;
@@ -39,6 +40,7 @@ declare module "@mui/material/styles" {
 
       bgPrimary?: string;
       bgPrimary400?: string;
+      bgPrimary300?: string;
       bgPrimaryWithOpacity?: string;
       bgWhite?: string;
       bgNeutral200?: string;
@@ -106,6 +108,7 @@ export const buildTheme = (font?: string) =>
           textNeutral900: "#141416",
           textGrey500: "#A3AAAB",
           bgPrimary: "#265426",
+          bgPrimary300: "#98B568",
           bgPrimary400: "#63811E",
           bgPrimaryWithOpacity: "rgba(99, 129, 30, 0.08)",
           bgWhite: "#FFFFFF",

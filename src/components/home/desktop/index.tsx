@@ -22,11 +22,53 @@ const HomeDesktop = () => {
         }}
       >
         <HomeIntroduce />
+      </Container>
+      <Container
+        sx={{
+          paddingX: {
+            sm: "0px !important",
+          },
+        }}
+      >
         <HomeOutstanding />
+      </Container>
+      <Container
+        sx={{
+          paddingX: {
+            sm: "48px !important",
+            lg: "0px !important",
+          },
+        }}
+      >
         <HomeMiddleIntroduce />
         <HomeVision />
+      </Container>
+      <Container
+        sx={{
+          paddingX: {
+            sm: "0px !important",
+          },
+        }}
+      >
         <HomeCertification />
+      </Container>
+      <Container
+        sx={{
+          paddingX: {
+            sm: "48px !important",
+            lg: "0px !important",
+          },
+        }}
+      >
         <HomeOutstandingProduct />
+      </Container>
+      <Container
+        sx={{
+          paddingX: {
+            sm: "0px !important",
+          },
+        }}
+      >
         <HomeRating />
       </Container>
     </>

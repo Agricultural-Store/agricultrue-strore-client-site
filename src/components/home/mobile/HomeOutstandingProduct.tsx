@@ -1,8 +1,14 @@
 import NextIcon from "@/components/shared/icons/NextIcon";
 import { Box, Button, Grid, Typography } from "@mui/material";
+import { useRouter } from "next-intl/client";
 import React from "react";
 
 const HomeOutstandingProduct = () => {
+  const router = useRouter();
+
+  const handleClick = () => {
+    router.push("/product");
+  };
   return (
     <Box
       sx={{
@@ -93,6 +99,7 @@ const HomeOutstandingProduct = () => {
       <Box sx={{ display: "flex", justifyContent: "center" }}>
         <Button
           variant="text"
+          onClick={handleClick}
           sx={{ display: "flex", alignItems: "center", textTransform: "capitalize" }}
         >
           <Box

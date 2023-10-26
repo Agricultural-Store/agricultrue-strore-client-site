@@ -12,15 +12,21 @@ import {
 import React from "react";
 import FavoriteIcon from "../shared/icons/FavoriteIcon";
 import { calcPrice } from "@/utils/count";
+import DiscountBgIcon from "../shared/icons/DiscountBgIcon";
 
 type Props = {
   product?: Product;
   onClick?: (id?: number) => void;
+  onButtonClick?: (id?: number) => void;
 };
 
-const ProductItem = ({ product, onClick }: Props) => {
+const ProductItem = ({ product, onClick, onButtonClick }: Props) => {
   const handleClick = () => {
     onClick?.(product?.id);
+  };
+
+  const handleButtonClick = () => {
+    onButtonClick?.(product?.id);
   };
 
   return (
@@ -29,9 +35,37 @@ const ProductItem = ({ product, onClick }: Props) => {
         bgcolor: "color.bgPrimaryWithOpacity",
         borderRadius: 0,
         width: "100%",
+        position: "relative",
+        overflow: "visible",
       }}
     >
       <CardActionArea onClick={handleClick}>
+        {product?.productDiscount && (
+          <Box
+            sx={{
+              position: "absolute",
+              top: 0,
+              right: 0,
+              transform: "translate(30%, -40%)",
+            }}
+          >
+            <DiscountBgIcon />
+            <Typography
+              position="absolute"
+              top={0}
+              sx={{
+                transform: "translateY(60%) rotate(12deg)",
+                fontSize: "14px",
+                color: "#FFFFFF",
+                textAlign: "center",
+                width: "100%",
+              }}
+            >
+              -{product.productDiscount}%
+            </Typography>
+          </Box>
+        )}
+
         <CardMedia
           component="img"
           src={product?.productImage}
@@ -71,26 +105,39 @@ const ProductItem = ({ product, onClick }: Props) => {
             </Box>
           </Box>
           <Box sx={{ display: "flex" }}>
-            <Typography
-              whiteSpace="nowrap"
-              overflow="hidden"
-              textOverflow="ellipsis"
-              sx={{ color: "error.main", fontWeight: 600, fontSize: "16px" }}
-            >
-              Giá: {calcPrice(product?.productPrice, product?.productDiscount)}
-              đ/kg
-            </Typography>
-            <Typography
-              component="span"
-              sx={{
-                color: "color.textNeutral400",
-                pl: "8px",
-                transform: "translateY(-1px)",
-                textDecoration: "line-through",
-              }}
-            >
-              {product?.productPrice}đ/kg
-            </Typography>
+            {product?.productDiscount ? (
+              <>
+                <Typography
+                  whiteSpace="nowrap"
+                  overflow="hidden"
+                  textOverflow="ellipsis"
+                  sx={{ color: "error.main", fontWeight: 600, fontSize: "16px" }}
+                >
+                  Giá: {calcPrice(product?.productPrice, product?.productDiscount)}
+                  đ/kg
+                </Typography>
+                <Typography
+                  component="span"
+                  sx={{
+                    color: "color.textNeutral400",
+                    pl: "8px",
+                    transform: "translateY(-1px)",
+                    textDecoration: "line-through",
+                  }}
+                >
+                  {product?.productPrice}đ/kg
+                </Typography>
+              </>
+            ) : (
+              <Typography
+                whiteSpace="nowrap"
+                overflow="hidden"
+                textOverflow="ellipsis"
+                sx={{ color: "error.main", fontWeight: 600, fontSize: "16px" }}
+              >
+                Giá: {product?.productPrice}đ/kg
+              </Typography>
+            )}
           </Box>
         </CardContent>
       </CardActionArea>
@@ -98,7 +145,7 @@ const ProductItem = ({ product, onClick }: Props) => {
         <Button
           variant="contained"
           fullWidth
-          onClick={handleClick}
+          onClick={handleButtonClick}
         >
           Mua ngay
         </Button>

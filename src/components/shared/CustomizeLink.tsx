@@ -24,7 +24,7 @@ const CustomizeLink = ({ children, href, sx, activeColor }: Props) => {
             .split("/")
             .slice(1)
             .includes(href.split("/")?.[1])
-            ? activeColor ?? "#0C7345"
+            ? activeColor ?? "#98B568"
             : "white",
           fontWeight: "bold",
           width: "100%",

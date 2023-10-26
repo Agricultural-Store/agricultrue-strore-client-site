@@ -18,9 +18,9 @@ const PromotionDesktop = () => {
         }}
       >
         <PromotionComboList />
-        <PromotionRating />
-        <PromotionHelper />
       </Container>
+      <PromotionRating />
+      <PromotionHelper />
     </>
   );
 };

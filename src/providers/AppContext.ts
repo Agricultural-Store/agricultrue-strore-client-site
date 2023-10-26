@@ -8,4 +8,6 @@ export const AppContext = createContext<AppContextType>({
   setIsLoading: () => null,
   isCompleted: false,
   setIsCompleted: () => null,
+  openCart: false,
+  setOpenCart: () => null,
 });

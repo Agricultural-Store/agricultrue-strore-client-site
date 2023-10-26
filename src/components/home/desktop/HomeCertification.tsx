@@ -1,7 +1,33 @@
 "use client";
 import { Box, Typography } from "@mui/material";
+import { Variants, motion } from "framer-motion";
 import React from "react";
 
+const certifications = [
+  "/images/home-certification-1.png",
+  "/images/home-certification-2.png",
+  "/images/home-certification-3.png",
+  "/images/home-certification-4.png",
+  "/images/home-certification-5.png",
+  "/images/home-certification-6.png",
+];
+
+const opacityVariants = (delay?: number): Variants => ({
+  offscreen: {
+    opacity: 0,
+    y: 100,
+  },
+  onscreen: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      type: "spring",
+      bounce: 0.2,
+      duration: 0.8,
+      delay: delay ?? 0.25,
+    },
+  },
+});
 const HomeCertification = () => {
   return (
     <Box
@@ -43,30 +69,22 @@ const HomeCertification = () => {
           py: "24px",
         }}
       >
-        <Box
-          component="img"
-          src="/images/home-certification-1.png"
-        />
-        <Box
-          component="img"
-          src="/images/home-certification-2.png"
-        />
-        <Box
-          component="img"
-          src="/images/home-certification-3.png"
-        />
-        <Box
-          component="img"
-          src="/images/home-certification-4.png"
-        />
-        <Box
-          component="img"
-          src="/images/home-certification-5.png"
-        />
-        <Box
-          component="img"
-          src="/images/home-certification-6.png"
-        />
+        {certifications.map((certification, index) => (
+          <motion.div
+            initial="offscreen"
+            whileInView="onscreen"
+            viewport={{ once: true }}
+            style={{ width: "100%" }}
+            key={certification}
+          >
+            <motion.div variants={opacityVariants(0.1 * index)}>
+              <Box
+                component="img"
+                src={certification}
+              />
+            </motion.div>
+          </motion.div>
+        ))}
       </Box>
     </Box>
   );

@@ -1,5 +1,5 @@
 import { Box, Grid, Typography } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import ProductItem from "../ProductItem";
 import CustomizedSelect from "@/components/shared/CustomizedSelect";
 import { OptionType } from "@/types/shared";
@@ -11,6 +11,7 @@ import { Product, ProductFilterParams } from "@/types/product";
 import useMedia from "@/hooks/shared/useMedia";
 import ProductFilter from "../ProductFilter";
 import FindInPageOutlinedIcon from "@mui/icons-material/FindInPageOutlined";
+import { AppContext } from "@/providers/AppContext";
 const menuItems: OptionType[] = [
   {
     value: 1,
@@ -33,6 +34,8 @@ const menuItems: OptionType[] = [
 const ProductList = () => {
   const [products, setProducts] = useState<Product[]>([]);
 
+  const { setOpenCart } = useContext(AppContext);
+
   const router = useRouter();
 
   const [options, setOptions] = useQueryParams<ProductFilterParams>({
@@ -49,6 +52,11 @@ const ProductList = () => {
 
   const handleClick = (id?: number) => {
     router.push(`/product/${id}`);
+  };
+
+  const handleButtonClick = (id?: number) => {
+    console.log(id);
+    setOpenCart(true);
   };
 
   const handleChangePage = (page: number) => {
@@ -100,6 +108,7 @@ const ProductList = () => {
               <ProductItem
                 product={product}
                 onClick={handleClick}
+                onButtonClick={handleButtonClick}
               />
             </Grid>
           ))}

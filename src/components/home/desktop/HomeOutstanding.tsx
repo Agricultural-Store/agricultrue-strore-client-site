@@ -1,7 +1,24 @@
 "use client";
 import { Box, Typography } from "@mui/material";
+import { Variants, motion } from "framer-motion";
 import React, { useState } from "react";
 
+const bottomVariants = (delay?: number): Variants => ({
+  offscreen: {
+    y: 100,
+    opacity: 0,
+  },
+  onscreen: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      type: "spring",
+      bounce: 0.2,
+      duration: 0.8,
+      delay: delay ?? 0.25,
+    },
+  },
+});
 const HomeOutstanding = () => {
   const [content] = useState([
     {
@@ -51,38 +68,47 @@ const HomeOutstanding = () => {
         Những điểm nổi bật
       </Typography>
       <Box sx={{ my: "48px", display: "flex", justifyContent: "space-between" }}>
-        {content.map((co) => (
-          <Box
+        {content.map((co, index) => (
+          <motion.div
+            initial="offscreen"
+            whileInView="onscreen"
+            viewport={{ once: true }}
+            style={{ width: "100%" }}
             key={co.icon}
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              mx: "18px",
-            }}
           >
-            <Box
-              component="img"
-              src={co.icon}
-            ></Box>
-            <Typography
-              sx={{
-                fontSize: "20px",
-                lineHeight: "30px",
-                pt: "24px",
-                pb: "12px",
-                fontWeight: 600,
-              }}
-            >
-              {co.title}
-            </Typography>
-            <Typography
-              className="line-clamp-3"
-              sx={{ textAlign: "center" }}
-            >
-              {co.content}
-            </Typography>
-          </Box>
+            <motion.div variants={bottomVariants(0.25 * index)}>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  mx: "18px",
+                }}
+              >
+                <Box
+                  component="img"
+                  src={co.icon}
+                ></Box>
+                <Typography
+                  sx={{
+                    fontSize: "20px",
+                    lineHeight: "30px",
+                    pt: "24px",
+                    pb: "12px",
+                    fontWeight: 600,
+                  }}
+                >
+                  {co.title}
+                </Typography>
+                <Typography
+                  className="line-clamp-3"
+                  sx={{ textAlign: "center" }}
+                >
+                  {co.content}
+                </Typography>
+              </Box>
+            </motion.div>
+          </motion.div>
         ))}
       </Box>
     </Box>

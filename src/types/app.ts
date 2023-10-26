@@ -5,4 +5,6 @@ export type AppContextType = {
   setIsLoading: (loading: boolean) => void;
   isCompleted: boolean;
   setIsCompleted: (isCompleted: boolean, callback?: () => void) => void;
+  openCart: boolean;
+  setOpenCart: (open: boolean) => void;
 };

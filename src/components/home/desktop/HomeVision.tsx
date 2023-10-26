@@ -4,7 +4,24 @@ import { Box, IconButton, Typography } from "@mui/material";
 import React, { useState } from "react";
 import PreviousIcon from "../../shared/icons/PreviousArrowIcon";
 import NextArrowIcon from "../../shared/icons/NextArrowIcon";
+import { Variants, motion } from "framer-motion";
 
+const opacityVariants: Variants = {
+  offscreen: {
+    opacity: 0,
+    y: 100,
+  },
+  onscreen: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      type: "spring",
+      bounce: 0.2,
+      duration: 0.8,
+      delay: 0.25,
+    },
+  },
+};
 const HomeVision = () => {
   const [tabIndex, setTabIndex] = useState(0);
 
@@ -24,7 +41,7 @@ const HomeVision = () => {
     <Box
       sx={{
         height: "653px",
-        py: "64px",
+        p: "64px",
         px: "48px",
         display: "flex",
         flexDirection: "column",
@@ -43,96 +60,108 @@ const HomeVision = () => {
         hỗ trợ lẫn nhau, đồng thời góp phần phát triển kinh tế và xã hội cho vùng Đồng
         Bằng Sông Cửu Long.
       </Typography>
-      <Box sx={{ width: "100%", position: "relative", top: 150 }}>
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            left: "50%",
-            m: "0 auto",
-            width: "80%",
-          }}
+      <motion.div
+        initial="offscreen"
+        whileInView="onscreen"
+        viewport={{ once: true }}
+        style={{ width: "100%" }}
+      >
+        <motion.div
+          variants={opacityVariants}
+          style={{ position: "relative" }}
         >
-          <Box
-            component="img"
-            src="/images/home-vision-1.png"
-            sx={{
-              width: "354px",
-              height: "200px",
-              position: "absolute",
-              left: "10%",
-            }}
-          ></Box>
-          <Box
-            component="img"
-            src="/images/home-vision-2.png"
-            sx={{
-              width: "354px",
-              height: "200px",
-              transform: "scale(1.2)",
-              position: "absolute",
-              objectFit: "cover",
-              left: "20%",
-              zIndex: 2,
-              borderRadius: "5px",
-            }}
-          ></Box>
-          <Box
-            component="img"
-            src="/images/home-vision-3.png"
-            sx={{
-              width: "354px",
-              height: "200px",
-              transform: "scale(1.4)",
-              position: "absolute",
-              zIndex: 3,
-              borderRadius: "5px",
-            }}
-          ></Box>
-          <Box
-            component="img"
-            src="/images/home-vision-4.png"
-            sx={{
-              width: "354px",
-              height: "200px",
-              position: "absolute",
-              transform: "scale(1.2)",
-              right: "20%",
-              zIndex: 2,
-              borderRadius: "5px",
-            }}
-          ></Box>
-          <Box
-            component="img"
-            src="/images/home-vision-5.png"
-            sx={{
-              width: "354px",
-              height: "200px",
-              position: "absolute",
-              right: "10%",
-            }}
-          ></Box>
-        </Box>
-        <Box
-          sx={{
-            width: "100%",
-            position: "absolute",
-            top: -20,
-            // transform: "translateY(50%)",
-            display: "flex",
-            justifyContent: "space-between",
-            px: "18px",
-          }}
-        >
-          <IconButton onClick={handlePrevious}>
-            <PreviousIcon />
-          </IconButton>
-          <IconButton onClick={handleNext}>
-            <NextArrowIcon />
-          </IconButton>
-        </Box>
-      </Box>
+          <Box sx={{ width: "100%", position: "relative", top: 150 }}>
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                left: "50%",
+                m: "0 auto",
+                width: "80%",
+              }}
+            >
+              <Box
+                component="img"
+                src="/images/home-vision-1.png"
+                sx={{
+                  width: "354px",
+                  height: "200px",
+                  position: "absolute",
+                  left: "10%",
+                }}
+              ></Box>
+              <Box
+                component="img"
+                src="/images/home-vision-2.png"
+                sx={{
+                  width: "354px",
+                  height: "200px",
+                  transform: "scale(1.2)",
+                  position: "absolute",
+                  objectFit: "cover",
+                  left: "20%",
+                  zIndex: 2,
+                  borderRadius: "5px",
+                }}
+              ></Box>
+              <Box
+                component="img"
+                src="/images/home-vision-3.png"
+                sx={{
+                  width: "354px",
+                  height: "200px",
+                  transform: "scale(1.4)",
+                  position: "absolute",
+                  zIndex: 3,
+                  borderRadius: "5px",
+                }}
+              ></Box>
+              <Box
+                component="img"
+                src="/images/home-vision-4.png"
+                sx={{
+                  width: "354px",
+                  height: "200px",
+                  position: "absolute",
+                  transform: "scale(1.2)",
+                  right: "20%",
+                  zIndex: 2,
+                  borderRadius: "5px",
+                }}
+              ></Box>
+              <Box
+                component="img"
+                src="/images/home-vision-5.png"
+                sx={{
+                  width: "354px",
+                  height: "200px",
+                  position: "absolute",
+                  right: "10%",
+                }}
+              ></Box>
+            </Box>
+            <Box
+              sx={{
+                width: "100%",
+                position: "absolute",
+                top: -20,
+                // transform: "translateY(50%)",
+                display: "flex",
+                justifyContent: "space-between",
+                px: "18px",
+              }}
+            >
+              <IconButton onClick={handlePrevious}>
+                <PreviousIcon />
+              </IconButton>
+              <IconButton onClick={handleNext}>
+                <NextArrowIcon />
+              </IconButton>
+            </Box>
+          </Box>
+        </motion.div>
+      </motion.div>
       <Box
         sx={{
           display: "flex",
