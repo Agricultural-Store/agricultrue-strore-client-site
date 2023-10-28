@@ -1,18 +1,20 @@
 import CustomizedCheckbox from "@/components/shared/CustomizedCheckbox";
 import DeleteIcon from "@/components/shared/icons/DeleteIcon";
 import EditIcon from "@/components/shared/icons/EditIcon";
+import { Address } from "@/types/address";
 import { Box, Button, Typography } from "@mui/material";
 import React from "react";
 
 type Props = {
-  id: number;
+  id?: number;
   currentId?: number;
   onChecked: (id: number) => void;
+  address?: Address;
 };
 
-const OrderAddressItem = ({ id, onChecked, currentId }: Props) => {
+const OrderAddressItem = ({ id, onChecked, currentId, address }: Props) => {
   const handleChange = () => {
-    onChecked(id);
+    onChecked(id || 0);
   };
   return (
     <Box
@@ -25,10 +27,10 @@ const OrderAddressItem = ({ id, onChecked, currentId }: Props) => {
       >
         <Typography
           fontSize="18px"
-          fontWeight={700}
+          fontWeight={500}
           lineHeight="27px"
         >
-          Vũ Hoàng Hiệp
+          {address?.customerName}
         </Typography>
         <CustomizedCheckbox
           onChange={handleChange}
@@ -41,8 +43,7 @@ const OrderAddressItem = ({ id, onChecked, currentId }: Props) => {
         lineHeight="22px"
         my="16px"
       >
-        Khoa Công nghệ phần mềm, Trường Công nghệ Thông tin & Truyền thông, Trường Đại học
-        Cần Thơ
+        {address?.address}
       </Typography>
       <Box sx={{ display: "flex", gap: "16px" }}>
         <Button

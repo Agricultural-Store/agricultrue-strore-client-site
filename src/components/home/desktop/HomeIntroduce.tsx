@@ -43,6 +43,7 @@ const HomeIntroduce = () => {
   return (
     <Grid
       container
+      justifyContent="space-between"
       sx={{ height: "450px", px: "48px", py: "64px" }}
     >
       <Grid
@@ -59,7 +60,7 @@ const HomeIntroduce = () => {
             <Box
               component="img"
               src="/images/home-introduce.png"
-              sx={{ width: "100%" }}
+              sx={{ width: "100%", height: "300px", objectFit: "cover" }}
             />
           </motion.div>
         </motion.div>
@@ -82,7 +83,7 @@ const HomeIntroduce = () => {
                 justifyContent: "center",
                 alignItems: "start",
                 flexDirection: "column",
-                ml: "64px",
+
                 width: "100%",
               }}
             >
@@ -90,7 +91,10 @@ const HomeIntroduce = () => {
                 sx={{
                   textTransform: "capitalize",
                   whiteSpace: "pre-line",
-                  fontSize: "28px",
+                  fontSize: {
+                    lg: "28px",
+                    sm: "24px",
+                  },
                   fontWeight: 600,
                 }}
               >
@@ -111,7 +115,10 @@ const HomeIntroduce = () => {
                 className="line-clamp-5"
                 sx={{
                   py: "16px",
-                  fontSize: "16px",
+                  fontSize: {
+                    lg: "16px",
+                    sm: "14px",
+                  },
                   lineHeight: "28px",
                   fontWeight: "400px",
                   maxHeight: "150px",
@@ -129,6 +136,8 @@ const HomeIntroduce = () => {
                   display: "flex",
                   alignItems: "center",
                   textTransform: "capitalize",
+                  pl: 0,
+                  mt: "16px",
                 }}
               >
                 <Box

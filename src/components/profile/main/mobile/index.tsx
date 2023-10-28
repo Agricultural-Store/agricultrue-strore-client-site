@@ -78,7 +78,7 @@ const ProfileMainMobile = () => {
               </IconButton>
             </Box>
             <Typography
-              fontWeight={700}
+              fontWeight={500}
               mt="10px"
             >
               Vũ Hoàng Hiệp

@@ -2,6 +2,7 @@ export const authApiBase = `/auth`;
 export const userApiBase = `/user`;
 export const productApiBase = `/product`;
 export const productComboApiBase = `/product-combo`;
+export const orderApiBase = `/order`;
 
 export const authApi = {
   login: `${authApiBase}/login`,
@@ -24,4 +25,8 @@ export const productApi = {
 
 export const productComboApi = {
   list: `${productComboApiBase}`,
+};
+
+export const orderApi = {
+  create: `${orderApiBase}`,
 };

@@ -18,7 +18,20 @@ const SearchBox = ({ placeholder, value, onChange, defaultValue, fullWidth }: Pr
 
   return (
     <OutlinedInput
-      sx={{ borderRadius: 0, p: 0 }}
+      sx={{
+        borderRadius: 0,
+        p: 0,
+        "& fieldset": {
+          borderColor: "#E6E8EC !important",
+        },
+        "&:hover fieldset": {
+          borderColor: "#E6E8EC !important",
+        },
+        "&.Mui-focused fieldset": {
+          borderWidth: "1px !important",
+          borderColor: "#E6E8EC !important",
+        },
+      }}
       onChange={handleChange}
       value={value}
       defaultValue={defaultValue}

@@ -1,6 +1,6 @@
 "use client";
 import { Box, IconButton, Typography } from "@mui/material";
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import CustomizedDrawer from "../shared/CustomizedDrawer";
 import CloseIcon from "../shared/icons/CloseIcon";
 import ProductInCartList from "./ProductInCartList";
@@ -10,6 +10,7 @@ import useMedia from "@/hooks/shared/useMedia";
 import ArrowBackIcon from "../shared/icons/ArrowBackIcon";
 import useUserCar from "@/hooks/user/useUserCar";
 import { useSession } from "next-auth/react";
+import { CartContext } from "@/providers/CartContext";
 
 type Props = {
   open: boolean;
@@ -17,11 +18,17 @@ type Props = {
 };
 
 const Cart = ({ onClose, open }: Props) => {
-  const { status } = useSession();
+  const { product, setProduct } = useContext(CartContext);
 
+  const { status } = useSession();
   const { media } = useMedia();
 
   const { data, mutate } = useUserCar();
+
+  const handleClose = (open: boolean) => {
+    setProduct?.(undefined);
+    onClose(open);
+  };
 
   useEffect(() => {
     mutate();
@@ -32,7 +39,7 @@ const Cart = ({ onClose, open }: Props) => {
     <>
       <CustomizedDrawer
         open={open}
-        onClose={onClose}
+        onClose={handleClose}
         width={media ? "100%" : undefined}
       >
         <Box sx={{ px: media ? "16px" : "24px", width: media ? "100vw" : undefined }}>
@@ -48,7 +55,10 @@ const Cart = ({ onClose, open }: Props) => {
             >
               <IconButton
                 sx={{ color: "color.textBlack" }}
-                onClick={() => onClose(false)}
+                onClick={() => {
+                  setProduct?.(undefined);
+                  onClose(false);
+                }}
               >
                 <ArrowBackIcon />
               </IconButton>
@@ -83,7 +93,26 @@ const Cart = ({ onClose, open }: Props) => {
               </IconButton>
             </Box>
           )}
-          {data?.data.length && data.data.length > 0 ? (
+          {product && (
+            <>
+              <Box
+                height="calc(90vh - 320px)"
+                sx={{ overflowY: "auto" }}
+              >
+                <ProductInCartList
+                  products={[product]}
+                  isBuyNow
+                />
+              </Box>
+              <Box height="320px">
+                <CartSummary
+                  products={[product]}
+                  onClose={onClose}
+                />
+              </Box>
+            </>
+          )}
+          {!product && data?.data.length && data.data.length > 0 && (
             <>
               <Box
                 height="calc(90vh - 320px)"
@@ -98,9 +127,8 @@ const Cart = ({ onClose, open }: Props) => {
                 />
               </Box>
             </>
-          ) : (
-            <CartEmpty />
           )}
+          {!product && data?.data.length && data.data.length === 0 && <CartEmpty />}
         </Box>
       </CustomizedDrawer>
     </>

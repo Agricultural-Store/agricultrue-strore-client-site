@@ -65,8 +65,12 @@ const PromotionHelper = () => {
               src={co.icon}
             ></Box>
             <Typography
+              className="line-clamp-1"
               sx={{
-                fontSize: "20px",
+                fontSize: {
+                  lg: "20px",
+                  sm: "18px",
+                },
                 lineHeight: "30px",
                 pt: "24px",
                 pb: "12px",
@@ -77,7 +81,13 @@ const PromotionHelper = () => {
             </Typography>
             <Typography
               className="line-clamp-3"
-              sx={{ textAlign: "center" }}
+              sx={{
+                textAlign: "center",
+                fontSize: {
+                  lg: "16px",
+                  sm: "14px",
+                },
+              }}
             >
               {co.content}
             </Typography>

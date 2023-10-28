@@ -56,7 +56,11 @@ const Auth = () => {
   const [signUpLoading, setSignUpLoading] = useState(false);
   const [loginError, setLoginError] = useState("");
   const [signUpError, setSignUpError] = useState("");
-  const [isShowRegister, setIsShowRegister] = useState(false);
+  const [active, setActive] = useState({
+    login: true,
+    register: false,
+    forgotPassword: false,
+  });
 
   const { setOpenAuth, setIsCompleted } = useContext(AppContext);
 
@@ -139,7 +143,11 @@ const Auth = () => {
       },
     ).then((res) => {
       if (res.statusCode === 200) {
-        setIsShowRegister(false);
+        setActive({
+          login: true,
+          register: false,
+          forgotPassword: false,
+        });
         setSignUpLoading(false);
         setIsCompleted(true);
       }
@@ -147,15 +155,15 @@ const Auth = () => {
   };
 
   useEffect(() => {
-    if (!isShowRegister) formValidate.reset({});
-  }, [formValidate, isShowRegister]);
+    if (!active) formValidate.reset({});
+  }, [formValidate, active]);
 
   if (media) {
     return (
       <AuthMobile
         onLogin={handleLogin}
-        isShowRegister={isShowRegister}
-        setIsShowRegister={setIsShowRegister}
+        active={active}
+        setActive={setActive}
         loginData={loginInput}
         loginLoading={loginLoading}
         onLoginChange={handleLoginChange}
@@ -173,8 +181,8 @@ const Auth = () => {
     <>
       <AuthDesktop
         onLogin={handleLogin}
-        isShowRegister={isShowRegister}
-        setIsShowRegister={setIsShowRegister}
+        active={active}
+        setActive={setActive}
         loginData={loginInput}
         loginLoading={loginLoading}
         onLoginChange={handleLoginChange}

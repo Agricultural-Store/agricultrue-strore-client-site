@@ -14,14 +14,21 @@ const CartSummary = ({ products, onClose }: Props) => {
   const { media } = useMedia();
   const router = useRouter();
   const originalPrice = useMemo(
-    () => products.reduce((pre, curr) => pre + (curr?.productPrice || 0), 0),
+    () =>
+      products.reduce(
+        (pre, curr) => pre + (curr?.productPrice || 0) * (curr?.productCount ?? 1),
+        0,
+      ),
     [products],
   );
 
   const discountPrice = useMemo(
     () =>
       products.reduce(
-        (pre, curr) => pre + calcPriceDiscount(curr.productPrice, curr.productDiscount),
+        (pre, curr) =>
+          pre +
+          calcPriceDiscount(curr.productPrice, curr.productDiscount) *
+            (curr?.productCount ?? 1),
         0,
       ),
     [products],

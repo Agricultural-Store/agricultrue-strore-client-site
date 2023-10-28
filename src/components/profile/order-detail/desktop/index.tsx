@@ -72,7 +72,7 @@ const ProfileOrderDetailDesktop = () => {
                 <Typography
                   fontSize="16px"
                   lineHeight="25px"
-                  fontWeight={700}
+                  fontWeight={500}
                 >
                   {item.label}
                 </Typography>

@@ -42,7 +42,7 @@ const HomeMiddleIntroduce = () => {
   return (
     <Grid
       container
-      sx={{ height: "458px", px: "48px", py: "64px" }}
+      sx={{ height: "450px", px: "48px", py: "64px" }}
     >
       <Grid
         item
@@ -69,14 +69,24 @@ const HomeMiddleIntroduce = () => {
                 sx={{
                   textTransform: "capitalize",
                   whiteSpace: "pre-line",
-                  fontSize: "28px",
+                  fontSize: {
+                    lg: "28px",
+                    sm: "24px",
+                  },
                   fontWeight: 600,
                 }}
               >
                 Sự Kết Hợp Hoàn Mỹ của Vị Ngon và
               </Typography>
               <Typography
-                sx={{ color: "color.textPrimary300", fontSize: "28px", fontWeight: 600 }}
+                sx={{
+                  color: "color.textPrimary300",
+                  fontSize: {
+                    lg: "28px",
+                    sm: "24px",
+                  },
+                  fontWeight: 600,
+                }}
               >
                 Lợi Ích Sức Khỏe
               </Typography>
@@ -84,7 +94,10 @@ const HomeMiddleIntroduce = () => {
                 className="line-clamp-5"
                 sx={{
                   py: "16px",
-                  fontSize: "16px",
+                  fontSize: {
+                    lg: "16px",
+                    sm: "14px",
+                  },
                   lineHeight: "28px",
                   fontWeight: "400px",
                   maxHeight: "150px",
@@ -102,6 +115,8 @@ const HomeMiddleIntroduce = () => {
                   display: "flex",
                   alignItems: "center",
                   textTransform: "capitalize",
+                  pl: 0,
+                  mt: "16px",
                 }}
               >
                 <Box
@@ -137,7 +152,7 @@ const HomeMiddleIntroduce = () => {
             <Box
               component="img"
               src="/images/home-middle-introduce.png"
-              sx={{ width: "100%" }}
+              sx={{ width: "100%", height: "300px", objectFit: "cover" }}
             />
           </motion.div>
         </motion.div>

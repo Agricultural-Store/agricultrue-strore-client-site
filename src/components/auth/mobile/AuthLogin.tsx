@@ -6,7 +6,11 @@ import { Box, Button, Divider, Typography } from "@mui/material";
 import React, { ChangeEvent } from "react";
 
 type Props = {
-  onShowRegister: (bool: boolean) => void;
+  setActive: (active: {
+    login: boolean;
+    register: boolean;
+    forgotPassword: boolean;
+  }) => void;
   onLogin?: () => void;
   onChange?: (name: string, value: string) => void;
   value?: LoginInput;
@@ -14,16 +18,13 @@ type Props = {
   error?: string;
 };
 
-const AuthLogin = ({
-  onShowRegister,
-  onLogin,
-  onChange,
-  value,
-  loading,
-  error,
-}: Props) => {
+const AuthLogin = ({ setActive, onLogin, onChange, value, loading, error }: Props) => {
   const handleShowRegister = () => {
-    onShowRegister(true);
+    setActive({
+      login: false,
+      forgotPassword: false,
+      register: true,
+    });
   };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {

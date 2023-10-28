@@ -16,6 +16,7 @@ const FooterDesktop = () => {
         sx={{
           width: "100%",
           p: "48px",
+          pb: "16px",
         }}
       >
         <Box sx={{ display: "flex", justifyContent: "space-between" }}>

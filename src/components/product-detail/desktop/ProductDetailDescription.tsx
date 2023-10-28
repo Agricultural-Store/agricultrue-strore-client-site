@@ -10,7 +10,7 @@ const ProductDetailDescription = ({ product }: Props) => {
     <Box sx={{ textAlign: "justify" }}>
       {/* <Typography
         fontSize="20px"
-        fontWeight={700}
+        fontWeight={500}
         sx={{ mb: "16px" }}
       >
         Giới thiệu về gạo ST25
@@ -24,7 +24,7 @@ const ProductDetailDescription = ({ product }: Props) => {
       </Typography>
       <Typography
         fontSize="20px"
-        fontWeight={700}
+        fontWeight={500}
         sx={{ mb: "16px" }}
       >
         Quy trình canh tác của gạo ST25
@@ -43,7 +43,7 @@ const ProductDetailDescription = ({ product }: Props) => {
       </Typography>
       <Typography
         fontSize="20px"
-        fontWeight={700}
+        fontWeight={500}
         sx={{ mb: "16px" }}
       >
         Sứ mệnh và tầm nhìn ST25

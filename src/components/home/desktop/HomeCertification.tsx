@@ -44,14 +44,26 @@ const HomeCertification = () => {
         width: "100%",
       }}
     >
-      <Typography sx={{ fontSize: "28px", lineHeight: "42px", fontWeight: 600 }}>
+      <Typography
+        sx={{
+          fontSize: {
+            lg: "28px",
+            sm: "24px",
+          },
+          lineHeight: "42px",
+          fontWeight: 600,
+        }}
+      >
         Chứng nhận sản phẩm
       </Typography>
       <Typography
         sx={{
           width: "80%",
           mx: "auto",
-          fontSize: "16px",
+          fontSize: {
+            lg: "16px",
+            sm: "14px",
+          },
           lineHeight: "28px",
           textAlign: "center",
           mt: "16px",

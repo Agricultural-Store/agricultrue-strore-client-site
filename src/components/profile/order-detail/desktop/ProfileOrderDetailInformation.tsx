@@ -23,7 +23,7 @@ const ProfileOrderDetailInformation = () => {
           <Box sx={{ display: "flex", flexDirection: "column", gap: "6px", my: "8px" }}>
             <Typography
               fontSize="16px"
-              fontWeight={700}
+              fontWeight={500}
               lineHeight="28px"
             >
               Họ tên:{" "}
@@ -36,7 +36,7 @@ const ProfileOrderDetailInformation = () => {
             </Typography>
             <Typography
               fontSize="16px"
-              fontWeight={700}
+              fontWeight={500}
               lineHeight="28px"
             >
               Điện thoại:{" "}
@@ -49,7 +49,7 @@ const ProfileOrderDetailInformation = () => {
             </Typography>
             <Typography
               fontSize="16px"
-              fontWeight={700}
+              fontWeight={500}
               lineHeight="28px"
             >
               Địa chỉ:{" "}
@@ -83,7 +83,7 @@ const ProfileOrderDetailInformation = () => {
         >
           <Typography
             fontSize="16px"
-            fontWeight={700}
+            fontWeight={500}
             lineHeight="28px"
           >
             Phương thức::{" "}

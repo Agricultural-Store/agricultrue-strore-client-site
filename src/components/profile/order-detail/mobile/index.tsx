@@ -73,7 +73,7 @@ const ProfileOrderDetailMobile = () => {
                   <Typography
                     fontSize="14px"
                     lineHeight="25px"
-                    fontWeight={700}
+                    fontWeight={500}
                   >
                     {item.label}
                   </Typography>

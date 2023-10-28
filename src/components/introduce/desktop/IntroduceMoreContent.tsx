@@ -26,7 +26,10 @@ const IntroduceMoreContent = () => {
             sx={{
               textTransform: "capitalize",
               whiteSpace: "pre-line",
-              fontSize: "28px",
+              fontSize: {
+                lg: "28px",
+                sm: "24px",
+              },
               fontWeight: 600,
             }}
           >
@@ -42,7 +45,10 @@ const IntroduceMoreContent = () => {
             className="line-clamp-5"
             sx={{
               py: "16px",
-              fontSize: "16px",
+              fontSize: {
+                lg: "16px",
+                sm: "14px",
+              },
               lineHeight: "28px",
               fontWeight: "400px",
               maxHeight: "150px",
@@ -55,7 +61,13 @@ const IntroduceMoreContent = () => {
           </Typography>
           <Button
             variant="text"
-            sx={{ display: "flex", alignItems: "center", textTransform: "capitalize" }}
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              textTransform: "capitalize",
+              pl: 0,
+              mt: "16px",
+            }}
           >
             <Box
               sx={{
@@ -88,35 +100,78 @@ const IntroduceMoreContent = () => {
             sx={{
               textTransform: "capitalize",
               whiteSpace: "pre-line",
-              fontSize: "28px",
+              fontSize: {
+                lg: "28px",
+                sm: "24px",
+              },
               fontWeight: 600,
             }}
           >
             Sự Kết Hợp Hoàn Mỹ của Vị Ngon và
           </Typography>
           <Typography
-            sx={{ color: "color.textPrimary300", fontSize: "28px", fontWeight: 600 }}
+            sx={{
+              color: "color.textPrimary300",
+              fontSize: {
+                lg: "28px",
+                sm: "24px",
+              },
+              fontWeight: 600,
+            }}
           >
             Lợi Ích Sức Khỏe
           </Typography>
 
           <List sx={{ ml: "16px" }}>
-            <ListItem sx={{ display: "list-item", listStyleType: "disc" }}>
+            <ListItem
+              sx={{
+                display: "list-item",
+                listStyleType: "disc",
+                fontSize: {
+                  lg: "16px",
+                  sm: "14px",
+                },
+              }}
+            >
               Nhờ quy trình canh tác và chăm sóc đặc biệt, gạo ở đây có độ dẻo mềm khi
               nấu, tạo cảm giác ngon miệng và dễ tiêu.
             </ListItem>
-            <ListItem sx={{ display: "list-item", listStyleType: "disc" }}>
+            <ListItem
+              sx={{
+                display: "list-item",
+                listStyleType: "disc",
+                fontSize: {
+                  lg: "16px",
+                  sm: "14px",
+                },
+              }}
+            >
               Với sự quản lý nghiêm ngặt trong việc sử dụng phân bón và phòng trừ sâu
               bệnh, gạo ở đây đạt tiêu chuẩn an toàn thực phẩm quốc tế.
             </ListItem>
-            <ListItem sx={{ display: "list-item", listStyleType: "disc" }}>
+            <ListItem
+              sx={{
+                display: "list-item",
+                listStyleType: "disc",
+                fontSize: {
+                  lg: "16px",
+                  sm: "14px",
+                },
+              }}
+            >
               Nhờ việc áp dụng các biện pháp canh tác bền vững, gạo Đồng bằng Sông Cửu
               Long không chỉ chăm sóc sức khỏe mà còn bảo vệ môi trường.
             </ListItem>
           </List>
           <Button
             variant="text"
-            sx={{ display: "flex", alignItems: "center", textTransform: "capitalize" }}
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              textTransform: "capitalize",
+              pl: 0,
+              mt: "16px",
+            }}
           >
             <Box
               sx={{
@@ -136,7 +191,7 @@ const IntroduceMoreContent = () => {
         <Box
           component="img"
           src="/images/introduce-more-content-2.png"
-          sx={{ width: "40%" }}
+          sx={{ width: "40%", objectFit: "cover" }}
         />
       </Box>
     </Box>

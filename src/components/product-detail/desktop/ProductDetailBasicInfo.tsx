@@ -2,16 +2,45 @@ import CustomizedQuantityInput from "@/components/shared/CustomizedQuantityInput
 import FavoriteIcon from "@/components/shared/icons/FavoriteIcon";
 import NextArrowIcon from "@/components/shared/icons/NextArrowIcon";
 import PreviousIcon from "@/components/shared/icons/PreviousArrowIcon";
+import { useEnqueueSnackbar } from "@/hooks/shared/useEnqueueSnackbar";
+import useUserCartCreate from "@/hooks/user/useUserCartCreate";
 import { ProductDetail } from "@/types/product-detail";
 import { calcPrice } from "@/utils/count";
 import { Box, Button, Grid, IconButton, Typography } from "@mui/material";
-import React from "react";
+import { useParams } from "next/navigation";
+import React, { useState } from "react";
 
 type Props = {
   product?: ProductDetail;
 };
 
 const ProductDetailBasicInfo = ({ product }: Props) => {
+  const [count, setCount] = useState(1);
+
+  const params = useParams();
+  const [setEnqueue] = useEnqueueSnackbar();
+
+  const { trigger } = useUserCartCreate();
+
+  const handleChange = (value: number) => {
+    setCount(value);
+  };
+
+  const handleAddToCart = () => {
+    trigger(
+      {
+        body: {
+          productCount: count.toString(),
+          productId: params.id as string,
+        },
+      },
+      {
+        onError: () => {},
+      },
+    ).then(() => {});
+    setEnqueue("Added product to your cart", "success");
+  };
+
   return (
     <Grid
       container
@@ -132,15 +161,17 @@ const ProductDetailBasicInfo = ({ product }: Props) => {
         <Typography sx={{ fontSize: "14px", fontStyle: "italic" }}>
           {product?.productCategory}
         </Typography>
-        <Typography sx={{ fontSize: "28px", fontWeight: 700 }}>
+        <Typography sx={{ fontSize: "28px", fontWeight: 500 }}>
           {product?.productName}
         </Typography>
         <Box sx={{ display: "flex", gap: "8px", alignItems: "center" }}>
           <Typography sx={{ color: "color.textPrimary", fontSize: "20px" }}>
-            Giá: {calcPrice(product?.productPrice, product?.productDiscount)}đ/kg
+            Giá:{" "}
+            {calcPrice(product?.productPrice, product?.productDiscount).toLocaleString()}
+            đ/kg
           </Typography>
           <Typography sx={{ color: "color.textPrimary300" }}>
-            {product?.productPrice}đ/kg
+            {product?.productPrice?.toLocaleString()}đ/kg
           </Typography>
         </Box>
         <Typography sx={{ lineHeight: "28px" }}>
@@ -153,12 +184,14 @@ const ProductDetailBasicInfo = ({ product }: Props) => {
           <CustomizedQuantityInput
             defaultValue={1}
             maxValue={10}
+            onChange={handleChange}
           />
         </Box>
         <Box sx={{ display: "flex", gap: "16px", mt: "20px", height: "42px" }}>
           <Button
             sx={{ textTransform: "capitalize" }}
             variant="contained"
+            onClick={handleAddToCart}
           >
             Thêm vào giỏ hàng
           </Button>

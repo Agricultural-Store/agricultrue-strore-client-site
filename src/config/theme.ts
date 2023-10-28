@@ -121,19 +121,19 @@ export const buildTheme = (font?: string) =>
 
         h1: {
           fontSize: "1.75rem",
-          fontWeight: 700,
+          fontWeight: 500,
         },
         h2: {
           fontSize: "1.5rem",
-          fontWeight: 700,
+          fontWeight: 500,
         },
         h3: {
           fontSize: "1.25rem",
-          fontWeight: 700,
+          fontWeight: 500,
         },
         h4: {
           fontSize: "1rem",
-          fontWeight: 700,
+          fontWeight: 500,
         },
         body2: {
           fontSize: "16px",

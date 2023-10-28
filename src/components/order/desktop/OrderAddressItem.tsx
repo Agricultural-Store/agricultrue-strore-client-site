@@ -16,8 +16,6 @@ const OrderAddressItem = ({ id, onChecked, currentId, address }: Props) => {
   const handleChange = () => {
     onChecked(id);
   };
-
-  console.log(id, currentId);
   return (
     <Box
       minWidth="432px"
@@ -35,7 +33,7 @@ const OrderAddressItem = ({ id, onChecked, currentId, address }: Props) => {
         >
           <Typography
             fontSize="18px"
-            fontWeight={700}
+            fontWeight={500}
             lineHeight="27px"
           >
             {address?.customerName}

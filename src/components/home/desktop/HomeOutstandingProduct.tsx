@@ -38,10 +38,30 @@ const HomeOutstandingProduct = () => {
         px: "48px",
       }}
     >
-      <Typography sx={{ fontSize: "28px", lineHeight: "42px", fontWeight: 600 }}>
+      <Typography
+        sx={{
+          fontSize: {
+            lg: "28px",
+            sm: "24px",
+          },
+          lineHeight: "42px",
+          fontWeight: 600,
+        }}
+      >
         Sản phẩm nổi bật
       </Typography>
-      <Typography sx={{ width: "70%", m: "0 auto", textAlign: "center", my: "16px" }}>
+      <Typography
+        sx={{
+          width: "70%",
+          m: "0 auto",
+          textAlign: "center",
+          my: "16px",
+          fontSize: {
+            lg: "16px",
+            sm: "14px",
+          },
+        }}
+      >
         Đồng Bằng Sông Cửu Long, với đất đai màu mỡ và nguồn nước từ hệ thống sông ngòi
         chảy qua, đã tạo ra những giống gạo nổi tiếng không chỉ trong nước mà còn trên thị
         trường quốc tế.

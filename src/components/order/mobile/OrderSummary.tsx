@@ -58,14 +58,14 @@ const OrderSummary = ({ onNext, onPrevious }: Props) => {
       >
         <Typography
           fontSize="18px"
-          fontWeight={700}
+          fontWeight={500}
           lineHeight="32px"
         >
           Tổng
         </Typography>
         <Typography
           fontSize="18px"
-          fontWeight={700}
+          fontWeight={500}
           lineHeight="32px"
         >
           160.000đ

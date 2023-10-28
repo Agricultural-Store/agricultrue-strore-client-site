@@ -2,12 +2,14 @@ import RoundedEditIcon from "@/components/shared/icons/RoundedEditIcon";
 import { Box, Divider, IconButton, Typography } from "@mui/material";
 import React from "react";
 import OrderOverviewTable from "./OrderOverviewTable";
+import { ProductInCart } from "@/types/cart";
 
 type Props = {
   onBackStep: (step: number) => void;
+  data?: ProductInCart[]
 };
 
-const OrderOverview = ({ onBackStep }: Props) => {
+const OrderOverview = ({ onBackStep, data }: Props) => {
   const handleEditAddress = () => {
     onBackStep(1);
   };
@@ -19,7 +21,7 @@ const OrderOverview = ({ onBackStep }: Props) => {
   return (
     <Box my="24px">
       <Divider></Divider>
-      <OrderOverviewTable />
+      <OrderOverviewTable data={data} />
       <Divider></Divider>
       <Box py="16px">
         <Typography
@@ -39,7 +41,7 @@ const OrderOverview = ({ onBackStep }: Props) => {
           <Box sx={{ display: "flex", flexDirection: "column", gap: "6px", my: "8px" }}>
             <Typography
               fontSize="16px"
-              fontWeight={700}
+              fontWeight={500}
               lineHeight="28px"
             >
               Họ tên:{" "}
@@ -52,7 +54,7 @@ const OrderOverview = ({ onBackStep }: Props) => {
             </Typography>
             <Typography
               fontSize="16px"
-              fontWeight={700}
+              fontWeight={500}
               lineHeight="28px"
             >
               Điện thoại:{" "}
@@ -65,7 +67,7 @@ const OrderOverview = ({ onBackStep }: Props) => {
             </Typography>
             <Typography
               fontSize="16px"
-              fontWeight={700}
+              fontWeight={500}
               lineHeight="28px"
             >
               Địa chỉ:{" "}
@@ -101,7 +103,7 @@ const OrderOverview = ({ onBackStep }: Props) => {
         >
           <Typography
             fontSize="16px"
-            fontWeight={700}
+            fontWeight={500}
             lineHeight="28px"
           >
             Phương thức::{" "}

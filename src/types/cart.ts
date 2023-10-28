@@ -5,9 +5,10 @@ export interface ProductInCart {
   productQuantity?: number;
   productPrice?: number;
   productDiscount?: number;
+  productCount?: number;
 }
 
 export interface ProductInCartCreateInput {
-  productId: number;
-  productCount: number;
+  productId: string;
+  productCount: string;
 }

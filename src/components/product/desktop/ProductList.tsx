@@ -12,6 +12,7 @@ import useMedia from "@/hooks/shared/useMedia";
 import ProductFilter from "../ProductFilter";
 import FindInPageOutlinedIcon from "@mui/icons-material/FindInPageOutlined";
 import { AppContext } from "@/providers/AppContext";
+import { CartContext } from "@/providers/CartContext";
 const menuItems: OptionType[] = [
   {
     value: 1,
@@ -35,6 +36,7 @@ const ProductList = () => {
   const [products, setProducts] = useState<Product[]>([]);
 
   const { setOpenCart } = useContext(AppContext);
+  const { setProduct } = useContext(CartContext);
 
   const router = useRouter();
 
@@ -54,8 +56,12 @@ const ProductList = () => {
     router.push(`/product/${id}`);
   };
 
-  const handleButtonClick = (id?: number) => {
-    console.log(id);
+  const handleButtonClick = (product?: Product) => {
+    if (product)
+      setProduct?.({
+        ...product,
+        productCount: 1,
+      });
     setOpenCart(true);
   };
 

@@ -31,6 +31,7 @@ const MainLayout = ({ children }: Props) => {
     <main style={{ height: "100vh", overflow: "hidden" }}>
       <MainHeader />
       <div
+      className="scroll-view"
         style={{
           position: "relative",
           top: "65px",

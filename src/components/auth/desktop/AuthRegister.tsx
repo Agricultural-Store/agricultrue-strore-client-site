@@ -7,7 +7,11 @@ import React from "react";
 import { Controller, UseFormReturn } from "react-hook-form";
 
 type Props = {
-  onShowRegister: (bool: boolean) => void;
+  setActive: (active: {
+    login: boolean;
+    register: boolean;
+    forgotPassword: boolean;
+  }) => void;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   formValidate?: UseFormReturn<SignUpValidateInput, any, undefined>;
   onSubmit: (data: SignUpValidateInput) => void;
@@ -15,15 +19,13 @@ type Props = {
   error?: string;
 };
 
-const AuthRegister = ({
-  onShowRegister,
-  formValidate,
-  onSubmit,
-  loading,
-  error,
-}: Props) => {
+const AuthRegister = ({ setActive, formValidate, onSubmit, loading, error }: Props) => {
   const handleShowRegister = () => {
-    onShowRegister(false);
+    setActive({
+      login: true,
+      forgotPassword: false,
+      register: false,
+    });
   };
   return (
     <Box

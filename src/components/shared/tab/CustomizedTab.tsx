@@ -33,8 +33,9 @@ export default function CustomizedTab({ children, value, onChange, labels }: Pro
               label={value}
               sx={{
                 textTransform: "capitalize",
-                fontWeight: 700,
+                fontWeight: 500,
                 color: "color.textNeutral400",
+                fontSize: "16px",
               }}
             />
           ))}

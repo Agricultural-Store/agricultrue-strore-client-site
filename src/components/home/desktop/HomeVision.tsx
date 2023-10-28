@@ -49,11 +49,30 @@ const HomeVision = () => {
         position: "relative",
       }}
     >
-      <Typography sx={{ fontSize: "28px", lineHeight: "42px", fontWeight: 600 }}>
+      <Typography
+        sx={{
+          fontSize: {
+            lg: "28px",
+            sm: "24px",
+          },
+          lineHeight: "42px",
+          fontWeight: 600,
+        }}
+      >
         Tầm nhìn và sứ mệnh
       </Typography>
       <Typography
-        sx={{ width: "70%", mx: "auto", textAlign: "center", mt: "24px", mb: "48px" }}
+        sx={{
+          width: "70%",
+          mx: "auto",
+          textAlign: "center",
+          mt: "24px",
+          mb: "48px",
+          fontSize: {
+            lg: "16px",
+            sm: "14px",
+          },
+        }}
       >
         Chúng tôi tin vào sức mạnh của sự kết nối. Thông qua việc hợp tác chặt chẽ với các
         nông dân, tổ chức và doanh nghiệp địa phương, chúng tôi muốn tạo ra một mạng lưới
@@ -170,7 +189,7 @@ const HomeVision = () => {
           alignItems: "center",
           mt: "24px",
           position: "absolute",
-          bottom: 0,
+          bottom: 40,
         }}
       >
         <Box
@@ -180,6 +199,7 @@ const HomeVision = () => {
             borderRadius: "100px",
             bgcolor: "#63811E",
             transition: ".5s",
+            opacity: tabIndex == 0 ? 1 : 0.24,
           }}
         ></Box>
         <Box
@@ -189,6 +209,7 @@ const HomeVision = () => {
             borderRadius: "100px",
             bgcolor: "#63811E",
             transition: ".5s",
+            opacity: tabIndex == 1 ? 1 : 0.24,
           }}
         ></Box>
         <Box
@@ -198,6 +219,7 @@ const HomeVision = () => {
             borderRadius: "100px",
             bgcolor: "#63811E",
             transition: ".5s",
+            opacity: tabIndex == 2 ? 1 : 0.24,
           }}
         ></Box>
         <Box
@@ -207,6 +229,7 @@ const HomeVision = () => {
             borderRadius: "100px",
             bgcolor: "#63811E",
             transition: ".5s",
+            opacity: tabIndex == 3 ? 1 : 0.24,
           }}
         ></Box>
         <Box
@@ -216,6 +239,7 @@ const HomeVision = () => {
             borderRadius: "100px",
             bgcolor: "#63811E",
             transition: ".5s",
+            opacity: tabIndex == 4 ? 1 : 0.24,
           }}
         ></Box>
       </Box>

@@ -1,8 +1,14 @@
 import DeleteIcon from "@/components/shared/icons/DeleteIcon";
+import { ProductInCart } from "@/types/cart";
+import { calcPrice } from "@/utils/count";
 import { Box, Divider, IconButton, Typography } from "@mui/material";
 import React from "react";
 
-const OrderOverviewItem = () => {
+type Props = {
+  product?: ProductInCart;
+};
+
+const OrderOverviewItem = ({ product }: Props) => {
   return (
     <>
       <Box
@@ -16,7 +22,7 @@ const OrderOverviewItem = () => {
         >
           <Box
             component="img"
-            src="/images/image.png"
+            src={product?.productImage || "/images/image.png"}
             sx={{
               width: "64px",
               height: "64px",
@@ -35,7 +41,7 @@ const OrderOverviewItem = () => {
               fontWeight={600}
               className="line-clamp-1"
             >
-              Gạo Dẻo ST25 asd asd sad as d sad sa d sad sad as da s a
+              {product?.productName}
             </Typography>
             <Typography fontSize="14px">
               Số lượng:
@@ -44,7 +50,7 @@ const OrderOverviewItem = () => {
                 fontSize="14px"
                 sx={{ opacity: 0.6 }}
               >
-                &nbsp;01
+                &nbsp;{product?.productCount}
               </Typography>
             </Typography>
           </Box>
@@ -58,7 +64,13 @@ const OrderOverviewItem = () => {
           <IconButton sx={{ p: 0 }}>
             <DeleteIcon />
           </IconButton>
-          <Typography fontSize="14px">90.000đ</Typography>
+          <Typography fontSize="14px">
+            {(
+              calcPrice(product?.productPrice, product?.productDiscount) *
+              (product?.productCount ?? 1)
+            ).toLocaleString()}
+            đ
+          </Typography>
         </Box>
       </Box>
       <Divider></Divider>

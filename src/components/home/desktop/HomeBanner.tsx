@@ -2,9 +2,20 @@
 
 import { Box, Button, Typography } from "@mui/material";
 import { motion } from "framer-motion";
+import { useRouter } from "next-intl/client";
 import React from "react";
 
 const HomeBanner = () => {
+  const router = useRouter();
+
+  const handleMoveContact = () => {
+    router.push("/contact");
+  };
+
+  const handleMoveProduct = () => {
+    router.push("/product");
+  };
+
   return (
     <Box sx={{ height: "600px", position: "relative" }}>
       <Box sx={{ height: "600px", position: "relative" }}>
@@ -102,6 +113,7 @@ const HomeBanner = () => {
           >
             <Button
               variant="contained"
+              onClick={handleMoveProduct}
               sx={{
                 height: "42px",
                 width: "150px",
@@ -120,6 +132,7 @@ const HomeBanner = () => {
           >
             <Button
               variant="outlined"
+              onClick={handleMoveContact}
               sx={{
                 height: "42px",
                 width: "150px",

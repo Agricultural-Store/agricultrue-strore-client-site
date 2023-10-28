@@ -1,12 +1,55 @@
+import { CartContext } from "@/providers/CartContext";
+import { ProductInCart } from "@/types/cart";
+import { calcPriceDiscount } from "@/utils/count";
 import { Box, Button, Divider, Typography } from "@mui/material";
-import React from "react";
+import React, { useContext, useEffect, useMemo, useState } from "react";
 
 type Props = {
   onPrevious?: () => void;
   onNext?: () => void;
+  data?: ProductInCart[];
+  onChange?: (originValue: number, discountValue: number) => void;
 };
 
-const OrderSummary = ({ onNext, onPrevious }: Props) => {
+const OrderSummary = ({ onNext, onPrevious, data: dataProps, onChange }: Props) => {
+  const [data, setData] = useState<ProductInCart[]>();
+
+  const { product } = useContext(CartContext);
+
+  const originalPrice = useMemo(() => {
+    return (
+      data?.reduce(
+        (pre, curr) => pre + (curr?.productPrice || 0) * (curr?.productCount ?? 1),
+        0,
+      ) || 0
+    );
+  }, [data]);
+
+  const discountPrice = useMemo(
+    () =>
+      data?.reduce(
+        (pre, curr) =>
+          pre +
+          calcPriceDiscount(curr.productPrice, curr.productDiscount) *
+            (curr?.productCount ?? 1),
+        0,
+      ) || 0,
+    [data],
+  );
+
+  useEffect(() => {
+    onChange?.(originalPrice, discountPrice);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [originalPrice, discountPrice]);
+
+  useEffect(() => {
+    if (product) {
+      setData([product]);
+    } else {
+      setData(dataProps);
+    }
+  }, [dataProps, product]);
+
   return (
     <Box
       width="35%"
@@ -35,7 +78,7 @@ const OrderSummary = ({ onNext, onPrevious }: Props) => {
           lineHeight="32px"
         >
           <Typography lineHeight="32px">Tạm tính</Typography>
-          <Typography lineHeight="32px">210.000đ</Typography>
+          <Typography lineHeight="32px">{originalPrice.toLocaleString()}đ</Typography>
         </Box>
         <Box
           mb="8px"
@@ -45,7 +88,7 @@ const OrderSummary = ({ onNext, onPrevious }: Props) => {
           lineHeight="32px"
         >
           <Typography lineHeight="32px">Giảm giá</Typography>
-          <Typography lineHeight="32px">-50,000₫</Typography>
+          <Typography lineHeight="32px">-{discountPrice.toLocaleString()}₫</Typography>
         </Box>
         <Divider></Divider>
       </Box>
@@ -59,17 +102,17 @@ const OrderSummary = ({ onNext, onPrevious }: Props) => {
       >
         <Typography
           fontSize="18px"
-          fontWeight={700}
+          fontWeight={500}
           lineHeight="32px"
         >
           Tổng
         </Typography>
         <Typography
           fontSize="18px"
-          fontWeight={700}
+          fontWeight={500}
           lineHeight="32px"
         >
-          160.000đ
+          {(originalPrice - discountPrice).toLocaleString()}đ
         </Typography>
       </Box>
       <Box

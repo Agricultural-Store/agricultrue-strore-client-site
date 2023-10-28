@@ -1,5 +1,5 @@
 import { Box, Grid, Typography } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import ProductItem from "../ProductItem";
 import CustomizedSelect from "@/components/shared/CustomizedSelect";
 import { OptionType } from "@/types/shared";
@@ -9,6 +9,8 @@ import { Product, ProductFilterParams } from "@/types/product";
 import useProductList from "@/hooks/product/useProductList";
 import useQueryParams from "@/hooks/shared/useQueryParams";
 import ProductFilter from "../ProductFilter";
+import { AppContext } from "@/providers/AppContext";
+import { CartContext } from "@/providers/CartContext";
 
 const menuItems: OptionType[] = [
   {
@@ -32,6 +34,9 @@ const menuItems: OptionType[] = [
 const ProductList = () => {
   const [products, setProducts] = useState<Product[]>([]);
 
+  const { setOpenCart } = useContext(AppContext);
+  const { setProduct } = useContext(CartContext);
+
   const router = useRouter();
 
   const [options, setOptions] = useQueryParams<ProductFilterParams>({
@@ -46,6 +51,15 @@ const ProductList = () => {
 
   const handleClick = (id?: number) => {
     router.push(`/product/${id}`);
+  };
+
+  const handleButtonClick = (product?: Product) => {
+    if (product)
+      setProduct?.({
+        ...product,
+        productCount: 1,
+      });
+    setOpenCart(true);
   };
 
   const handleChangePage = (page: number) => {
@@ -97,6 +111,7 @@ const ProductList = () => {
               <ProductItem
                 product={product}
                 onClick={handleClick}
+                onButtonClick={handleButtonClick}
               />
             </Grid>
           ))}

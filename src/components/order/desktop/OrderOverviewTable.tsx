@@ -1,4 +1,7 @@
 import DeleteIcon from "@/components/shared/icons/DeleteIcon";
+import { CartContext } from "@/providers/CartContext";
+import { ProductInCart } from "@/types/cart";
+import { calcPrice } from "@/utils/count";
 import {
   TableContainer,
   Table,
@@ -11,9 +14,23 @@ import {
   Typography,
   IconButton,
 } from "@mui/material";
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 
-const OrderOverviewTable = () => {
+type Props = {
+  data?: ProductInCart[];
+};
+const OrderOverviewTable = ({ data: dataProps }: Props) => {
+  const [data, setData] = useState<ProductInCart[]>();
+  const { product } = useContext(CartContext);
+
+  useEffect(() => {
+    if (product) {
+      setData([product]);
+    } else {
+      setData(dataProps);
+    }
+  }, [dataProps, product]);
+
   return (
     <>
       <Typography
@@ -33,72 +50,86 @@ const OrderOverviewTable = () => {
           <TableHead>
             <TableRow>
               <TableCell
-                sx={{ fontWeight: 700, pl: 0 }}
+                sx={{ fontWeight: 500, pl: 0 }}
                 align="left"
               >
                 Sản phẩm
               </TableCell>
               <TableCell
-                sx={{ fontWeight: 700 }}
+                sx={{ fontWeight: 500 }}
                 align="center"
               >
                 Số lượng
               </TableCell>
               <TableCell
-                sx={{ fontWeight: 700 }}
+                sx={{ fontWeight: 500 }}
                 align="center"
               >
                 Thành tiền
               </TableCell>
               <TableCell
                 align="center"
-                sx={{ color: "error.main", fontWeight: 700, pr: 0 }}
+                sx={{ color: "error.main", fontWeight: 500, pr: 0 }}
               >
                 Xóa tất cả (2)
               </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            <TableRow>
-              <TableCell
-                align="left"
-                sx={{ display: "flex", alignItems: "center", gap: "8px", pl: 0 }}
-              >
-                <Box
-                  sx={{
-                    width: "65px",
-                    height: "65px",
-                    borderRadius: "4px",
-                    bgcolor: "color.bgPrimary",
-                  }}
-                ></Box>
-                <Typography fontSize="18px">Gạo Dẻo ST25</Typography>
-              </TableCell>
-              <TableCell align="center">01</TableCell>
-              <TableCell align="center">
-                <Typography component="span">90.000đ</Typography>
-                <Typography
-                  px="10px"
-                  display="inline-block"
-                  fontSize="12px"
-                  sx={{
-                    textDecoration: "line-through",
-                    color: "color.textPrimary",
-                    transform: "translateY(-2px)",
-                  }}
+            {data?.map((product) => (
+              <TableRow key={product.id}>
+                <TableCell
+                  align="left"
+                  sx={{ display: "flex", alignItems: "center", gap: "8px", pl: 0 }}
                 >
-                  120.000đ
-                </Typography>
-              </TableCell>
-              <TableCell
-                align="center"
-                sx={{ pr: 0 }}
-              >
-                <IconButton>
-                  <DeleteIcon />
-                </IconButton>
-              </TableCell>
-            </TableRow>
+                  <Box
+                    component="img"
+                    src={product.productImage || ""}
+                    sx={{
+                      minWidth: "65px",
+                      maxWidth: "65px",
+                      height: "65px",
+                      borderRadius: "4px",
+                      bgcolor: "color.bgPrimary",
+                    }}
+                  ></Box>
+                  <Typography fontSize="18px">{product.productName}</Typography>
+                </TableCell>
+                <TableCell align="center">{product.productCount}</TableCell>
+                <TableCell align="center">
+                  <Typography component="span">
+                    {(
+                      calcPrice(product.productPrice, product.productDiscount) *
+                      (product?.productCount ?? 1)
+                    ).toLocaleString()}
+                    đ
+                  </Typography>
+                  <Typography
+                    px="10px"
+                    display="inline-block"
+                    fontSize="12px"
+                    sx={{
+                      textDecoration: "line-through",
+                      color: "color.textPrimary",
+                      transform: "translateY(-2px)",
+                    }}
+                  >
+                    {(
+                      (product.productPrice || 1) * (product?.productCount ?? 1)
+                    ).toLocaleString()}
+                    đ
+                  </Typography>
+                </TableCell>
+                <TableCell
+                  align="center"
+                  sx={{ pr: 0 }}
+                >
+                  <IconButton>
+                    <DeleteIcon />
+                  </IconButton>
+                </TableCell>
+              </TableRow>
+            ))}
           </TableBody>
         </Table>
       </TableContainer>

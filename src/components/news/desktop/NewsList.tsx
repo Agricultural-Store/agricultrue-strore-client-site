@@ -165,6 +165,7 @@ const NewsListDesktop = () => {
             borderRadius: "100px",
             bgcolor: "#63811E",
             transition: ".5s",
+            opacity: tabIndex == 0 ? 1 : 0.24,
           }}
         ></Box>
         <Box
@@ -173,6 +174,7 @@ const NewsListDesktop = () => {
             width: tabIndex == 1 ? "21px" : "7px",
             borderRadius: "100px",
             bgcolor: "#63811E",
+            opacity: tabIndex == 1 ? 1 : 0.24,
             transition: ".5s",
           }}
         ></Box>
@@ -182,6 +184,7 @@ const NewsListDesktop = () => {
             width: tabIndex == 2 ? "21px" : "7px",
             borderRadius: "100px",
             bgcolor: "#63811E",
+            opacity: tabIndex == 2 ? 1 : 0.24,
             transition: ".5s",
           }}
         ></Box>
@@ -191,6 +194,7 @@ const NewsListDesktop = () => {
             width: tabIndex == 3 ? "21px" : "7px",
             borderRadius: "100px",
             bgcolor: "#63811E",
+            opacity: tabIndex == 3 ? 1 : 0.24,
             transition: ".5s",
           }}
         ></Box>

@@ -7,10 +7,10 @@ import { calcPrice } from "@/utils/count";
 
 type Props = {
   product: ProductInCart;
+  onChangeCount?: (value: number, id?: number) => void;
 };
 
-const ProductInCartItem = ({ product }: Props) => {
-  console.log(product);
+const ProductInCartItem = ({ product, onChangeCount }: Props) => {
   return (
     <Box sx={{ display: "flex", justifyContent: "space-between", my: "24px" }}>
       <Box
@@ -43,17 +43,27 @@ const ProductInCartItem = ({ product }: Props) => {
         <Box
           sx={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}
         >
-          <CustomizedQuantityInput />
+          <CustomizedQuantityInput
+            defaultValue={product.productCount}
+            onChange={(value) => onChangeCount?.(value, product.id)}
+          />
           <Box>
             <Typography>
-              {calcPrice(product.productPrice, product.productDiscount).toLocaleString()}đ
+              {(
+                calcPrice(product.productPrice, product.productDiscount) *
+                (product?.productCount ?? 1)
+              ).toLocaleString()}
+              đ
             </Typography>
             <Typography
               fontSize="12px"
               color="color.textPrimary"
               sx={{ textDecoration: "line-through", textAlign: "right" }}
             >
-              {(+(product.productPrice || 0)).toLocaleString()}đ
+              {(
+                +(product.productPrice || 0) * (product?.productCount ?? 1)
+              ).toLocaleString()}
+              đ
             </Typography>
           </Box>
         </Box>

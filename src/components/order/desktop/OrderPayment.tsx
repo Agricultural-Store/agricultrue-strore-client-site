@@ -3,7 +3,11 @@ import { Box, FormControlLabel, Radio, RadioGroup, Typography } from "@mui/mater
 import React, { ChangeEvent, useState } from "react";
 import OrderPaymentCreditForm from "./OrderPaymentCreditForm";
 
-const OrderPayment = () => {
+type Props = {
+  onChange?: (payment: PaymentMethod) => void;
+};
+
+const OrderPayment = ({ onChange }: Props) => {
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>(PaymentMethod.CREDIT);
 
   const handleChangePaymentMethod = (
@@ -11,6 +15,7 @@ const OrderPayment = () => {
     value: string,
   ) => {
     setPaymentMethod(value as PaymentMethod);
+    onChange?.(value as PaymentMethod);
   };
 
   return (

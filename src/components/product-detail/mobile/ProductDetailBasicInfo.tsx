@@ -3,11 +3,12 @@ import FavoriteIcon from "@/components/shared/icons/FavoriteIcon";
 import NextArrowIcon from "@/components/shared/icons/NextArrowIcon";
 import PreviousIcon from "@/components/shared/icons/PreviousArrowIcon";
 import { ProductDetail } from "@/types/product-detail";
+import { calcPrice } from "@/utils/count";
 import { Box, Button, Grid, IconButton, Typography } from "@mui/material";
 import React from "react";
 
 type Props = {
-  product: ProductDetail;
+  product?: ProductDetail;
 };
 
 const ProductDetailBasicInfo = ({ product }: Props) => {
@@ -18,14 +19,13 @@ const ProductDetailBasicInfo = ({ product }: Props) => {
     >
       <Grid
         item
-        lg={5}
-        sm={6}
+        xs={12}
       >
         <Box>
           <Box sx={{ position: "relative" }}>
             <Box
               component="img"
-              src="/images/product-detail-main.png"
+              src={product?.productImages?.[0] || "/images/product-detail-main.png"}
               sx={{ width: "100%", height: "280px" }}
             />
             <Box
@@ -123,21 +123,23 @@ const ProductDetailBasicInfo = ({ product }: Props) => {
         }}
       >
         <Typography sx={{ fontSize: "18px", fontWeight: 600, lineHeight: "32px" }}>
-          {product.productCategory}
+          {product?.productCategory}
         </Typography>
         <Typography
-          sx={{ fontSize: "20px", fontWeight: 700, lineHeight: "36px", mt: "2px" }}
+          sx={{ fontSize: "20px", fontWeight: 500, lineHeight: "36px", mt: "2px" }}
         >
-          {product.productName}
+          {product?.productName}
         </Typography>
         <Box sx={{ display: "flex", gap: "8px", alignItems: "center", mt: "6px" }}>
           <Typography
             sx={{ color: "color.textPrimary", fontSize: "18px", lineHeight: "32px" }}
           >
-            Giá: {product.productPrice}đ/kg
+            Giá:{" "}
+            {calcPrice(product?.productPrice, product?.productDiscount).toLocaleString()}
+            đ/kg
           </Typography>
           <Typography sx={{ color: "color.textPrimary300", lineHeight: "28px" }}>
-            {product.productDiscount}đ/kg
+            {product?.productPrice?.toLocaleString()}đ/kg
           </Typography>
         </Box>
         <Typography sx={{ lineHeight: "28px", fontSize: "14px", mt: "16px" }}>

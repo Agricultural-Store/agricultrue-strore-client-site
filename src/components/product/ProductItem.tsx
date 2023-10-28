@@ -17,7 +17,7 @@ import DiscountBgIcon from "../shared/icons/DiscountBgIcon";
 type Props = {
   product?: Product;
   onClick?: (id?: number) => void;
-  onButtonClick?: (id?: number) => void;
+  onButtonClick?: (product?: Product) => void;
 };
 
 const ProductItem = ({ product, onClick, onButtonClick }: Props) => {
@@ -26,7 +26,7 @@ const ProductItem = ({ product, onClick, onButtonClick }: Props) => {
   };
 
   const handleButtonClick = () => {
-    onButtonClick?.(product?.id);
+    onButtonClick?.(product);
   };
 
   return (
@@ -70,7 +70,7 @@ const ProductItem = ({ product, onClick, onButtonClick }: Props) => {
           component="img"
           src={product?.productImage}
           width="100%"
-          height="230px"
+          height="200px"
           sx={{ objectFit: "cover" }}
         />
         <CardContent>

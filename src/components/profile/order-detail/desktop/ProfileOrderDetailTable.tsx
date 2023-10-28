@@ -31,31 +31,31 @@ const ProfileOrderDetailTable = () => {
           <TableHead>
             <TableRow>
               <TableCell
-                sx={{ pl: 0, fontWeight: 700 }}
+                sx={{ pl: 0, fontWeight: 500 }}
                 align="left"
               >
                 Sản phẩm
               </TableCell>
               <TableCell
-                sx={{ width: "150px", fontWeight: 700 }}
+                sx={{ width: "150px", fontWeight: 500 }}
                 align="center"
               >
                 Số lượng (kg)
               </TableCell>
               <TableCell
-                sx={{ width: "150px", fontWeight: 700 }}
+                sx={{ width: "150px", fontWeight: 500 }}
                 align="center"
               >
                 Niêm yết
               </TableCell>
               <TableCell
-                sx={{ width: "150px", fontWeight: 700 }}
+                sx={{ width: "150px", fontWeight: 500 }}
                 align="center"
               >
                 Giảm giá
               </TableCell>
               <TableCell
-                sx={{ pr: 0, width: "180px", fontWeight: 700 }}
+                sx={{ pr: 0, width: "180px", fontWeight: 500 }}
                 align="right"
               >
                 Thành tiền

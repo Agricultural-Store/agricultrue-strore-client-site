@@ -19,8 +19,16 @@ type Props = {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   formValidate?: UseFormReturn<SignUpValidateInput, any, undefined>;
   onSubmit: (data: SignUpValidateInput) => void;
-  isShowRegister: boolean;
-  setIsShowRegister: (bool: boolean) => void;
+  active: {
+    login: boolean;
+    register: boolean;
+    forgotPassword: boolean;
+  };
+  setActive: (active: {
+    login: boolean;
+    register: boolean;
+    forgotPassword: boolean;
+  }) => void;
   signUpError?: string;
   onClear?: () => void;
 };
@@ -34,8 +42,8 @@ const AuthMobile = ({
   formValidate,
   onSubmit,
   signUpLoading,
-  isShowRegister,
-  setIsShowRegister,
+  active,
+  setActive,
   onClear,
   signUpError,
 }: Props) => {
@@ -43,7 +51,11 @@ const AuthMobile = ({
 
   const handleCloseAuth = () => {
     setOpenAuth(false);
-    setIsShowRegister(false);
+    setActive({
+      login: true,
+      forgotPassword: false,
+      register: false,
+    });
     onClear?.();
   };
   return (
@@ -69,12 +81,12 @@ const AuthMobile = ({
               }}
             >
               <Collapse
-                in={!isShowRegister}
+                in={active.login}
                 orientation="horizontal"
               >
                 <Box width="calc(100vw - 32px)">
                   <AuthLogin
-                    onShowRegister={setIsShowRegister}
+                    setActive={setActive}
                     onLogin={onLogin}
                     onChange={onLoginChange}
                     value={loginData}
@@ -84,7 +96,7 @@ const AuthMobile = ({
                 </Box>
               </Collapse>
               <Collapse
-                in={isShowRegister}
+                in={active.register}
                 orientation="horizontal"
               >
                 <Box
@@ -92,7 +104,7 @@ const AuthMobile = ({
                   sx={{ width: "calc(100vw - 32px)" }}
                 >
                   <AuthRegister
-                    onShowRegister={setIsShowRegister}
+                    setActive={setActive}
                     formValidate={formValidate}
                     onSubmit={onSubmit}
                     loading={signUpLoading}

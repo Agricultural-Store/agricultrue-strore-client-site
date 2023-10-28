@@ -29,7 +29,7 @@ const ProfileOrderDesktop = () => {
         >
           <Typography
             fontSize={media ? "24px" : "32px"}
-            fontWeight={700}
+            fontWeight={500}
           >
             Thông tin đơn hàng
           </Typography>

@@ -1,12 +1,16 @@
-import { Box, Typography } from "@mui/material";
+import { ProductDetail } from "@/types/product-detail";
+import { Box } from "@mui/material";
 import React from "react";
 
-const ProductDetailDescription = () => {
+type Props = {
+  product?: ProductDetail;
+};
+const ProductDetailDescription = ({ product }: Props) => {
   return (
     <Box sx={{ textAlign: "justify" }}>
-      <Typography
+      {/* <Typography
         fontSize="20px"
-        fontWeight={700}
+        fontWeight={500}
         sx={{ mb: "16px", fontSize: "18px" }}
       >
         Giới thiệu về gạo ST25
@@ -20,7 +24,7 @@ const ProductDetailDescription = () => {
       </Typography>
       <Typography
         fontSize="20px"
-        fontWeight={700}
+        fontWeight={500}
         sx={{ mb: "16px", fontSize: "18px" }}
       >
         Quy trình canh tác của gạo ST25
@@ -39,7 +43,7 @@ const ProductDetailDescription = () => {
       </Typography>
       <Typography
         fontSize="20px"
-        fontWeight={700}
+        fontWeight={500}
         sx={{ mb: "16px", fontSize: "18px" }}
       >
         Sứ mệnh và tầm nhìn ST25
@@ -54,7 +58,11 @@ const ProductDetailDescription = () => {
         Mỗi hạt gạo ST25 không chỉ chứa đựng hương vị đặc trưng, mà còn là kết quả của quá
         trình lao động và tâm huyết, biểu tượng cho sự kết nối giữa con người và thiên
         nhiên, giữa truyền thống và hiện đại.
-      </Typography>
+      </Typography> */}
+      <Box
+        component="div"
+        dangerouslySetInnerHTML={{ __html: product?.productDescription || "" }}
+      ></Box>
     </Box>
   );
 };

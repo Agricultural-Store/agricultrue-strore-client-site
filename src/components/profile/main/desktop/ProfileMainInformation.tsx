@@ -13,7 +13,7 @@ const ProfileMainInformation = () => {
         <Grid
           item
           xs={2}
-          fontWeight={700}
+          fontWeight={500}
           lineHeight="30px"
         >
           {label}

@@ -46,7 +46,7 @@ const ProductDetailRelated = () => {
     <Box px="48px">
       <Typography
         fontSize="28px"
-        fontWeight={700}
+        fontWeight={500}
         px="30px"
       >
         Sản phẩm liên quan

@@ -6,6 +6,7 @@ import { userApi } from "@/config/api-path";
 const useUserCartCreate = () => {
   return useMutation<ApiResponse<ProductInCart>, ProductInCartCreateInput>({
     path: userApi.addToCart,
+    method: "POST",
     mutateRelatedDataList: {
       mutatePath: userApi.cart,
       shouldRevalidate: true,

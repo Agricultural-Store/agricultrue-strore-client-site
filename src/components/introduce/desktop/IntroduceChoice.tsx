@@ -76,10 +76,29 @@ const IntroduceChoice = () => {
                 src={item.icon}
               />
             </Box>
-            <Typography sx={{ fontSize: "20px", fontWeight: 500, mb: "8px" }}>
+            <Typography
+              sx={{
+                fontSize: {
+                  lg: "20px",
+                  sm: "18px",
+                },
+                fontWeight: 500,
+                mb: "8px",
+              }}
+            >
               {item.title}
             </Typography>
-            <Typography sx={{ fontWeight: 400 }}>{item.content}</Typography>
+            <Typography
+              sx={{
+                fontWeight: 400,
+                fontSize: {
+                  lg: "16px",
+                  sm: "14px",
+                },
+              }}
+            >
+              {item.content}
+            </Typography>
           </Grid>
         ))}
       </Grid>

@@ -33,7 +33,7 @@ const ProfileOrderItem = () => {
             component="span"
             onClick={handleClick}
             sx={{
-              fontWeight: 700,
+              fontWeight: 500,
               fontSize: "inherit",
               textDecoration: "underline",
               cursor: "pointer",

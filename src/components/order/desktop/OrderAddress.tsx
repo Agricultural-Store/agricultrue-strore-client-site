@@ -1,12 +1,17 @@
 import { Box, Collapse, Typography } from "@mui/material";
-import React, { useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import OrderAddressItem from "./OrderAddressItem";
 import ArrowUpIcon from "@/components/shared/icons/ArrowUpIcon";
 import OrderAddressForm from "./OrderAddressForm";
 import CustomizedInput from "@/components/shared/CustomizedInput";
 import useUserAddress from "@/hooks/user/useUserAddress";
 
-const OrderAddress = () => {
+type Props = {
+  onChange?: (id?: number) => void;
+  onChangeNote?: (value: ChangeEvent<HTMLInputElement>) => void;
+};
+
+const OrderAddress = ({ onChange, onChangeNote }: Props) => {
   const [showAddressForm, setShowAddressForm] = useState(false);
   const [addressCurrentId, setAddressCurrentId] = useState<number>();
 
@@ -18,7 +23,16 @@ const OrderAddress = () => {
 
   const handleAddressChecked = (id?: number) => {
     setAddressCurrentId(id);
+    onChange?.(id);
   };
+
+  useEffect(() => {
+    if (!addressCurrentId && data?.data) {
+      setAddressCurrentId(data?.data[0].addressId);
+      onChange?.(data?.data[0].addressId);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data]);
 
   return (
     <Box my="24px">
@@ -48,8 +62,8 @@ const OrderAddress = () => {
         >
           {data?.data.map((address) => (
             <OrderAddressItem
-              id={address.id}
-              key={address.id + Math.random() * 100000}
+              id={address.addressId}
+              key={address.addressId + Math.random() * 100000}
               address={address}
               currentId={addressCurrentId}
               onChecked={handleAddressChecked}
@@ -107,6 +121,7 @@ const OrderAddress = () => {
           rows={5}
           fullWidth
           label="Lời nhắn"
+          onChange={onChangeNote}
           placeholder="Ghi chú về thông tin xuất hoá đơn, thông tin bổ sung,..."
         />
         <Typography

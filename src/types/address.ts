@@ -1,5 +1,6 @@
 export interface Address {
   id: number;
+  addressId: number;
   customerName?: string;
   address?: string;
 }

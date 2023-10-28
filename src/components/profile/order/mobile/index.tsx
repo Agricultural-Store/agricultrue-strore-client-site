@@ -17,7 +17,7 @@ const ProfileOrderMobile = () => {
         >
           <Typography
             fontSize="18px"
-            fontWeight={700}
+            fontWeight={500}
             textAlign="center"
           >
             Thông tin đơn hàng

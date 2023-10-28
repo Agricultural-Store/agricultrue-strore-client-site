@@ -45,7 +45,7 @@ const NewsItem = () => {
             display: "flex",
             flexDirection: "column",
             gap: "8px",
-            py: 0,
+            p: 0,
             pt: "16px",
           }}
         >
@@ -86,10 +86,10 @@ const NewsItem = () => {
             Sạch từ sản xuất đến bàn ăn không chỉ là câu chuyện của cây lúa, mà vựa ...
           </Typography>
         </CardContent>
-        <CardActions sx={{ py: 0, pb: "16px" }}>
+        <CardActions sx={{ p: 0, pb: "16px" }}>
           <Button
             variant="text"
-            sx={{ display: "flex", alignItems: "center" }}
+            sx={{ display: "flex", alignItems: "center", pl: 0 }}
           >
             <Box
               sx={{

@@ -7,6 +7,7 @@ import useMedia from "@/hooks/shared/useMedia";
 import { AppContext } from "@/providers/AppContext";
 import { LoginInput, SignUpValidateInput } from "@/types/auth";
 import { UseFormReturn } from "react-hook-form";
+import ForgotPassword from "./ForgotPassword";
 
 type Props = {
   onLogin?: () => void;
@@ -18,8 +19,16 @@ type Props = {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   formValidate?: UseFormReturn<SignUpValidateInput, any, undefined>;
   onSubmit: (data: SignUpValidateInput) => void;
-  isShowRegister: boolean;
-  setIsShowRegister: (bool: boolean) => void;
+  active: {
+    login: boolean;
+    register: boolean;
+    forgotPassword: boolean;
+  };
+  setActive: (active: {
+    login: boolean;
+    register: boolean;
+    forgotPassword: boolean;
+  }) => void;
   signUpError?: string;
   onClear?: () => void;
 };
@@ -33,8 +42,8 @@ const AuthDesktop = ({
   formValidate,
   onSubmit,
   signUpLoading,
-  isShowRegister,
-  setIsShowRegister,
+  active,
+  setActive,
   onClear,
   signUpError,
 }: Props) => {
@@ -44,7 +53,11 @@ const AuthDesktop = ({
 
   const handleCloseAuth = () => {
     setOpenAuth(false);
-    setIsShowRegister(false);
+    setActive({
+      login: true,
+      forgotPassword: false,
+      register: false,
+    });
     onClear?.();
   };
 
@@ -100,7 +113,7 @@ const AuthDesktop = ({
             }}
           >
             <Collapse
-              in={!isShowRegister}
+              in={active.login}
               orientation="horizontal"
             >
               <Box
@@ -108,7 +121,7 @@ const AuthDesktop = ({
                 sx={{ p: "48px" }}
               >
                 <AuthLogin
-                  onShowRegister={setIsShowRegister}
+                  setActive={setActive}
                   onLogin={onLogin}
                   onChange={onLoginChange}
                   value={loginData}
@@ -118,7 +131,7 @@ const AuthDesktop = ({
               </Box>
             </Collapse>
             <Collapse
-              in={isShowRegister}
+              in={active.register}
               orientation="horizontal"
             >
               <Box
@@ -126,11 +139,28 @@ const AuthDesktop = ({
                 sx={{ px: "48px", py: "32px" }}
               >
                 <AuthRegister
-                  onShowRegister={setIsShowRegister}
+                  setActive={setActive}
                   formValidate={formValidate}
                   onSubmit={onSubmit}
                   loading={signUpLoading}
                   error={signUpError}
+                />
+              </Box>
+            </Collapse>
+            <Collapse
+              in={active.forgotPassword}
+              orientation="horizontal"
+            >
+              <Box
+                component="div"
+                sx={{ px: "48px", py: "32px" }}
+              >
+                <ForgotPassword
+                  setActive={setActive}
+                  onLogin={onLogin}
+                  onChange={onLoginChange}
+                  value={loginData}
+                  loading={loginLoading}
                 />
               </Box>
             </Collapse>
