@@ -106,6 +106,7 @@ const HomeVision = () => {
             borderRadius: "100px",
             bgcolor: "#63811E",
             transition: ".5s",
+            opacity: tabIndex == 0 ? 1 : 0.24,
           }}
         ></Box>
         <Box
@@ -115,6 +116,7 @@ const HomeVision = () => {
             borderRadius: "100px",
             bgcolor: "#63811E",
             transition: ".5s",
+            opacity: tabIndex == 1 ? 1 : 0.24,
           }}
         ></Box>
         <Box
@@ -124,6 +126,7 @@ const HomeVision = () => {
             borderRadius: "100px",
             bgcolor: "#63811E",
             transition: ".5s",
+            opacity: tabIndex == 2 ? 1 : 0.24,
           }}
         ></Box>
         <Box
@@ -133,6 +136,7 @@ const HomeVision = () => {
             borderRadius: "100px",
             bgcolor: "#63811E",
             transition: ".5s",
+            opacity: tabIndex == 3 ? 1 : 0.24,
           }}
         ></Box>
         <Box
@@ -142,6 +146,7 @@ const HomeVision = () => {
             borderRadius: "100px",
             bgcolor: "#63811E",
             transition: ".5s",
+            opacity: tabIndex == 4 ? 1 : 0.24,
           }}
         ></Box>
       </Box>

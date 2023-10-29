@@ -1,9 +1,11 @@
 import CustomizedInput from "@/components/shared/CustomizedInput";
 import CustomizedProgressLoading from "@/components/shared/CustomizedProgressLoading";
 import GoogleIcon from "@/components/shared/icons/GoogleIcon";
+import HiddenIcon from "@/components/shared/icons/HiddenIcon";
+import ShowIcon from "@/components/shared/icons/ShowIcon";
 import { LoginInput } from "@/types/auth";
-import { Box, Button, Divider, Typography } from "@mui/material";
-import React, { ChangeEvent } from "react";
+import { Box, Button, Divider, IconButton, Typography } from "@mui/material";
+import React, { ChangeEvent, useState } from "react";
 
 type Props = {
   setActive: (active: {
@@ -19,6 +21,8 @@ type Props = {
 };
 
 const AuthLogin = ({ setActive, onLogin, onChange, value, loading, error }: Props) => {
+  const [showPassword, setShowPassword] = useState(false);
+
   const handleShowRegister = () => {
     setActive({
       login: false,
@@ -30,6 +34,18 @@ const AuthLogin = ({ setActive, onLogin, onChange, value, loading, error }: Prop
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { value, name } = e.target;
     onChange?.(name, value);
+  };
+
+  const handleShowPassword = () => {
+    setShowPassword((pre) => !pre);
+  };
+
+  const handleMoveForgotPassword = () => {
+    setActive({
+      login: false,
+      forgotPassword: true,
+      register: false,
+    });
   };
 
   return (
@@ -54,12 +70,17 @@ const AuthLogin = ({ setActive, onLogin, onChange, value, loading, error }: Prop
         <CustomizedInput
           label="Mật khẩu"
           placeholder="Nhập mật khẩu"
-          type="password"
+          type={showPassword ? "text" : "password"}
           fullWidth
           name="password"
           value={value?.password}
           onChange={handleChange}
-          sx={{ height: "48px" }}
+          sx={{ height: "48px", pr: "5px" }}
+          endAdornment={
+            <IconButton onClick={handleShowPassword}>
+              {showPassword ? <ShowIcon /> : <HiddenIcon />}
+            </IconButton>
+          }
         />
       </Box>
       <Box
@@ -79,6 +100,8 @@ const AuthLogin = ({ setActive, onLogin, onChange, value, loading, error }: Prop
         <Typography
           color="primary.main"
           fontSize="12px"
+          onClick={handleMoveForgotPassword}
+          sx={{ cursor: "pointer" }}
         >
           Quên mật khẩu?
         </Typography>

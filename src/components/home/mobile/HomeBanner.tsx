@@ -1,9 +1,20 @@
 "use client";
 
 import { Box, Button, Typography } from "@mui/material";
+import { useRouter } from "next-intl/client";
 import React from "react";
 
 const HomeBanner = () => {
+  const router = useRouter();
+
+  const handleMoveContact = () => {
+    router.push("/contact");
+  };
+
+  const handleMoveProduct = () => {
+    router.push("/product");
+  };
+
   return (
     <Box sx={{ height: "375px", position: "relative" }}>
       <Box sx={{ height: "375px", position: "relative" }}>
@@ -78,6 +89,7 @@ const HomeBanner = () => {
         <Box sx={{ mt: "16px" }}>
           <Button
             variant="contained"
+            onClick={handleMoveProduct}
             sx={{
               height: "42px",
               width: "150px",
@@ -90,6 +102,7 @@ const HomeBanner = () => {
           </Button>
           <Button
             variant="outlined"
+            onClick={handleMoveContact}
             sx={{
               height: "42px",
               width: "150px",

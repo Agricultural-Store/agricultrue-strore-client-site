@@ -43,9 +43,17 @@ const ForgotPasswordMail = ({ setActive, onChange }: Props) => {
   };
 
   return (
-    <Box pt="153px">
-      <Typography variant="h3">Quên mật khẩu</Typography>
-      <Typography sx={{ color: "color.textPrimary", opacity: 0.64, fontSize: "16px" }}>
+    <Box>
+      <Typography
+        variant="h3"
+        textAlign="start"
+      >
+        Quên mật khẩu
+      </Typography>
+      <Typography
+        textAlign="start"
+        sx={{ color: "color.textPrimary", opacity: 0.64, fontSize: "16px" }}
+      >
         Chúng tôi sẽ gửi mã OTP về email của bạn
       </Typography>
       <Box sx={{ display: "flex", flexDirection: "column", gap: "24px", mt: "40px" }}>
@@ -53,8 +61,9 @@ const ForgotPasswordMail = ({ setActive, onChange }: Props) => {
           label="Email"
           placeholder="Nhập email"
           name="email"
+          fullWidth
           onChange={handleChange}
-          sx={{ width: "400px", height: "48px" }}
+          sx={{ height: "48px" }}
         />
       </Box>
       <Box

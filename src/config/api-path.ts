@@ -15,6 +15,9 @@ export const userApi = {
   addToCart: `${userApiBase}/cart`,
   address: `${userApiBase}/address`,
   createAddress: `${userApiBase}/address`,
+  forgotPassword: `${userApiBase}/forgot-password`,
+  otp: `${userApiBase}/verification`,
+  changePassword: `${userApiBase}/change-password`,
 };
 
 export const productApi = {

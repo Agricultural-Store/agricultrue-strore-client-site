@@ -86,15 +86,23 @@ const ForgotPasswordForm = ({ token, setActive }: Props) => {
 
   return (
     <Box pt="153px">
-      <Typography variant="h3">Tạo mật khẩu mới</Typography>
+      <Typography
+        variant="h3"
+        fontSize="20px"
+        textAlign="left"
+        fontWeight={600}
+      >
+        Tạo mật khẩu mới
+      </Typography>
       <Box sx={{ display: "flex", flexDirection: "column", gap: "24px", mt: "40px" }}>
         <CustomizedInput
           label="Mật khẩu"
           placeholder="Nhập mật khẩu"
           name="password"
+          fullWidth
           type={showNewPassword ? "text" : "password"}
           onChange={handleChangeNewPassword}
-          sx={{ width: "400px", height: "48px", pr: "5px" }}
+          sx={{ height: "48px", pr: "5px" }}
           endAdornment={
             <IconButton onClick={handleShowNewPassword}>
               {showNewPassword ? <ShowIcon /> : <HiddenIcon />}
@@ -106,8 +114,9 @@ const ForgotPasswordForm = ({ token, setActive }: Props) => {
           placeholder="Nhập lại mật khẩu"
           type="password"
           name="newPassword"
+          fullWidth
           onChange={handleChangeConfirmPassword}
-          sx={{ width: "400px", height: "48px", pr: "5px" }}
+          sx={{ height: "48px", pr: "5px" }}
           endAdornment={
             <IconButton onClick={handleShowConfirmPassword}>
               {showConfirmPassword ? <ShowIcon /> : <HiddenIcon />}

@@ -32,6 +32,7 @@ const AuthRegister = ({ setActive, formValidate, onSubmit, loading, error }: Pro
       component="form"
       id="sign-up-desktop-form"
       onSubmit={formValidate?.handleSubmit(onSubmit)}
+      sx={{ pb: "24px" }}
     >
       <Typography
         variant="h3"

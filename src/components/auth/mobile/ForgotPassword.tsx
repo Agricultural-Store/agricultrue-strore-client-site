@@ -20,11 +20,6 @@ const ForgotPassword = ({ setActive: setActiveProp }: Props) => {
     password: false,
   });
 
-  // const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-  //   const { value, name } = e.target;
-  //   onChange?.(name, value);
-  // };
-
   if (active.mail) {
     return (
       <ForgotPasswordMail

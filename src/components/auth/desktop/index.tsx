@@ -155,13 +155,7 @@ const AuthDesktop = ({
                 component="div"
                 sx={{ px: "48px", py: "32px" }}
               >
-                <ForgotPassword
-                  setActive={setActive}
-                  onLogin={onLogin}
-                  onChange={onLoginChange}
-                  value={loginData}
-                  loading={loginLoading}
-                />
+                <ForgotPassword setActive={setActive} />
               </Box>
             </Collapse>
           </Box>

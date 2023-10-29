@@ -56,26 +56,22 @@ const ForgotPasswordOTP = ({ setActive, email, onChange }: Props) => {
       }
     }
   };
-
-  // useEffect(() => {
-  //   const firstInput = document.getElementsByClassName(
-  //     "otp-input",
-  //   )[0] as HTMLInputElement;
-  //   firstInput.focus();
-  // }, []);
-
   return (
     <Box pt="153px">
       <Typography
         variant="h3"
         width="400px"
+        textAlign="left"
       >
         Quên mật khẩu
       </Typography>
-      <Typography sx={{ color: "color.textPrimary", opacity: 0.64, fontSize: "16px" }}>
+      <Typography
+        textAlign="left"
+        sx={{ color: "color.textPrimary", opacity: 0.64, fontSize: "16px" }}
+      >
         Nhập mã OTP từ email của bạn.
       </Typography>
-      <Box sx={{ display: "flex", flexDirection: "column", gap: "24px", mt: "40px" }}>
+      <Box sx={{ display: "flex", flexDirection: "column", gap: "24px", mt: "36px" }}>
         <Box
           display="flex"
           justifyContent="space-between"

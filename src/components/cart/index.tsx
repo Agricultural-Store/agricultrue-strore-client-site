@@ -11,6 +11,7 @@ import ArrowBackIcon from "../shared/icons/ArrowBackIcon";
 import useUserCar from "@/hooks/user/useUserCar";
 import { useSession } from "next-auth/react";
 import { CartContext } from "@/providers/CartContext";
+import CartAuth from "./CartAuth";
 
 type Props = {
   open: boolean;
@@ -129,6 +130,7 @@ const Cart = ({ onClose, open }: Props) => {
             </>
           )}
           {!product && data?.data.length && data.data.length === 0 && <CartEmpty />}
+          {status === "unauthenticated" && <CartAuth />}
         </Box>
       </CustomizedDrawer>
     </>

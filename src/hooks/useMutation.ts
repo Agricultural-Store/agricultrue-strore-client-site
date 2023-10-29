@@ -18,7 +18,7 @@ export type MutateRelatedDataList<T> = {
   shouldRevalidate?: boolean;
 };
 
-export type WithID = { data: { id: unknown } };
+export type WithID = { data: { id?: unknown } };
 
 /** Wrapped mutation of SWR, see more at https://swr.vercel.app/docs/mutation#useswrmutation */
 function useMutation<Data extends WithID, Body = unknown, Params = unknown>(
