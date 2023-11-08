@@ -15,17 +15,17 @@ const ProductDetailDesktop = () => {
   return (
     <>
       <Container
-       sx={{
-        paddingX: {
-          sm: "48px !important",
-          lg: "0px !important",
-        },
-      }}
+        sx={{
+          paddingX: {
+            sm: "48px !important",
+            lg: "0px !important",
+          },
+        }}
       >
         <ProductDetailBasicInfo product={data?.data} />
         <ProductDetailCenter product={data?.data} />
       </Container>
-      <ProductDetailRelated />
+      <ProductDetailRelated products={data?.data?.productRelated} />
       {(isLoading || isValidating) && <RootLoading />}
     </>
   );

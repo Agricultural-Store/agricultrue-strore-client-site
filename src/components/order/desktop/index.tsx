@@ -7,7 +7,7 @@ import OrderSummary from "./OrderSummary";
 import OrderPayment from "./OrderPayment";
 import OrderOverview from "./OrderOverview";
 import OrderCompleteDialog from "./OrderCompleteDialog";
-import useUserCar from "@/hooks/user/useUserCar";
+import useUserCart from "@/hooks/user/useUserCart";
 import { OrderCreateInput, PaymentMethod } from "@/types/order";
 import useOrderCreate from "@/hooks/order/useOrderCreate";
 import { CartContext } from "@/providers/CartContext";
@@ -22,13 +22,13 @@ const OrderDesktop = () => {
     discountPrice: 0,
     paymentMethod: PaymentMethod.CASH,
     note: "",
-    productIds: [],
+    products: [],
     totalPrice: 0,
   });
 
-  const { product } = useContext(CartContext);
+  const { product, setProduct } = useContext(CartContext);
 
-  const { data } = useUserCar();
+  const { data } = useUserCart();
   const { trigger } = useOrderCreate();
 
   const handleNextStep = () => {
@@ -42,6 +42,7 @@ const OrderDesktop = () => {
           onError: () => {},
         },
       ).then(() => {
+        setProduct(undefined);
         setOpenCompleteDialog(true);
       });
     }
@@ -81,7 +82,9 @@ const OrderDesktop = () => {
   useEffect(() => {
     setInput((pre) => ({
       ...pre,
-      productIds: product ? [product.id] : data?.data.map((value) => value.id) || [],
+      products: product
+        ? [{ id: product.id, productCount: product.productCount }]
+        : data?.data.map((value) => ({ id: value.id })) || [],
     }));
   }, [data, product]);
 
@@ -133,6 +136,7 @@ const OrderDesktop = () => {
             {step === 2 && <OrderPayment onChange={handleChangePayment} />}
             {step === 3 && (
               <OrderOverview
+              addressId={input.addressId}
                 data={data?.data}
                 onBackStep={setStep}
               />

@@ -8,7 +8,7 @@ import CartSummary from "./CartSummary";
 import CartEmpty from "./CartEmpty";
 import useMedia from "@/hooks/shared/useMedia";
 import ArrowBackIcon from "../shared/icons/ArrowBackIcon";
-import useUserCar from "@/hooks/user/useUserCar";
+import useUserCar from "@/hooks/user/useUserCart";
 import { useSession } from "next-auth/react";
 import { CartContext } from "@/providers/CartContext";
 import CartAuth from "./CartAuth";
@@ -113,7 +113,7 @@ const Cart = ({ onClose, open }: Props) => {
               </Box>
             </>
           )}
-          {!product && data?.data.length && data.data.length > 0 && (
+          {!product && data?.data.length && data?.data.length > 0 ? (
             <>
               <Box
                 height="calc(90vh - 320px)"
@@ -128,8 +128,10 @@ const Cart = ({ onClose, open }: Props) => {
                 />
               </Box>
             </>
+          ) : (
+            ""
           )}
-          {!product && data?.data.length && data.data.length === 0 && <CartEmpty />}
+          {!product && !data?.data.length && <CartEmpty />}
           {status === "unauthenticated" && <CartAuth />}
         </Box>
       </CustomizedDrawer>

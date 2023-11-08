@@ -1,10 +1,14 @@
 import { Box, Button, Divider, Typography } from "@mui/material";
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, useContext, useState } from "react";
 import EmptyStarIcon from "../shared/icons/EmptyStarIcon";
 import YellowStarIcon from "../shared/icons/YellowStarIcon";
 import { ProductRatingInput } from "@/types/product-rating";
 import CustomizedInput from "../shared/CustomizedInput";
 import useMedia from "@/hooks/shared/useMedia";
+import useProductRatingCreate from "@/hooks/product/useProductRatingCreate";
+import { productApi } from "@/config/api-path";
+import { useParams } from "next/navigation";
+import { AppContext } from "@/providers/AppContext";
 
 function renderStarItem(length: number, value: number, size?: number) {
   if (length == value)
@@ -27,17 +31,20 @@ function renderStarItem(length: number, value: number, size?: number) {
 const ProductDetailRatingForm = () => {
   const [rating, setRating] = useState<ProductRatingInput>({
     feedback: "",
-    mail: "",
-    productRating: 0,
-    username: "",
+    rating: 0,
   });
 
+  const { setIsLoading } = useContext(AppContext);
+
   const { media } = useMedia();
+  const params = useParams();
+
+  const { trigger } = useProductRatingCreate(+(params.id as string));
 
   const handleClick = (value: number) => {
     setRating((pre) => ({
       ...pre,
-      productRating: value,
+      rating: value,
     }));
   };
 
@@ -47,6 +54,16 @@ const ProductDetailRatingForm = () => {
       ...pre,
       [name]: value,
     }));
+  };
+
+  const handleSubmit = () => {
+    setIsLoading(true);
+    trigger({
+      path: productApi.productRatingCreate(+(params.id as string)),
+      body: rating,
+    }).then(() => {
+      setIsLoading(false);
+    });
   };
 
   return (
@@ -64,7 +81,7 @@ const ProductDetailRatingForm = () => {
           sx={{ cursor: "pointer" }}
           onClick={() => handleClick(1)}
         >
-          {renderStarItem(1, rating.productRating, media ? 16 : undefined)}
+          {renderStarItem(1, rating.rating, media ? 16 : undefined)}
         </Box>
         <Divider
           orientation="vertical"
@@ -76,7 +93,7 @@ const ProductDetailRatingForm = () => {
           sx={{ cursor: "pointer" }}
           onClick={() => handleClick(2)}
         >
-          {renderStarItem(2, rating.productRating, media ? 16 : undefined)}
+          {renderStarItem(2, rating.rating, media ? 16 : undefined)}
         </Box>
         <Divider
           orientation="vertical"
@@ -88,7 +105,7 @@ const ProductDetailRatingForm = () => {
           sx={{ cursor: "pointer" }}
           onClick={() => handleClick(3)}
         >
-          {renderStarItem(3, rating.productRating, media ? 16 : undefined)}
+          {renderStarItem(3, rating.rating, media ? 16 : undefined)}
         </Box>
         <Divider
           orientation="vertical"
@@ -100,7 +117,7 @@ const ProductDetailRatingForm = () => {
           sx={{ cursor: "pointer" }}
           onClick={() => handleClick(4)}
         >
-          {renderStarItem(4, rating.productRating, media ? 16 : undefined)}
+          {renderStarItem(4, rating.rating, media ? 16 : undefined)}
         </Box>
         <Divider
           orientation="vertical"
@@ -112,27 +129,13 @@ const ProductDetailRatingForm = () => {
           sx={{ cursor: "pointer" }}
           onClick={() => handleClick(5)}
         >
-          {renderStarItem(5, rating.productRating, media ? 16 : undefined)}
+          {renderStarItem(5, rating.rating, media ? 16 : undefined)}
         </Box>
       </Box>
       <Box
         component="form"
         sx={{ display: "flex", flexDirection: "column", gap: "20px", my: "30px" }}
       >
-        <CustomizedInput
-          fullWidth
-          label="Tên của bạn"
-          placeholder="Nhập tên của bạn"
-          name="username"
-          onChange={handleChange}
-        />
-        <CustomizedInput
-          fullWidth
-          label="Địa chỉ email"
-          placeholder="Nhập địa chỉ email"
-          name="mail"
-          onChange={handleChange}
-        />
         <CustomizedInput
           fullWidth
           label="Đánh giá"
@@ -145,7 +148,7 @@ const ProductDetailRatingForm = () => {
       </Box>
       <Button
         variant="contained"
-        type="submit"
+        onClick={handleSubmit}
       >
         Đánh giá ngay
       </Button>

@@ -9,6 +9,7 @@ import AppProvider from "./AppProvider";
 import { SessionProvider } from "next-auth/react";
 import { SnackbarProvider } from "notistack";
 import CartProvider from "./CartProvider";
+import NewsProvider from "./NewsProvider";
 
 type Props = {
   children: React.ReactNode;
@@ -25,7 +26,9 @@ function AppProviders({ children, font }: Props) {
             <SWRProvider>
               <SessionProvider>
                 <AppProvider>
-                  <CartProvider>{children}</CartProvider>
+                  <NewsProvider>
+                    <CartProvider>{children}</CartProvider>
+                  </NewsProvider>
                 </AppProvider>
               </SessionProvider>
             </SWRProvider>

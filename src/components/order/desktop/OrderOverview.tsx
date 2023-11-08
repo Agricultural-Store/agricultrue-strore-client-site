@@ -1,15 +1,22 @@
 import RoundedEditIcon from "@/components/shared/icons/RoundedEditIcon";
 import { Box, Divider, IconButton, Typography } from "@mui/material";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import OrderOverviewTable from "./OrderOverviewTable";
 import { ProductInCart } from "@/types/cart";
+import useUserAddress from "@/hooks/user/useUserAddress";
+import { Address } from "@/types/address";
 
 type Props = {
   onBackStep: (step: number) => void;
-  data?: ProductInCart[]
+  data?: ProductInCart[];
+  addressId?: number;
 };
 
-const OrderOverview = ({ onBackStep, data }: Props) => {
+const OrderOverview = ({ onBackStep, data, addressId }: Props) => {
+  const [address, setAddress] = useState<Address>();
+
+  const { data: addresses } = useUserAddress();
+
   const handleEditAddress = () => {
     onBackStep(1);
   };
@@ -17,6 +24,11 @@ const OrderOverview = ({ onBackStep, data }: Props) => {
   const handleEditPayment = () => {
     onBackStep(2);
   };
+
+  useEffect(() => {
+    const _address = addresses?.data.find((add) => add.addressId === addressId);
+    setAddress(_address);
+  }, [addresses, addressId]);
 
   return (
     <Box my="24px">
@@ -49,7 +61,7 @@ const OrderOverview = ({ onBackStep, data }: Props) => {
                 fontWeight="normal"
                 component="span"
               >
-                Dinh Phuc Khang
+                {address?.customerName}
               </Typography>
             </Typography>
             <Typography
@@ -62,7 +74,7 @@ const OrderOverview = ({ onBackStep, data }: Props) => {
                 fontWeight="normal"
                 component="span"
               >
-                0123 456 789
+                {address?.phone}
               </Typography>
             </Typography>
             <Typography
@@ -75,8 +87,7 @@ const OrderOverview = ({ onBackStep, data }: Props) => {
                 fontWeight="normal"
                 component="span"
               >
-                Khoa Công nghệ phần mềm, Trường Công nghệ Thông tin & Truyền thông, Trường
-                Đại học Cần Thơ
+                {address?.addressDetail}
               </Typography>
             </Typography>
           </Box>

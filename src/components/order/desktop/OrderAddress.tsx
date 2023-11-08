@@ -27,7 +27,7 @@ const OrderAddress = ({ onChange, onChangeNote }: Props) => {
   };
 
   useEffect(() => {
-    if (!addressCurrentId && data?.data) {
+    if (!addressCurrentId && data?.data && data.data.length) {
       setAddressCurrentId(data?.data[0].addressId);
       onChange?.(data?.data[0].addressId);
     }
@@ -53,22 +53,31 @@ const OrderAddress = ({ onChange, onChangeNote }: Props) => {
         &quot;Gửi đến địa chỉ này&quot; tương ứng. Hoặc bạn có thể nhập một địa chỉ giao
         hàng mới.
       </Typography>
-      <Box sx={{ overflowX: "scroll" }}>
+      <Box sx={{ overflowX: "auto" }}>
         <Box
           my="24px"
           display="flex"
           // flexWrap="wrap"
           gap="16px"
         >
-          {data?.data.map((address) => (
-            <OrderAddressItem
-              id={address.addressId}
-              key={address.addressId + Math.random() * 100000}
-              address={address}
-              currentId={addressCurrentId}
-              onChecked={handleAddressChecked}
-            />
-          ))}
+          {data?.data.length ? (
+            data.data.map((address) => (
+              <OrderAddressItem
+                id={address.addressId}
+                key={address.addressId + Math.random() * 100000}
+                address={address}
+                currentId={addressCurrentId}
+                onChecked={handleAddressChecked}
+              />
+            ))
+          ) : (
+            <Typography
+              textAlign="center"
+              width="100%"
+            >
+              Vui lòng thêm địa chỉ của bạn!
+            </Typography>
+          )}
         </Box>
       </Box>
       <Box mt="20px">

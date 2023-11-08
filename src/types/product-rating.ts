@@ -6,6 +6,7 @@ export type ProductRating = {
   createdAt: string;
 };
 
-export type ProductRatingInput = Omit<ProductRating, "userImage" | "createdAt"> & {
-  mail: string;
-};
+export type ProductRatingInput = {
+  rating: number;
+  feedback: string;
+}

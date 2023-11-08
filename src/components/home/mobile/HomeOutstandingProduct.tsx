@@ -1,3 +1,4 @@
+import ProductItem from "@/components/product/ProductItem";
 import NextIcon from "@/components/shared/icons/NextIcon";
 import { Box, Button, Grid, Typography } from "@mui/material";
 import { useRouter } from "next-intl/client";
@@ -43,57 +44,19 @@ const HomeOutstandingProduct = () => {
           item
           xs={12}
         >
-          <Box
-            sx={{
-              width: "80%",
-              m: "0 auto",
-              height: "320px",
-              bgcolor: "rgba(40, 140, 20, 0.1)",
-              borderRadius: "5px",
-            }}
-          ></Box>
+          <ProductItem />
         </Grid>
         <Grid
           item
           xs={12}
         >
-          <Box
-            sx={{
-              width: "80%",
-              m: "0 auto",
-              height: "320px",
-              bgcolor: "rgba(40, 140, 20, 0.1)",
-              borderRadius: "5px",
-            }}
-          ></Box>
+          <ProductItem />
         </Grid>
         <Grid
           item
           xs={12}
         >
-          <Box
-            sx={{
-              width: "80%",
-              m: "0 auto",
-              height: "320px",
-              bgcolor: "rgba(40, 140, 20, 0.1)",
-              borderRadius: "5px",
-            }}
-          ></Box>
-        </Grid>
-        <Grid
-          item
-          xs={12}
-        >
-          <Box
-            sx={{
-              width: "80%",
-              m: "0 auto",
-              height: "320px",
-              bgcolor: "rgba(40, 140, 20, 0.1)",
-              borderRadius: "5px",
-            }}
-          ></Box>
+          <ProductItem />
         </Grid>
       </Grid>
       <Box sx={{ display: "flex", justifyContent: "center" }}>

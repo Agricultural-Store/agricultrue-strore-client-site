@@ -11,7 +11,7 @@ export interface CartContextType {
 }
 
 export interface OrderCreateInput {
-  productIds: number[];
+  products: { id: number; productCount?: number }[];
   addressId: number;
   totalPrice: number;
   discountPrice: number;

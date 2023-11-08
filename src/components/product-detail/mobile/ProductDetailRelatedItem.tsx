@@ -33,22 +33,19 @@ const ProductDetailRelatedItem = ({ product }: Props) => {
   return (
     <Grid
       item
-      md={4}
-      lg={3}
-      sm={6}
+      xs={12}
+      key={product.id}
     >
       <Box
         sx={{
-          width: "90%",
           m: "0 auto",
-          height: "320px",
           borderRadius: "5px",
         }}
       >
         <ProductItem
-          product={product}
-          onClick={handleClick}
           onButtonClick={handleButtonClick}
+          onClick={handleClick}
+          product={product}
         />
       </Box>
     </Grid>

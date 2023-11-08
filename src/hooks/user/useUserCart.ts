@@ -3,7 +3,7 @@ import { ProductInCart } from "@/types/cart";
 import { ApiResponse, ErrorResponse, FetchOptions, ListOptions } from "@/types/shared";
 import useSWR from "swr";
 
-const useUserCar = () => {
+const useUserCart = () => {
   return useSWR<
     ApiResponse<ProductInCart[]>,
     ErrorResponse<ListOptions>,
@@ -18,4 +18,4 @@ const useUserCar = () => {
   );
 };
 
-export default useUserCar;
+export default useUserCart;

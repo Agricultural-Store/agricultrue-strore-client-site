@@ -1,7 +1,18 @@
 import { Box, Button, Typography } from "@mui/material";
+import { useRouter } from "next-intl/client";
 import React from "react";
 
 const OrderComplete = () => {
+  const router = useRouter();
+
+  const handleMoveOrderHistory = () => {
+    router.push("/profile/order");
+  };
+
+  const handleMoveProduct = () => {
+    router.push("/product");
+  };
+
   return (
     <Box
       sx={{
@@ -36,6 +47,7 @@ const OrderComplete = () => {
       <Button
         fullWidth
         variant="outlined"
+        onClick={handleMoveOrderHistory}
       >
         Xem đơn hàng
       </Button>
@@ -43,7 +55,7 @@ const OrderComplete = () => {
         fullWidth
         variant="contained"
         sx={{ mt: "12px" }}
-        // onClick={handleClose}
+        onClick={handleMoveProduct}
       >
         Xong
       </Button>

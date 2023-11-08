@@ -1,5 +1,6 @@
 import CustomizedSlideDialog from "@/components/shared/CustomizedSlideDialog";
 import { Box, Button, DialogContent, Typography } from "@mui/material";
+import { useRouter } from "next-intl/client";
 import React from "react";
 
 type Props = {
@@ -8,7 +9,15 @@ type Props = {
 };
 
 const OrderCompleteDialog = ({ onOpen, open }: Props) => {
+  const router = useRouter();
+
+  const handleMoveOrderHistory = () => {
+    router.push("/profile/order");
+    onOpen(false);
+  };
+
   const handleClose = () => {
+    router.push("/product");
     onOpen(false);
   };
 
@@ -45,6 +54,7 @@ const OrderCompleteDialog = ({ onOpen, open }: Props) => {
         <Button
           fullWidth
           variant="outlined"
+          onClick={handleMoveOrderHistory}
         >
           Xem đơn hàng
         </Button>

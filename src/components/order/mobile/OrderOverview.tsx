@@ -5,15 +5,21 @@ import OrderOverviewTable from "./OrderOverviewTable";
 import { ProductInCart } from "@/types/cart";
 import { calcPriceDiscount } from "@/utils/count";
 import { CartContext } from "@/providers/CartContext";
+import { Address } from "@/types/address";
+import useUserAddress from "@/hooks/user/useUserAddress";
 
 type Props = {
   onBackStep: (step: number) => void;
   data?: ProductInCart[];
   onChange?: (originValue: number, discountValue: number) => void;
+  addressId?: number;
 };
 
-const OrderOverview = ({ onBackStep, data: dataProps, onChange }: Props) => {
+const OrderOverview = ({ onBackStep, data: dataProps, onChange, addressId }: Props) => {
   const [data, setData] = useState<ProductInCart[]>();
+  const [address, setAddress] = useState<Address>();
+
+  const { data: addresses } = useUserAddress();
 
   const { product } = useContext(CartContext);
   const handleEditAddress = () => {
@@ -23,6 +29,11 @@ const OrderOverview = ({ onBackStep, data: dataProps, onChange }: Props) => {
   const handleEditPayment = () => {
     onBackStep(2);
   };
+
+  useEffect(() => {
+    const _address = addresses?.data.find((add) => add.addressId === addressId);
+    setAddress(_address);
+  }, [addresses, addressId]);
 
   const originalPrice = useMemo(() => {
     return (
@@ -93,7 +104,7 @@ const OrderOverview = ({ onBackStep, data: dataProps, onChange }: Props) => {
                 component="span"
                 fontSize="inherit"
               >
-                Dinh Phuc Khang
+                {address?.customerName}
               </Typography>
             </Typography>
             <Typography
@@ -107,7 +118,7 @@ const OrderOverview = ({ onBackStep, data: dataProps, onChange }: Props) => {
                 fontWeight="normal"
                 component="span"
               >
-                0123 456 789
+                {address?.phone}
               </Typography>
             </Typography>
             <Typography
@@ -121,8 +132,7 @@ const OrderOverview = ({ onBackStep, data: dataProps, onChange }: Props) => {
                 component="span"
                 fontSize="inherit"
               >
-                Khoa Công nghệ phần mềm, Trường Công nghệ Thông tin & Truyền thông, Trường
-                Đại học Cần Thơ
+                {address?.addressDetail}
               </Typography>
             </Typography>
           </Box>

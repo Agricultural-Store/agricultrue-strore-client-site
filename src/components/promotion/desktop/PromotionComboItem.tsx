@@ -33,7 +33,7 @@ const PromotionComboItem = ({ image, title, description, id }: Props) => {
       />
       <CardContent>
         <Typography
-          fontSize="24px"
+          fontSize="18px"
           fontWeight={600}
           whiteSpace="nowrap"
           overflow="hidden"

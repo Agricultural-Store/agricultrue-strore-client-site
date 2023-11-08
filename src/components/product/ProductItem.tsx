@@ -9,10 +9,12 @@ import {
   Typography,
   CardActionArea,
 } from "@mui/material";
-import React from "react";
+import React, { useContext } from "react";
 import FavoriteIcon from "../shared/icons/FavoriteIcon";
 import { calcPrice } from "@/utils/count";
 import DiscountBgIcon from "../shared/icons/DiscountBgIcon";
+import { AppContext } from "@/providers/AppContext";
+import { useSession } from "next-auth/react";
 
 type Props = {
   product?: Product;
@@ -21,12 +23,20 @@ type Props = {
 };
 
 const ProductItem = ({ product, onClick, onButtonClick }: Props) => {
+  const { setOpenAuth } = useContext(AppContext);
+
+  const { status } = useSession();
+
   const handleClick = () => {
     onClick?.(product?.id);
   };
 
   const handleButtonClick = () => {
-    onButtonClick?.(product);
+    if (status === "authenticated") {
+      onButtonClick?.(product);
+    } else {
+      setOpenAuth(true);
+    }
   };
 
   return (

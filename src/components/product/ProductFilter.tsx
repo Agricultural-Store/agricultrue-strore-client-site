@@ -51,10 +51,10 @@ const ProductFilter = () => {
     });
   };
 
+  
+
   const handleChangeCategory = (e: ChangeEvent<HTMLInputElement>) => {
     let list = options.category || [];
-
-    console.log(typeof options.category);
 
     const { value, checked } = e.target;
 

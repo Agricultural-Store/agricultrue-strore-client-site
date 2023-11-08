@@ -2,7 +2,7 @@ import { Box, Grid, Typography } from "@mui/material";
 import React, { useContext, useEffect, useState } from "react";
 import ProductItem from "../ProductItem";
 import CustomizedSelect from "@/components/shared/CustomizedSelect";
-import { OptionType } from "@/types/shared";
+import { OptionType, SortOrderEnum } from "@/types/shared";
 import CustomizedPagination from "@/components/shared/CustomizedPagination";
 import { useRouter } from "next-intl/client";
 import useProductList from "@/hooks/product/useProductList";
@@ -13,21 +13,22 @@ import ProductFilter from "../ProductFilter";
 import FindInPageOutlinedIcon from "@mui/icons-material/FindInPageOutlined";
 import { AppContext } from "@/providers/AppContext";
 import { CartContext } from "@/providers/CartContext";
+import CustomizedLoading from "@/components/shared/CustomizedLoading";
 const menuItems: OptionType[] = [
   {
-    value: 1,
+    value: "popular",
     label: "Sản phẩm phổ biến",
   },
   {
-    value: 2,
+    value: "ascPrice",
     label: "Giá từ thấp đến cao",
   },
   {
-    value: 3,
+    value: "descPrice",
     label: "Giá từ cao đến thấp",
   },
   {
-    value: 3,
+    value: "alphabet",
     label: "Theo thứ tự chữ cái (A-Z)",
   },
 ];
@@ -44,10 +45,11 @@ const ProductList = () => {
     limit: 10,
     offset: 0,
     searchField: "productName",
+    sortField: "productPrice",
   });
   const { media } = useMedia(1000);
 
-  const { data } = useProductList(options);
+  const { data, isLoading, isValidating } = useProductList(options);
 
   const pageSize = data?.filter?.limit || 30;
   const currentPage = Math.floor(data?.filter?.offset ?? 0 / pageSize);
@@ -68,6 +70,36 @@ const ProductList = () => {
   const handleChangePage = (page: number) => {
     setOptions({
       offset: (page - 1) * pageSize,
+    });
+  };
+
+  const handleChange = (value?: string) => {
+    let sortField = options.searchField;
+    let sortBy: SortOrderEnum;
+    switch (value) {
+      case "popular": {
+        sortField = "productPrice";
+        sortBy = SortOrderEnum.DESC;
+        break;
+      }
+      case "descPrice": {
+        sortField = "productPrice";
+        sortBy = SortOrderEnum.DESC;
+        break;
+      }
+      case "ascPrice": {
+        sortField = "productPrice";
+        sortBy = SortOrderEnum.ASC;
+        break;
+      }
+      default: {
+        sortField = "productName";
+        sortBy = SortOrderEnum.DESC;
+      }
+    }
+    setOptions({
+      sortField: sortField,
+      sortOrder: sortBy,
     });
   };
 
@@ -97,39 +129,61 @@ const ProductList = () => {
           }}
         >
           <Typography sx={{ fontSize: "28px", fontWeight: "bold" }}>Gạo Dẻo</Typography>
-          <CustomizedSelect menuItems={menuItems} />
+          <CustomizedSelect
+            menuItems={menuItems}
+            value={"popular"}
+            onChange={handleChange}
+          />
         </Box>
         <Grid
           container
           spacing={3}
         >
-          {products.map((product) => (
+          {(isLoading || isValidating) && (
             <Grid
               item
-              key={product.id}
               xs={12}
-              sm={6}
-              md={4}
+              textAlign="center"
+              display="flex"
+              justifyContent="center"
             >
-              <ProductItem
-                product={product}
-                onClick={handleClick}
-                onButtonClick={handleButtonClick}
+              <CustomizedLoading
+                color="green"
+                size="small"
               />
             </Grid>
-          ))}
-          <Grid
-            item
-            xs={12}
-            textAlign="center"
-            color="color.textNeutral500"
-          >
-            <FindInPageOutlinedIcon
-              color="inherit"
-              sx={{ fontSize: "60px" }}
-            />
-            <Typography>Không tìm thấy kết quả nào</Typography>
-          </Grid>
+          )}
+          {!isLoading &&
+            !isValidating &&
+            products.map((product) => (
+              <Grid
+                item
+                key={product.id}
+                xs={12}
+                sm={6}
+                md={4}
+              >
+                <ProductItem
+                  product={product}
+                  onClick={handleClick}
+                  onButtonClick={handleButtonClick}
+                />
+              </Grid>
+            ))}
+          {!isLoading && !isValidating && products.length == 0 && (
+            <Grid
+              item
+              xs={12}
+              textAlign="center"
+              color="color.textNeutral500"
+            >
+              <FindInPageOutlinedIcon
+                color="inherit"
+                sx={{ fontSize: "60px" }}
+              />
+              <Typography>Không tìm thấy kết quả nào</Typography>
+            </Grid>
+          )}
         </Grid>
         <CustomizedPagination
           sx={{ mt: "48px" }}

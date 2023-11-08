@@ -5,7 +5,7 @@ import OrderPayment from "./OrderPayment";
 import OrderOverview from "./OrderOverview";
 import ArrowBackIcon from "@/components/shared/icons/ArrowBackIcon";
 import OrderComplete from "./OrderComplete";
-import useUserCar from "@/hooks/user/useUserCar";
+import useUserCar from "@/hooks/user/useUserCart";
 import { scrollTo } from "@/utils/scroll";
 import useOrderCreate from "@/hooks/order/useOrderCreate";
 import { OrderCreateInput, PaymentMethod } from "@/types/order";
@@ -19,7 +19,7 @@ const OrderMobile = () => {
     discountPrice: 0,
     paymentMethod: PaymentMethod.CASH,
     note: "",
-    productIds: [],
+    products: [],
     totalPrice: 0,
   });
 
@@ -85,7 +85,9 @@ const OrderMobile = () => {
   useEffect(() => {
     setInput((pre) => ({
       ...pre,
-      productIds: product ? [product.id] : data?.data.map((value) => value.id) || [],
+      products: product
+        ? [{ id: product.id, productCount: product.productCount }]
+        : data?.data.map((value) => ({ id: value.id })) || [],
     }));
   }, [data, product]);
 
@@ -133,6 +135,7 @@ const OrderMobile = () => {
                 data={data?.data}
                 onBackStep={setStep}
                 onChange={handleChangeSummary}
+                addressId={input.addressId}
               />
             )}
             {step === 4 && <OrderComplete />}

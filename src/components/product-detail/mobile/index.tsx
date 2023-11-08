@@ -15,7 +15,7 @@ const ProductDetailMobile = () => {
     <>
       <ProductDetailBasicInfo product={data?.data} />
       <ProductDetailCenter product={data?.data} />
-      <ProductDetailRelated />
+      <ProductDetailRelated products={data?.data.productRelated} />
       {(isLoading || isValidating) && <RootLoading />}
     </>
   );

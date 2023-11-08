@@ -27,9 +27,7 @@ function renderStarItem(length: number, value: number, size?: number) {
 const ProductDetailRatingForm = () => {
   const [rating, setRating] = useState<ProductRatingInput>({
     feedback: "",
-    mail: "",
-    productRating: 0,
-    username: "",
+    rating: 0,
   });
 
   const { media } = useMedia();
@@ -37,7 +35,7 @@ const ProductDetailRatingForm = () => {
   const handleClick = (value: number) => {
     setRating((pre) => ({
       ...pre,
-      productRating: value,
+      rating: value,
     }));
   };
 
@@ -64,7 +62,7 @@ const ProductDetailRatingForm = () => {
           sx={{ cursor: "pointer" }}
           onClick={() => handleClick(1)}
         >
-          {renderStarItem(1, rating.productRating, media ? 16 : undefined)}
+          {renderStarItem(1, rating.rating, media ? 16 : undefined)}
         </Box>
         <Divider
           orientation="vertical"
@@ -76,7 +74,7 @@ const ProductDetailRatingForm = () => {
           sx={{ cursor: "pointer" }}
           onClick={() => handleClick(2)}
         >
-          {renderStarItem(2, rating.productRating, media ? 16 : undefined)}
+          {renderStarItem(2, rating.rating, media ? 16 : undefined)}
         </Box>
         <Divider
           orientation="vertical"
@@ -88,7 +86,7 @@ const ProductDetailRatingForm = () => {
           sx={{ cursor: "pointer" }}
           onClick={() => handleClick(3)}
         >
-          {renderStarItem(3, rating.productRating, media ? 16 : undefined)}
+          {renderStarItem(3, rating.rating, media ? 16 : undefined)}
         </Box>
         <Divider
           orientation="vertical"
@@ -100,7 +98,7 @@ const ProductDetailRatingForm = () => {
           sx={{ cursor: "pointer" }}
           onClick={() => handleClick(4)}
         >
-          {renderStarItem(4, rating.productRating, media ? 16 : undefined)}
+          {renderStarItem(4, rating.rating, media ? 16 : undefined)}
         </Box>
         <Divider
           orientation="vertical"
@@ -112,7 +110,7 @@ const ProductDetailRatingForm = () => {
           sx={{ cursor: "pointer" }}
           onClick={() => handleClick(5)}
         >
-          {renderStarItem(5, rating.productRating, media ? 16 : undefined)}
+          {renderStarItem(5, rating.rating, media ? 16 : undefined)}
         </Box>
       </Box>
       <Box

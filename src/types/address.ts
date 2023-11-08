@@ -3,6 +3,8 @@ export interface Address {
   addressId: number;
   customerName?: string;
   address?: string;
+  addressDetail?: string;
+  phone?: string;
 }
 
 export interface AddressCreateInput {

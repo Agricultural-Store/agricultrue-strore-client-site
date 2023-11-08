@@ -3,6 +3,8 @@ import React, { useContext } from "react";
 import ProductInCartItem from "./ProductInCartItem";
 import { Box } from "@mui/material";
 import { CartContext } from "@/providers/CartContext";
+import useUserCartUpdate from "@/hooks/user/useUserCartUpdate";
+import { userApi } from "@/config/api-path";
 
 type Props = {
   products?: ProductInCart[];
@@ -11,8 +13,9 @@ type Props = {
 
 const ProductInCartList = ({ products, isBuyNow }: Props) => {
   const { setProduct, product } = useContext(CartContext);
+
+  const { trigger } = useUserCartUpdate();
   const handleChangeCount = (value: number, id?: number) => {
-    const index = products?.findIndex((product) => product.id === id) || -1;
     if (isBuyNow) {
       if (product)
         setProduct?.({
@@ -20,7 +23,12 @@ const ProductInCartList = ({ products, isBuyNow }: Props) => {
           productCount: value,
         });
     } else {
-      console.log(index);
+      trigger({
+        path: userApi.changeCart(id),
+        body: {
+          productCount: value,
+        },
+      });
     }
   };
 

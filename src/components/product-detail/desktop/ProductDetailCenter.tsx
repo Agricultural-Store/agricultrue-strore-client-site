@@ -15,7 +15,7 @@ const ProductDetailCenter = ({ product }: Props) => {
   const [tabActive, setTabActive] = useState(0);
 
   return (
-    <Box sx={{ width: "67%", m: "0 auto" }}>
+    <Box sx={{ width: { lg: "67%", mg: "90%" }, m: "0 auto" }}>
       <CustomizedTab
         value={tabActive}
         onChange={setTabActive}

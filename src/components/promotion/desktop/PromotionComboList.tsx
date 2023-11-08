@@ -36,7 +36,7 @@ const PromotionComboList = () => {
           </Grid>
         )}
 
-        {!isLoading && !isValidating && data?.data.length == 0 && (
+        {!isLoading && !isValidating && data?.data.length === 0 && (
           <Grid
             item
             xs={12}

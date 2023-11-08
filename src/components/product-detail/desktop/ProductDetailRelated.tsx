@@ -1,43 +1,50 @@
 import { Box, Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
 import React from "react";
 import ProductDetailRelatedItem from "./ProductDetailRelatedItem";
+import { Product } from "@/types/product";
 
-const ProductDetailRelated = () => {
+type Props = {
+  products?: Product[];
+};
+
+const ProductDetailRelated = ({ products }: Props) => {
   const theme = useTheme();
   const matchesMd = useMediaQuery(theme.breakpoints.up("md"));
-  const matchesSm = useMediaQuery(theme.breakpoints.up("sm"));
   const matchesLg = useMediaQuery(theme.breakpoints.up("lg"));
 
   const renderItem = () => {
     if (matchesLg) {
       return (
         <>
-          <ProductDetailRelatedItem />
-          <ProductDetailRelatedItem />
-          <ProductDetailRelatedItem />
-          <ProductDetailRelatedItem />
+          {products?.slice(0, 3).map((product) => (
+            <ProductDetailRelatedItem
+              key={product.id}
+              product={product}
+            />
+          ))}
         </>
       );
     }
     if (matchesMd) {
       return (
         <>
-          <ProductDetailRelatedItem />
-          <ProductDetailRelatedItem />
-          <ProductDetailRelatedItem />
+          {products?.slice(0, 2).map((product) => (
+            <ProductDetailRelatedItem
+              key={product.id}
+              product={product}
+            />
+          ))}
         </>
       );
     }
-    if (matchesSm) {
-      <>
-        <ProductDetailRelatedItem />
-        <ProductDetailRelatedItem />
-      </>;
-    }
     return (
       <>
-        <ProductDetailRelatedItem />
-        <ProductDetailRelatedItem />
+        {products?.slice(0, 1).map((product) => (
+          <ProductDetailRelatedItem
+            key={product.id}
+            product={product}
+          />
+        ))}
       </>
     );
   };
@@ -54,6 +61,7 @@ const ProductDetailRelated = () => {
       <Grid
         container
         py="48px"
+        justifyContent="space-evenly"
       >
         {renderItem()}
       </Grid>

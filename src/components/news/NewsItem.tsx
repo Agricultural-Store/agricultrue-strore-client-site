@@ -12,8 +12,18 @@ import {
 } from "@mui/material";
 import React from "react";
 import NextIcon from "../shared/icons/NextIcon";
+import { News } from "@/types/news";
 
-const NewsItem = () => {
+type Props = {
+  news?: News;
+  onClick?: (id?: number) => void;
+};
+
+const NewsItem = ({ news, onClick }: Props) => {
+  const handleClick = (id?: number) => {
+    onClick?.(id);
+  };
+
   return (
     <Grid
       item
@@ -37,7 +47,7 @@ const NewsItem = () => {
       >
         <CardMedia
           component="img"
-          image="/images/image.png"
+          image={news?.newImage || "/images/image.png"}
           sx={{ height: "46%", width: "100%", objectFit: "cover" }}
         />
         <CardContent
@@ -71,7 +81,7 @@ const NewsItem = () => {
               textAlign: "justify",
             }}
           >
-            Làm nông “tử tế” ở Đồng bằng sông Cửu Long
+            {news?.newsTitle}
           </Typography>
           <Typography
             className="line-clamp"
@@ -92,6 +102,7 @@ const NewsItem = () => {
             sx={{ display: "flex", alignItems: "center", pl: 0 }}
           >
             <Box
+              onClick={() => handleClick(news?.id)}
               sx={{
                 fontSize: {
                   lg: "16px",

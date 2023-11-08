@@ -21,6 +21,7 @@ const OrderAddressItem = ({ id, onChecked, currentId, address }: Props) => {
       bgcolor="color.bgNeutral200"
       p="24px"
       borderRadius="4px"
+      width="100%"
     >
       <Box
         sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}
@@ -43,7 +44,7 @@ const OrderAddressItem = ({ id, onChecked, currentId, address }: Props) => {
         lineHeight="22px"
         my="16px"
       >
-        {address?.address}
+        {address?.addressDetail}
       </Typography>
       <Box sx={{ display: "flex", gap: "16px" }}>
         <Button

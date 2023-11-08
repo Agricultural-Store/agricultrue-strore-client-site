@@ -1,8 +1,9 @@
+import ProductItem from "@/components/product/ProductItem";
 import NextIcon from "@/components/shared/icons/NextIcon";
-import { Box, Button, Grid, Typography } from "@mui/material";
+import { Box, Button, Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { Variants, motion } from "framer-motion";
 import { useRouter } from "next-intl/client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const opacityVariants: Variants = {
   offscreen: {
@@ -22,11 +23,27 @@ const opacityVariants: Variants = {
 };
 
 const HomeOutstandingProduct = () => {
+  const [slides, setSlides] = useState(4);
+
+  const theme = useTheme();
+  const matchesMd = useMediaQuery(theme.breakpoints.up("md"));
+  const matchesSm = useMediaQuery(theme.breakpoints.up("sm"));
+  const matchesXs = useMediaQuery(theme.breakpoints.up("xs"));
+  const matchesLg = useMediaQuery(theme.breakpoints.up("lg"));
   const router = useRouter();
 
   const handleClick = () => {
     router.push("/product");
   };
+
+  useEffect(() => {
+    [matchesXs, matchesSm, matchesMd, matchesLg].forEach((value, index) => {
+      if (value) {
+        setSlides(index + 1);
+      }
+    });
+  }, [matchesLg, matchesMd, matchesSm, matchesXs]);
+
   return (
     <Box
       sx={{
@@ -76,63 +93,21 @@ const HomeOutstandingProduct = () => {
           <Grid
             container
             py="48px"
+            spacing="24px"
+            justifyContent="space-evenly"
           >
-            <Grid
-              item
-              xs={3}
-            >
-              <Box
-                sx={{
-                  width: "80%",
-                  m: "0 auto",
-                  height: "320px",
-                  bgcolor: "rgba(40, 140, 20, 0.1)",
-                  borderRadius: "5px",
-                }}
-              ></Box>
-            </Grid>
-            <Grid
-              item
-              xs={3}
-            >
-              <Box
-                sx={{
-                  width: "80%",
-                  m: "0 auto",
-                  height: "320px",
-                  bgcolor: "rgba(40, 140, 20, 0.1)",
-                  borderRadius: "5px",
-                }}
-              ></Box>
-            </Grid>
-            <Grid
-              item
-              xs={3}
-            >
-              <Box
-                sx={{
-                  width: "80%",
-                  m: "0 auto",
-                  height: "320px",
-                  bgcolor: "rgba(40, 140, 20, 0.1)",
-                  borderRadius: "5px",
-                }}
-              ></Box>
-            </Grid>
-            <Grid
-              item
-              xs={3}
-            >
-              <Box
-                sx={{
-                  width: "80%",
-                  m: "0 auto",
-                  height: "320px",
-                  bgcolor: "rgba(40, 140, 20, 0.1)",
-                  borderRadius: "5px",
-                }}
-              ></Box>
-            </Grid>
+            {Array(...Array(slides)).map((_, index) => (
+              <Grid
+                item
+                key={index}
+                xs={12}
+                sm={5}
+                md={4}
+                lg={3}
+              >
+                <ProductItem />
+              </Grid>
+            ))}
           </Grid>
           <Box sx={{ display: "flex", justifyContent: "center" }}>
             <Button

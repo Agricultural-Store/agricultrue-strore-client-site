@@ -8,15 +8,10 @@ const useProductList = (params?: ProductFilterParams) => {
     ApiResponse<Product[]>,
     ErrorResponse<ProductFilterParams>,
     FetchOptions<ProductFilterParams>
-  >(
-    {
-      path: productApi.list,
-      params,
-    },
-    {
-      keepPreviousData: true,
-    },
-  );
+  >({
+    path: productApi.list,
+    params,
+  });
 };
 
 export default useProductList;

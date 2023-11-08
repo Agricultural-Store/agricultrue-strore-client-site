@@ -1,7 +1,14 @@
 import { Box, Button, Typography } from "@mui/material";
+import { useRouter } from "next-intl/client";
 import React from "react";
 
 const CartEmpty = () => {
+  const router = useRouter();
+
+  const handleClick = () => {
+    router.push("/product");
+  };
+
   return (
     <Box
       sx={{
@@ -33,6 +40,7 @@ const CartEmpty = () => {
         variant="contained"
         fullWidth
         sx={{ mt: "24px" }}
+        onClick={handleClick}
       >
         Mua Ngay
       </Button>

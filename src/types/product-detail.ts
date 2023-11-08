@@ -1,3 +1,5 @@
+import { Product } from "./product";
+
 export type ProductDetail = {
   id: number;
   productName?: string;
@@ -20,6 +22,5 @@ export type ProductDetail = {
     grainStructure?: string;
     brokenGrainRating?: string;
   };
+  productRelated?: Product[];
 };
-
-

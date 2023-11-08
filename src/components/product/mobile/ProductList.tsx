@@ -2,7 +2,7 @@ import { Box, Grid, Typography } from "@mui/material";
 import React, { useContext, useEffect, useState } from "react";
 import ProductItem from "../ProductItem";
 import CustomizedSelect from "@/components/shared/CustomizedSelect";
-import { OptionType } from "@/types/shared";
+import { OptionType, SortOrderEnum } from "@/types/shared";
 import CustomizedPagination from "@/components/shared/CustomizedPagination";
 import { useRouter } from "next-intl/client";
 import { Product, ProductFilterParams } from "@/types/product";
@@ -68,6 +68,36 @@ const ProductList = () => {
     });
   };
 
+  const handleChange = (value?: string) => {
+    let sortField = options.searchField;
+    let sortBy: SortOrderEnum;
+    switch (value) {
+      case "popular": {
+        sortField = "productPrice";
+        sortBy = SortOrderEnum.DESC;
+        break;
+      }
+      case "descPrice": {
+        sortField = "productPrice";
+        sortBy = SortOrderEnum.DESC;
+        break;
+      }
+      case "ascPrice": {
+        sortField = "productPrice";
+        sortBy = SortOrderEnum.ASC;
+        break;
+      }
+      default: {
+        sortField = "productName";
+        sortBy = SortOrderEnum.DESC;
+      }
+    }
+    setOptions({
+      sortField: sortField,
+      sortOrder: sortBy,
+    });
+  };
+
   useEffect(() => {
     if (data?.data) {
       setProducts(data.data);
@@ -93,6 +123,8 @@ const ProductList = () => {
           <CustomizedSelect
             menuItems={menuItems}
             width="120px"
+            value="popular"
+            onChange={handleChange}
           />
         </Box>
         <Grid

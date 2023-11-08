@@ -23,6 +23,8 @@ const OrderOverviewTable = ({ data: dataProps }: Props) => {
   const [data, setData] = useState<ProductInCart[]>();
   const { product } = useContext(CartContext);
 
+  const handleDelete = () => {};
+
   useEffect(() => {
     if (product) {
       setData([product]);
@@ -124,7 +126,7 @@ const OrderOverviewTable = ({ data: dataProps }: Props) => {
                   align="center"
                   sx={{ pr: 0 }}
                 >
-                  <IconButton>
+                  <IconButton onClick={handleDelete}>
                     <DeleteIcon />
                   </IconButton>
                 </TableCell>
