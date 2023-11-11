@@ -7,7 +7,6 @@ import CustomizedPagination from "@/components/shared/CustomizedPagination";
 import { useRouter } from "next-intl/client";
 import { Product, ProductFilterParams } from "@/types/product";
 import useProductList from "@/hooks/product/useProductList";
-import useQueryParams from "@/hooks/shared/useQueryParams";
 import ProductFilter from "../ProductFilter";
 import { AppContext } from "@/providers/AppContext";
 import { CartContext } from "@/providers/CartContext";
@@ -39,9 +38,11 @@ const ProductList = () => {
 
   const router = useRouter();
 
-  const [options, setOptions] = useQueryParams<ProductFilterParams>({
+  const [options, setOptions] = useState<ProductFilterParams>({
     limit: 10,
     offset: 0,
+    category: [],
+    searchValue: "",
   });
 
   const { data } = useProductList(options);
@@ -63,9 +64,10 @@ const ProductList = () => {
   };
 
   const handleChangePage = (page: number) => {
-    setOptions({
+    setOptions((pre) => ({
+      ...pre,
       offset: (page - 1) * pageSize,
-    });
+    }));
   };
 
   const handleChange = (value?: string) => {
@@ -92,10 +94,11 @@ const ProductList = () => {
         sortBy = SortOrderEnum.DESC;
       }
     }
-    setOptions({
+    setOptions((pre) => ({
+      ...pre,
       sortField: sortField,
       sortOrder: sortBy,
-    });
+    }));
   };
 
   useEffect(() => {
@@ -107,7 +110,10 @@ const ProductList = () => {
   return (
     <Box sx={{ p: "48px 16px" }}>
       <Box>
-        <ProductFilter />
+        <ProductFilter
+          options={options}
+          setOptions={setOptions}
+        />
       </Box>
       <Box>
         <Box

@@ -6,7 +6,6 @@ import { OptionType, SortOrderEnum } from "@/types/shared";
 import CustomizedPagination from "@/components/shared/CustomizedPagination";
 import { useRouter } from "next-intl/client";
 import useProductList from "@/hooks/product/useProductList";
-import useQueryParams from "@/hooks/shared/useQueryParams";
 import { Product, ProductFilterParams } from "@/types/product";
 import useMedia from "@/hooks/shared/useMedia";
 import ProductFilter from "../ProductFilter";
@@ -41,11 +40,13 @@ const ProductList = () => {
 
   const router = useRouter();
 
-  const [options, setOptions] = useQueryParams<ProductFilterParams>({
+  const [options, setOptions] = useState<ProductFilterParams>({
     limit: 10,
     offset: 0,
     searchField: "productName",
     sortField: "productPrice",
+    category: [],
+    searchValue: "",
   });
   const { media } = useMedia(1000);
 
@@ -68,9 +69,10 @@ const ProductList = () => {
   };
 
   const handleChangePage = (page: number) => {
-    setOptions({
+    setOptions((pre) => ({
+      ...pre,
       offset: (page - 1) * pageSize,
-    });
+    }));
   };
 
   const handleChange = (value?: string) => {
@@ -97,10 +99,11 @@ const ProductList = () => {
         sortBy = SortOrderEnum.DESC;
       }
     }
-    setOptions({
+    setOptions((pre) => ({
+      ...pre,
       sortField: sortField,
       sortOrder: sortBy,
-    });
+    }));
   };
 
   useEffect(() => {
@@ -112,7 +115,10 @@ const ProductList = () => {
   return (
     <Box sx={{ p: "64px 0px", display: media ? "block" : "flex" }}>
       <Box sx={{ mr: "48px", width: media ? "100%" : "300px" }}>
-        <ProductFilter />
+        <ProductFilter
+          options={options}
+          setOptions={setOptions}
+        />
       </Box>
       <Box
         sx={{

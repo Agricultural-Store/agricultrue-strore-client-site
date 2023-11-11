@@ -1,12 +1,16 @@
 import CustomizedCheckbox from "@/components/shared/CustomizedCheckbox";
 import SearchBox from "@/components/shared/SearchBox";
 import useMedia from "@/hooks/shared/useMedia";
-import useQueryParams from "@/hooks/shared/useQueryParams";
 import { ProductFilterParams } from "@/types/product";
 import { Box, Typography, Divider } from "@mui/material";
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, Dispatch, useState } from "react";
 
-const ProductFilter = () => {
+type Props = {
+  setOptions: Dispatch<React.SetStateAction<ProductFilterParams>>;
+  options: ProductFilterParams;
+};
+
+const ProductFilter = ({ setOptions, options }: Props) => {
   const [categories] = useState([
     {
       categoryName: "Gạo Tấm",
@@ -40,18 +44,13 @@ const ProductFilter = () => {
 
   const { media } = useMedia(1000);
   const { media: mediaMobile } = useMedia();
-  const [options, setOptions] = useQueryParams<ProductFilterParams>({
-    category: [],
-    searchValue: "",
-  });
 
   const handleChangeSearchValue = (value: string) => {
-    setOptions({
+    setOptions((pre) => ({
+      ...pre,
       searchValue: value,
-    });
+    }));
   };
-
-  
 
   const handleChangeCategory = (e: ChangeEvent<HTMLInputElement>) => {
     let list = options.category || [];
@@ -68,9 +67,10 @@ const ProductFilter = () => {
 
     if (checked) {
       const checkedList = [...list, value];
-      setOptions({
+      setOptions((pre) => ({
+        ...pre,
         category: checkedList,
-      });
+      }));
     } else {
       let checkedList: string[] = list;
       const index = checkedList.indexOf(value);
@@ -79,9 +79,10 @@ const ProductFilter = () => {
         checkedList = [...list.slice(0, index), ...list.slice(index + 1)];
       }
 
-      setOptions({
+      setOptions((pre) => ({
+        ...pre,
         category: checkedList,
-      });
+      }));
     }
   };
 
