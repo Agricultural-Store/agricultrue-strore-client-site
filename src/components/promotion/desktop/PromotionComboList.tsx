@@ -63,6 +63,7 @@ const PromotionComboList = () => {
                 image={combo.comboImage}
                 title={combo.comboName}
                 description={combo.comboDescriptionSummary}
+                id={combo.id}
               />
             </Grid>
           ))}

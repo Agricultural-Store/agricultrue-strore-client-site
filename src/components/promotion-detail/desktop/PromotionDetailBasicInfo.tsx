@@ -2,16 +2,16 @@ import CustomizedQuantityInput from "@/components/shared/CustomizedQuantityInput
 import FavoriteIcon from "@/components/shared/icons/FavoriteIcon";
 import NextArrowIcon from "@/components/shared/icons/NextArrowIcon";
 import PreviousIcon from "@/components/shared/icons/PreviousArrowIcon";
-import { ProductDetail } from "@/types/product-detail";
-import { calcPrice } from "@/utils/count";
+import { ProductComboDetail } from "@/types/product-combo-detail";
+// import { calcPrice } from "@/utils/count";
 import { Box, Button, Grid, IconButton, Typography } from "@mui/material";
 import React from "react";
 
 type Props = {
-  product?: ProductDetail;
+  combo?: ProductComboDetail;
 };
 
-const PromotionDetailBasicInfo = ({ product }: Props) => {
+const PromotionDetailBasicInfo = ({ combo }: Props) => {
   return (
     <Grid
       container
@@ -28,7 +28,7 @@ const PromotionDetailBasicInfo = ({ product }: Props) => {
           <Box sx={{ position: "relative", width: "100%" }}>
             <Box
               component="img"
-              src={product?.productImages?.[0] || "/images/product-detail-main.png"}
+              src={combo?.comboImage?.[0] || "/images/combo-detail-main.png"}
               sx={{ width: "100%", height: "400px" }}
             />
             <Box
@@ -72,7 +72,7 @@ const PromotionDetailBasicInfo = ({ product }: Props) => {
             mt="20px"
             spacing={1}
           >
-            {product?.productImages?.slice(1, 7).map((image, index) => (
+            {["combo?.comboImage?.slice(1, 7)"].map((image, index) => (
               <Grid
                 item
                 xs={2}
@@ -129,25 +129,23 @@ const PromotionDetailBasicInfo = ({ product }: Props) => {
           justifyContent: "center",
         }}
       >
-        <Typography sx={{ fontSize: "14px", fontStyle: "italic" }}>
-          {product?.productCategory}
-        </Typography>
+        <Typography sx={{ fontSize: "14px", fontStyle: "italic" }}>Combo</Typography>
         <Typography sx={{ fontSize: "28px", fontWeight: 500 }}>
-          {product?.productName}
+          {combo?.comboName}
         </Typography>
         <Box sx={{ display: "flex", gap: "8px", alignItems: "center" }}>
           <Typography sx={{ color: "color.textPrimary", fontSize: "20px" }}>
-            Giá: {calcPrice(product?.productPrice, product?.productDiscount)}đ/kg
+            {/* Giá: {calcPrice(combo?.productPrice, combo?.productDiscount)}đ/kg */}
           </Typography>
           <Typography sx={{ color: "color.textPrimary300" }}>
-            {product?.productPrice}đ/kg
+            {/* {combo?.productPrice}đ/kg */}
           </Typography>
         </Box>
-        <Typography sx={{ lineHeight: "28px" }}>
-          Gạo ST25 là một loại gạo thơm mới được phát triển tại Việt Nam, đã được vinh
-          danh là loại gạo ngon nhất thế giới trong cuộc thi The World’s Best Rice tổ chức
-          tại Philippines năm 2019.
-        </Typography>
+        <Typography
+          component="div"
+          dangerouslySetInnerHTML={{ __html: combo?.comboDescriptionSummary || "" }}
+          sx={{ lineHeight: "28px" }}
+        ></Typography>
         <Box sx={{ display: "flex", gap: "12px", alignItems: "center" }}>
           <Typography>Số lượng</Typography>
           <CustomizedQuantityInput

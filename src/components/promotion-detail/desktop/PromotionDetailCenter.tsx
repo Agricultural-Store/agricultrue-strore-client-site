@@ -4,14 +4,14 @@ import { Box } from "@mui/material";
 import React, { useState } from "react";
 import PromotionDetailDescription from "./PromotionDetailDescription";
 import PromotionDetailDetail from "./PromotionDetailDetail";
-import { ProductDetail } from "@/types/product-detail";
 import ProductRating from "../ProductRating";
+import { ProductComboDetail } from "@/types/product-combo-detail";
 
 type Props = {
-  product?: ProductDetail;
+  combo?: ProductComboDetail;
 };
 
-const PromotionDetailCenter = ({ product }: Props) => {
+const PromotionDetailCenter = ({ combo }: Props) => {
   const [tabActive, setTabActive] = useState(0);
 
   return (
@@ -25,13 +25,13 @@ const PromotionDetailCenter = ({ product }: Props) => {
           index={0}
           value={tabActive}
         >
-          <PromotionDetailDescription product={product} />
+          <PromotionDetailDescription combo={combo} />
         </CustomizedTabPanel>
         <CustomizedTabPanel
           index={1}
           value={tabActive}
         >
-          <PromotionDetailDetail product={product} />
+          <PromotionDetailDetail combo={combo} />
         </CustomizedTabPanel>
         <CustomizedTabPanel
           index={2}

@@ -32,6 +32,7 @@ export const productApi = {
 
 export const productComboApi = {
   list: `${productComboApiBase}`,
+  detail: (id?: number) => `${productComboApiBase}/${id}`,
 };
 
 export const orderApi = {

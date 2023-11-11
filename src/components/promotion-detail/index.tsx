@@ -2,16 +2,16 @@
 
 import useMedia from "@/hooks/shared/useMedia";
 import React from "react";
-import ProductDetailDesktop from "./desktop";
+import PromotionDetailDesktop from "./desktop";
 import ProductDetailMobile from "./mobile";
 
-const ProductDetail = () => {
+const PromotionDetail = () => {
   const { media } = useMedia();
 
   if (media) {
     return <ProductDetailMobile />;
   }
-  return <ProductDetailDesktop />;
+  return <PromotionDetailDesktop />;
 };
 
-export default ProductDetail;
+export default PromotionDetail;

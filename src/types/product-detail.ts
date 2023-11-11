@@ -9,6 +9,7 @@ export type ProductDetail = {
   productQuantity?: number;
   productDescription?: string;
   productCategory?: string;
+  productSummaryDescription?: string;
   productDetail?: {
     type?: string;
     humidity?: string;

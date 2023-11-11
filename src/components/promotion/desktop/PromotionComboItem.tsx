@@ -7,16 +7,23 @@ import {
   CardMedia,
   Typography,
 } from "@mui/material";
+import { useRouter } from "next-intl/client";
 import React from "react";
 
 type Props = {
   image?: string;
   title?: string;
   description?: string;
-  id?: string;
+  id?: number;
 };
 
 const PromotionComboItem = ({ image, title, description, id }: Props) => {
+  const router = useRouter();
+
+  const handleClick = () => {
+    router.push(`/promotion/${id}`);
+  };
+
   return (
     <Card
       sx={{
@@ -50,9 +57,9 @@ const PromotionComboItem = ({ image, title, description, id }: Props) => {
       </CardContent>
       <CardActions>
         <Button
-          id={id}
           variant="contained"
           fullWidth
+          onClick={handleClick}
         >
           Mua ngay
         </Button>

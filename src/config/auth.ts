@@ -45,6 +45,8 @@ const authOptions: AuthOptions = {
           });
           const user = await res.json();
 
+          console.log("object");
+
           // If no error and we have user data, return it
           if (res.ok && user) {
             return user.data;
@@ -67,7 +69,6 @@ const authOptions: AuthOptions = {
     async jwt({ token, user }) {
       if (user) {
         token.token = user.token;
-        console.log(token.token);
         const profile = await fetch(appConfig.API_HOST + userApi.me, {
           method: "GET",
           mode: "cors",
@@ -80,7 +81,11 @@ const authOptions: AuthOptions = {
           const profileJson: ApiResponse<Me> = await profile.json();
           token.email = profileJson.data.email;
           token.name = profileJson.data.name;
+        } else {
+          token.token === "";
         }
+      } else {
+        token.token === undefined;
       }
       return token;
     },
