@@ -26,7 +26,7 @@ const PromotionDetailDetail = ({ combo }: Props) => {
   };
   return (
     <Box sx={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-      {combo?.products.map((product) => {
+      {combo?.products?.map((product) => {
         return (
           <React.Fragment key={product.id}>
             {renderItem(product.productName, product.productSummaryDescription)}

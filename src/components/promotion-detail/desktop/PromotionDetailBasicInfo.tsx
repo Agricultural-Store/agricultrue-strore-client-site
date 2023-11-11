@@ -3,7 +3,7 @@ import FavoriteIcon from "@/components/shared/icons/FavoriteIcon";
 import NextArrowIcon from "@/components/shared/icons/NextArrowIcon";
 import PreviousIcon from "@/components/shared/icons/PreviousArrowIcon";
 import { ProductComboDetail } from "@/types/product-combo-detail";
-// import { calcPrice } from "@/utils/count";
+import { calcPrice } from "@/utils/count";
 import { Box, Button, Grid, IconButton, Typography } from "@mui/material";
 import React from "react";
 
@@ -12,6 +12,7 @@ type Props = {
 };
 
 const PromotionDetailBasicInfo = ({ combo }: Props) => {
+  console.log(combo);
   return (
     <Grid
       container
@@ -28,7 +29,7 @@ const PromotionDetailBasicInfo = ({ combo }: Props) => {
           <Box sx={{ position: "relative", width: "100%" }}>
             <Box
               component="img"
-              src={combo?.comboImage?.[0] || "/images/combo-detail-main.png"}
+              src={combo?.comboImages?.[0] || "/images/combo-detail-main.png"}
               sx={{ width: "100%", height: "400px" }}
             />
             <Box
@@ -72,7 +73,7 @@ const PromotionDetailBasicInfo = ({ combo }: Props) => {
             mt="20px"
             spacing={1}
           >
-            {["combo?.comboImage?.slice(1, 7)"].map((image, index) => (
+            {combo?.comboImages?.slice(1, 7).map((image, index) => (
               <Grid
                 item
                 xs={2}
@@ -135,10 +136,10 @@ const PromotionDetailBasicInfo = ({ combo }: Props) => {
         </Typography>
         <Box sx={{ display: "flex", gap: "8px", alignItems: "center" }}>
           <Typography sx={{ color: "color.textPrimary", fontSize: "20px" }}>
-            {/* Giá: {calcPrice(combo?.productPrice, combo?.productDiscount)}đ/kg */}
+            Giá: {calcPrice(combo?.comboPrice, combo?.comboDiscount)}đ/kg
           </Typography>
           <Typography sx={{ color: "color.textPrimary300" }}>
-            {/* {combo?.productPrice}đ/kg */}
+            {combo?.comboPrice}đ/kg
           </Typography>
         </Box>
         <Typography

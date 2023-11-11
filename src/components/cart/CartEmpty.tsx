@@ -1,11 +1,15 @@
+import { AppContext } from "@/providers/AppContext";
 import { Box, Button, Typography } from "@mui/material";
 import { useRouter } from "next-intl/client";
-import React from "react";
+import React, { useContext } from "react";
 
 const CartEmpty = () => {
+  const { setOpenCart } = useContext(AppContext);
+
   const router = useRouter();
 
   const handleClick = () => {
+    setOpenCart(false);
     router.push("/product");
   };
 

@@ -1,9 +1,12 @@
 import { ProductInCart } from "@/types/cart";
 import { Box, IconButton, Typography } from "@mui/material";
-import React from "react";
+import React, { useContext } from "react";
 import CustomizedQuantityInput from "../shared/CustomizedQuantityInput";
 import DeleteIcon from "../shared/icons/DeleteIcon";
 import { calcPrice } from "@/utils/count";
+import useUserCartDelete from "@/hooks/user/useUserCartDelete";
+import { userApi } from "@/config/api-path";
+import { CartContext } from "@/providers/CartContext";
 
 type Props = {
   product: ProductInCart;
@@ -11,6 +14,28 @@ type Props = {
 };
 
 const ProductInCartItem = ({ product, onChangeCount }: Props) => {
+  const { trigger } = useUserCartDelete();
+  const { product: productCart, setProduct } = useContext(CartContext);
+
+  const handleClickDelete = () => {
+    if (productCart) {
+      setProduct(undefined);
+    } else
+      trigger(
+        {
+          path: userApi.deleteCart(product.id),
+        },
+        {
+          onError: (err) => {
+            console.log(err);
+          },
+        },
+      ).then((res) => {
+        if (res.statusCode === 200) {
+        }
+      });
+  };
+
   return (
     <Box sx={{ display: "flex", justifyContent: "space-between", my: "24px" }}>
       <Box
@@ -36,7 +61,7 @@ const ProductInCartItem = ({ product, onChangeCount }: Props) => {
           >
             {product.productName}
           </Typography>
-          <IconButton>
+          <IconButton onClick={handleClickDelete}>
             <DeleteIcon />
           </IconButton>
         </Box>

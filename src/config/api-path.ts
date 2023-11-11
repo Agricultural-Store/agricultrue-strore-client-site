@@ -21,6 +21,7 @@ export const userApi = {
   otp: `${userApiBase}/verification`,
   changePassword: `${userApiBase}/change-password`,
   deleteAddress: (id?: number) => `${userApiBase}/address/${id}`,
+  deleteCart: (id?: number) => `${userApiBase}/cart/${id}`,
 };
 
 export const productApi = {
