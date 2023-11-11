@@ -18,6 +18,7 @@ import { useRouter } from "next-intl/client";
 
 const NewsListDesktop = () => {
   const [tabIndex, setTabIndex] = useState(0);
+  const [dataCount, setDataCount] = useState(4);
   const [slides, setSlides] = useState(1);
 
   const ref = useRef<HTMLDivElement>(null);
@@ -64,6 +65,7 @@ const NewsListDesktop = () => {
           Math.ceil(news.length / (index + 1)) > 4
             ? 4
             : Math.ceil(news.length / (index + 1));
+        setDataCount(index + 1);
         setSlides(_slides);
       }
     });
@@ -88,10 +90,7 @@ const NewsListDesktop = () => {
           }}
         >
           {Array(...Array(slides)).map((_, index) => {
-            const data =
-              index == slides - 1 && slides === news.length
-                ? news.slice(index * slides, (index + 1) * slides)
-                : news;
+            const data = news.slice(index * dataCount, (index + 1) * dataCount);
             return (
               <Grid
                 container

@@ -75,7 +75,6 @@ const ProductItem = ({ product, onClick, onButtonClick }: Props) => {
             </Typography>
           </Box>
         )}
-
         <CardMedia
           component="img"
           src={product?.productImage}

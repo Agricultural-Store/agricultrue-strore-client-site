@@ -13,6 +13,7 @@ import FindInPageOutlinedIcon from "@mui/icons-material/FindInPageOutlined";
 import { AppContext } from "@/providers/AppContext";
 import { CartContext } from "@/providers/CartContext";
 import CustomizedLoading from "@/components/shared/CustomizedLoading";
+
 const menuItems: OptionType[] = [
   {
     value: "popular",

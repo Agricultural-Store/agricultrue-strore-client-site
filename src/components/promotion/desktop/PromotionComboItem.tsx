@@ -37,6 +37,7 @@ const PromotionComboItem = ({ image, title, description, id }: Props) => {
         component="img"
         src={image}
         width="100%"
+        height="200px"
       />
       <CardContent>
         <Typography

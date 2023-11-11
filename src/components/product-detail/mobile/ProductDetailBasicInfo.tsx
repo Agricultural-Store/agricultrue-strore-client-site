@@ -2,16 +2,52 @@ import CustomizedQuantityInput from "@/components/shared/CustomizedQuantityInput
 import FavoriteIcon from "@/components/shared/icons/FavoriteIcon";
 import NextArrowIcon from "@/components/shared/icons/NextArrowIcon";
 import PreviousIcon from "@/components/shared/icons/PreviousArrowIcon";
+import { useEnqueueSnackbar } from "@/hooks/shared/useEnqueueSnackbar";
+import useUserCartCreate from "@/hooks/user/useUserCartCreate";
+import { AppContext } from "@/providers/AppContext";
 import { ProductDetail } from "@/types/product-detail";
 import { calcPrice } from "@/utils/count";
 import { Box, Button, Grid, IconButton, Typography } from "@mui/material";
-import React from "react";
+import { useSession } from "next-auth/react";
+import { useParams } from "next/navigation";
+import React, { useContext, useState } from "react";
 
 type Props = {
   product?: ProductDetail;
 };
 
 const ProductDetailBasicInfo = ({ product }: Props) => {
+  const [count, setCount] = useState(1);
+  const { setOpenAuth } = useContext(AppContext);
+
+  const { status } = useSession();
+  const params = useParams();
+  const [setEnqueue] = useEnqueueSnackbar();
+  const { trigger } = useUserCartCreate();
+
+  const handleChange = (value: number) => {
+    setCount(value);
+  };
+  const handleAddToCart = () => {
+    if (status === "unauthenticated") {
+      setOpenAuth(true);
+      return;
+    }
+
+    trigger(
+      {
+        body: {
+          productCount: count.toString(),
+          productId: params.id as string,
+        },
+      },
+      {
+        onError: () => {},
+      },
+    ).then(() => {});
+    setEnqueue("Added product to your cart", "success");
+  };
+
   return (
     <Grid
       container
@@ -152,6 +188,7 @@ const ProductDetailBasicInfo = ({ product }: Props) => {
           <CustomizedQuantityInput
             defaultValue={1}
             maxValue={10}
+            onChange={handleChange}
           />
         </Box>
         <Box sx={{ display: "flex", gap: "16px", mt: "20px", height: "42px" }}>
@@ -159,6 +196,7 @@ const ProductDetailBasicInfo = ({ product }: Props) => {
             sx={{ textTransform: "capitalize" }}
             variant="contained"
             fullWidth
+            onClick={handleAddToCart}
           >
             Thêm vào giỏ hàng
           </Button>

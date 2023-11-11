@@ -4,11 +4,13 @@ import NextArrowIcon from "@/components/shared/icons/NextArrowIcon";
 import PreviousIcon from "@/components/shared/icons/PreviousArrowIcon";
 import { useEnqueueSnackbar } from "@/hooks/shared/useEnqueueSnackbar";
 import useUserCartCreate from "@/hooks/user/useUserCartCreate";
+import { AppContext } from "@/providers/AppContext";
 import { ProductDetail } from "@/types/product-detail";
 import { calcPrice } from "@/utils/count";
 import { Box, Button, Grid, IconButton, Typography } from "@mui/material";
+import { useSession } from "next-auth/react";
 import { useParams } from "next/navigation";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 
 type Props = {
   product?: ProductDetail;
@@ -16,10 +18,11 @@ type Props = {
 
 const ProductDetailBasicInfo = ({ product }: Props) => {
   const [count, setCount] = useState(1);
+  const { setOpenAuth } = useContext(AppContext);
 
+  const { status } = useSession();
   const params = useParams();
   const [setEnqueue] = useEnqueueSnackbar();
-
   const { trigger } = useUserCartCreate();
 
   const handleChange = (value: number) => {
@@ -27,6 +30,11 @@ const ProductDetailBasicInfo = ({ product }: Props) => {
   };
 
   const handleAddToCart = () => {
+    if (status === "unauthenticated") {
+      setOpenAuth(true);
+      return;
+    }
+
     trigger(
       {
         body: {

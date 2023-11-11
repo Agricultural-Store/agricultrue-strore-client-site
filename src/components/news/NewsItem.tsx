@@ -48,7 +48,9 @@ const NewsItem = ({ news, onClick }: Props) => {
         <CardMedia
           component="img"
           image={news?.newImage || "/images/image.png"}
-          sx={{ height: "46%", width: "100%", objectFit: "cover" }}
+          width="100%"
+          height="200px"
+          sx={{ objectFit: "cover" }}
         />
         <CardContent
           sx={{

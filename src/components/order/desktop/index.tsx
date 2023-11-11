@@ -79,6 +79,10 @@ const OrderDesktop = () => {
     }));
   };
 
+  const handleClickLabel = () => {
+    console.log("object");
+  };
+
   useEffect(() => {
     setInput((pre) => ({
       ...pre,
@@ -105,6 +109,8 @@ const OrderDesktop = () => {
               {labelStepper.map((label) => (
                 <Step
                   key={label}
+                  component="div"
+                  onClick={handleClickLabel}
                   sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}
                 >
                   <StepLabel
@@ -112,6 +118,7 @@ const OrderDesktop = () => {
                     sx={{
                       fontSize: "14px",
                       fontWeight: 300,
+                      cursor: "pointer",
                       "& .MuiStepLabel-iconContainer": {
                         p: 0,
                       },
@@ -136,7 +143,7 @@ const OrderDesktop = () => {
             {step === 2 && <OrderPayment onChange={handleChangePayment} />}
             {step === 3 && (
               <OrderOverview
-              addressId={input.addressId}
+                addressId={input.addressId}
                 data={data?.data}
                 onBackStep={setStep}
               />
