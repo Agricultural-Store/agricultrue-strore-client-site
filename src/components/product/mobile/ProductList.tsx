@@ -25,7 +25,7 @@ const menuItems: OptionType[] = [
     label: "Giá từ cao đến thấp",
   },
   {
-    value: 3,
+    value: 4,
     label: "Giá từ theo thứ tự chữ cái (A-Z)",
   },
 ];
