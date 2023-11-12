@@ -18,3 +18,11 @@ export interface OrderCreateInput {
   paymentMethod: PaymentMethod;
   note: string;
 }
+
+export interface PaymentCreateKey {
+  clientSecret?: string;
+}
+
+export interface PaymentCreateKeyInput {
+  amount: number;
+}

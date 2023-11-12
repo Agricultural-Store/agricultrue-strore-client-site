@@ -1,14 +1,16 @@
 import { PaymentMethod } from "@/types/order";
 import { Box, FormControlLabel, Radio, RadioGroup, Typography } from "@mui/material";
 import React, { ChangeEvent, useState } from "react";
-import OrderPaymentCreditForm from "./OrderPaymentCreditForm";
+import { PaymentElement } from "@stripe/react-stripe-js";
 
 type Props = {
   onChange?: (payment: PaymentMethod) => void;
+  unmounted?: boolean;
+  onCompleteCredit: (bool: boolean) => void;
 };
 
-const OrderPayment = ({ onChange }: Props) => {
-  const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>(PaymentMethod.CREDIT);
+const OrderPayment = ({ onChange, unmounted, onCompleteCredit }: Props) => {
+  const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>(PaymentMethod.CASH);
 
   const handleChangePaymentMethod = (
     event: ChangeEvent<HTMLInputElement>,
@@ -19,12 +21,19 @@ const OrderPayment = ({ onChange }: Props) => {
   };
 
   return (
-    <Box my="24px">
+    <Box
+      my="24px"
+      sx={{
+        position: unmounted ? "absolute" : "relative",
+        zIndex: unmounted ? -1 : 0,
+        visibility: unmounted ? "hidden" : "visible",
+      }}
+    >
       <Typography variant="h3">Chọn phương thức thanh toán</Typography>
       <Box my="24px">
         <RadioGroup
           aria-labelledby="demo-radio-buttons-group-label"
-          defaultValue={PaymentMethod.CREDIT}
+          defaultValue={paymentMethod}
           name="radio-buttons-group"
           onChange={handleChangePaymentMethod}
         >
@@ -56,7 +65,9 @@ const OrderPayment = ({ onChange }: Props) => {
           />
         </RadioGroup>
       </Box>
-      {paymentMethod === PaymentMethod.CREDIT && <OrderPaymentCreditForm />}
+      {paymentMethod === PaymentMethod.CREDIT && (
+        <PaymentElement onChange={(event) => onCompleteCredit(event.complete)} />
+      )}
     </Box>
   );
 };

@@ -1,12 +1,13 @@
 "use client";
 import React, { useContext, useEffect } from "react";
 import OrderDesktop from "./desktop";
-import { Box } from "@mui/material";
+import { Container } from "@mui/material";
 import useMedia from "@/hooks/shared/useMedia";
 import OrderMobile from "./mobile";
 import { CartContext } from "@/providers/CartContext";
 import useUserCart from "@/hooks/user/useUserCart";
 import { redirect } from "next/navigation";
+import PaymentCheckout from "./PaymentCheckout";
 
 const Order = () => {
   const { media } = useMedia();
@@ -23,13 +24,27 @@ const Order = () => {
   }
 
   if (media) {
-    return <OrderMobile />;
+    return (
+      <PaymentCheckout>
+        <OrderMobile />
+      </PaymentCheckout>
+    );
   }
 
   return (
-    <Box p="48px">
-      <OrderDesktop />
-    </Box>
+    <Container
+      sx={{
+        py: "48px",
+        paddingX: {
+          sm: "48px !important",
+          lg: "0px !important",
+        },
+      }}
+    >
+      <PaymentCheckout>
+        <OrderDesktop />
+      </PaymentCheckout>
+    </Container>
   );
 };
 

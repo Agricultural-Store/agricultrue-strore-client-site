@@ -10,10 +10,14 @@ import { scrollTo } from "@/utils/scroll";
 import useOrderCreate from "@/hooks/order/useOrderCreate";
 import { OrderCreateInput, PaymentMethod } from "@/types/order";
 import { CartContext } from "@/providers/CartContext";
-import { useRouter } from "next-intl/client";
+import { usePathname, useRouter } from "next-intl/client";
+import appConfig from "@/config/env";
+import { useStripe, useElements } from "@stripe/react-stripe-js";
+import { useEnqueueSnackbar } from "@/hooks/shared/useEnqueueSnackbar";
 
 const OrderMobile = () => {
   const [step, setStep] = useState(1);
+  const [creditComplete, setCreateComplete] = useState(false);
   const [input, setInput] = useState<OrderCreateInput>({
     addressId: 0,
     discountPrice: 0,
@@ -26,21 +30,59 @@ const OrderMobile = () => {
   const { product } = useContext(CartContext);
 
   const router = useRouter();
+  const [setEnqueue] = useEnqueueSnackbar();
 
   const { data } = useUserCar();
   const { trigger } = useOrderCreate();
+  const stripe = useStripe();
+  const elements = useElements();
+  const pathname = usePathname();
+
+  const handleSubmit = async () => {
+    // We don't want to let default form submission happen here,
+    // which would refresh the page.
+
+    if (!stripe || !elements) {
+      // Stripe.js hasn't yet loaded.
+      // Make sure to disable form submission until Stripe.js has loaded.
+      return;
+    }
+
+    const result = await stripe.confirmPayment({
+      //`Elements` instance that was used to create the Payment Element
+      elements,
+      confirmParams: {
+        return_url: appConfig.PUBLIC_URL + pathname,
+      },
+      redirect: "if_required",
+    });
+
+    if (result.error) {
+      // Show error to your customer (for example, payment details incomplete)
+      console.log(result.error.message);
+    } else {
+      // Your customer will be redirected to your `return_url`. For some payment
+      // methods like iDEAL, your customer will be redirected to an intermediate
+      // site first to authorize the payment, then redirected to the `return_url`.
+    }
+  };
 
   const handleNextStep = () => {
     scrollTo({ top: 0 });
     if (step < 3) {
       setStep((pre) => (pre = pre + 1));
     } else {
+      if (input.paymentMethod === PaymentMethod.CREDIT) {
+        handleSubmit();
+      }
       trigger(
         {
           body: input,
         },
         {
-          onError: () => {},
+          onError: () => {
+            setEnqueue("Đặt hàng thất bại", "error");
+          },
         },
       ).then(() => {
         setStep(4);
@@ -129,7 +171,11 @@ const OrderMobile = () => {
                 onChangeNote={handleChangeNote}
               />
             )}
-            {step === 2 && <OrderPayment onChange={handleChangePayment} />}
+            <OrderPayment
+              onChange={handleChangePayment}
+              unmounted={step === 2 ? false : true}
+              onCompleteCredit={setCreateComplete}
+            />
             {step === 3 && (
               <OrderOverview
                 data={data?.data}
@@ -146,6 +192,11 @@ const OrderMobile = () => {
             variant="contained"
             fullWidth
             onClick={handleNextStep}
+            disabled={
+              input.paymentMethod === PaymentMethod.CASH
+                ? false
+                : step === 2 && !creditComplete
+            }
             sx={{ textTransform: "capitalize", my: "16px" }}
           >
             Tiếp tục

@@ -35,7 +35,7 @@ const OrderAddress = ({ onChange, onChangeNote }: Props) => {
   }, [data]);
 
   return (
-    <Box my="24px">
+    <Box my="24px" >
       <Typography
         variant="h3"
         lineHeight="30px"

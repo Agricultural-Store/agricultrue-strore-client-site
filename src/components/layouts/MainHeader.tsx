@@ -22,7 +22,7 @@ const MainHeader = () => {
 
   const { setOpenAuth, openCart, setOpenCart } = useContext(AppContext);
 
-  const { status } = useSession();
+  const { status, update } = useSession();
   const { media } = useMedia(1000);
   const { media: media375 } = useMedia(375);
 
@@ -43,6 +43,8 @@ const MainHeader = () => {
       setOpen(false);
     });
   }, []);
+
+  console.log(update);
 
   return (
     <>

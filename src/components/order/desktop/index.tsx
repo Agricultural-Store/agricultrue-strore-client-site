@@ -11,11 +11,16 @@ import useUserCart from "@/hooks/user/useUserCart";
 import { OrderCreateInput, PaymentMethod } from "@/types/order";
 import useOrderCreate from "@/hooks/order/useOrderCreate";
 import { CartContext } from "@/providers/CartContext";
+import appConfig from "@/config/env";
+import { useStripe, useElements } from "@stripe/react-stripe-js";
+import { usePathname } from "next-intl/client";
+import { useEnqueueSnackbar } from "@/hooks/shared/useEnqueueSnackbar";
 
 const labelStepper = ["Địa chỉ", "Thanh toán", "Duyệt lại"];
 
 const OrderDesktop = () => {
   const [step, setStep] = useState(1);
+  const [creditComplete, setCreateComplete] = useState(false);
   const [openCompleteDialog, setOpenCompleteDialog] = useState(false);
   const [input, setInput] = useState<OrderCreateInput>({
     addressId: 0,
@@ -26,23 +31,61 @@ const OrderDesktop = () => {
     totalPrice: 0,
   });
 
-  const { product, setProduct } = useContext(CartContext);
+  const { product } = useContext(CartContext);
+  const [setEnqueue] = useEnqueueSnackbar();
 
   const { data } = useUserCart();
   const { trigger } = useOrderCreate();
 
+  const stripe = useStripe();
+  const elements = useElements();
+  const pathname = usePathname();
+
+  const handleSubmit = async () => {
+    // We don't want to let default form submission happen here,
+    // which would refresh the page.
+
+    if (!stripe || !elements) {
+      // Stripe.js hasn't yet loaded.
+      // Make sure to disable form submission until Stripe.js has loaded.
+      return;
+    }
+
+    const result = await stripe.confirmPayment({
+      //`Elements` instance that was used to create the Payment Element
+      elements,
+      confirmParams: {
+        return_url: appConfig.PUBLIC_URL + pathname,
+      },
+      redirect: "if_required",
+    });
+
+    if (result.error) {
+      // Show error to your customer (for example, payment details incomplete)
+      console.log(result.error.message);
+    } else {
+      // Your customer will be redirected to your `return_url`. For some payment
+      // methods like iDEAL, your customer will be redirected to an intermediate
+      // site first to authorize the payment, then redirected to the `return_url`.
+    }
+  };
+
   const handleNextStep = () => {
     if (step < 3) setStep((pre) => (pre = pre + 1));
     else {
+      if (input.paymentMethod === PaymentMethod.CREDIT) {
+        handleSubmit();
+      }
       trigger(
         {
           body: input,
         },
         {
-          onError: () => {},
+          onError: () => {
+            setEnqueue("Đặt hàng thất bại", "error");
+          },
         },
       ).then(() => {
-        setProduct(undefined);
         setOpenCompleteDialog(true);
       });
     }
@@ -140,7 +183,12 @@ const OrderDesktop = () => {
                 onChangeNote={handleChangeNote}
               />
             )}
-            {step === 2 && <OrderPayment onChange={handleChangePayment} />}
+            <OrderPayment
+              onChange={handleChangePayment}
+              unmounted={step === 2 ? false : true}
+              onCompleteCredit={setCreateComplete}
+            />
+            {/* {step === 2 && } */}
             {step === 3 && (
               <OrderOverview
                 addressId={input.addressId}
@@ -155,6 +203,11 @@ const OrderDesktop = () => {
           onChange={handleChangeSummary}
           onPrevious={handlePreviousStep}
           data={data?.data}
+          disabled={
+            input.paymentMethod === PaymentMethod.CASH
+              ? false
+              : step === 2 && !creditComplete
+          }
         />
         <OrderCompleteDialog
           open={openCompleteDialog}

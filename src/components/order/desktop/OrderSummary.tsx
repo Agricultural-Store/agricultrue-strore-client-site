@@ -9,9 +9,16 @@ type Props = {
   onNext?: () => void;
   data?: ProductInCart[];
   onChange?: (originValue: number, discountValue: number) => void;
+  disabled?: boolean;
 };
 
-const OrderSummary = ({ onNext, onPrevious, data: dataProps, onChange }: Props) => {
+const OrderSummary = ({
+  onNext,
+  onPrevious,
+  data: dataProps,
+  onChange,
+  disabled,
+}: Props) => {
   const [data, setData] = useState<ProductInCart[]>();
 
   const { product } = useContext(CartContext);
@@ -132,6 +139,7 @@ const OrderSummary = ({ onNext, onPrevious, data: dataProps, onChange }: Props) 
           fullWidth
           onClick={onNext}
           sx={{ textTransform: "capitalize" }}
+          disabled={disabled}
         >
           Tiếp tục
         </Button>

@@ -82,10 +82,14 @@ const authOptions: AuthOptions = {
           token.email = profileJson.data.email;
           token.name = profileJson.data.name;
         } else {
-          token.token === "";
+          // token.token = "";
+          // token.email = "";
+          // token.name = "";
         }
       } else {
-        token.token === undefined;
+        // token.token = "";
+        // token.email = "";
+        // token.name = "";
       }
       return token;
     },

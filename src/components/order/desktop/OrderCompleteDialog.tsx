@@ -12,13 +12,15 @@ const OrderCompleteDialog = ({ onOpen, open }: Props) => {
   const router = useRouter();
 
   const handleMoveOrderHistory = () => {
-    router.push("/profile/order");
     onOpen(false);
+    setTimeout(() => {
+      router.push("/profile/order");
+    }, 500);
   };
 
   const handleClose = () => {
-    router.push("/product");
     onOpen(false);
+    router.push("/product");
   };
 
   return (
