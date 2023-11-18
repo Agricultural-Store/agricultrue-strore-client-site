@@ -80,7 +80,6 @@ const NewsItem = ({ news, onClick }: Props) => {
                 lg: "20px",
                 xs: "16px",
               },
-              textAlign: "justify",
             }}
           >
             {news?.newsTitle}
@@ -92,7 +91,6 @@ const NewsItem = ({ news, onClick }: Props) => {
                 lg: "16px",
                 xs: "14px",
               },
-              textAlign: "justify",
             }}
           >
             Sạch từ sản xuất đến bàn ăn không chỉ là câu chuyện của cây lúa, mà vựa ...

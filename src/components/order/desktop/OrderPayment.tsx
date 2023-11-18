@@ -5,11 +5,9 @@ import { PaymentElement } from "@stripe/react-stripe-js";
 
 type Props = {
   onChange?: (payment: PaymentMethod) => void;
-  unmounted?: boolean;
-  onCompleteCredit: (bool: boolean) => void;
 };
 
-const OrderPayment = ({ onChange, unmounted, onCompleteCredit }: Props) => {
+const OrderPayment = ({ onChange }: Props) => {
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>(PaymentMethod.CASH);
 
   const handleChangePaymentMethod = (
@@ -21,14 +19,7 @@ const OrderPayment = ({ onChange, unmounted, onCompleteCredit }: Props) => {
   };
 
   return (
-    <Box
-      my="24px"
-      sx={{
-        position: unmounted ? "absolute" : "relative",
-        zIndex: unmounted ? -1 : 0,
-        visibility: unmounted ? "hidden" : "visible",
-      }}
-    >
+    <Box my="24px">
       <Typography variant="h3">Chọn phương thức thanh toán</Typography>
       <Box my="24px">
         <RadioGroup
@@ -65,9 +56,7 @@ const OrderPayment = ({ onChange, unmounted, onCompleteCredit }: Props) => {
           />
         </RadioGroup>
       </Box>
-      {paymentMethod === PaymentMethod.CREDIT && (
-        <PaymentElement onChange={(event) => onCompleteCredit(event.complete)} />
-      )}
+      {paymentMethod === PaymentMethod.CREDIT && <PaymentElement />}
     </Box>
   );
 };

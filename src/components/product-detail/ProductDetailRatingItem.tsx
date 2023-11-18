@@ -28,7 +28,7 @@ const ProductDetailRatingItem = ({ rating }: Props) => {
             fontWeight={500}
             lineHeight="27px"
           >
-            {rating.username || "Harry"}
+            {rating.username || "Khách hàng ẩn danh"}
           </Typography>
           <Box>
             {Array(...Array(rating.productRating)).map((_v, index) => (

@@ -1,9 +1,13 @@
 import ProductItem from "@/components/product/ProductItem";
 import NextIcon from "@/components/shared/icons/NextIcon";
+import useProductList from "@/hooks/product/useProductList";
+import { AppContext } from "@/providers/AppContext";
+import { CartContext } from "@/providers/CartContext";
+import { Product } from "@/types/product";
 import { Box, Button, Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { Variants, motion } from "framer-motion";
 import { useRouter } from "next-intl/client";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 const opacityVariants: Variants = {
   offscreen: {
@@ -25,6 +29,9 @@ const opacityVariants: Variants = {
 const HomeOutstandingProduct = () => {
   const [slides, setSlides] = useState(4);
 
+  const { setOpenCart } = useContext(AppContext);
+  const { setProduct } = useContext(CartContext);
+
   const theme = useTheme();
   const matchesMd = useMediaQuery(theme.breakpoints.up("md"));
   const matchesSm = useMediaQuery(theme.breakpoints.up("sm"));
@@ -32,8 +39,26 @@ const HomeOutstandingProduct = () => {
   const matchesLg = useMediaQuery(theme.breakpoints.up("lg"));
   const router = useRouter();
 
+  const { data } = useProductList({
+    limit: 4,
+    offset: 0,
+  });
+
   const handleClick = () => {
     router.push("/product");
+  };
+
+  const handleProductClick = (id?: number) => {
+    router.push(`/product/${id}`);
+  };
+
+  const handleButtonClick = (product?: Product) => {
+    if (product)
+      setProduct?.({
+        ...product,
+        productCount: 1,
+      });
+    setOpenCart(true);
   };
 
   useEffect(() => {
@@ -96,7 +121,7 @@ const HomeOutstandingProduct = () => {
             spacing="24px"
             justifyContent="space-evenly"
           >
-            {Array(...Array(slides)).map((_, index) => (
+            {data?.data.splice(0, slides).map((product, index) => (
               <Grid
                 item
                 key={index}
@@ -105,7 +130,11 @@ const HomeOutstandingProduct = () => {
                 md={4}
                 lg={3}
               >
-                <ProductItem />
+                <ProductItem
+                  product={product}
+                  onButtonClick={handleButtonClick}
+                  onClick={handleProductClick}
+                />
               </Grid>
             ))}
           </Grid>

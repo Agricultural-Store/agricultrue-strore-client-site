@@ -5,7 +5,6 @@ import React, { MouseEvent, useContext, useEffect, useState } from "react";
 import AppBarMobile from "./AppBarMobile";
 import AppBarDesktop from "./AppBarDesktop";
 import { Avatar, Box, IconButton } from "@mui/material";
-import SearchIcon from "../shared/icons/SearchIcon";
 import CartIcon from "../shared/icons/CartIcon";
 import ProfileIcon from "../shared/icons/ProfileIcon";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -15,6 +14,8 @@ import { AppContext } from "@/providers/AppContext";
 import NextIntlLink from "next-intl/link";
 import { useSession } from "next-auth/react";
 import ProfilePopup from "./ProfilePopup";
+import SearchMenu from "./SearchMenu";
+// import NotificationMenu from "./NotificationMenu";
 
 const MainHeader = () => {
   const [open, setOpen] = useState(false);
@@ -22,7 +23,7 @@ const MainHeader = () => {
 
   const { setOpenAuth, openCart, setOpenCart } = useContext(AppContext);
 
-  const { status, update } = useSession();
+  const { status } = useSession();
   const { media } = useMedia(1000);
   const { media: media375 } = useMedia(375);
 
@@ -43,8 +44,6 @@ const MainHeader = () => {
       setOpen(false);
     });
   }, []);
-
-  console.log(update);
 
   return (
     <>
@@ -95,15 +94,14 @@ const MainHeader = () => {
         </Box>
         <Box
           sx={{
-            width: "152px",
+            width: "352px",
             display: "flex",
-            justifyContent: "space-between",
+            justifyContent: "end",
             alignItems: "center",
           }}
         >
-          <IconButton sx={{ height: "40px", width: "40px" }}>
-            <SearchIcon />
-          </IconButton>
+          <SearchMenu />
+          {/* {status === "authenticated" && <NotificationMenu />} */}
           <IconButton
             sx={{ height: "40px", width: "40px" }}
             onClick={() => setOpenCart(true)}

@@ -1,8 +1,12 @@
 import { Box, Divider, Grid, IconButton, Typography } from "@mui/material";
 import React from "react";
 import EditBlackBorderIcon from "../../../shared/icons/EditBlackBorderIcon";
+import { UserProfile } from "@/types/user";
+type Props = {
+  data?: UserProfile;
+};
 
-const ProfileMainInformation = () => {
+const ProfileMainInformation = ({ data }: Props) => {
   const renderRow = (label?: string, value?: string) => {
     return (
       <Grid
@@ -12,7 +16,7 @@ const ProfileMainInformation = () => {
       >
         <Grid
           item
-          xs={2}
+          xs={2.5}
           fontWeight={500}
           lineHeight="30px"
         >
@@ -20,7 +24,7 @@ const ProfileMainInformation = () => {
         </Grid>
         <Grid
           item
-          xs={10}
+          xs={9}
         >
           {value}
         </Grid>
@@ -54,23 +58,23 @@ const ProfileMainInformation = () => {
         </IconButton>
       </Box>
       <Divider sx={{ my: "8px" }}></Divider>
-      {renderRow("Họ tên", "")}
+      {renderRow("Họ tên", data?.name)}
       <Divider sx={{ my: "8px" }}></Divider>
-      {renderRow("Ngày sinh", "")}
+      {renderRow("Ngày sinh", new Date(data?.birthday || "").toLocaleDateString())}
       <Divider sx={{ my: "8px" }}></Divider>
-      {renderRow("Email", "")}
+      {renderRow("Email", data?.mail)}
       <Divider sx={{ my: "8px" }}></Divider>
-      {renderRow("Số điện thoại", "")}
+      {renderRow("Số điện thoại", data?.phone)}
       <Divider sx={{ my: "8px" }}></Divider>
-      {renderRow("Địa chỉ", "")}
+      {renderRow("Địa chỉ", data?.addressDetail)}
       <Divider sx={{ my: "8px" }}></Divider>
-      {renderRow("Phường", "")}
+      {renderRow("Phường", data?.commune)}
       <Divider sx={{ my: "8px" }}></Divider>
-      {renderRow("Quận", "")}
+      {renderRow("Quận", data?.district)}
       <Divider sx={{ my: "8px" }}></Divider>
-      {renderRow("Thành phố", "")}
+      {renderRow("Thành phố", data?.province)}
       <Divider sx={{ my: "8px" }}></Divider>
-      {renderRow("Quốc gia", "")}
+      {renderRow("Quốc gia", "Việt Nam")}
     </Box>
   );
 };

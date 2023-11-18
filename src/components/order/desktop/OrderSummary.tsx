@@ -1,61 +1,88 @@
-import { CartContext } from "@/providers/CartContext";
-import { ProductInCart } from "@/types/cart";
-import { calcPriceDiscount } from "@/utils/count";
+import appConfig from "@/config/env";
+import useOrderCreate from "@/hooks/order/useOrderCreate";
+import { useEnqueueSnackbar } from "@/hooks/shared/useEnqueueSnackbar";
+import { OrderCreateInput, PaymentMethod } from "@/types/order";
 import { Box, Button, Divider, Typography } from "@mui/material";
-import React, { useContext, useEffect, useMemo, useState } from "react";
+import { useStripe, useElements } from "@stripe/react-stripe-js";
+import { usePathname } from "next-intl/client";
+import React from "react";
 
 type Props = {
-  onPrevious?: () => void;
-  onNext?: () => void;
-  data?: ProductInCart[];
-  onChange?: (originValue: number, discountValue: number) => void;
-  disabled?: boolean;
+  originalPrice: number;
+  step: number;
+  setStep: React.Dispatch<React.SetStateAction<number>>;
+  discountPrice: number;
+  input: OrderCreateInput;
+  setOpenCompleteDialog: (bool: boolean) => void;
 };
 
 const OrderSummary = ({
-  onNext,
-  onPrevious,
-  data: dataProps,
-  onChange,
-  disabled,
+  discountPrice,
+  originalPrice,
+  setStep,
+  step,
+  input,
+  setOpenCompleteDialog,
 }: Props) => {
-  const [data, setData] = useState<ProductInCart[]>();
+  const [setEnqueue] = useEnqueueSnackbar();
 
-  const { product } = useContext(CartContext);
+  const { trigger } = useOrderCreate();
 
-  const originalPrice = useMemo(() => {
-    return (
-      data?.reduce(
-        (pre, curr) => pre + (curr?.productPrice || 0) * (curr?.productCount ?? 1),
-        0,
-      ) || 0
-    );
-  }, [data]);
+  const stripe = useStripe();
+  const elements = useElements();
+  const pathname = usePathname();
+  const handlePayment = async () => {
+    // We don't want to let default form submission happen here,
+    // which would refresh the page.
 
-  const discountPrice = useMemo(
-    () =>
-      data?.reduce(
-        (pre, curr) =>
-          pre +
-          calcPriceDiscount(curr.productPrice, curr.productDiscount) *
-            (curr?.productCount ?? 1),
-        0,
-      ) || 0,
-    [data],
-  );
-
-  useEffect(() => {
-    onChange?.(originalPrice, discountPrice);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [originalPrice, discountPrice]);
-
-  useEffect(() => {
-    if (product) {
-      setData([product]);
-    } else {
-      setData(dataProps);
+    if (!stripe || !elements) {
+      // Stripe.js hasn't yet loaded.
+      // Make sure to disable form submission until Stripe.js has loaded.
+      return;
     }
-  }, [dataProps, product]);
+
+    const result = await stripe.confirmPayment({
+      //`Elements` instance that was used to create the Payment Element
+      elements,
+      confirmParams: {
+        return_url: appConfig.PUBLIC_URL + pathname,
+      },
+      redirect: "if_required",
+    });
+
+    if (result.error) {
+      // Show error to your customer (for example, payment details incomplete)
+      console.log(result.error.message);
+    } else {
+      // Your customer will be redirected to your `return_url`. For some payment
+      // methods like iDEAL, your customer will be redirected to an intermediate
+      // site first to authorize the payment, then redirected to the `return_url`.
+    }
+  };
+
+  const handleNextStep = () => {
+    if (step < 3) setStep((pre) => (pre = pre + 1));
+    else {
+      if (input.paymentMethod === PaymentMethod.CREDIT) {
+        handlePayment();
+      }
+      trigger(
+        {
+          body: input,
+        },
+        {
+          onError: () => {
+            setEnqueue("Đặt hàng thất bại", "error");
+          },
+        },
+      ).then(() => {
+        setOpenCompleteDialog(true);
+      });
+    }
+  };
+  const handlePreviousStep = () => {
+    if (step > 1) setStep((pre) => (pre = pre - 1));
+  };
 
   return (
     <Box
@@ -129,7 +156,7 @@ const OrderSummary = ({
         <Button
           variant="outlined"
           fullWidth
-          onClick={onPrevious}
+          onClick={handlePreviousStep}
           sx={{ textTransform: "capitalize" }}
         >
           Trở về
@@ -137,9 +164,8 @@ const OrderSummary = ({
         <Button
           variant="contained"
           fullWidth
-          onClick={onNext}
+          onClick={handleNextStep}
           sx={{ textTransform: "capitalize" }}
-          disabled={disabled}
         >
           Tiếp tục
         </Button>

@@ -37,8 +37,8 @@ const CustomizedStepIcon = ({
 }: StepIconProps) => {
   const icons: { [index: string]: React.ReactElement } = {
     1: <OrderAddressIcon />,
-    2: <OrderPaymentIcon />,
-    3: <OrderOverviewIcon />,
+    2: <OrderOverviewIcon />,
+    3: <OrderPaymentIcon />,
   };
 
   return (

@@ -9,13 +9,18 @@ import { AutoCompleteOption } from "@/types/components/autocomplete";
 import { AddressCreateInput } from "@/types/address";
 import { AppContext } from "@/providers/AppContext";
 import useUserAddressCreate from "@/hooks/user/useUserAddressCreate";
+import { useEnqueueSnackbar } from "@/hooks/shared/useEnqueueSnackbar";
 
 const states = State.getStatesOfCountry("VN").map((state) => ({
   label: state.name,
   value: state.isoCode,
 }));
 
-const OrderAddressForm = () => {
+type Props = {
+  length?: number;
+};
+
+const OrderAddressForm = ({ length }: Props) => {
   const [cities, setCities] = useState<AutoCompleteOption[]>([]);
   const [disabledSubmit, setDisabledSubmit] = useState(true);
   const [mailError, setMailError] = useState("");
@@ -33,6 +38,8 @@ const OrderAddressForm = () => {
     mail: "",
     phone: "",
   });
+
+  const [setEnqueue] = useEnqueueSnackbar();
 
   const { setIsLoading } = useContext(AppContext);
 
@@ -120,6 +127,10 @@ const OrderAddressForm = () => {
       setPhoneError("");
     }
 
+    if (length && length > 6) {
+      setEnqueue("Vui lòng xóa bớt đi địa chỉ", "error");
+      return;
+    }
     setIsLoading(true);
     trigger(
       {
@@ -137,7 +148,7 @@ const OrderAddressForm = () => {
         },
       },
     ).then((res) => {
-      if (res.statusCode === 201) {
+      if (res.statusCode === 200) {
         setIsLoading(false);
       }
     });

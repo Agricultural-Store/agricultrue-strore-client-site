@@ -47,6 +47,7 @@ const HomeBanner = () => {
         <motion.div
           initial={{ opacity: 0, x: -600 }}
           animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: -600 }}
           transition={{ delay: 0.25 }}
         >
           <Typography

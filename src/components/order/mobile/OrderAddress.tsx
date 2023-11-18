@@ -95,7 +95,7 @@ const OrderAddress = ({ onChange, onChangeNote }: Props) => {
           </Box>
         </Box>
         <Collapse in={showAddressForm}>
-          <OrderAddressForm />
+          <OrderAddressForm length={data?.total} />
         </Collapse>
         {!showAddressForm && (
           <Typography

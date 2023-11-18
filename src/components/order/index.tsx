@@ -7,7 +7,6 @@ import OrderMobile from "./mobile";
 import { CartContext } from "@/providers/CartContext";
 import useUserCart from "@/hooks/user/useUserCart";
 import { redirect } from "next/navigation";
-import PaymentCheckout from "./PaymentCheckout";
 
 const Order = () => {
   const { media } = useMedia();
@@ -24,11 +23,7 @@ const Order = () => {
   }
 
   if (media) {
-    return (
-      <PaymentCheckout>
-        <OrderMobile />
-      </PaymentCheckout>
-    );
+    return <OrderMobile />;
   }
 
   return (
@@ -41,9 +36,7 @@ const Order = () => {
         },
       }}
     >
-      <PaymentCheckout>
-        <OrderDesktop />
-      </PaymentCheckout>
+      <OrderDesktop />
     </Container>
   );
 };

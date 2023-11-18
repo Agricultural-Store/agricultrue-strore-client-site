@@ -18,6 +18,7 @@ type Props = {
 
 const ProductDetailBasicInfo = ({ product }: Props) => {
   const [count, setCount] = useState(1);
+  const [index, setIndex] = useState(0);
   const { setOpenAuth } = useContext(AppContext);
 
   const { status } = useSession();
@@ -27,6 +28,14 @@ const ProductDetailBasicInfo = ({ product }: Props) => {
 
   const handleChange = (value: number) => {
     setCount(value);
+  };
+
+  const handlePreviousImage = () => {
+    setIndex((pre) => pre - 1);
+  };
+
+  const handleNextImage = () => {
+    setIndex((pre) => pre + 1);
   };
   const handleAddToCart = () => {
     if (status === "unauthenticated") {
@@ -82,7 +91,9 @@ const ProductDetailBasicInfo = ({ product }: Props) => {
                     bgcolor: "rgba(0, 0, 0, .3)",
                   },
                 }}
+                disabled={index === 0}
                 size="small"
+                onClick={handlePreviousImage}
               >
                 <PreviousIcon color="#FFFFFF" />
               </IconButton>
@@ -93,6 +104,8 @@ const ProductDetailBasicInfo = ({ product }: Props) => {
                     bgcolor: "rgba(0, 0, 0, .3)",
                   },
                 }}
+                onClick={handleNextImage}
+                disabled={index + 1 === product?.productImages?.length}
                 size="small"
               >
                 <NextArrowIcon color="#FFFFFF" />
@@ -135,7 +148,7 @@ const ProductDetailBasicInfo = ({ product }: Props) => {
                         cursor: "pointer",
                       }}
                     >
-                      +9
+                      +{product.productImages?.length && product.productImages.length - 5}
                     </Box>
                   </Box>
                 ) : (

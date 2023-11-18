@@ -2,19 +2,33 @@ import LargeQuoteIcon from "@/components/shared/icons/LargeQuoteIcon";
 import SmallQuoteIcon from "@/components/shared/icons/SmallQuoteIcon";
 import YellowStarIcon from "@/components/shared/icons/YellowStarIcon";
 import { Box, Typography } from "@mui/material";
-import React from "react";
+import React, { MouseEvent } from "react";
 
 type Props = {
   content?: string;
   isActive?: boolean;
+  onClick?: (index: number) => void;
+  index: number;
 };
 
-const HomeRatingItem = ({ content, isActive }: Props) => {
+const HomeRatingItem = ({ content, isActive, onClick, index }: Props) => {
+  const handleClick = (e: MouseEvent<HTMLInputElement>) => {
+    if (onClick) {
+      e.currentTarget.scrollIntoView({
+        inline: "center",
+        behavior: "smooth",
+        block: "center",
+      });
+      onClick?.(index);
+    }
+  };
+
   return (
     <Box
+      onClick={handleClick}
       sx={[
         {
-          width: "calc(70vw)",
+          minWidth: "80%",
           height: isActive ? "220px" : "200px",
           bgcolor: "color.bgPrimary",
           position: "relative",
@@ -24,8 +38,8 @@ const HomeRatingItem = ({ content, isActive }: Props) => {
           flexDirection: "column",
           justifyContent: "center",
           borderRadius: "6px",
-        },
-        isActive ?? {
+          transform: "scale(0.9)",
+          transition: "0.5s",
           ":after": {
             content: "''",
             width: "100%",
@@ -34,7 +48,8 @@ const HomeRatingItem = ({ content, isActive }: Props) => {
             position: "absolute",
             top: 0,
             left: 0,
-            bgcolor: "rgba(217,227,206, 0.5)",
+            transition: "0.5s",
+            bgcolor: !isActive ? "rgba(217,227,206, 0.5)" : "none",
           },
         },
       ]}
@@ -57,21 +72,23 @@ const HomeRatingItem = ({ content, isActive }: Props) => {
       >
         {content}
       </Typography>
-      <Box
-        sx={{
-          width: "100%",
-          display: "flex",
-          justifyContent: "center",
-          gap: "20px",
-          mt: "24px",
-        }}
-      >
-        <YellowStarIcon />
-        <YellowStarIcon />
-        <YellowStarIcon />
-        <YellowStarIcon />
-        <YellowStarIcon />
-      </Box>
+      {content && (
+        <Box
+          sx={{
+            width: "100%",
+            display: "flex",
+            justifyContent: "center",
+            gap: "20px",
+            mt: "24px",
+          }}
+        >
+          <YellowStarIcon />
+          <YellowStarIcon />
+          <YellowStarIcon />
+          <YellowStarIcon />
+          <YellowStarIcon />
+        </Box>
+      )}
     </Box>
   );
 };

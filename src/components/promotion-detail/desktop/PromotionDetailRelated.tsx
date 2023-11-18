@@ -1,43 +1,50 @@
 import { Box, Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
 import React from "react";
 import PromotionDetailRelatedItem from "./PromotionDetailRelatedItem";
+import { ProductCombo } from "@/types/product-combo";
 
-const ProductDetailRelated = () => {
+type Props = {
+  combo?: ProductCombo[];
+};
+
+const ProductDetailRelated = ({ combo }: Props) => {
   const theme = useTheme();
   const matchesMd = useMediaQuery(theme.breakpoints.up("md"));
-  const matchesSm = useMediaQuery(theme.breakpoints.up("sm"));
   const matchesLg = useMediaQuery(theme.breakpoints.up("lg"));
 
   const renderItem = () => {
     if (matchesLg) {
       return (
         <>
-          <PromotionDetailRelatedItem />
-          <PromotionDetailRelatedItem />
-          <PromotionDetailRelatedItem />
-          <PromotionDetailRelatedItem />
+          {combo?.slice(0, 3).map((_c) => (
+            <PromotionDetailRelatedItem
+              key={_c.id}
+              combo={_c}
+            />
+          ))}
         </>
       );
     }
     if (matchesMd) {
       return (
         <>
-          <PromotionDetailRelatedItem />
-          <PromotionDetailRelatedItem />
-          <PromotionDetailRelatedItem />
+          {combo?.slice(0, 2).map((_c) => (
+            <PromotionDetailRelatedItem
+              key={_c.id}
+              combo={_c}
+            />
+          ))}
         </>
       );
     }
-    if (matchesSm) {
-      <>
-        <PromotionDetailRelatedItem />
-        <PromotionDetailRelatedItem />
-      </>;
-    }
     return (
       <>
-        <PromotionDetailRelatedItem />
-        <PromotionDetailRelatedItem />
+        {combo?.slice(0, 1).map((_c) => (
+          <PromotionDetailRelatedItem
+            key={_c.id}
+            combo={_c}
+          />
+        ))}
       </>
     );
   };
@@ -54,6 +61,7 @@ const ProductDetailRelated = () => {
       <Grid
         container
         py="48px"
+        justifyContent="space-evenly"
       >
         {renderItem()}
       </Grid>

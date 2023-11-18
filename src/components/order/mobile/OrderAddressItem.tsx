@@ -1,6 +1,8 @@
 import CustomizedCheckbox from "@/components/shared/CustomizedCheckbox";
 import DeleteIcon from "@/components/shared/icons/DeleteIcon";
 import EditIcon from "@/components/shared/icons/EditIcon";
+import { userApi } from "@/config/api-path";
+import useUserAddressDelete from "@/hooks/user/useUserAddressDelete";
 import { Address } from "@/types/address";
 import { Box, Button, Typography } from "@mui/material";
 import React from "react";
@@ -13,8 +15,22 @@ type Props = {
 };
 
 const OrderAddressItem = ({ id, onChecked, currentId, address }: Props) => {
+  const { trigger } = useUserAddressDelete();
+  
   const handleChange = () => {
     onChecked(id || 0);
+  };
+
+ 
+
+  
+
+  const handleDelete = () => {
+    trigger({
+      path: userApi.deleteAddress(id),
+    }).then((res) => {
+      console.log(res);
+    });
   };
   return (
     <Box
@@ -60,6 +76,7 @@ const OrderAddressItem = ({ id, onChecked, currentId, address }: Props) => {
             color: "error.main",
           }}
           fullWidth
+          onClick={handleDelete}
         >
           <DeleteIcon /> &nbsp; Xóa bỏ
         </Button>

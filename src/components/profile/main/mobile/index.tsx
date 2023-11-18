@@ -1,16 +1,17 @@
 "use client";
 
-import { Avatar, Box, Button, IconButton, Typography } from "@mui/material";
+import { Avatar, Box, IconButton, Typography } from "@mui/material";
 import React, { useState } from "react";
-import EditBorderIcon from "../../../shared/icons/EditBorderIcon";
 import EditPenIcon from "../../../shared/icons/EditPenIcon";
 import ProfileMainInformation from "./ProfileMainInformation";
 import ProfileMainAccount from "./ProfileMainAccount";
 import ProfileMainImageDialog from "./ProfileMainImageDialog";
+import useUserProfile from "@/hooks/user/useUserProfile";
 // import ProfileSetting from "./ProfileSetting";
 
 const ProfileMainMobile = () => {
   const [open, setOpen] = useState(false);
+  const { data } = useUserProfile();
 
   return (
     <>
@@ -40,19 +41,6 @@ const ProfileMainMobile = () => {
               height="185px"
               sx={{ objectFit: "cover" }}
             />
-            <Box
-              position="absolute"
-              bottom="12px"
-              right="12px"
-            >
-              <Button
-                variant="contained"
-                sx={{ p: "8px", height: "48px", minWidth: "48px", maxWidth: "48px" }}
-                onClick={() => setOpen(true)}
-              >
-                <EditBorderIcon />
-              </Button>
-            </Box>
           </Box>
           <Box
             position="absolute"
@@ -61,8 +49,12 @@ const ProfileMainMobile = () => {
             px="24px"
           >
             <Box sx={{ width: "86px", height: "86px", position: "relative" }}>
-              <Avatar sx={{ width: "86px", height: "86px" }}></Avatar>
+              <Avatar
+                sx={{ width: "86px", height: "86px" }}
+                src={data?.data.avatar}
+              ></Avatar>
               <IconButton
+                onClick={() => setOpen(true)}
                 sx={{
                   width: "24px",
                   height: "24px",
@@ -72,6 +64,9 @@ const ProfileMainMobile = () => {
                   position: "absolute",
                   right: 0,
                   bottom: 0,
+                  ":hover": {
+                    bgcolor: "primary.main",
+                  },
                 }}
               >
                 <EditPenIcon />
@@ -81,12 +76,12 @@ const ProfileMainMobile = () => {
               fontWeight={500}
               mt="10px"
             >
-              Vũ Hoàng Hiệp
+              {data?.data.name}
             </Typography>
-            <Typography fontSize="14px">Example@gmail.com</Typography>
+            <Typography fontSize="14px">{data?.data.mail}</Typography>
           </Box>
         </Box>
-        <ProfileMainInformation />
+        <ProfileMainInformation data={data?.data} />
         <ProfileMainAccount />
         <ProfileMainImageDialog
           open={open}

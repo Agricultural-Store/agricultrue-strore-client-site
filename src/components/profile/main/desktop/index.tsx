@@ -1,20 +1,21 @@
 "use client";
 
-import { Avatar, Box, Button, IconButton, Typography } from "@mui/material";
+import { Avatar, Box, IconButton, Typography } from "@mui/material";
 import React, { useState } from "react";
-import EditBorderIcon from "../../../shared/icons/EditBorderIcon";
 import EditPenIcon from "../../../shared/icons/EditPenIcon";
 import ProfileMainInformation from "./ProfileMainInformation";
 import ProfileMainAccount from "./ProfileMainAccount";
 import ProfileMainImageDialog from "./ProfileMainImageDialog";
 import ProfileSetting from "./ProfileSetting";
 import useMedia from "@/hooks/shared/useMedia";
+import useUserProfile from "@/hooks/user/useUserProfile";
 
 const ProfileMainDesktop = () => {
   const [open, setOpen] = useState(false);
   const { media } = useMedia(1300);
   const { media: media1200 } = useMedia(1200);
 
+  const { data } = useUserProfile();
   return (
     <>
       <Box
@@ -26,7 +27,7 @@ const ProfileMainDesktop = () => {
             : "calc(100% - 250px)"
         }
         pr="24px"
-        pl="48px"
+        pl="28px"
       >
         <Box
           bgcolor="color.bgWhite"
@@ -45,19 +46,6 @@ const ProfileMainDesktop = () => {
               height="185px"
               sx={{ objectFit: "cover" }}
             />
-            <Box
-              position="absolute"
-              bottom="12px"
-              right="12px"
-            >
-              <Button
-                variant="contained"
-                sx={{ p: "8px", height: "48px", minWidth: "48px", maxWidth: "48px" }}
-                onClick={() => setOpen(true)}
-              >
-                <EditBorderIcon />
-              </Button>
-            </Box>
           </Box>
           <Box
             position="absolute"
@@ -66,8 +54,12 @@ const ProfileMainDesktop = () => {
             px="24px"
           >
             <Box sx={{ width: "86px", height: "86px", position: "relative" }}>
-              <Avatar sx={{ width: "86px", height: "86px" }}></Avatar>
+              <Avatar
+                sx={{ width: "86px", height: "86px" }}
+                src={data?.data.avatar}
+              ></Avatar>
               <IconButton
+                onClick={() => setOpen(true)}
                 sx={{
                   width: "24px",
                   height: "24px",
@@ -77,6 +69,9 @@ const ProfileMainDesktop = () => {
                   position: "absolute",
                   right: 0,
                   bottom: 0,
+                  ":hover": {
+                    bgcolor: "primary.main",
+                  },
                 }}
               >
                 <EditPenIcon />
@@ -86,12 +81,12 @@ const ProfileMainDesktop = () => {
               fontWeight={500}
               mt="10px"
             >
-              Vũ Hoàng Hiệp
+              {data?.data.name}
             </Typography>
-            <Typography fontSize="14px">Example@gmail.com</Typography>
+            <Typography fontSize="14px">{data?.data.mail}</Typography>
           </Box>
         </Box>
-        <ProfileMainInformation />
+        <ProfileMainInformation data={data?.data} />
         <ProfileMainAccount />
         <ProfileMainImageDialog
           open={open}

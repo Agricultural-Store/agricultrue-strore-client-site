@@ -1,8 +1,12 @@
-import ProductItem from "@/components/product/ProductItem";
+import { ProductCombo } from "@/types/product-combo";
 import { Box, Grid, Typography } from "@mui/material";
 import React from "react";
+import PromotionDetailRelatedItem from "./PromotionDetailRelatedItem";
 
-const ProductDetailRelated = () => {
+type Props = {
+  combo?: ProductCombo[];
+};
+const ProductDetailRelated = ({ combo }: Props) => {
   return (
     <Box
       px="16px"
@@ -21,90 +25,22 @@ const ProductDetailRelated = () => {
         py="48px"
         rowGap="10px"
       >
-        <Grid
-          item
-          xs={12}
-        >
-          <Box
-            sx={{
-              m: "0 auto",
-              borderRadius: "5px",
-            }}
+        {combo?.map((_c) => (
+          <Grid
+            item
+            xs={12}
+            key={_c.id}
           >
-            <ProductItem
-              product={{
-                productImage: "/images/image.png",
-                productName: "Lua",
-                productPrice: 2000,
-                productDiscount: 10,
-                id: 1,
+            <Box
+              sx={{
+                m: "0 auto",
+                borderRadius: "5px",
               }}
-            />
-          </Box>
-        </Grid>
-        <Grid
-          item
-          xs={12}
-        >
-          <Box
-            sx={{
-              m: "0 auto",
-              borderRadius: "5px",
-            }}
-          >
-            <ProductItem
-              product={{
-                productImage: "/images/image.png",
-                productName: "Lua",
-                productPrice: 2000,
-                productDiscount: 10,
-                id: 1,
-              }}
-            />
-          </Box>
-        </Grid>
-        <Grid
-          item
-          xs={12}
-        >
-          <Box
-            sx={{
-              m: "0 auto",
-              borderRadius: "5px",
-            }}
-          >
-            <ProductItem
-              product={{
-                productImage: "/images/image.png",
-                productName: "Lua",
-                productPrice: 2000,
-                productDiscount: 10,
-                id: 1,
-              }}
-            />
-          </Box>
-        </Grid>
-        <Grid
-          item
-          xs={12}
-        >
-          <Box
-            sx={{
-              m: "0 auto",
-              borderRadius: "5px",
-            }}
-          >
-            <ProductItem
-              product={{
-                productImage: "/images/image.png",
-                productName: "Lua",
-                productPrice: 2000,
-                productDiscount: 10,
-                id: 1,
-              }}
-            />
-          </Box>
-        </Grid>
+            >
+              <PromotionDetailRelatedItem combo={_c} />
+            </Box>
+          </Grid>
+        ))}
       </Grid>
     </Box>
   );

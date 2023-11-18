@@ -8,23 +8,25 @@ const promiseStrip = loadStripe(appConfig.PAYMENT_KEY);
 
 type Props = {
   children: ReactNode;
+  amount: number;
 };
 
-const PaymentCheckout = ({ children }: Props) => {
+const PaymentCheckout = ({ children, amount }: Props) => {
   const [clientSecret, setClientSecret] = useState("");
 
   const { trigger } = useOrderPaymentKeyCreate();
   useEffect(() => {
-    trigger({
-      body: {
-        amount: 500000,
-      },
-    }).then((res) => {
-      if (res.statusCode === 200) {
-        setClientSecret(res.data.clientSecret || "");
-      }
-    });
-  }, [trigger]);
+    if (amount)
+      trigger({
+        body: {
+          amount: amount,
+        },
+      }).then((res) => {
+        if (res.statusCode === 200) {
+          setClientSecret(res.data.clientSecret || "");
+        }
+      });
+  }, [trigger, amount]);
 
   if (clientSecret)
     return (

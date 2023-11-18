@@ -5,6 +5,7 @@ import ArrowUpIcon from "@/components/shared/icons/ArrowUpIcon";
 import OrderAddressForm from "./OrderAddressForm";
 import CustomizedInput from "@/components/shared/CustomizedInput";
 import useUserAddress from "@/hooks/user/useUserAddress";
+import { SortOrderEnum } from "@/types/shared";
 
 type Props = {
   onChange?: (id?: number) => void;
@@ -15,7 +16,10 @@ const OrderAddress = ({ onChange, onChangeNote }: Props) => {
   const [showAddressForm, setShowAddressForm] = useState(false);
   const [addressCurrentId, setAddressCurrentId] = useState<number>();
 
-  const { data } = useUserAddress();
+  const { data } = useUserAddress({
+    sortField: "createAt",
+    sortOrder: SortOrderEnum.DESC,
+  });
 
   const handleToggleOrderAddress = () => {
     setShowAddressForm((pre) => !pre);
@@ -35,7 +39,7 @@ const OrderAddress = ({ onChange, onChangeNote }: Props) => {
   }, [data]);
 
   return (
-    <Box my="24px" >
+    <Box my="24px">
       <Typography
         variant="h3"
         lineHeight="30px"

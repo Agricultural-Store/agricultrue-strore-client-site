@@ -122,7 +122,11 @@ const ProductItem = ({ product, onClick, onButtonClick }: Props) => {
                   textOverflow="ellipsis"
                   sx={{ color: "error.main", fontWeight: 600, fontSize: "16px" }}
                 >
-                  Giá: {calcPrice(product?.productPrice, product?.productDiscount)}
+                  Giá:{" "}
+                  {calcPrice(
+                    product?.productPrice,
+                    product?.productDiscount,
+                  ).toLocaleString()}
                   đ/kg
                 </Typography>
                 <Typography
@@ -134,7 +138,7 @@ const ProductItem = ({ product, onClick, onButtonClick }: Props) => {
                     textDecoration: "line-through",
                   }}
                 >
-                  {product?.productPrice}đ/kg
+                  {product?.productPrice?.toLocaleString()}đ/kg
                 </Typography>
               </>
             ) : (

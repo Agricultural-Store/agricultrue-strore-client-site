@@ -2,17 +2,44 @@ import CustomizedQuantityInput from "@/components/shared/CustomizedQuantityInput
 import FavoriteIcon from "@/components/shared/icons/FavoriteIcon";
 import NextArrowIcon from "@/components/shared/icons/NextArrowIcon";
 import PreviousIcon from "@/components/shared/icons/PreviousArrowIcon";
+import { AppContext } from "@/providers/AppContext";
+import { CartContext } from "@/providers/CartContext";
 import { ProductComboDetail } from "@/types/product-combo-detail";
 import { calcPrice } from "@/utils/count";
 import { Box, Button, Grid, IconButton, Typography } from "@mui/material";
-import React from "react";
+import React, { useContext, useState } from "react";
 
 type Props = {
   combo?: ProductComboDetail;
 };
 
 const PromotionDetailBasicInfo = ({ combo }: Props) => {
-  console.log(combo);
+  const [index, setIndex] = useState(0);
+  const { setOpenCart } = useContext(AppContext);
+  const { setProduct } = useContext(CartContext);
+
+  const handlePreviousImage = () => {
+    setIndex((pre) => pre - 1);
+  };
+
+  const handleNextImage = () => {
+    setIndex((pre) => pre + 1);
+  };
+
+  const handleButtonClick = () => {
+    if (combo)
+      setProduct?.({
+        id: combo.id,
+        productCount: 1,
+        productDiscount: combo.comboDiscount,
+        productImage: combo.comboImages?.[0] || "",
+        productName: combo.comboName,
+        productPrice: combo.comboPrice,
+        isCombo: true,
+      });
+    setOpenCart(true);
+  };
+
   return (
     <Grid
       container
@@ -29,7 +56,7 @@ const PromotionDetailBasicInfo = ({ combo }: Props) => {
           <Box sx={{ position: "relative", width: "100%" }}>
             <Box
               component="img"
-              src={combo?.comboImages?.[0] || "/images/combo-detail-main.png"}
+              src={combo?.comboImages?.[index] || "/images/combo-detail-main.png"}
               sx={{ width: "100%", height: "400px" }}
             />
             <Box
@@ -50,7 +77,9 @@ const PromotionDetailBasicInfo = ({ combo }: Props) => {
                     bgcolor: "rgba(0, 0, 0, .3)",
                   },
                 }}
+                disabled={index === 0}
                 size="small"
+                onClick={handlePreviousImage}
               >
                 <PreviousIcon color="#FFFFFF" />
               </IconButton>
@@ -62,6 +91,8 @@ const PromotionDetailBasicInfo = ({ combo }: Props) => {
                   },
                 }}
                 size="small"
+                onClick={handleNextImage}
+                disabled={index + 1 === combo?.comboImages?.length}
               >
                 <NextArrowIcon color="#FFFFFF" />
               </IconButton>
@@ -73,7 +104,7 @@ const PromotionDetailBasicInfo = ({ combo }: Props) => {
             mt="20px"
             spacing={1}
           >
-            {combo?.comboImages?.slice(1, 7).map((image, index) => (
+            {combo?.comboImages?.slice(0, 7).map((image, index) => (
               <Grid
                 item
                 xs={2}
@@ -103,7 +134,7 @@ const PromotionDetailBasicInfo = ({ combo }: Props) => {
                         cursor: "pointer",
                       }}
                     >
-                      +9
+                      +{combo.comboImages?.length && combo.comboImages.length - 5}
                     </Box>
                   </Box>
                 ) : (
@@ -136,10 +167,10 @@ const PromotionDetailBasicInfo = ({ combo }: Props) => {
         </Typography>
         <Box sx={{ display: "flex", gap: "8px", alignItems: "center" }}>
           <Typography sx={{ color: "color.textPrimary", fontSize: "20px" }}>
-            Giá: {calcPrice(combo?.comboPrice, combo?.comboDiscount)}đ/kg
+            Giá: {calcPrice(combo?.comboPrice, combo?.comboDiscount).toLocaleString()}đ/kg
           </Typography>
           <Typography sx={{ color: "color.textPrimary300" }}>
-            {combo?.comboPrice}đ/kg
+            {combo?.comboPrice?.toLocaleString()}đ/kg
           </Typography>
         </Box>
         <Typography
@@ -156,6 +187,7 @@ const PromotionDetailBasicInfo = ({ combo }: Props) => {
         </Box>
         <Box sx={{ display: "flex", gap: "16px", mt: "20px", height: "42px" }}>
           <Button
+            onClick={handleButtonClick}
             sx={{ textTransform: "capitalize" }}
             variant="contained"
           >

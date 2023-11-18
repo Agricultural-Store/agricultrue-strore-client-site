@@ -20,3 +20,15 @@ export interface ChangePasswordInput {
   confirmPassword: string;
   newPassword: string;
 }
+
+export interface UserProfile {
+  name: string;
+  mail: string;
+  phone: string;
+  birthday: string;
+  addressDetail: string;
+  district: string;
+  commune: string;
+  province: string;
+  avatar: string;
+}

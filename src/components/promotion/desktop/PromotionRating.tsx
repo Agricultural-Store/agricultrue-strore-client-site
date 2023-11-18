@@ -3,7 +3,11 @@ import React, { useState } from "react";
 import PromotionRatingItem from "./PromotionRatingItem";
 
 const PromotionRating = () => {
-  const [tabIndex] = useState(0);
+  const [tabIndex, setTabIndex] = useState(0);
+
+  const handleClick = (tab: number) => {
+    setTabIndex(tab);
+  };
 
   return (
     <Box
@@ -22,37 +26,32 @@ const PromotionRating = () => {
         Hơn 1.000+ đánh giá từ khách hàng hài lòng.
       </Typography>
       <Box
-        sx={{
-          width: "300%",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          gap: "80px",
-          transform: "translateX(-33.33333%)",
-        }}
+        sx={{ width: "100%", overflowX: "hidden" }}
+        component="div"
       >
-        <PromotionRatingItem
-          content={` Với tôi, việc chọn gạo không chỉ dừng lại ở chất lượng, mà còn ở sự an toàn thực
+        <Box
+          sx={{
+            width: "100%",
+            height: "300px",
+            display: "flex",
+            alignItems: "center",
+            left: 0,
+          }}
+        >
+          {Array(...Array(4)).map((_v, index) => (
+            <PromotionRatingItem
+              onClick={handleClick}
+              index={index}
+              key={index}
+              isActive={index === tabIndex ? true : false}
+              content={` Với tôi, việc chọn gạo không chỉ dừng lại ở chất lượng, mà còn ở sự an toàn thực
         phẩm. Đã có nhiều lần tôi lo lắng khi mua gạo trên thị trường với nhiều thông tin
         về gạo kém chất lượng. Nhưng với gạo Đồng bằng Sông Cửu Long, tôi hoàn toàn yên
         tâm. Không chỉ vì chất lượng tốt mà còn ở sự minh bạch trong quy trình sản xuất.
         Mỗi bữa cơm trở nên an tâm và ngon miệng hơn.`}
-        />
-        <PromotionRatingItem
-          isActive
-          content={` Với tôi, việc chọn gạo không chỉ dừng lại ở chất lượng, mà còn ở sự an toàn thực
-        phẩm. Đã có nhiều lần tôi lo lắng khi mua gạo trên thị trường với nhiều thông tin
-        về gạo kém chất lượng. Nhưng với gạo Đồng bằng Sông Cửu Long, tôi hoàn toàn yên
-        tâm. Không chỉ vì chất lượng tốt mà còn ở sự minh bạch trong quy trình sản xuất.
-        Mỗi bữa cơm trở nên an tâm và ngon miệng hơn.`}
-        />
-        <PromotionRatingItem
-          content={` Với tôi, việc chọn gạo không chỉ dừng lại ở chất lượng, mà còn ở sự an toàn thực
-        phẩm. Đã có nhiều lần tôi lo lắng khi mua gạo trên thị trường với nhiều thông tin
-        về gạo kém chất lượng. Nhưng với gạo Đồng bằng Sông Cửu Long, tôi hoàn toàn yên
-        tâm. Không chỉ vì chất lượng tốt mà còn ở sự minh bạch trong quy trình sản xuất.
-        Mỗi bữa cơm trở nên an tâm và ngon miệng hơn.`}
-        />
+            />
+          ))}
+        </Box>
       </Box>
       <Box
         sx={{
@@ -70,6 +69,7 @@ const PromotionRating = () => {
             borderRadius: "100px",
             bgcolor: "#63811E",
             transition: ".5s",
+            opacity: tabIndex == 0 ? 1 : 0.24,
           }}
         ></Box>
         <Box
@@ -79,6 +79,7 @@ const PromotionRating = () => {
             borderRadius: "100px",
             bgcolor: "#63811E",
             transition: ".5s",
+            opacity: tabIndex == 1 ? 1 : 0.24,
           }}
         ></Box>
         <Box
@@ -88,6 +89,7 @@ const PromotionRating = () => {
             borderRadius: "100px",
             bgcolor: "#63811E",
             transition: ".5s",
+            opacity: tabIndex == 2 ? 1 : 0.24,
           }}
         ></Box>
         <Box
@@ -97,6 +99,7 @@ const PromotionRating = () => {
             borderRadius: "100px",
             bgcolor: "#63811E",
             transition: ".5s",
+            opacity: tabIndex == 3 ? 1 : 0.24,
           }}
         ></Box>
         <Box
@@ -106,6 +109,7 @@ const PromotionRating = () => {
             borderRadius: "100px",
             bgcolor: "#63811E",
             transition: ".5s",
+            opacity: tabIndex == 4 ? 1 : 0.24,
           }}
         ></Box>
       </Box>

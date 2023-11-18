@@ -12,8 +12,6 @@ const PromotionDetailDesktop = () => {
 
   const { data, isLoading, isValidating } = useProductComboDetail(+(params.id as string));
 
-  console.log(params);
-
   return (
     <>
       <Container
@@ -27,7 +25,7 @@ const PromotionDetailDesktop = () => {
         <PromotionDetailBasicInfo combo={data?.data} />
         <PromotionDetailCenter combo={data?.data} />
       </Container>
-      <PromotionDetailRelated />
+      <PromotionDetailRelated combo={data?.data.productRelated} />
       {(isLoading || isValidating) && <RootLoading />}
     </>
   );

@@ -3,7 +3,7 @@ import { Address } from "@/types/address";
 import { ApiResponse, ErrorResponse, ListOptions, FetchOptions } from "@/types/shared";
 import useSWR from "swr";
 
-const useUserAddress = () => {
+const useUserAddress = (params?: ListOptions) => {
   return useSWR<
     ApiResponse<Address[]>,
     ErrorResponse<ListOptions>,
@@ -11,6 +11,7 @@ const useUserAddress = () => {
   >(
     {
       path: userApi.address,
+      params
     },
     {
       keepPreviousData: true,

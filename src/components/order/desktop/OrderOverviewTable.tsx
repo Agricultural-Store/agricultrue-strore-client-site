@@ -1,4 +1,3 @@
-import DeleteIcon from "@/components/shared/icons/DeleteIcon";
 import { CartContext } from "@/providers/CartContext";
 import { ProductInCart } from "@/types/cart";
 import { calcPrice } from "@/utils/count";
@@ -12,7 +11,6 @@ import {
   TableBody,
   Box,
   Typography,
-  IconButton,
 } from "@mui/material";
 import React, { useContext, useEffect, useState } from "react";
 
@@ -22,8 +20,6 @@ type Props = {
 const OrderOverviewTable = ({ data: dataProps }: Props) => {
   const [data, setData] = useState<ProductInCart[]>();
   const { product } = useContext(CartContext);
-
-  const handleDelete = () => {};
 
   useEffect(() => {
     if (product) {
@@ -68,12 +64,6 @@ const OrderOverviewTable = ({ data: dataProps }: Props) => {
                 align="center"
               >
                 Thành tiền
-              </TableCell>
-              <TableCell
-                align="center"
-                sx={{ color: "error.main", fontWeight: 500, pr: 0 }}
-              >
-                Xóa tất cả (2)
               </TableCell>
             </TableRow>
           </TableHead>
@@ -121,14 +111,6 @@ const OrderOverviewTable = ({ data: dataProps }: Props) => {
                     ).toLocaleString()}
                     đ
                   </Typography>
-                </TableCell>
-                <TableCell
-                  align="center"
-                  sx={{ pr: 0 }}
-                >
-                  <IconButton onClick={handleDelete}>
-                    <DeleteIcon />
-                  </IconButton>
                 </TableCell>
               </TableRow>
             ))}

@@ -13,6 +13,7 @@ export const authApi = {
 
 export const userApi = {
   me: `${userApiBase}/me`,
+  profile: `${userApiBase}/profile`,
   cart: `${userApiBase}/cart`,
   addToCart: `${userApiBase}/cart`,
   changeCart: (id?: number) => `${userApiBase}/cart/${id}`,

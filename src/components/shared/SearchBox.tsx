@@ -9,9 +9,17 @@ type Props = {
   defaultValue?: string;
   onChange?: (value: string) => void;
   fullWidth?: boolean;
+  size?: "small" | "medium";
 };
 
-const SearchBox = ({ placeholder, value, onChange, defaultValue, fullWidth }: Props) => {
+const SearchBox = ({
+  placeholder,
+  value,
+  onChange,
+  defaultValue,
+  fullWidth,
+  size,
+}: Props) => {
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     onChange?.(e.target.value);
   };
@@ -32,6 +40,7 @@ const SearchBox = ({ placeholder, value, onChange, defaultValue, fullWidth }: Pr
           borderColor: "#E6E8EC !important",
         },
       }}
+      size={size}
       onChange={handleChange}
       value={value}
       defaultValue={defaultValue}

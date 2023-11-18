@@ -6,6 +6,17 @@ export interface ProductInCart {
   productPrice?: number;
   productDiscount?: number;
   productCount?: number;
+  isCombo?: boolean
+}
+
+export interface ComboInCart {
+  id: number;
+  comboImage?: string;
+  comboName?: string;
+  comboQuantity?: number;
+  comboPrice?: number;
+  comboDiscount?: number;
+  comboCount?: number;
 }
 
 export interface ProductInCartCreateInput {

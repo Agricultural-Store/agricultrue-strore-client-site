@@ -1,19 +1,18 @@
-import { Box, Button, IconButton, Typography } from "@mui/material";
-import React, { ChangeEvent, useContext, useEffect, useState } from "react";
+import { Box, IconButton, Typography } from "@mui/material";
+import React, { ChangeEvent, useContext, useEffect, useMemo, useState } from "react";
 import OrderAddress from "./OrderAddress";
 import OrderPayment from "./OrderPayment";
 import OrderOverview from "./OrderOverview";
 import ArrowBackIcon from "@/components/shared/icons/ArrowBackIcon";
 import OrderComplete from "./OrderComplete";
 import useUserCar from "@/hooks/user/useUserCart";
-import { scrollTo } from "@/utils/scroll";
-import useOrderCreate from "@/hooks/order/useOrderCreate";
 import { OrderCreateInput, PaymentMethod } from "@/types/order";
 import { CartContext } from "@/providers/CartContext";
-import { usePathname, useRouter } from "next-intl/client";
-import appConfig from "@/config/env";
-import { useStripe, useElements } from "@stripe/react-stripe-js";
-import { useEnqueueSnackbar } from "@/hooks/shared/useEnqueueSnackbar";
+import { useRouter } from "next-intl/client";
+import { calcPriceDiscount } from "@/utils/count";
+import PaymentCheckout from "../PaymentCheckout";
+import OrderSubmit from "./OrderSubmit";
+import { scrollTo } from "@/utils/scroll";
 
 const OrderMobile = () => {
   const [step, setStep] = useState(1);
@@ -30,65 +29,39 @@ const OrderMobile = () => {
   const { product } = useContext(CartContext);
 
   const router = useRouter();
-  const [setEnqueue] = useEnqueueSnackbar();
 
   const { data } = useUserCar();
-  const { trigger } = useOrderCreate();
-  const stripe = useStripe();
-  const elements = useElements();
-  const pathname = usePathname();
 
-  const handleSubmit = async () => {
-    // We don't want to let default form submission happen here,
-    // which would refresh the page.
-
-    if (!stripe || !elements) {
-      // Stripe.js hasn't yet loaded.
-      // Make sure to disable form submission until Stripe.js has loaded.
-      return;
+  const originalPrice = useMemo(() => {
+    if (product) {
+      return (product.productCount || 1) * (product.productPrice || 1);
     }
+    return (
+      data?.data?.reduce(
+        (pre, curr) => pre + (curr?.productPrice || 0) * (curr?.productCount ?? 1),
+        0,
+      ) || 0
+    );
+  }, [data, product]);
 
-    const result = await stripe.confirmPayment({
-      //`Elements` instance that was used to create the Payment Element
-      elements,
-      confirmParams: {
-        return_url: appConfig.PUBLIC_URL + pathname,
-      },
-      redirect: "if_required",
-    });
-
-    if (result.error) {
-      // Show error to your customer (for example, payment details incomplete)
-      console.log(result.error.message);
-    } else {
-      // Your customer will be redirected to your `return_url`. For some payment
-      // methods like iDEAL, your customer will be redirected to an intermediate
-      // site first to authorize the payment, then redirected to the `return_url`.
+  const discountPrice = useMemo(() => {
+    if (product) {
+      return (
+        calcPriceDiscount(product.productPrice, product.productDiscount) *
+        (product?.productCount ?? 1)
+      );
     }
-  };
+    return (
+      data?.data?.reduce(
+        (pre, curr) =>
+          pre +
+          calcPriceDiscount(curr.productPrice, curr.productDiscount) *
+            (curr?.productCount ?? 1),
+        0,
+      ) || 0
+    );
+  }, [data, product]);
 
-  const handleNextStep = () => {
-    scrollTo({ top: 0 });
-    if (step < 3) {
-      setStep((pre) => (pre = pre + 1));
-    } else {
-      if (input.paymentMethod === PaymentMethod.CREDIT) {
-        handleSubmit();
-      }
-      trigger(
-        {
-          body: input,
-        },
-        {
-          onError: () => {
-            setEnqueue("Đặt hàng thất bại", "error");
-          },
-        },
-      ).then(() => {
-        setStep(4);
-      });
-    }
-  };
   const handlePreviousStep = () => {
     if (step > 1) {
       setStep((pre) => (pre = pre - 1));
@@ -125,16 +98,35 @@ const OrderMobile = () => {
   };
 
   useEffect(() => {
-    setInput((pre) => ({
-      ...pre,
-      products: product
-        ? [{ id: product.id, productCount: product.productCount }]
-        : data?.data.map((value) => ({ id: value.id })) || [],
-    }));
+    if (product) {
+      setInput((pre) => ({
+        ...pre,
+        products: [{ id: product.id, productCount: product.productCount }],
+      }));
+    } else {
+      setInput((pre) => ({
+        ...pre,
+        products: data?.data.map((value) => ({ id: value.id })) || [],
+      }));
+    }
   }, [data, product]);
 
+  useEffect(() => {
+    setInput((pre) => ({
+      ...pre,
+      discountPrice: discountPrice,
+      totalPrice: originalPrice - discountPrice,
+    }));
+  }, [originalPrice, discountPrice]);
+
+  useEffect(() => {
+    scrollTo({
+      top: 0,
+    });
+  }, [step]);
+
   return (
-    <>
+    <PaymentCheckout amount={originalPrice - discountPrice}>
       <Box sx={{ px: "16px" }}>
         <Box>
           <Box width="100%">
@@ -171,12 +163,8 @@ const OrderMobile = () => {
                 onChangeNote={handleChangeNote}
               />
             )}
-            <OrderPayment
-              onChange={handleChangePayment}
-              unmounted={step === 2 ? false : true}
-              onCompleteCredit={setCreateComplete}
-            />
-            {step === 3 && (
+
+            {step === 2 && (
               <OrderOverview
                 data={data?.data}
                 onBackStep={setStep}
@@ -184,26 +172,24 @@ const OrderMobile = () => {
                 addressId={input.addressId}
               />
             )}
+            <OrderPayment
+              onChange={handleChangePayment}
+              unmounted={step === 3 ? false : true}
+              onCompleteCredit={setCreateComplete}
+            />
             {step === 4 && <OrderComplete />}
           </Box>
         </Box>
         {step !== 4 && (
-          <Button
-            variant="contained"
-            fullWidth
-            onClick={handleNextStep}
-            disabled={
-              input.paymentMethod === PaymentMethod.CASH
-                ? false
-                : step === 2 && !creditComplete
-            }
-            sx={{ textTransform: "capitalize", my: "16px" }}
-          >
-            Tiếp tục
-          </Button>
+          <OrderSubmit
+            input={input}
+            setStep={setStep}
+            step={step}
+            creditComplete={creditComplete}
+          />
         )}
       </Box>
-    </>
+    </PaymentCheckout>
   );
 };
 

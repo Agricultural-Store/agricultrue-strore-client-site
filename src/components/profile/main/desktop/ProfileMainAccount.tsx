@@ -12,7 +12,7 @@ const ProfileMainAccount = () => {
       >
         <Grid
           item
-          xs={2}
+          xs={3}
           fontWeight={500}
           lineHeight="30px"
         >
@@ -20,7 +20,7 @@ const ProfileMainAccount = () => {
         </Grid>
         <Grid
           item
-          xs={10}
+          xs={9}
         >
           {value}
         </Grid>

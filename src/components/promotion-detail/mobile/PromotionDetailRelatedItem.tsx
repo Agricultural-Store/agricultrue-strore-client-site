@@ -1,34 +1,27 @@
-import ProductItem from "@/components/product/ProductItem";
-import { Grid, Box } from "@mui/material";
+import PromotionComboItem from "@/components/promotion/desktop/PromotionComboItem";
+import { ProductCombo } from "@/types/product-combo";
+import { Box } from "@mui/material";
 import React from "react";
 
-const PromotionDetailRelatedItem = () => {
+type Props = {
+  combo?: ProductCombo;
+};
+
+const PromotionDetailRelatedItem = ({ combo }: Props) => {
   return (
-    <Grid
-      item
-      md={4}
-      lg={3}
-      sm={6}
+    <Box
+      sx={{
+        m: "0 auto",
+        borderRadius: "5px",
+      }}
     >
-      <Box
-        sx={{
-          width: "90%",
-          m: "0 auto",
-          height: "320px",
-          borderRadius: "5px",
-        }}
-      >
-        <ProductItem
-          product={{
-            productImage: "/images/image.png",
-            productName: "Lua",
-            productPrice: 2000,
-            productDiscount: 10,
-            id: 1,
-          }}
-        />
-      </Box>
-    </Grid>
+      <PromotionComboItem
+        description={combo?.comboDescriptionSummary}
+        image={combo?.comboImage}
+        title={combo?.comboName}
+        id={combo?.id}
+      />
+    </Box>
   );
 };
 

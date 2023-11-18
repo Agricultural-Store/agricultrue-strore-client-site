@@ -175,6 +175,7 @@ const ProductFilter = ({ setOptions, options }: Props) => {
               overflowX: "scroll",
               "::-webkit-scrollbar": {
                 height: "3px",
+                display: "none",
               },
             },
           ]}
@@ -183,6 +184,7 @@ const ProductFilter = ({ setOptions, options }: Props) => {
             display={media ? "flex" : "block"}
             gap="30px"
             width="200%"
+            alignItems="center"
           >
             {categories.map((category) => (
               <Box

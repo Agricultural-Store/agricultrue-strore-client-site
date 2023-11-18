@@ -1,8 +1,13 @@
-import ProductItem from "@/components/product/ProductItem";
+import PromotionComboItem from "@/components/promotion/desktop/PromotionComboItem";
+import { ProductCombo } from "@/types/product-combo";
 import { Grid, Box } from "@mui/material";
 import React from "react";
 
-const PromotionDetailRelatedItem = () => {
+type Props = {
+  combo?: ProductCombo;
+};
+
+const PromotionDetailRelatedItem = ({ combo }: Props) => {
   return (
     <Grid
       item
@@ -18,14 +23,11 @@ const PromotionDetailRelatedItem = () => {
           borderRadius: "5px",
         }}
       >
-        <ProductItem
-          product={{
-            productImage: "/images/image.png",
-            productName: "Lua",
-            productPrice: 2000,
-            productDiscount: 10,
-            id: 1,
-          }}
+        <PromotionComboItem
+          description={combo?.comboDescriptionSummary}
+          image={combo?.comboImage}
+          title={combo?.comboName}
+          id={combo?.id}
         />
       </Box>
     </Grid>

@@ -1,3 +1,4 @@
+import { ProductCombo } from "./product-combo";
 import { ProductDetail } from "./product-detail";
 
 export interface ProductComboDetail {
@@ -12,4 +13,5 @@ export interface ProductComboDetail {
   products?: ProductDetail[];
   comboPrice?: number;
   comboDiscount?: number;
+  productRelated?: ProductCombo[];
 }

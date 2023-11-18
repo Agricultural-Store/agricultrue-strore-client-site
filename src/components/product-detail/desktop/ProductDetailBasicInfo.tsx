@@ -18,6 +18,7 @@ type Props = {
 
 const ProductDetailBasicInfo = ({ product }: Props) => {
   const [count, setCount] = useState(1);
+  const [index, setIndex] = useState(0);
   const { setOpenAuth } = useContext(AppContext);
 
   const { status } = useSession();
@@ -27,6 +28,14 @@ const ProductDetailBasicInfo = ({ product }: Props) => {
 
   const handleChange = (value: number) => {
     setCount(value);
+  };
+
+  const handlePreviousImage = () => {
+    setIndex((pre) => pre - 1);
+  };
+
+  const handleNextImage = () => {
+    setIndex((pre) => pre + 1);
   };
 
   const handleAddToCart = () => {
@@ -52,7 +61,7 @@ const ProductDetailBasicInfo = ({ product }: Props) => {
   return (
     <Grid
       container
-      sx={{ py: "48px", height: "auto" }}
+      sx={{ pb: "48px", height: "auto" }}
       columnSpacing={6}
     >
       <Grid
@@ -65,7 +74,7 @@ const ProductDetailBasicInfo = ({ product }: Props) => {
           <Box sx={{ position: "relative", width: "100%" }}>
             <Box
               component="img"
-              src={product?.productImages?.[0] || "/images/product-detail-main.png"}
+              src={product?.productImages?.[index] || "/images/product-detail-main.png"}
               sx={{ width: "100%", height: "400px" }}
             />
             <Box
@@ -86,7 +95,9 @@ const ProductDetailBasicInfo = ({ product }: Props) => {
                     bgcolor: "rgba(0, 0, 0, .3)",
                   },
                 }}
+                disabled={index === 0}
                 size="small"
+                onClick={handlePreviousImage}
               >
                 <PreviousIcon color="#FFFFFF" />
               </IconButton>
@@ -98,6 +109,8 @@ const ProductDetailBasicInfo = ({ product }: Props) => {
                   },
                 }}
                 size="small"
+                onClick={handleNextImage}
+                disabled={index + 1 === product?.productImages?.length}
               >
                 <NextArrowIcon color="#FFFFFF" />
               </IconButton>
@@ -109,7 +122,7 @@ const ProductDetailBasicInfo = ({ product }: Props) => {
             mt="20px"
             spacing={1}
           >
-            {product?.productImages?.slice(1, 7).map((image, index) => (
+            {product?.productImages?.slice(0, 6).map((image, index) => (
               <Grid
                 item
                 xs={2}
@@ -139,7 +152,7 @@ const ProductDetailBasicInfo = ({ product }: Props) => {
                         cursor: "pointer",
                       }}
                     >
-                      +9
+                      +{product.productImages?.length && product.productImages.length - 5}
                     </Box>
                   </Box>
                 ) : (

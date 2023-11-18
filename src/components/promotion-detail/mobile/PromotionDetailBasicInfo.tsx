@@ -2,16 +2,45 @@ import CustomizedQuantityInput from "@/components/shared/CustomizedQuantityInput
 import FavoriteIcon from "@/components/shared/icons/FavoriteIcon";
 import NextArrowIcon from "@/components/shared/icons/NextArrowIcon";
 import PreviousIcon from "@/components/shared/icons/PreviousArrowIcon";
-import { ProductDetail } from "@/types/product-detail";
+import { AppContext } from "@/providers/AppContext";
+import { CartContext } from "@/providers/CartContext";
+import { ProductComboDetail } from "@/types/product-combo-detail";
 import { calcPrice } from "@/utils/count";
 import { Box, Button, Grid, IconButton, Typography } from "@mui/material";
-import React from "react";
+import React, { useContext, useState } from "react";
 
 type Props = {
-  product?: ProductDetail;
+  combo?: ProductComboDetail;
 };
 
-const PromotionDetailBasicInfo = ({ product }: Props) => {
+const PromotionDetailBasicInfo = ({ combo }: Props) => {
+  const [index, setIndex] = useState(0);
+
+  const { setOpenCart } = useContext(AppContext);
+  const { setProduct } = useContext(CartContext);
+
+  const handlePreviousImage = () => {
+    setIndex((pre) => pre - 1);
+  };
+
+  const handleNextImage = () => {
+    setIndex((pre) => pre + 1);
+  };
+
+  const handleButtonClick = () => {
+    if (combo)
+      setProduct?.({
+        id: combo.id,
+        productCount: 1,
+        productDiscount: combo.comboDiscount,
+        productImage: combo.comboImages?.[0] || "",
+        productName: combo.comboName,
+        productPrice: combo.comboPrice,
+        isCombo: true,
+      });
+    setOpenCart(true);
+  };
+
   return (
     <Grid
       container
@@ -26,7 +55,7 @@ const PromotionDetailBasicInfo = ({ product }: Props) => {
           <Box sx={{ position: "relative" }}>
             <Box
               component="img"
-              src="/images/product-detail-main.png"
+              src={combo?.comboImages?.[0] || "/images/combo-detail-main.png"}
               sx={{ width: "100%", height: "280px" }}
             />
             <Box
@@ -47,7 +76,9 @@ const PromotionDetailBasicInfo = ({ product }: Props) => {
                     bgcolor: "rgba(0, 0, 0, .3)",
                   },
                 }}
+                disabled={index === 0}
                 size="small"
+                onClick={handlePreviousImage}
               >
                 <PreviousIcon color="#FFFFFF" />
               </IconButton>
@@ -59,6 +90,8 @@ const PromotionDetailBasicInfo = ({ product }: Props) => {
                   },
                 }}
                 size="small"
+                onClick={handleNextImage}
+                disabled={index + 1 === combo?.comboImages?.length}
               >
                 <NextArrowIcon color="#FFFFFF" />
               </IconButton>
@@ -70,7 +103,7 @@ const PromotionDetailBasicInfo = ({ product }: Props) => {
             mt="20px"
             spacing={1}
           >
-            {product?.productImages?.slice(1, 7).map((image, index) => (
+            {combo?.comboImages?.slice(1, 7).map((image, index) => (
               <Grid
                 item
                 xs={2}
@@ -100,7 +133,7 @@ const PromotionDetailBasicInfo = ({ product }: Props) => {
                         cursor: "pointer",
                       }}
                     >
-                      +9
+                      +{combo.comboImages?.length && combo.comboImages.length - 5}
                     </Box>
                   </Box>
                 ) : (
@@ -123,29 +156,26 @@ const PromotionDetailBasicInfo = ({ product }: Props) => {
           px: "16px",
         }}
       >
-        <Typography sx={{ fontSize: "18px", fontWeight: 600, lineHeight: "32px" }}>
-          {product?.productCategory}
-        </Typography>
         <Typography
           sx={{ fontSize: "20px", fontWeight: 500, lineHeight: "36px", mt: "2px" }}
         >
-          {product?.productName}
+          {combo?.comboName}
         </Typography>
         <Box sx={{ display: "flex", gap: "8px", alignItems: "center", mt: "6px" }}>
           <Typography
             sx={{ color: "color.textPrimary", fontSize: "18px", lineHeight: "32px" }}
           >
-            Giá: {calcPrice(product?.productPrice, product?.productDiscount)}đ/kg
+            Giá: {calcPrice(combo?.comboPrice, combo?.comboDiscount).toLocaleString()}đ/kg
           </Typography>
           <Typography sx={{ color: "color.textPrimary300", lineHeight: "28px" }}>
-            {product?.productPrice}đ/kg
+            {combo?.comboPrice?.toLocaleString()}đ/kg
           </Typography>
         </Box>
-        <Typography sx={{ lineHeight: "28px", fontSize: "14px", mt: "16px" }}>
-          Gạo ST25 là một loại gạo thơm mới được phát triển tại Việt Nam, đã được vinh
-          danh là loại gạo ngon nhất thế giới trong cuộc thi The World’s Best Rice tổ chức
-          tại Philippines năm 2019.
-        </Typography>
+        <Typography
+          component="div"
+          dangerouslySetInnerHTML={{ __html: combo?.comboDescriptionSummary || "" }}
+          sx={{ lineHeight: "28px", fontSize: "14px", mt: "16px" }}
+        ></Typography>
         <Box sx={{ display: "flex", gap: "12px", alignItems: "center", mt: "16px" }}>
           <Typography>Số lượng</Typography>
           <CustomizedQuantityInput
@@ -158,6 +188,7 @@ const PromotionDetailBasicInfo = ({ product }: Props) => {
             sx={{ textTransform: "capitalize" }}
             variant="contained"
             fullWidth
+            onClick={handleButtonClick}
           >
             Thêm vào giỏ hàng
           </Button>

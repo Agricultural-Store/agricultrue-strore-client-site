@@ -1,4 +1,4 @@
-import { ProductInCart } from "./cart";
+import { ComboInCart, ProductInCart } from "./cart";
 
 export enum PaymentMethod {
   CASH = "CASH",
@@ -8,6 +8,8 @@ export enum PaymentMethod {
 export interface CartContextType {
   product?: ProductInCart;
   setProduct: (product?: ProductInCart) => void;
+  combo?: ComboInCart;
+  setCombo: (combo: ComboInCart) => void;
 }
 
 export interface OrderCreateInput {
@@ -17,6 +19,7 @@ export interface OrderCreateInput {
   discountPrice: number;
   paymentMethod: PaymentMethod;
   note: string;
+  isCombo?: boolean;
 }
 
 export interface PaymentCreateKey {
