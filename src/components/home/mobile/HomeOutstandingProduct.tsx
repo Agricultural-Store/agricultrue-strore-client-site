@@ -32,6 +32,7 @@ const HomeOutstandingProduct = () => {
       setProduct?.({
         ...product,
         productCount: 1,
+        isCombo: false,
       });
     setOpenCart(true);
   };

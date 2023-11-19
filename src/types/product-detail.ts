@@ -10,6 +10,7 @@ export type ProductDetail = {
   productDescription?: string;
   productCategory?: string;
   productSummaryDescription?: string;
+  isFavorites?: boolean;
   productDetail?: {
     type?: string;
     humidity?: string;

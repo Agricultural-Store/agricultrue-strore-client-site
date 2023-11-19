@@ -1,12 +1,14 @@
 export type ProductRating = {
-  username: string;
-  userImage: string;
   productRating: number;
   feedback: string;
-  createdAt: string;
+  createAt: string;
+  user?: {
+    name?: string;
+    avatar?: string;
+  };
 };
 
 export type ProductRatingInput = {
   rating: number;
   feedback: string;
-}
+};

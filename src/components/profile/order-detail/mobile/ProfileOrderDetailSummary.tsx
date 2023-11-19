@@ -1,7 +1,20 @@
+import { UserOrder } from "@/types/user";
 import { Box, Button, Divider, Typography } from "@mui/material";
+import { useRouter } from "next/router";
 import React from "react";
 
-const ProfileOrderDetailSummary = () => {
+type Props = {
+  order?: UserOrder;
+};
+
+const ProfileOrderDetailSummary = ({ order }: Props) => {
+  const router = useRouter();
+
+  const handleClickReBuy = () => {
+    router.push("/product");
+  };
+
+  const handleCancel = () => {};
   return (
     <Box>
       <Typography
@@ -22,7 +35,9 @@ const ProfileOrderDetailSummary = () => {
           lineHeight="32px"
         >
           <Typography lineHeight="32px">Tạm tính</Typography>
-          <Typography lineHeight="32px">120.000đ</Typography>
+          <Typography lineHeight="32px">
+            {(+(order?.totalPrice || 0)).toLocaleString()}đ
+          </Typography>
         </Box>
         <Box
           mb="8px"
@@ -32,7 +47,9 @@ const ProfileOrderDetailSummary = () => {
           lineHeight="32px"
         >
           <Typography lineHeight="32px">Giảm giá</Typography>
-          <Typography lineHeight="32px">-30,000₫</Typography>
+          <Typography lineHeight="32px">
+            -{(+(order?.discountPrice || 0)).toLocaleString()}đ
+          </Typography>
         </Box>
         <Divider></Divider>
       </Box>
@@ -56,7 +73,7 @@ const ProfileOrderDetailSummary = () => {
           fontWeight={500}
           lineHeight="32px"
         >
-          90.000đ
+          {(+(order?.temporaryPrice || 0)).toLocaleString()}đ
         </Typography>
       </Box>
       <Box>
@@ -64,6 +81,7 @@ const ProfileOrderDetailSummary = () => {
           variant="outlined"
           fullWidth
           color="error"
+          onClick={handleCancel}
           sx={{ textTransform: "capitalize", mb: "12px" }}
         >
           Hủy đơn hàng
@@ -72,6 +90,7 @@ const ProfileOrderDetailSummary = () => {
           variant="contained"
           fullWidth
           sx={{ textTransform: "capitalize" }}
+          onClick={handleClickReBuy}
         >
           Mua lại
         </Button>

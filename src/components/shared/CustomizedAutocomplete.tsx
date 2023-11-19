@@ -9,6 +9,8 @@ type Props = {
   fullWidth?: boolean;
   onInputChange?: (value: string) => void;
   onChange?: (value: null | AutoCompleteOption | string) => void;
+  size?: "small" | "medium";
+  value?: AutoCompleteOption | string | null;
 };
 const CustomizedAutocomplete = ({
   options,
@@ -17,6 +19,8 @@ const CustomizedAutocomplete = ({
   fullWidth,
   onInputChange,
   onChange,
+  value,
+  size,
 }: Props) => {
   const handleInputChange = (event: SyntheticEvent<Element, Event>, value: string) => {
     onInputChange?.(value);
@@ -36,6 +40,8 @@ const CustomizedAutocomplete = ({
       fullWidth={fullWidth}
       onChange={handleChange}
       onInputChange={handleInputChange}
+      size={size}
+      value={value}
       getOptionLabel={(option) => {
         if (typeof option === "string") {
           return option;
@@ -73,6 +79,23 @@ const CustomizedAutocomplete = ({
           <TextField
             {...params}
             placeholder={placeholder}
+            inputProps={{
+              ...params.inputProps,
+              className: params.inputProps.className + " placeholder",
+            }}
+            sx={{
+              "& .placeholder::placeholder": { color: "#B1B5C3" },
+              "& fieldset": {
+                borderColor: "#E6E8EC !important",
+              },
+              "&:hover fieldset": {
+                borderColor: "#E6E8EC !important",
+              },
+              "&.Mui-focused fieldset": {
+                borderWidth: "1px !important",
+                borderColor: "#E6E8EC !important",
+              },
+            }}
           />
         </Box>
       )}

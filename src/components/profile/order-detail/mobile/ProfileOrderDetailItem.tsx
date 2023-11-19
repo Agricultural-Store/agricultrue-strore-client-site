@@ -1,7 +1,12 @@
+import { Product } from "@/types/product";
 import { Box, Typography, Divider } from "@mui/material";
 import React from "react";
 
-const ProfileOrderDetailItem = () => {
+type Props = {
+  product?: Product;
+};
+
+const ProfileOrderDetailItem = ({ product }: Props) => {
   return (
     <>
       <Box py="12px">
@@ -28,7 +33,7 @@ const ProfileOrderDetailItem = () => {
               fontSize="16px"
               fontWeight={600}
             >
-              Gạo Dẻo ST25
+              {product?.productName}
             </Typography>
             <Typography
               fontSize="14px"
@@ -39,7 +44,7 @@ const ProfileOrderDetailItem = () => {
                 component="span"
                 fontSize="inherit"
               >
-                #52178
+                #{product?.id}
               </Typography>
             </Typography>
             <Typography
@@ -51,7 +56,7 @@ const ProfileOrderDetailItem = () => {
                 component="span"
                 fontSize="inherit"
               >
-                Gạo dẻo
+                {product?.productCategory}
               </Typography>
             </Typography>
           </Box>
@@ -72,7 +77,7 @@ const ProfileOrderDetailItem = () => {
             lineHeight="28px"
             fontWeight={600}
           >
-            04
+            {product?.quantity}
           </Typography>
         </Box>
         <Box
@@ -98,13 +103,13 @@ const ProfileOrderDetailItem = () => {
               color="#B1B5C3"
               sx={{ textDecoration: "line-through" }}
             >
-              160.000đ
+              {product?.totalPrice?.toLocaleString()}đ
             </Typography>
             <Typography
               fontSize="14px"
               lineHeight="28px"
             >
-              120.000đ
+              {product?.temporaryPrice?.toLocaleString()}đ
             </Typography>
           </Box>
         </Box>

@@ -2,11 +2,18 @@ import AccountCircleIcon from "@/components/shared/icons/AccountCircleIcon";
 import FavoriteIcon from "@/components/shared/icons/FavoriteIcon";
 import ShoppingCartIcon from "@/components/shared/icons/ShoppingCartIcon";
 import { Box, Typography } from "@mui/material";
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import ProfileBarItem from "./ProfileBarItem";
 import ExitIcon from "../shared/icons/ExitIcon";
+import CustomizedLogoutDialog from "../shared/dialog/CustomizedLogoutDialog";
 
 const ProfileBar = () => {
+  const [open, setOpen] = useState(false);
+
+  const handleOpenLogout = () => {
+    setOpen(true);
+  };
+
   const items = useMemo(() => {
     return [
       {
@@ -46,6 +53,7 @@ const ProfileBar = () => {
         ))}
       </Box>
       <Box
+        onClick={handleOpenLogout}
         sx={{
           cursor: "pointer",
           height: "48px",
@@ -57,6 +65,10 @@ const ProfileBar = () => {
         <ExitIcon />
         <Typography>&nbsp; Thoát</Typography>
       </Box>
+      <CustomizedLogoutDialog
+        open={open}
+        onOpen={setOpen}
+      />
     </Box>
   );
 };

@@ -1,10 +1,14 @@
 import { Box, Button, Divider, Typography } from "@mui/material";
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, useContext, useState } from "react";
 import EmptyStarIcon from "../shared/icons/EmptyStarIcon";
 import YellowStarIcon from "../shared/icons/YellowStarIcon";
 import { ProductRatingInput } from "@/types/product-rating";
 import CustomizedInput from "../shared/CustomizedInput";
 import useMedia from "@/hooks/shared/useMedia";
+import useComboRatingCreate from "@/hooks/product-combo/useComboRatingCreate";
+import { AppContext } from "@/providers/AppContext";
+import { productComboApi } from "@/config/api-path";
+import { useParams } from "next/navigation";
 
 function renderStarItem(length: number, value: number, size?: number) {
   if (length == value)
@@ -24,13 +28,18 @@ function renderStarItem(length: number, value: number, size?: number) {
   ));
 }
 
-const ProductDetailRatingForm = () => {
+const PromotionDetailRatingForm = () => {
   const [rating, setRating] = useState<ProductRatingInput>({
     feedback: "",
     rating: 0,
   });
 
+  const { setIsLoading } = useContext(AppContext);
+
   const { media } = useMedia();
+  const params = useParams();
+
+  const { trigger } = useComboRatingCreate(+(params.id as string));
 
   const handleClick = (value: number) => {
     setRating((pre) => ({
@@ -45,6 +54,23 @@ const ProductDetailRatingForm = () => {
       ...pre,
       [name]: value,
     }));
+  };
+
+  const handleSubmit = () => {
+    setIsLoading(true);
+    trigger(
+      {
+        path: productComboApi.comboRatingCreate(+(params.id as string)),
+        body: rating,
+      },
+      {
+        onError: () => {
+          setIsLoading(false);
+        },
+      },
+    ).then(() => {
+      setIsLoading(false);
+    });
   };
 
   return (
@@ -119,20 +145,6 @@ const ProductDetailRatingForm = () => {
       >
         <CustomizedInput
           fullWidth
-          label="Tên của bạn"
-          placeholder="Nhập tên của bạn"
-          name="username"
-          onChange={handleChange}
-        />
-        <CustomizedInput
-          fullWidth
-          label="Địa chỉ email"
-          placeholder="Nhập địa chỉ email"
-          name="mail"
-          onChange={handleChange}
-        />
-        <CustomizedInput
-          fullWidth
           label="Đánh giá"
           placeholder="Viết đánh giá..."
           rows={4}
@@ -143,7 +155,7 @@ const ProductDetailRatingForm = () => {
       </Box>
       <Button
         variant="contained"
-        type="submit"
+        onClick={handleSubmit}
       >
         Đánh giá ngay
       </Button>
@@ -151,4 +163,4 @@ const ProductDetailRatingForm = () => {
   );
 };
 
-export default ProductDetailRatingForm;
+export default PromotionDetailRatingForm;

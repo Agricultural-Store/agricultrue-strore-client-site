@@ -26,7 +26,7 @@ const PromotionRating = () => {
         Hơn 1.000+ đánh giá từ khách hàng hài lòng.
       </Typography>
       <Box
-        sx={{ width: "100%", overflowX: "hidden" }}
+        sx={{ width: "100%", overflowX: "hidden", px: "200px" }}
         component="div"
       >
         <Box
@@ -35,6 +35,7 @@ const PromotionRating = () => {
             height: "300px",
             display: "flex",
             alignItems: "center",
+
             left: 0,
           }}
         >
@@ -51,6 +52,10 @@ const PromotionRating = () => {
         Mỗi bữa cơm trở nên an tâm và ngon miệng hơn.`}
             />
           ))}
+          <PromotionRatingItem
+            // onClick={handleClick}
+            index={-1}
+          />
         </Box>
       </Box>
       <Box

@@ -1,14 +1,14 @@
 import { Box, Typography } from "@mui/material";
 import React from "react";
 import YellowStarIcon from "../shared/icons/YellowStarIcon";
-import { ProductRating } from "@/types/product-rating";
 import useMedia from "@/hooks/shared/useMedia";
+import { ComboRating } from "@/types/combo-rating";
 
 type Props = {
-  rating: ProductRating;
+  rating: ComboRating;
 };
 
-const ProductDetailRatingItem = ({ rating }: Props) => {
+const PromotionDetailRatingItem = ({ rating }: Props) => {
   const { media } = useMedia();
 
   return (
@@ -20,7 +20,7 @@ const ProductDetailRatingItem = ({ rating }: Props) => {
       <Box sx={{ display: "flex", alignItems: "center", gap: "10px" }}>
         <Box
           component="img"
-          src={rating.userImage || "/images/profile-avatar.svg"}
+          src={rating.user?.avatar || "/images/profile-avatar.svg"}
         />
         <Box>
           <Typography
@@ -28,7 +28,7 @@ const ProductDetailRatingItem = ({ rating }: Props) => {
             fontWeight={500}
             lineHeight="27px"
           >
-            {rating.username || "Harry"}
+            {rating.user?.name || "Khách hàng ẩn danh"}
           </Typography>
           <Box>
             {Array(...Array(rating.productRating)).map((_v, index) => (
@@ -53,11 +53,11 @@ const ProductDetailRatingItem = ({ rating }: Props) => {
           fontSize="inherit"
           color="color.textNeutral600"
         >
-          {rating.createdAt}
+          {new Date(rating.createAt || "").toLocaleDateString()}
         </Typography>
       </Typography>
     </Box>
   );
 };
 
-export default ProductDetailRatingItem;
+export default PromotionDetailRatingItem;

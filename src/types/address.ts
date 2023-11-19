@@ -5,6 +5,10 @@ export interface Address {
   address?: string;
   addressDetail?: string;
   phone?: string;
+  ward?: string;
+  state?: string;
+  city?: string;
+  mail?: string;
 }
 
 export interface AddressCreateInput {
@@ -16,3 +20,5 @@ export interface AddressCreateInput {
   district?: string;
   commune?: string;
 }
+
+export type AddressUpdateInput = Partial<AddressCreateInput>;

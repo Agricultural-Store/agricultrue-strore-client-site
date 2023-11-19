@@ -1,15 +1,15 @@
 import { Box, Typography } from "@mui/material";
 import React from "react";
-import ProductDetailRatingItem from "./ProductDetailRatingItem";
-import { ProductRating } from "@/types/product-rating";
+import ProductDetailRatingItem from "./PromotionDetailRatingItem";
 import CustomizedLoading from "../shared/CustomizedLoading";
+import { ComboRating } from "@/types/combo-rating";
 
 type Props = {
-  ratingList?: ProductRating[];
+  ratingList?: ComboRating[];
   isLoading?: boolean;
 };
 
-const ProductDetailRatingList = ({ ratingList, isLoading }: Props) => {
+const PromotionDetailRatingList = ({ ratingList, isLoading }: Props) => {
   return (
     <Box
       display="flex"
@@ -42,4 +42,4 @@ const ProductDetailRatingList = ({ ratingList, isLoading }: Props) => {
   );
 };
 
-export default ProductDetailRatingList;
+export default PromotionDetailRatingList;

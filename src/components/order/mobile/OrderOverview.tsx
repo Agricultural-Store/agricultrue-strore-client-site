@@ -26,10 +26,6 @@ const OrderOverview = ({ onBackStep, data: dataProps, onChange, addressId }: Pro
     onBackStep(1);
   };
 
-  const handleEditPayment = () => {
-    onBackStep(2);
-  };
-
   useEffect(() => {
     const _address = addresses?.data.find((add) => add.addressId === addressId);
     setAddress(_address);
@@ -138,41 +134,7 @@ const OrderOverview = ({ onBackStep, data: dataProps, onChange, addressId }: Pro
           </Box>
         </Box>
       </Box>
-      <Divider></Divider>
-      <Box py="16px">
-        <Box
-          sx={{
-            display: "flex",
-            gap: "16px",
-            justifyContent: "space-between",
-            alignItems: "center",
-          }}
-        >
-          <Typography
-            variant="h3"
-            lineHeight="30px"
-          >
-            Phương thức thanh toán
-          </Typography>
-          <IconButton onClick={handleEditPayment}>
-            <RoundedEditIcon />
-          </IconButton>
-        </Box>
-        <Typography
-          fontSize="14px"
-          fontWeight={500}
-          lineHeight="28px"
-        >
-          Phương thức:{" "}
-          <Typography
-            fontWeight="normal"
-            component="span"
-            fontSize="inherit"
-          >
-            Thẻ tín dụng
-          </Typography>
-        </Typography>
-      </Box>
+
       <Divider></Divider>
       <Box py="16px">
         <Box

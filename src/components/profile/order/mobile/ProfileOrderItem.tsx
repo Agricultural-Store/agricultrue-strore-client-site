@@ -2,12 +2,17 @@ import { Box, Typography } from "@mui/material";
 import React from "react";
 import { useRouter } from "next-intl/client";
 import ProfileOrderProductList from "./ProfileOrderProductList";
+import { UserOrder } from "@/types/user";
 
-const ProfileOrderItem = () => {
+type Props = {
+  order?: UserOrder;
+};
+
+const ProfileOrderItem = ({ order }: Props) => {
   const router = useRouter();
 
   const handleClick = () => {
-    router.push("/profile/order/order-detail/");
+    router.push(`/profile/order/order-detail/${order?.id}`);
   };
 
   return (
@@ -42,11 +47,11 @@ const ProfileOrderItem = () => {
               cursor: "pointer",
             }}
           >
-            #72564
+            #{order?.id}
           </Typography>
         </Typography>
       </Box>
-      <ProfileOrderProductList />
+      <ProfileOrderProductList products={order?.productOrders} />
       <Box
         px="16px"
         py="8px"
@@ -55,7 +60,7 @@ const ProfileOrderItem = () => {
         alignItems="center"
       >
         <Typography fontSize="14px">Trạng thái</Typography>
-        <Typography fontSize="14px">đang giao</Typography>
+        <Typography fontSize="14px">{order?.status}</Typography>
       </Box>
       <Box
         px="16px"
@@ -65,7 +70,9 @@ const ProfileOrderItem = () => {
         alignItems="center"
       >
         <Typography fontSize="18px">Thành tiền</Typography>
-        <Typography fontSize="18px">210.000đ</Typography>
+        <Typography fontSize="18px">
+          {(+(order?.totalPrice || 0))?.toLocaleString()}đ
+        </Typography>
       </Box>
     </Box>
   );

@@ -1,11 +1,13 @@
-import {
-  Box,
-  Typography,
-} from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import React from "react";
 import ProfileOrderDetailItem from "./ProfileOrderDetailItem";
+import { UserOrder } from "@/types/user";
 
-const ProfileOrderDetailList = () => {
+type Props = {
+  order?: UserOrder;
+};
+
+const ProfileOrderDetailList = ({ order }: Props) => {
   return (
     <>
       <Typography
@@ -16,7 +18,9 @@ const ProfileOrderDetailList = () => {
         Sản phẩm
       </Typography>
       <Box>
-        <ProfileOrderDetailItem />
+        {order?.productOrders?.map((product) => (
+          <ProfileOrderDetailItem key={product.id} product={product} />
+        ))}
       </Box>
     </>
   );

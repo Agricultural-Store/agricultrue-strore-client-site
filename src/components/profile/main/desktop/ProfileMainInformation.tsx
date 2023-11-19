@@ -1,12 +1,14 @@
 import { Box, Divider, Grid, IconButton, Typography } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import EditBlackBorderIcon from "../../../shared/icons/EditBlackBorderIcon";
 import { UserProfile } from "@/types/user";
+import ProfileMainEdit from "./ProfileMainEdit";
 type Props = {
   data?: UserProfile;
 };
 
 const ProfileMainInformation = ({ data }: Props) => {
+  const [open, setOpen] = useState(false);
   const renderRow = (label?: string, value?: string) => {
     return (
       <Grid
@@ -53,7 +55,7 @@ const ProfileMainInformation = ({ data }: Props) => {
         >
           Thông tin cá nhân
         </Typography>
-        <IconButton>
+        <IconButton onClick={() => setOpen(true)}>
           <EditBlackBorderIcon />
         </IconButton>
       </Box>
@@ -75,6 +77,11 @@ const ProfileMainInformation = ({ data }: Props) => {
       {renderRow("Thành phố", data?.province)}
       <Divider sx={{ my: "8px" }}></Divider>
       {renderRow("Quốc gia", "Việt Nam")}
+      <ProfileMainEdit
+        onOpen={setOpen}
+        open={open}
+        user={data}
+      />
     </Box>
   );
 };

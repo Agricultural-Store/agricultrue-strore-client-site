@@ -32,8 +32,7 @@ export interface ApiResponse<T, Option = any> {
   total?: number;
   message?: string;
   statusCode: number;
-  filter?: ListOptions<Option>;
-
+  filters?: ListOptions<Option>;
 }
 
 export interface ErrorResponse<T> {
@@ -44,7 +43,7 @@ export interface ErrorResponse<T> {
   };
 }
 
-export type FetchMethod = "GET" | "POST" | "PUT" | "DELETE";
+export type FetchMethod = "GET" | "POST" | "PUT" | "DELETE" | "PATCH";
 
 export type FetchOptions<Params = unknown, Body = unknown> = {
   method?: FetchMethod;

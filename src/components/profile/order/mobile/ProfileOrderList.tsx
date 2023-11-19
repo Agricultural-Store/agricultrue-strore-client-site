@@ -1,14 +1,21 @@
 import React from "react";
 import ProfileOrderItem from "./ProfileOrderItem";
 import { Box } from "@mui/material";
+import { UserOrder } from "@/types/user";
 
-const ProfileOrderList = () => {
+type Props = {
+  orders?: UserOrder[];
+};
+
+const ProfileOrderList = ({ orders }: Props) => {
   return (
     <Box my="24px">
-      <ProfileOrderItem />
-      <ProfileOrderItem />
-      <ProfileOrderItem />
-      <ProfileOrderItem />
+      {orders?.map((order) => (
+        <ProfileOrderItem
+          key={order.id}
+          order={order}
+        />
+      ))}
     </Box>
   );
 };

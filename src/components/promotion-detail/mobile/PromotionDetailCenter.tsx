@@ -4,7 +4,7 @@ import { Box } from "@mui/material";
 import React, { useState } from "react";
 import PromotionDetailDescription from "./PromotionDetailDescription";
 import PromotionDetailDetail from "./PromotionDetailDetail";
-import ProductRating from "../ProductRating";
+import PromotionRating from "../PromotionRating";
 import { ProductComboDetail } from "@/types/product-combo-detail";
 
 type Props = {
@@ -37,7 +37,7 @@ const PromotionDetailCenter = ({ combo }: Props) => {
           index={2}
           value={tabActive}
         >
-          <ProductRating />
+          <PromotionRating />
         </CustomizedTabPanel>
       </CustomizedTab>
     </Box>

@@ -2,11 +2,14 @@
 
 import CustomizedStepper, { Connector3 } from "@/components/shared/CustomizedStepper";
 import { Box, Step, StepLabel, Typography } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ProfileOrderStepIcon from "./ProfileOrderStepIcon";
 import ProfileOrderDetailInformation from "./ProfileOrderDetailInformation";
 import ProfileOrderDetailSummary from "./ProfileOrderDetailSummary";
 import ProfileOrderDetailList from "./ProfileOrderDetailList";
+import useUserOrderDetail from "@/hooks/user/useUserOrderDetail";
+import { useParams } from "next/navigation";
+import RootLoading from "@/app/[locale]/loading";
 
 const itemsStepper = [
   {
@@ -28,7 +31,25 @@ const itemsStepper = [
 ];
 
 const ProfileOrderDetailMobile = () => {
-  const [step] = useState(1);
+  const [step, setStep] = useState(1);
+
+  const params = useParams();
+
+  const { data, isLoading, isValidating } = useUserOrderDetail(+(params.id && params.id));
+
+  useEffect(() => {
+    if (data?.data) {
+      if (data?.data.status === "pending") {
+        setStep(1);
+      } else if (data?.data.status === "completed") {
+        setStep(4);
+      }
+    }
+  }, [data]);
+
+  if (isLoading || isValidating) {
+    return <RootLoading />;
+  }
 
   return (
     <Box width="calc(100%)">
@@ -41,7 +62,7 @@ const ProfileOrderDetailMobile = () => {
           variant="h3"
           mb="24px"
         >
-          Mã vận đơn: #72564
+          Mã vận đơn: #{data?.data.id}
         </Typography>
         <Box>
           <CustomizedStepper
@@ -91,9 +112,9 @@ const ProfileOrderDetailMobile = () => {
             ))}
           </CustomizedStepper>
         </Box>
-        <ProfileOrderDetailInformation />
-        <ProfileOrderDetailList />
-        <ProfileOrderDetailSummary />
+        <ProfileOrderDetailInformation order={data?.data} />
+        <ProfileOrderDetailList order={data?.data} />
+        <ProfileOrderDetailSummary order={data?.data} />
       </Box>
     </Box>
   );

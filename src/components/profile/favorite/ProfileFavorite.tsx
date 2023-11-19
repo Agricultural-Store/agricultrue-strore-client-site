@@ -1,66 +1,38 @@
 "use client";
 import { Box, Grid, Typography } from "@mui/material";
-import React, { useState } from "react";
+import React from "react";
 import CustomizedPagination from "@/components/shared/CustomizedPagination";
 import { useRouter } from "next-intl/client";
 import ProductItem from "@/components/product/ProductItem";
 import CustomizedInput from "@/components/shared/CustomizedInput";
 import SearchGrayIcon from "@/components/shared/icons/SearchGrayIcon";
 import useMedia from "@/hooks/shared/useMedia";
+import useUserFavoriteList from "@/hooks/user/useUserFavoriteList";
+import useQueryParams from "@/hooks/shared/useQueryParams";
+import { ListOptions } from "@/types/shared";
 
 const ProfileFavorite = () => {
-  const [products] = useState([
-    {
-      productImage: "/images/image.png",
-      productName: "Lua",
-      productPrice: 2000,
-      productDiscount: 10,
-      id: 1,
-    },
-    {
-      productImage: "/images/image.png",
-      productName: "Lua",
-      productPrice: 2000,
-      productDiscount: 10,
-      id: 2,
-    },
-    {
-      productImage: "/images/image.png",
-      productName: "Lua",
-      productPrice: 2000,
-      productDiscount: 10,
-      id: 3,
-    },
-    {
-      productImage: "/images/image.png",
-      productName: "Lua",
-      productPrice: 2000,
-      productDiscount: 10,
-      id: 4,
-    },
-    {
-      productImage: "/images/image.png",
-      productName: "Lua",
-      productPrice: 2000,
-      productDiscount: 10,
-      id: 5,
-    },
-    {
-      productImage: "/images/image.png",
-      productName: "Lua",
-      productPrice: 2000,
-      productDiscount: 10,
-      id: 5,
-    },
-  ]);
-
   const { media } = useMedia();
-
   const router = useRouter();
+  const [option, setOptions] = useQueryParams<ListOptions>({
+    limit: 10,
+    offset: 0,
+  });
+
+  const { data } = useUserFavoriteList(option);
+
+  const pageSize = data?.filters?.limit || 10;
+  const currentPage = Math.floor(data?.filters?.offset ?? 0 / pageSize);
 
   const handleClick = (id?: number) => {
     console.log(id);
     router.push(`/product/${id}`);
+  };
+
+  const handleChangePage = (page: number) => {
+    setOptions({
+      offset: page * pageSize,
+    });
   };
 
   return (
@@ -104,7 +76,7 @@ const ProfileFavorite = () => {
           container
           spacing={3}
         >
-          {products.map((product) => (
+          {data?.data.map((product) => (
             <Grid
               item
               key={product.id}
@@ -116,14 +88,17 @@ const ProfileFavorite = () => {
               <ProductItem
                 product={product}
                 onClick={handleClick}
+                isFavorite={true}
               />
             </Grid>
           ))}
         </Grid>
         <CustomizedPagination
           sx={{ mt: "48px" }}
-          itemCount={products.length}
-          rowPerPage={3}
+          itemCount={data?.data.length}
+          rowPerPage={pageSize}
+          page={currentPage}
+          onPageChange={handleChangePage}
         />
       </Box>
     </Box>

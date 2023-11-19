@@ -1,7 +1,8 @@
 import CustomizedTab from "@/components/shared/tab/CustomizedTab";
 import { Box } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ProfileOrderList from "./ProfileOrderList";
+import useUserOrderList from "@/hooks/user/useUserOrderList";
 
 const tabs = [
   {
@@ -36,6 +37,30 @@ const tabs = [
 
 const ProfileOrderTab = () => {
   const [tabActive, setTabActive] = useState(0);
+
+  const [status, setStatus] = useState<string>();
+
+  const { data } = useUserOrderList({ status: status });
+
+  useEffect(() => {
+    switch (tabActive) {
+      case 1: {
+        setStatus("pending");
+        break;
+      }
+      case 5: {
+        setStatus("cancel");
+        break;
+      }
+      case 4: {
+        setStatus("completed");
+        break;
+      }
+      default: {
+        setStatus(undefined);
+      }
+    }
+  }, [tabActive]);
   return (
     <Box>
       <CustomizedTab
@@ -43,7 +68,7 @@ const ProfileOrderTab = () => {
         onChange={setTabActive}
         labels={tabs.map((tab) => tab.label)}
       >
-        <ProfileOrderList />
+        <ProfileOrderList orders={data?.data} />
       </CustomizedTab>
     </Box>
   );

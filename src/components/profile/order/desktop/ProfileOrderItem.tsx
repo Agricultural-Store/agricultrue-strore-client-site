@@ -2,12 +2,18 @@ import { Box, Typography } from "@mui/material";
 import React from "react";
 import ProfileOrderTable from "./ProfileOrderTable";
 import { useRouter } from "next-intl/client";
+import { UserOrder } from "@/types/user";
+import { convertStatus } from "@/utils/convert";
 
-const ProfileOrderItem = () => {
+type Props = {
+  order?: UserOrder;
+};
+
+const ProfileOrderItem = ({ order }: Props) => {
   const router = useRouter();
 
   const handleClick = () => {
-    router.push("/profile/order/order-detail/");
+    router.push(`/profile/order/order-detail/${order?.id}`);
   };
 
   return (
@@ -39,12 +45,14 @@ const ProfileOrderItem = () => {
               cursor: "pointer",
             }}
           >
-            #72564
+            #{order?.id}
           </Typography>
         </Typography>
-        <Typography fontWeight={600}>Trạng thái: Đang giao</Typography>
+        <Typography fontWeight={600}>
+          Trạng thái: {convertStatus(order?.status)}
+        </Typography>
       </Box>
-      <ProfileOrderTable />
+      <ProfileOrderTable products={order?.productOrders} />
       <Box
         p="24px"
         display="flex"
@@ -56,7 +64,7 @@ const ProfileOrderItem = () => {
           fontSize="18px"
           fontWeight={600}
         >
-          210.000đ
+          {(+(order?.totalPrice || 0))?.toLocaleString()}đ
         </Typography>
       </Box>
     </Box>

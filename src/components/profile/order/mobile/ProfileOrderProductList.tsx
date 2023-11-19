@@ -1,11 +1,20 @@
 import React from "react";
 import ProfileOrderProductItem from "./ProfileOrderProductItem";
+import { Product } from "@/types/product";
 
-const ProfileOrderProductList = () => {
+type Props = {
+  products?: Product[];
+};
+
+const ProfileOrderProductList = ({ products }: Props) => {
   return (
     <>
-      <ProfileOrderProductItem />
-      <ProfileOrderProductItem />
+      {products?.map((product) => (
+        <ProfileOrderProductItem
+          key={product.id}
+          product={product}
+        />
+      ))}
     </>
   );
 };

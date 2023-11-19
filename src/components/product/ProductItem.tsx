@@ -9,23 +9,29 @@ import {
   Typography,
   CardActionArea,
 } from "@mui/material";
-import React, { useContext } from "react";
+import React, { MouseEvent, useContext, useEffect, useState } from "react";
 import FavoriteIcon from "../shared/icons/FavoriteIcon";
 import { calcPrice } from "@/utils/count";
 import DiscountBgIcon from "../shared/icons/DiscountBgIcon";
 import { AppContext } from "@/providers/AppContext";
 import { useSession } from "next-auth/react";
+import useUserFavoriteCreate from "@/hooks/user/useUserFavoriteCreate";
+import { userApi } from "@/config/api-path";
 
 type Props = {
   product?: Product;
   onClick?: (id?: number) => void;
   onButtonClick?: (product?: Product) => void;
+  isFavorite?: boolean;
 };
 
-const ProductItem = ({ product, onClick, onButtonClick }: Props) => {
-  const { setOpenAuth } = useContext(AppContext);
+const ProductItem = ({ product, onClick, onButtonClick, isFavorite }: Props) => {
+  const [favorite, setFavorite] = useState<boolean>();
+  const { setOpenAuth, setIsLoading } = useContext(AppContext);
 
   const { status } = useSession();
+
+  const { trigger } = useUserFavoriteCreate();
 
   const handleClick = () => {
     onClick?.(product?.id);
@@ -38,6 +44,32 @@ const ProductItem = ({ product, onClick, onButtonClick }: Props) => {
       setOpenAuth(true);
     }
   };
+
+  const handleFavorite = (e: MouseEvent<HTMLDivElement>) => {
+    e.stopPropagation();
+    setIsLoading(true);
+    setFavorite((pre) => !pre);
+    if (product?.id)
+      trigger(
+        {
+          path: userApi.addFavorite(product.id),
+        },
+        {
+          onError: (err) => {
+            setIsLoading(false);
+            console.log(err);
+          },
+        },
+      ).then((res) => {
+        if (res.statusCode === 200) {
+          setIsLoading(false);
+        }
+      });
+  };
+
+  useEffect(() => {
+    setFavorite(isFavorite || false);
+  }, [isFavorite]);
 
   return (
     <Card
@@ -99,15 +131,17 @@ const ProductItem = ({ product, onClick, onButtonClick }: Props) => {
               {product?.productName}
             </Typography>
             <Box
+              onClick={handleFavorite}
               sx={{
                 minWidth: "40px",
                 height: "40px",
                 borderRadius: "50%",
-                bgcolor: "error.main",
+                bgcolor: favorite ? "error.main" : "#E6E8EC",
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
-                color: "#FFC3C3",
+                color: favorite ? "#FFC3C3" : "#777E90",
+                cursor: "pointer",
               }}
             >
               <FavoriteIcon />

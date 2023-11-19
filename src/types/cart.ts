@@ -6,7 +6,7 @@ export interface ProductInCart {
   productPrice?: number;
   productDiscount?: number;
   productCount?: number;
-  isCombo?: boolean
+  isCombo?: boolean;
 }
 
 export interface ComboInCart {

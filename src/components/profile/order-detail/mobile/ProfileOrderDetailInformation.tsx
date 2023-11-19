@@ -1,7 +1,12 @@
+import { UserOrder } from "@/types/user";
 import { Box, Typography } from "@mui/material";
 import React from "react";
 
-const ProfileOrderDetailInformation = () => {
+type Props = {
+  order?: UserOrder;
+};
+
+const ProfileOrderDetailInformation = ({ order }: Props) => {
   return (
     <>
       <Box py="16px">
@@ -32,7 +37,7 @@ const ProfileOrderDetailInformation = () => {
                 component="span"
                 fontSize="inherit"
               >
-                Dinh Phuc Khang
+                {order?.customerName}
               </Typography>
             </Typography>
             <Typography
@@ -46,7 +51,7 @@ const ProfileOrderDetailInformation = () => {
                 component="span"
                 fontSize="inherit"
               >
-                0123 456 789
+                {order?.phone}
               </Typography>
             </Typography>
             <Typography
@@ -60,8 +65,7 @@ const ProfileOrderDetailInformation = () => {
                 component="span"
                 fontSize="inherit"
               >
-                Khoa Công nghệ phần mềm, Trường Công nghệ Thông tin & Truyền thông, Trường
-                Đại học Cần Thơ
+                {order?.address}
               </Typography>
             </Typography>
           </Box>
@@ -94,7 +98,7 @@ const ProfileOrderDetailInformation = () => {
               component="span"
               fontSize="inherit"
             >
-              Thẻ tín dụng
+              {order?.paymentMethod}
             </Typography>
           </Typography>
         </Box>

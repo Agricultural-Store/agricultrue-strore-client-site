@@ -25,6 +25,7 @@ const ProductDetailRelatedItem = ({ product }: Props) => {
       setProduct({
         ...product,
         productCount: 1,
+        isCombo: false,
       });
     }
     setOpenCart(true);

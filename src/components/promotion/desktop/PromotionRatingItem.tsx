@@ -26,7 +26,7 @@ const PromotionRatingItem = ({ content, isActive, onClick, index }: Props) => {
       onClick={handleClick}
       sx={[
         {
-          minWidth: "80%",
+          minWidth: "100%",
           height: isActive ? "220px" : "200px",
           bgcolor: "color.bgPrimary",
           position: "relative",
@@ -70,21 +70,23 @@ const PromotionRatingItem = ({ content, isActive, onClick, index }: Props) => {
       >
         {content}
       </Typography>
-      <Box
-        sx={{
-          width: "100%",
-          display: "flex",
-          justifyContent: "center",
-          gap: "20px",
-          mt: "24px",
-        }}
-      >
-        <YellowStarIcon />
-        <YellowStarIcon />
-        <YellowStarIcon />
-        <YellowStarIcon />
-        <YellowStarIcon />
-      </Box>
+      {content && (
+        <Box
+          sx={{
+            width: "100%",
+            display: "flex",
+            justifyContent: "center",
+            gap: "20px",
+            mt: "24px",
+          }}
+        >
+          <YellowStarIcon />
+          <YellowStarIcon />
+          <YellowStarIcon />
+          <YellowStarIcon />
+          <YellowStarIcon />
+        </Box>
+      )}
     </Box>
   );
 };

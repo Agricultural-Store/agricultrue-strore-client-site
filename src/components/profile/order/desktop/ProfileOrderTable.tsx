@@ -1,3 +1,4 @@
+import { Product } from "@/types/product";
 import {
   TableContainer,
   Table,
@@ -10,7 +11,11 @@ import {
 } from "@mui/material";
 import React from "react";
 
-const ProfileOrderTable = () => {
+type Props = {
+  products?: Product[];
+};
+
+const ProfileOrderTable = ({ products }: Props) => {
   return (
     <Box px="24px">
       <TableContainer>
@@ -38,40 +43,45 @@ const ProfileOrderTable = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            <TableRow>
-              <TableCell
-                align="left"
-                sx={{ display: "flex", alignItems: "center", gap: "8px", pl: 0 }}
-              >
-                <Box
-                  sx={{
-                    width: "65px",
-                    height: "65px",
-                    borderRadius: "4px",
-                    bgcolor: "color.bgPrimary",
-                  }}
-                ></Box>
-                <Typography fontSize="18px">Gạo Dẻo ST25</Typography>
-              </TableCell>
-              <TableCell align="center">01</TableCell>
-              <TableCell
-                align="right"
-                sx={{ pr: 0 }}
-              >
-                <Typography
-                  px="10px"
-                  display="inline-block"
-                  fontSize="12px"
-                  sx={{
-                    textDecoration: "line-through",
-                    color: "color.textPrimary",
-                  }}
+            {products?.map((product) => (
+              <TableRow key={product.id}>
+                <TableCell
+                  align="left"
+                  sx={{ display: "flex", alignItems: "center", gap: "8px", pl: 0 }}
                 >
-                  120.000đ
-                </Typography>
-                <Typography component="span">90.000đ</Typography>
-              </TableCell>
-            </TableRow>
+                  <Box
+                    sx={{
+                      width: "65px",
+                      height: "65px",
+                      borderRadius: "4px",
+                    }}
+                    component="img"
+                    src={product.productImage}
+                  ></Box>
+                  <Typography fontSize="18px">{product.productName}</Typography>
+                </TableCell>
+                <TableCell align="center">{product.quantity}</TableCell>
+                <TableCell
+                  align="right"
+                  sx={{ pr: 0 }}
+                >
+                  <Typography
+                    px="10px"
+                    display="inline-block"
+                    fontSize="12px"
+                    sx={{
+                      textDecoration: "line-through",
+                      color: "color.textPrimary",
+                    }}
+                  >
+                    {product.temporaryPrice?.toLocaleString()}đ
+                  </Typography>
+                  <Typography component="span">
+                    {product.totalPrice?.toLocaleString()}đ
+                  </Typography>
+                </TableCell>
+              </TableRow>
+            ))}
           </TableBody>
         </Table>
       </TableContainer>

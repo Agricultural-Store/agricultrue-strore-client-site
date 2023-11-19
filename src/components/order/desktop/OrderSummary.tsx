@@ -61,6 +61,7 @@ const OrderSummary = ({
   };
 
   const handleNextStep = () => {
+    console.log(input);
     if (step < 3) setStep((pre) => (pre = pre + 1));
     else {
       if (input.paymentMethod === PaymentMethod.CREDIT) {
@@ -68,7 +69,10 @@ const OrderSummary = ({
       }
       trigger(
         {
-          body: input,
+          body: {
+            ...input,
+            isCombo: input.isCombo || false,
+          },
         },
         {
           onError: () => {

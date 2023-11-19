@@ -6,6 +6,12 @@ export interface Product {
   productImage?: string;
   productPrice?: number;
   productDiscount?: number;
+  productCategory?: string;
+  quantity?: number;
+  temporaryPrice?: number;
+  totalPrice?: number;
+  isFavorites?: boolean;
+  discountPrice?: number;
 }
 
 export type ProductCreateInput = Omit<Product, "id">;

@@ -53,8 +53,8 @@ const ProductList = () => {
 
   const { data, isLoading, isValidating } = useProductList(options);
 
-  const pageSize = data?.filter?.limit || 30;
-  const currentPage = Math.floor(data?.filter?.offset ?? 0 / pageSize);
+  const pageSize = data?.filters?.limit || 10;
+  const currentPage = Math.floor(data?.filters?.offset ?? 0 / pageSize);
 
   const handleClick = (id?: number) => {
     router.push(`/product/${id}`);
@@ -174,6 +174,7 @@ const ProductList = () => {
                   product={product}
                   onClick={handleClick}
                   onButtonClick={handleButtonClick}
+                  isFavorite={product.isFavorites}
                 />
               </Grid>
             ))}

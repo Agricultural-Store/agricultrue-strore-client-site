@@ -10,6 +10,8 @@ import { SessionProvider } from "next-auth/react";
 import { SnackbarProvider } from "notistack";
 import CartProvider from "./CartProvider";
 import NewsProvider from "./NewsProvider";
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
 type Props = {
   children: React.ReactNode;
@@ -27,7 +29,11 @@ function AppProviders({ children, font }: Props) {
               <SessionProvider>
                 <AppProvider>
                   <NewsProvider>
-                    <CartProvider>{children}</CartProvider>
+                    <CartProvider>
+                      <LocalizationProvider dateAdapter={AdapterDayjs}>
+                        {children}
+                      </LocalizationProvider>
+                    </CartProvider>
                   </NewsProvider>
                 </AppProvider>
               </SessionProvider>

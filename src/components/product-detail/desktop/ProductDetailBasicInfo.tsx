@@ -222,7 +222,8 @@ const ProductDetailBasicInfo = ({ product }: Props) => {
               minWidth: "42px",
               maxWidth: "42px",
               p: 0,
-              color: "#FFC3C3",
+              bgcolor: product?.isFavorites ? "error.main" : "#E6E8EC",
+              color: product?.isFavorites ? "#FFC3C3" : "#777E90",
             }}
             variant="contained"
             color="error"

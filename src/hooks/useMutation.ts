@@ -7,8 +7,8 @@ import { ApiResponse } from "../types/shared";
 
 export type MutateRelatedDataList<T> = {
   /** The (API) path of the data list which should be mutated */
-  mutatePath: string;
-  /** Used to compare new data with list item, default using `_id` property to compare the 2 objects */
+  mutatePath: string | string[];
+  /** Used to compare new data with list item, default using `id` property to compare the 2 objects */
   isEqual?: (a: T, b: T) => boolean;
   /** Specify where to insert new data if it isn't found from the list, leave `undefined` to skip inserting */
   insertOnNotFound?: "start" | "end";
@@ -85,9 +85,13 @@ function useMutation<Data extends WithID, Body = unknown, Params = unknown>(
           }
 
           mutate<ApiResponse<Data>>(
-            (key) =>
-              typeof key === "object" &&
-              (key as FetchOptions<Params, Body>)?.path == mutatePath,
+            (key) => {
+              const path = (key as FetchOptions<Params, Body>)?.path;
+              if (typeof mutatePath === "string") {
+                return typeof key === "object" && path && mutatePath === path;
+              }
+              return typeof key === "object" && path && mutatePath.includes(path);
+            },
             (currentData) => {
               if (!currentData || shouldRevalidate) {
                 return currentData;

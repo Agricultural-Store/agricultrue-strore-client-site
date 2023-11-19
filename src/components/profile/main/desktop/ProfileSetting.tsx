@@ -1,7 +1,8 @@
 import { Box, Button, Divider, Typography } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import ProfileSettingNotificationItem from "./ProfileSettingNotificationItem";
 import ProfileSettingDeviceItem from "./ProfileSettingDeviceItem";
+import CustomizedLogoutDialog from "@/components/shared/dialog/CustomizedLogoutDialog";
 
 const notifications = [
   {
@@ -62,6 +63,12 @@ const security = [
 ];
 
 const ProfileSetting = () => {
+  const [open, setOpen] = useState(false);
+
+  const handleOpenLogout = () => {
+    setOpen(true);
+  };
+
   return (
     <Box
       width="400px"
@@ -128,9 +135,14 @@ const ProfileSetting = () => {
         variant="contained"
         color="error"
         fullWidth
+        onClick={handleOpenLogout}
       >
         Thoát tài khoản
       </Button>
+      <CustomizedLogoutDialog
+        open={open}
+        onOpen={setOpen}
+      />
     </Box>
   );
 };

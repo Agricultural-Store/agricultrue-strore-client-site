@@ -7,7 +7,7 @@ const useOrderPaymentKeyCreate = () => {
   return useMutation<
     ApiResponse<
       PaymentCreateKey & {
-        id?: string;
+        id: string;
       }
     >,
     PaymentCreateKeyInput

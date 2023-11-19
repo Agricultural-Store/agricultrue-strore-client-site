@@ -91,6 +91,7 @@ const ProfileMainDesktop = () => {
         <ProfileMainImageDialog
           open={open}
           onOpen={setOpen}
+          images={data?.data.images}
         ></ProfileMainImageDialog>
       </Box>
       {!media && <ProfileSetting />}

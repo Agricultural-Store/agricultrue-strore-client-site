@@ -1,7 +1,12 @@
+import { Product } from "@/types/product";
 import { Box, Typography, Divider } from "@mui/material";
 import React from "react";
 
-const ProfileOrderProductItem = () => {
+type Props = {
+  product?: Product;
+};
+
+const ProfileOrderProductItem = ({ product }: Props) => {
   return (
     <>
       <Box
@@ -15,7 +20,7 @@ const ProfileOrderProductItem = () => {
         >
           <Box
             component="img"
-            src="/images/image.png"
+            src={product?.productImage}
             width="64px"
             height="64px"
             borderRadius="4px"
@@ -31,7 +36,7 @@ const ProfileOrderProductItem = () => {
               fontSize="16px"
               fontWeight={600}
             >
-              Gạo Dẻo ST25
+              {product?.productName}
             </Typography>
             <Typography
               fontSize="14px"
@@ -42,7 +47,7 @@ const ProfileOrderProductItem = () => {
                 component="span"
                 fontSize="inherit"
               >
-                #52178
+                #{product?.id}
               </Typography>
             </Typography>
             <Typography
@@ -54,7 +59,7 @@ const ProfileOrderProductItem = () => {
                 component="span"
                 fontSize="inherit"
               >
-                Gạo dẻo
+                {product?.productCategory}
               </Typography>
             </Typography>
           </Box>
@@ -75,7 +80,7 @@ const ProfileOrderProductItem = () => {
             lineHeight="28px"
             fontWeight={600}
           >
-            04
+            {product?.quantity}
           </Typography>
         </Box>
         <Box
@@ -101,13 +106,13 @@ const ProfileOrderProductItem = () => {
               color="#B1B5C3"
               sx={{ textDecoration: "line-through" }}
             >
-              160.000đ
+              {product?.temporaryPrice?.toLocaleString()}đ
             </Typography>
             <Typography
               fontSize="14px"
               lineHeight="28px"
             >
-              120.000đ
+              {product?.totalPrice?.toLocaleString()}đ
             </Typography>
           </Box>
         </Box>

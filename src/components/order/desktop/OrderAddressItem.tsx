@@ -5,7 +5,8 @@ import { userApi } from "@/config/api-path";
 import useUserAddressDelete from "@/hooks/user/useUserAddressDelete";
 import { Address } from "@/types/address";
 import { Box, Button, Typography } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
+import OrderAddressEdit from "./OrderAddressEdit";
 
 type Props = {
   id?: number;
@@ -15,10 +16,16 @@ type Props = {
 };
 
 const OrderAddressItem = ({ id, onChecked, currentId, address }: Props) => {
+  const [openEdit, setOpenEdit] = useState(false);
+
   const { trigger } = useUserAddressDelete();
 
   const handleChange = () => {
     onChecked(id);
+  };
+
+  const handleOpenEdit = () => {
+    setOpenEdit(true);
   };
 
   const handleDelete = () => {
@@ -69,6 +76,7 @@ const OrderAddressItem = ({ id, onChecked, currentId, address }: Props) => {
         <Button
           sx={{ bgcolor: "color.bgNeutral300", textTransform: "capitalize" }}
           fullWidth
+          onClick={handleOpenEdit}
         >
           <EditIcon /> &nbsp; Chỉnh sửa
         </Button>
@@ -84,6 +92,11 @@ const OrderAddressItem = ({ id, onChecked, currentId, address }: Props) => {
           <DeleteIcon /> &nbsp; Xóa bỏ
         </Button>
       </Box>
+      <OrderAddressEdit
+        address={address}
+        open={openEdit}
+        onOpen={setOpenEdit}
+      />
     </Box>
   );
 };

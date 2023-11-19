@@ -28,7 +28,7 @@ const HomeRatingItem = ({ content, isActive, onClick, index }: Props) => {
       onClick={handleClick}
       sx={[
         {
-          minWidth: "80%",
+          minWidth: "100%",
           height: isActive ? "220px" : "200px",
           bgcolor: "color.bgPrimary",
           position: "relative",

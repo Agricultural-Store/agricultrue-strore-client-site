@@ -25,7 +25,26 @@ const CustomizedInput = ({ label, ...props }: Props) => {
           {label}
         </Typography>
       )}
-      <OutlinedInput {...props} />
+      <OutlinedInput
+        {...props}
+        inputProps={{
+          className: "placeholder",
+        }}
+        sx={{
+          ...props.sx,
+          "& .placeholder::placeholder": { color: "#B1B5C3" },
+          "& fieldset": {
+            borderColor: "#E6E8EC !important",
+          },
+          "&:hover fieldset": {
+            borderColor: "#E6E8EC !important",
+          },
+          "&.Mui-focused fieldset": {
+            borderWidth: "1px !important",
+            borderColor: "#E6E8EC !important",
+          },
+        }}
+      />
     </Box>
   );
 };

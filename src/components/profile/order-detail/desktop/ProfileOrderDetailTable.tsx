@@ -1,3 +1,4 @@
+import { UserOrder } from "@/types/user";
 import {
   Box,
   Table,
@@ -11,7 +12,11 @@ import {
 } from "@mui/material";
 import React from "react";
 
-const ProfileOrderDetailTable = () => {
+type Props = {
+  order?: UserOrder;
+};
+
+const ProfileOrderDetailTable = ({ order }: Props) => {
   return (
     <>
       <Typography
@@ -63,31 +68,40 @@ const ProfileOrderDetailTable = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            <TableRow>
-              <TableCell
-                align="left"
-                sx={{ display: "flex", alignItems: "center", gap: "8px", pl: 0 }}
-              >
-                <Box
-                  sx={{
-                    width: "65px",
-                    height: "65px",
-                    borderRadius: "4px",
-                    bgcolor: "color.bgPrimary",
-                  }}
-                ></Box>
-                <Typography fontSize="18px">Gạo Dẻo ST25</Typography>
-              </TableCell>
-              <TableCell align="center">01</TableCell>
-              <TableCell align="center">120.000đ</TableCell>
-              <TableCell align="center">30.000đ</TableCell>
-              <TableCell
-                align="right"
-                sx={{ pr: 0 }}
-              >
-                <Typography component="span">90.000đ</Typography>
-              </TableCell>
-            </TableRow>
+            {order?.productOrders?.map((product) => (
+              <TableRow key={product.id}>
+                <TableCell
+                  align="left"
+                  sx={{ display: "flex", alignItems: "center", gap: "8px", pl: 0 }}
+                >
+                  <Box
+                    sx={{
+                      minWidth: "65px",
+                      height: "65px",
+                      borderRadius: "4px",
+                    }}
+                    component="img"
+                    src={product.productImage}
+                  ></Box>
+                  <Typography fontSize="18px">{product.productName}</Typography>
+                </TableCell>
+                <TableCell align="center">{product.quantity}</TableCell>
+                <TableCell align="center">
+                  {product.totalPrice?.toLocaleString()}đ
+                </TableCell>
+                <TableCell align="center">
+                  {product.discountPrice?.toLocaleString()}đ
+                </TableCell>
+                <TableCell
+                  align="right"
+                  sx={{ pr: 0 }}
+                >
+                  <Typography component="span">
+                    {product.temporaryPrice?.toLocaleString()}đ
+                  </Typography>
+                </TableCell>
+              </TableRow>
+            ))}
           </TableBody>
         </Table>
       </TableContainer>

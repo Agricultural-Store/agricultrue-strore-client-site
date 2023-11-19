@@ -28,7 +28,7 @@ function renderStarItem(length: number, value: number, size?: number) {
   ));
 }
 
-const ProductDetailRatingForm = () => {
+const PromotionDetailRatingForm = () => {
   const [rating, setRating] = useState<ProductRatingInput>({
     feedback: "",
     rating: 0,
@@ -58,10 +58,17 @@ const ProductDetailRatingForm = () => {
 
   const handleSubmit = () => {
     setIsLoading(true);
-    trigger({
-      path: productApi.productRatingCreate(+(params.id as string)),
-      body: rating,
-    }).then(() => {
+    trigger(
+      {
+        path: productApi.productRatingCreate(+(params.id as string)),
+        body: rating,
+      },
+      {
+        onError: () => {
+          setIsLoading(false);
+        },
+      },
+    ).then(() => {
       setIsLoading(false);
     });
   };
@@ -156,4 +163,4 @@ const ProductDetailRatingForm = () => {
   );
 };
 
-export default ProductDetailRatingForm;
+export default PromotionDetailRatingForm;
