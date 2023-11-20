@@ -206,7 +206,7 @@ const PromotionDetailBasicInfo = ({ combo }: Props) => {
             <FavoriteIcon />
           </Button>
         </Box>
-        <Box>
+        {/* <Box>
           <Typography
             textAlign="center"
             mt="24px"
@@ -214,7 +214,7 @@ const PromotionDetailBasicInfo = ({ combo }: Props) => {
             Chia sẻ qua:
           </Typography>
           <Box></Box>
-        </Box>
+        </Box> */}
       </Grid>
     </Grid>
   );

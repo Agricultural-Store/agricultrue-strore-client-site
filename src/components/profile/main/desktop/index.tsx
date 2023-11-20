@@ -4,7 +4,7 @@ import { Avatar, Box, IconButton, Typography } from "@mui/material";
 import React, { useState } from "react";
 import EditPenIcon from "../../../shared/icons/EditPenIcon";
 import ProfileMainInformation from "./ProfileMainInformation";
-import ProfileMainAccount from "./ProfileMainAccount";
+// import ProfileMainAccount from "./ProfileMainAccount";
 import ProfileMainImageDialog from "./ProfileMainImageDialog";
 import ProfileSetting from "./ProfileSetting";
 import useMedia from "@/hooks/shared/useMedia";
@@ -87,7 +87,7 @@ const ProfileMainDesktop = () => {
           </Box>
         </Box>
         <ProfileMainInformation data={data?.data} />
-        <ProfileMainAccount />
+        {/* <ProfileMainAccount /> */}
         <ProfileMainImageDialog
           open={open}
           onOpen={setOpen}

@@ -1,6 +1,5 @@
 import appConfig from "@/config/env";
 import useOrderCreate from "@/hooks/order/useOrderCreate";
-import { useEnqueueSnackbar } from "@/hooks/shared/useEnqueueSnackbar";
 import { OrderCreateInput, PaymentMethod } from "@/types/order";
 import { Box, Button, Divider, Typography } from "@mui/material";
 import { useStripe, useElements } from "@stripe/react-stripe-js";
@@ -14,6 +13,7 @@ type Props = {
   discountPrice: number;
   input: OrderCreateInput;
   setOpenCompleteDialog: (bool: boolean) => void;
+  setOpenFailDialog: (bool: boolean) => void;
 };
 
 const OrderSummary = ({
@@ -23,9 +23,8 @@ const OrderSummary = ({
   step,
   input,
   setOpenCompleteDialog,
+  setOpenFailDialog,
 }: Props) => {
-  const [setEnqueue] = useEnqueueSnackbar();
-
   const { trigger } = useOrderCreate();
 
   const stripe = useStripe();
@@ -76,7 +75,7 @@ const OrderSummary = ({
         },
         {
           onError: () => {
-            setEnqueue("Đặt hàng thất bại", "error");
+            setOpenFailDialog(true);
           },
         },
       ).then(() => {

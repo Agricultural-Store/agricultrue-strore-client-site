@@ -12,6 +12,8 @@ import CloseIcon from "../icons/CloseIcon";
 import { signOut } from "next-auth/react";
 import { AppContext } from "@/providers/AppContext";
 import { usePathname, useRouter } from "next-intl/client";
+import useMedia from "@/hooks/shared/useMedia";
+import CustomizedLogoutDialogMobile from "./CustomizedLogoutDialogMobile";
 
 type Props = {
   open: boolean;
@@ -21,6 +23,7 @@ type Props = {
 const CustomizedLogoutDialog = ({ open, onOpen }: Props) => {
   const { setIsLoading } = useContext(AppContext);
   const pathname = usePathname();
+  const { media } = useMedia();
   const router = useRouter();
   const handleClose = () => {
     onOpen(false);
@@ -37,6 +40,16 @@ const CustomizedLogoutDialog = ({ open, onOpen }: Props) => {
       setIsLoading(false);
     }, 1000);
   };
+
+  if (media) {
+    return (
+      <CustomizedLogoutDialogMobile
+        open={open}
+        onOpen={onOpen}
+        onSubmit={handleLogout}
+      />
+    );
+  }
 
   return (
     <Dialog

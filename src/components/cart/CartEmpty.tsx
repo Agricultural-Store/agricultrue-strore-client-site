@@ -1,3 +1,4 @@
+import useMedia from "@/hooks/shared/useMedia";
 import { AppContext } from "@/providers/AppContext";
 import { Box, Button, Typography } from "@mui/material";
 import { useRouter } from "next-intl/client";
@@ -5,6 +6,7 @@ import React, { useContext } from "react";
 
 const CartEmpty = () => {
   const { setOpenCart } = useContext(AppContext);
+  const { media } = useMedia();
 
   const router = useRouter();
 
@@ -19,7 +21,7 @@ const CartEmpty = () => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        height: "calc(100vh - 100px)",
+        height: media ? "calc(100vh - 350px)" : "calc(100vh - 100px)",
         flexDirection: "column",
       }}
     >

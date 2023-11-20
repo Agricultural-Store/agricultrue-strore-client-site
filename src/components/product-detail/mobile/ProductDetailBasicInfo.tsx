@@ -2,15 +2,18 @@ import CustomizedQuantityInput from "@/components/shared/CustomizedQuantityInput
 import FavoriteIcon from "@/components/shared/icons/FavoriteIcon";
 import NextArrowIcon from "@/components/shared/icons/NextArrowIcon";
 import PreviousIcon from "@/components/shared/icons/PreviousArrowIcon";
+import { userApi } from "@/config/api-path";
 import { useEnqueueSnackbar } from "@/hooks/shared/useEnqueueSnackbar";
 import useUserCartCreate from "@/hooks/user/useUserCartCreate";
+import useUserFavoriteCreate from "@/hooks/user/useUserFavoriteCreate";
+import useUserFavoriteDelete from "@/hooks/user/useUserFavoriteDelete";
 import { AppContext } from "@/providers/AppContext";
 import { ProductDetail } from "@/types/product-detail";
 import { calcPrice } from "@/utils/count";
 import { Box, Button, Grid, IconButton, Typography } from "@mui/material";
 import { useSession } from "next-auth/react";
 import { useParams } from "next/navigation";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 type Props = {
   product?: ProductDetail;
@@ -19,12 +22,15 @@ type Props = {
 const ProductDetailBasicInfo = ({ product }: Props) => {
   const [count, setCount] = useState(1);
   const [index, setIndex] = useState(0);
+  const [favorite, setFavorite] = useState<boolean>();
   const { setOpenAuth } = useContext(AppContext);
 
   const { status } = useSession();
   const params = useParams();
   const [setEnqueue] = useEnqueueSnackbar();
   const { trigger } = useUserCartCreate();
+  const { trigger: createTrigger } = useUserFavoriteCreate();
+  const { trigger: deleteTrigger } = useUserFavoriteDelete();
 
   const handleChange = (value: number) => {
     setCount(value);
@@ -56,6 +62,53 @@ const ProductDetailBasicInfo = ({ product }: Props) => {
     ).then(() => {});
     setEnqueue("Added product to your cart", "success");
   };
+
+  const handleFavorite = () => {
+    if (status === "unauthenticated") {
+      setOpenAuth(true);
+      return;
+    }
+    setFavorite((pre) => !pre);
+    if (product?.isFavorites) {
+      if (product?.id)
+        deleteTrigger(
+          {
+            path: userApi.deleteFavorite(product.id),
+          },
+          {
+            onError: (err) => {
+              // setIsLoading(false);
+              console.log(err);
+            },
+          },
+        ).then((res) => {
+          if (res.statusCode === 200) {
+            // setIsLoading(false);
+          }
+        });
+    } else {
+      if (product?.id)
+        createTrigger(
+          {
+            path: userApi.addFavorite(product.id),
+          },
+          {
+            onError: (err) => {
+              // setIsLoading(false);
+              console.log(err);
+            },
+          },
+        ).then((res) => {
+          if (res.statusCode === 200) {
+            // setIsLoading(false);
+          }
+        });
+    }
+  };
+
+  useEffect(() => {
+    setFavorite(product?.isFavorites);
+  }, [product?.isFavorites]);
 
   return (
     <Grid
@@ -219,16 +272,20 @@ const ProductDetailBasicInfo = ({ product }: Props) => {
               minWidth: "42px",
               maxWidth: "42px",
               p: 0,
-              bgcolor: product?.isFavorites ? "error.main" : "#E6E8EC",
-              color: product?.isFavorites ? "#FFC3C3" : "#777E90",
+              bgcolor: favorite ? "error.main" : "#E6E8EC",
+              color: favorite ? "#FFC3C3" : "#777E90",
+              ":hover": {
+                bgcolor: favorite ? "error.main" : "#E6E8EC",
+              },
             }}
             variant="contained"
             color="error"
+            onClick={handleFavorite}
           >
             <FavoriteIcon />
           </Button>
         </Box>
-        <Box>
+        {/* <Box>
           <Typography
             textAlign="center"
             mt="24px"
@@ -236,7 +293,7 @@ const ProductDetailBasicInfo = ({ product }: Props) => {
             Chia sẻ qua:
           </Typography>
           <Box></Box>
-        </Box>
+        </Box> */}
       </Grid>
     </Grid>
   );

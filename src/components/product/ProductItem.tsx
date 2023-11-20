@@ -17,6 +17,7 @@ import { AppContext } from "@/providers/AppContext";
 import { useSession } from "next-auth/react";
 import useUserFavoriteCreate from "@/hooks/user/useUserFavoriteCreate";
 import { userApi } from "@/config/api-path";
+import useUserFavoriteDelete from "@/hooks/user/useUserFavoriteDelete";
 
 type Props = {
   product?: Product;
@@ -27,11 +28,12 @@ type Props = {
 
 const ProductItem = ({ product, onClick, onButtonClick, isFavorite }: Props) => {
   const [favorite, setFavorite] = useState<boolean>();
-  const { setOpenAuth, setIsLoading } = useContext(AppContext);
+  const { setOpenAuth } = useContext(AppContext);
 
   const { status } = useSession();
 
   const { trigger } = useUserFavoriteCreate();
+  const { trigger: deleteTrigger } = useUserFavoriteDelete();
 
   const handleClick = () => {
     onClick?.(product?.id);
@@ -47,24 +49,48 @@ const ProductItem = ({ product, onClick, onButtonClick, isFavorite }: Props) => 
 
   const handleFavorite = (e: MouseEvent<HTMLDivElement>) => {
     e.stopPropagation();
-    setIsLoading(true);
+    // setIsLoading(true);
+
+    if (status === "unauthenticated") {
+      setOpenAuth(true);
+      return;
+    }
     setFavorite((pre) => !pre);
-    if (product?.id)
-      trigger(
-        {
-          path: userApi.addFavorite(product.id),
-        },
-        {
-          onError: (err) => {
-            setIsLoading(false);
-            console.log(err);
+    if (isFavorite === true) {
+      if (product?.id)
+        deleteTrigger(
+          {
+            path: userApi.deleteFavorite(product.id),
           },
-        },
-      ).then((res) => {
-        if (res.statusCode === 200) {
-          setIsLoading(false);
-        }
-      });
+          {
+            onError: (err) => {
+              // setIsLoading(false);
+              console.log(err);
+            },
+          },
+        ).then((res) => {
+          if (res.statusCode === 200) {
+            // setIsLoading(false);
+          }
+        });
+    } else {
+      if (product?.id)
+        trigger(
+          {
+            path: userApi.addFavorite(product.id),
+          },
+          {
+            onError: (err) => {
+              // setIsLoading(false);
+              console.log(err);
+            },
+          },
+        ).then((res) => {
+          if (res.statusCode === 200) {
+            // setIsLoading(false);
+          }
+        });
+    }
   };
 
   useEffect(() => {

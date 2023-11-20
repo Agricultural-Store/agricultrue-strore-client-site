@@ -29,6 +29,7 @@ export const userApi = {
   order: `${userApiBase}/order`,
   orderDetail: (id?: number) => `${userApiBase}/order/${id}`,
   favorite: `${userApiBase}/favorites`,
+  deleteFavorite: (id?: number) => `${userApiBase}/favorites/${id}`,
   addFavorite: (id?: number) => `${userApiBase}/favorites/${id}`,
 };
 

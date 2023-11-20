@@ -90,7 +90,7 @@ const ProfileOrderDetailInformation = ({ order }: Props) => {
             fontWeight={500}
             lineHeight="28px"
           >
-            Phương thức::{" "}
+            Phương thức:{" "}
             <Typography
               fontWeight="normal"
               component="span"

@@ -86,6 +86,7 @@ const ProfileMainMobile = () => {
         <ProfileMainImageDialog
           open={open}
           onOpen={setOpen}
+          images={data?.data.images}
         ></ProfileMainImageDialog>
       </Box>
       {/* <ProfileSetting /> */}

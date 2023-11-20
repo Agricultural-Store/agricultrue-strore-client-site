@@ -103,13 +103,13 @@ const ProfileOrderDetailItem = ({ product }: Props) => {
               color="#B1B5C3"
               sx={{ textDecoration: "line-through" }}
             >
-              {product?.totalPrice?.toLocaleString()}đ
+              {(+(product?.totalPrice?.toString() || 0))?.toLocaleString()}đ
             </Typography>
             <Typography
               fontSize="14px"
               lineHeight="28px"
             >
-              {product?.temporaryPrice?.toLocaleString()}đ
+              {(+(product?.temporaryPrice?.toString() || 0))?.toLocaleString()}đ
             </Typography>
           </Box>
         </Box>

@@ -1,24 +1,14 @@
 import CustomizedAutocomplete from "@/components/shared/CustomizedAutocomplete";
 import CustomizedDatePicker from "@/components/shared/CustomizedDatePicker";
 import CustomizedInput from "@/components/shared/CustomizedInput";
-import CloseIcon from "@/components/shared/icons/CloseIcon";
+import ArrowBackIcon from "@/components/shared/icons/ArrowBackIcon";
 import { userApi } from "@/config/api-path";
 import { useEnqueueSnackbar } from "@/hooks/shared/useEnqueueSnackbar";
 import useUserProfileUpdate from "@/hooks/user/useUserProfileUpdate";
 import { AppContext } from "@/providers/AppContext";
 import { AutoCompleteOption } from "@/types/components/autocomplete";
 import { UserProfile, UserUpdateInput } from "@/types/user";
-import {
-  Box,
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-  IconButton,
-  Stack,
-  Typography,
-} from "@mui/material";
+import { Box, Button, IconButton, Stack, Typography } from "@mui/material";
 import { City, State } from "country-state-city";
 import dayjs from "dayjs";
 import React, { ChangeEvent, useContext, useEffect, useState } from "react";
@@ -226,6 +216,7 @@ const ProfileMainEdit = ({ user, onOpen, open }: Props) => {
   }, [user]);
 
   useEffect(() => {
+    console.log(input);
     const isEmptyAddress = Object.values(address).some((add) => add === "");
     const isEmptyInput = Object.values(input).some((inp) => inp === "");
     if (isEmptyAddress || isEmptyInput) {
@@ -236,35 +227,56 @@ const ProfileMainEdit = ({ user, onOpen, open }: Props) => {
   }, [address, input]);
 
   return (
-    <Dialog
-      open={open}
-      maxWidth="lg"
-      PaperProps={{
-        sx: {
-          p: "16px 24px",
-        },
+    <Box
+      component="div"
+      sx={{
+        position: "fixed",
+        top: "65px",
+        right: 0,
+        bgcolor: "white",
+        width: "100%",
+        height: "calc(100vh)",
+        zIndex: 10,
+        px: "16px",
+        display: open ? "block" : "none",
       }}
     >
-      <DialogTitle
+      <Box
         sx={{
-          display: "flex",
-          p: 0,
-          alignItems: "center",
-          justifyContent: "space-between",
+          overflowY: "auto",
+          height: "85%",
+          "::-webkit-scrollbar": {
+            display: "none",
+          },
         }}
       >
-        <Typography
-          fontSize="20px"
-          fontWeight={500}
+        <Box
+          sx={{
+            pt: "16px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "start",
+            mb: "24px",
+          }}
         >
-          Chỉnh sửa địa chỉ
-        </Typography>
-        <IconButton onClick={handleClose}>
-          <CloseIcon />
-        </IconButton>
-      </DialogTitle>
-      <DialogContent sx={{ width: "650px", p: 0, minHeight: "300px" }}>
-        <Box height="32px"></Box>
+          <IconButton
+            sx={{ color: "color.textBlack" }}
+            onClick={handleClose}
+          >
+            <ArrowBackIcon />
+          </IconButton>
+          <Typography
+            variant="h2"
+            textAlign="center"
+            width="100%"
+          >
+            Chỉnh sửa thông tin
+          </Typography>
+          <Box
+            height="40px"
+            width="40px"
+          ></Box>
+        </Box>
         <Stack gap="24px">
           <CustomizedInput
             label="Họ tên"
@@ -344,12 +356,11 @@ const ProfileMainEdit = ({ user, onOpen, open }: Props) => {
             size="small"
           />
         </Stack>
-      </DialogContent>
-      <DialogActions sx={{ p: 0, mt: "32px" }}>
         <Button
           sx={{
             // bgcolor: (theme) => `${theme.palette.color?.bgPrimary}1A`,
             textTransform: "capitalize",
+            mt: "24px",
             ":hover": {
               bgcolor: (theme) => `${theme.palette.color?.bgPrimary}`,
             },
@@ -359,10 +370,10 @@ const ProfileMainEdit = ({ user, onOpen, open }: Props) => {
           onClick={handleSubmit}
           variant="contained"
         >
-          Lưu địa chỉ
+          Lưu
         </Button>
-      </DialogActions>
-    </Dialog>
+      </Box>
+    </Box>
   );
 };
 

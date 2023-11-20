@@ -13,6 +13,7 @@ import { calcPriceDiscount } from "@/utils/count";
 import PaymentCheckout from "../PaymentCheckout";
 import OrderSubmit from "./OrderSubmit";
 import { scrollTo } from "@/utils/scroll";
+import OrderFail from "./OrderFail";
 
 const OrderMobile = () => {
   const [step, setStep] = useState(1);
@@ -178,9 +179,10 @@ const OrderMobile = () => {
               onCompleteCredit={setCreateComplete}
             />
             {step === 4 && <OrderComplete />}
+            {step === 5 && <OrderFail />}
           </Box>
         </Box>
-        {step !== 4 && (
+        {![4, 5].includes(step) && (
           <OrderSubmit
             input={input}
             setStep={setStep}

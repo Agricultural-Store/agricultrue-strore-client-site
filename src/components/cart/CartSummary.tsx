@@ -1,3 +1,4 @@
+import { useEnqueueSnackbar } from "@/hooks/shared/useEnqueueSnackbar";
 import useMedia from "@/hooks/shared/useMedia";
 import { ProductInCart } from "@/types/cart";
 import { calcPriceDiscount } from "@/utils/count";
@@ -13,6 +14,7 @@ type Props = {
 const CartSummary = ({ products, onClose }: Props) => {
   const { media } = useMedia();
   const router = useRouter();
+  const [setEnqueue] = useEnqueueSnackbar();
   const originalPrice = useMemo(
     () =>
       products.reduce(
@@ -35,6 +37,10 @@ const CartSummary = ({ products, onClose }: Props) => {
   );
 
   const handlePayment = () => {
+    if (originalPrice - discountPrice < 20000) {
+      setEnqueue("Hóa đơn phải tối thiểu 20,000đ", "error");
+      return;
+    }
     onClose?.(false);
     router.push("/order");
   };

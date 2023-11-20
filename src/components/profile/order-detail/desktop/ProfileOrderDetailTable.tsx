@@ -87,17 +87,17 @@ const ProfileOrderDetailTable = ({ order }: Props) => {
                 </TableCell>
                 <TableCell align="center">{product.quantity}</TableCell>
                 <TableCell align="center">
-                  {product.totalPrice?.toLocaleString()}đ
+                  {(+(product?.totalPrice?.toString() || 0))?.toLocaleString()}đ
                 </TableCell>
                 <TableCell align="center">
-                  {product.discountPrice?.toLocaleString()}đ
+                  {(+(product?.discountPrice?.toString() || 0)).toLocaleString()}đ
                 </TableCell>
                 <TableCell
                   align="right"
                   sx={{ pr: 0 }}
                 >
                   <Typography component="span">
-                    {product.temporaryPrice?.toLocaleString()}đ
+                    {(+(product?.temporaryPrice?.toString() || 0))?.toLocaleString()}đ
                   </Typography>
                 </TableCell>
               </TableRow>

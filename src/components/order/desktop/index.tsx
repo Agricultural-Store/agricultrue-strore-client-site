@@ -12,12 +12,14 @@ import { OrderCreateInput, PaymentMethod } from "@/types/order";
 import { CartContext } from "@/providers/CartContext";
 import { calcPriceDiscount } from "@/utils/count";
 import PaymentCheckout from "../PaymentCheckout";
+import OrderFailDialog from "./OrderFailDialog";
 
 const labelStepper = ["Địa chỉ", "Duyệt lại", "Thanh toán"];
 
 const OrderDesktop = () => {
   const [step, setStep] = useState(1);
   const [openCompleteDialog, setOpenCompleteDialog] = useState(false);
+  const [openFailDialog, setOpenFailDialog] = useState(false);
   const [input, setInput] = useState<OrderCreateInput>({
     addressId: 0,
     discountPrice: 0,
@@ -174,12 +176,17 @@ const OrderDesktop = () => {
           discountPrice={discountPrice}
           input={input}
           setOpenCompleteDialog={setOpenCompleteDialog}
+          setOpenFailDialog={setOpenFailDialog}
           setStep={setStep}
           step={step}
         />
         <OrderCompleteDialog
           open={openCompleteDialog}
           onOpen={setOpenCompleteDialog}
+        />
+        <OrderFailDialog
+          open={openFailDialog}
+          onOpen={setOpenFailDialog}
         />
       </Box>
     </PaymentCheckout>

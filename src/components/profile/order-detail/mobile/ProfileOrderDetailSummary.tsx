@@ -1,6 +1,6 @@
 import { UserOrder } from "@/types/user";
 import { Box, Button, Divider, Typography } from "@mui/material";
-import { useRouter } from "next/router";
+import { useRouter } from "next-intl/client";
 import React from "react";
 
 type Props = {

@@ -13,9 +13,10 @@ import React from "react";
 type Props = {
   open: boolean;
   onOpen: (open: boolean) => void;
+  images?: string[];
 };
 
-const ProfileMainImageDialog = ({ open, onOpen }: Props) => {
+const ProfileMainImageDialog = ({ open, onOpen, images }: Props) => {
   const handleClose = () => {
     onOpen(false);
   };
@@ -71,7 +72,7 @@ const ProfileMainImageDialog = ({ open, onOpen }: Props) => {
             spacing="8px"
             py="24px"
           >
-            {Array(...Array(5)).map((v, index) => (
+            {images?.map((v, index) => (
               <Grid
                 item
                 xs={4}
@@ -81,7 +82,8 @@ const ProfileMainImageDialog = ({ open, onOpen }: Props) => {
               >
                 <Box
                   borderRadius="4px"
-                  bgcolor="color.bgPrimary"
+                  src={v}
+                  component="img"
                   width="95px"
                   height="95px"
                 ></Box>

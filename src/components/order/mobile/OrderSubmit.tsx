@@ -1,6 +1,5 @@
 import appConfig from "@/config/env";
 import useOrderCreate from "@/hooks/order/useOrderCreate";
-import { useEnqueueSnackbar } from "@/hooks/shared/useEnqueueSnackbar";
 import { OrderCreateInput, PaymentMethod } from "@/types/order";
 import { Button } from "@mui/material";
 import { useStripe, useElements } from "@stripe/react-stripe-js";
@@ -13,8 +12,6 @@ type Props = {
   creditComplete?: boolean;
 };
 const OrderSubmit = ({ input, setStep, step, creditComplete }: Props) => {
-  const [setEnqueue] = useEnqueueSnackbar();
-
   const { trigger } = useOrderCreate();
 
   const stripe = useStripe();
@@ -61,7 +58,7 @@ const OrderSubmit = ({ input, setStep, step, creditComplete }: Props) => {
         },
         {
           onError: () => {
-            setEnqueue("Đặt hàng thất bại", "error");
+            setStep(5);
           },
         },
       ).then(() => {

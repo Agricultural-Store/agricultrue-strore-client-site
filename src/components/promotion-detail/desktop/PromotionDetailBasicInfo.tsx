@@ -207,10 +207,12 @@ const PromotionDetailBasicInfo = ({ combo }: Props) => {
             <FavoriteIcon />
           </Button>
         </Box>
-        <Box>
-          <Typography>Chia sẻ qua:</Typography>
-          <Box></Box>
-        </Box>
+        {/* <Box>
+          <Typography>Chia sẻ:</Typography>
+          <Box>
+            <ShareIcon />
+          </Box>
+        </Box> */}
       </Grid>
     </Grid>
   );
