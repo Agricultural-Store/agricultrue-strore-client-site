@@ -210,7 +210,7 @@ const ProfileMainEdit = ({ user, onOpen, open }: Props) => {
 
     setAddress({
       state: user?.province || "",
-      ward: user?.province || "",
+      ward: user?.commune || "",
       city: user?.district || "",
       home: user?.addressDetail?.split(", ")[0] || "",
       street: user?.addressDetail?.split(", ")[1] || "",
