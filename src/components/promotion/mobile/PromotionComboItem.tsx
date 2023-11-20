@@ -51,8 +51,8 @@ const PromotionComboItem = ({ image, title, description, id }: Props) => {
         </Typography>
         <Box
           dangerouslySetInnerHTML={{ __html: description || "" }}
-          // p="16px"
           minHeight="100px"
+          maxHeight="100px"
           fontSize="14px"
         ></Box>
       </CardContent>
