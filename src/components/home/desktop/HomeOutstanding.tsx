@@ -54,6 +54,7 @@ const HomeOutstanding = () => {
         py: "48px",
         px: "30px",
         bgcolor: `color.bgPrimaryWithOpacity`,
+        borderRadius: "6px",
       }}
     >
       <Typography

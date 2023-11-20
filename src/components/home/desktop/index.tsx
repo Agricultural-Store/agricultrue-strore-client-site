@@ -12,7 +12,15 @@ import { Container } from "@mui/material";
 const HomeDesktop = () => {
   return (
     <>
-      <HomeBanner />
+      <Container
+        sx={{
+          paddingX: {
+            sm: "0px !important",
+          },
+        }}
+      >
+        <HomeBanner />
+      </Container>
       <Container
         sx={{
           paddingX: {

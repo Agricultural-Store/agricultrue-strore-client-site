@@ -7,10 +7,7 @@ import ProfileOrderTab from "./ProfileOrderTab";
 const ProfileOrderMobile = () => {
   return (
     <Box width="100%">
-      <Box
-        bgcolor="color.bgWhite"
-        width="100%"
-      >
+      <Box width="100%">
         <Box
           width="100%"
           py="16px"

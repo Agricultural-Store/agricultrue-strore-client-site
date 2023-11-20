@@ -34,7 +34,6 @@ const HomeCertification = () => {
       sx={{
         height: "425px",
         py: "48px",
-
         bgcolor: `color.bgPrimaryWithOpacity`,
         mt: "64px",
         display: "flex",
@@ -42,6 +41,7 @@ const HomeCertification = () => {
         flexDirection: "column",
         alignItems: "center",
         width: "100%",
+        borderRadius: "6px",
       }}
     >
       <Typography

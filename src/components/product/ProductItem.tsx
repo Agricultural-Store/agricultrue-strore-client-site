@@ -18,6 +18,8 @@ import { useSession } from "next-auth/react";
 import useUserFavoriteCreate from "@/hooks/user/useUserFavoriteCreate";
 import { userApi } from "@/config/api-path";
 import useUserFavoriteDelete from "@/hooks/user/useUserFavoriteDelete";
+import { useEnqueueSnackbar } from "@/hooks/shared/useEnqueueSnackbar";
+import useUserCartCreate from "@/hooks/user/useUserCartCreate";
 
 type Props = {
   product?: Product;
@@ -26,12 +28,14 @@ type Props = {
   isFavorite?: boolean;
 };
 
-const ProductItem = ({ product, onClick, onButtonClick, isFavorite }: Props) => {
+const ProductItem = ({ product, onClick, isFavorite }: Props) => {
   const [favorite, setFavorite] = useState<boolean>();
   const { setOpenAuth } = useContext(AppContext);
+  const [setEnqueue] = useEnqueueSnackbar();
 
   const { status } = useSession();
 
+  const { trigger: addTrigger } = useUserCartCreate();
   const { trigger } = useUserFavoriteCreate();
   const { trigger: deleteTrigger } = useUserFavoriteDelete();
 
@@ -40,8 +44,20 @@ const ProductItem = ({ product, onClick, onButtonClick, isFavorite }: Props) => 
   };
 
   const handleButtonClick = () => {
-    if (status === "authenticated") {
-      onButtonClick?.(product);
+    if (status === "authenticated" && product?.id) {
+      addTrigger(
+        {
+          body: {
+            productCount: "1",
+            productId: product.id.toString() || "",
+          },
+        },
+        {
+          onError: () => {},
+        },
+      ).then(() => {});
+      setEnqueue("Added product to your cart", "success");
+      // onButtonClick?.(product);
     } else {
       setOpenAuth(true);
     }
@@ -220,7 +236,7 @@ const ProductItem = ({ product, onClick, onButtonClick, isFavorite }: Props) => 
           fullWidth
           onClick={handleButtonClick}
         >
-          Mua ngay
+          Thêm vào giỏ hàng
         </Button>
       </CardActions>
     </Card>

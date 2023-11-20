@@ -23,7 +23,9 @@ const ProfileOrderItem = ({ order }: Props) => {
         mt: "24px",
         borderRadius: "8px",
         overflow: "hidden",
+        cursor: "pointer",
       }}
+      onClick={handleClick}
     >
       <Box
         height="62px"
@@ -37,7 +39,6 @@ const ProfileOrderItem = ({ order }: Props) => {
           Mã vận đơn:{" "}
           <Typography
             component="span"
-            onClick={handleClick}
             sx={{
               fontWeight: 500,
               fontSize: "inherit",

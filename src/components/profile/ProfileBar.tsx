@@ -43,6 +43,7 @@ const ProfileBar = () => {
       display="flex"
       justifyContent="space-between"
       flexDirection="column"
+      borderRadius="4px"
     >
       <Box>
         {items.map((item, index) => (

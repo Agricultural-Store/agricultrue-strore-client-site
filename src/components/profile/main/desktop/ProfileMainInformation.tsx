@@ -59,23 +59,23 @@ const ProfileMainInformation = ({ data }: Props) => {
           <EditBlackBorderIcon />
         </IconButton>
       </Box>
-      <Divider sx={{ my: "8px" }}></Divider>
+      <Divider sx={{ my: "8px", borderColor: "#E6E8EC" }}></Divider>
       {renderRow("Họ tên", data?.name)}
-      <Divider sx={{ my: "8px" }}></Divider>
+      <Divider sx={{ my: "8px", borderColor: "#E6E8EC" }}></Divider>
       {renderRow("Ngày sinh", new Date(data?.birthday || "").toLocaleDateString())}
-      <Divider sx={{ my: "8px" }}></Divider>
+      <Divider sx={{ my: "8px", borderColor: "#E6E8EC" }}></Divider>
       {renderRow("Email", data?.mail)}
-      <Divider sx={{ my: "8px" }}></Divider>
+      <Divider sx={{ my: "8px", borderColor: "#E6E8EC" }}></Divider>
       {renderRow("Số điện thoại", data?.phone)}
-      <Divider sx={{ my: "8px" }}></Divider>
+      <Divider sx={{ my: "8px", borderColor: "#E6E8EC" }}></Divider>
       {renderRow("Địa chỉ", data?.addressDetail)}
-      <Divider sx={{ my: "8px" }}></Divider>
+      <Divider sx={{ my: "8px", borderColor: "#E6E8EC" }}></Divider>
       {renderRow("Phường", data?.commune)}
-      <Divider sx={{ my: "8px" }}></Divider>
+      <Divider sx={{ my: "8px", borderColor: "#E6E8EC" }}></Divider>
       {renderRow("Quận", data?.district)}
-      <Divider sx={{ my: "8px" }}></Divider>
+      <Divider sx={{ my: "8px", borderColor: "#E6E8EC" }}></Divider>
       {renderRow("Thành phố", data?.province)}
-      <Divider sx={{ my: "8px" }}></Divider>
+      <Divider sx={{ my: "8px", borderColor: "#E6E8EC" }}></Divider>
       {renderRow("Quốc gia", "Việt Nam")}
       <ProfileMainEdit
         onOpen={setOpen}

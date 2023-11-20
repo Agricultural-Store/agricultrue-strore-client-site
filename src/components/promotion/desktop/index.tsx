@@ -19,8 +19,16 @@ const PromotionDesktop = () => {
       >
         <PromotionComboList />
       </Container>
-      <PromotionRating />
-      <PromotionHelper />
+      <Container
+        sx={{
+          paddingX: {
+            sm: "0px !important",
+          },
+        }}
+      >
+        <PromotionRating />
+        <PromotionHelper />
+      </Container>
     </>
   );
 };

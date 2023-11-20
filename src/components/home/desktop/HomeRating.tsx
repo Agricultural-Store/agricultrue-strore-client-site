@@ -18,6 +18,7 @@ const HomeRating = () => {
         width: "100%",
         overflow: "hidden",
         position: "relative",
+        borderRadius: "6px",
       }}
     >
       <Typography

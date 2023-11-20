@@ -1,4 +1,5 @@
 "use client";
+import { scrollTo } from "@/utils/scroll";
 import { Box, Pagination, PaginationItem, SxProps, Typography } from "@mui/material";
 import React from "react";
 
@@ -23,6 +24,9 @@ const CustomizedPagination = ({
 }: Props) => {
   const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
     onPageChange?.(value);
+    scrollTo({
+      top: 0,
+    });
   };
 
   return (
@@ -40,7 +44,7 @@ const CustomizedPagination = ({
       <Pagination
         count={itemCount && rowPerPage ? Math.ceil(itemCount / rowPerPage) : 1}
         shape="rounded"
-        page={page}
+        page={(page ?? 0) + 1}
         onChange={handleChange}
         sx={{ ...paginationProps?.sx }}
         renderItem={(item) => (

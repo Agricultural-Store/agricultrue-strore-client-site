@@ -16,7 +16,7 @@ const ProfileOrderDesktop = () => {
       pl="48px"
     >
       <Box
-        bgcolor="color.bgWhite"
+       
         width="100%"
       >
         <Box
