@@ -5,7 +5,6 @@ import { authApi, userApi } from "./api-path";
 import { ApiResponse } from "@/types/shared";
 import { Me } from "@/types/user";
 import appConfig from "./env";
-import { signOut } from "next-auth/react";
 
 const log = (action: string, message: string, data?: unknown) => {
   console.log(
@@ -82,11 +81,7 @@ const authOptions: AuthOptions = {
           const profileJson: ApiResponse<Me> = await profile.json();
           token.email = profileJson.data.email;
           token.name = profileJson.data.name;
-        } else {
-          signOut();
         }
-      } else {
-        signOut();
       }
       return token;
     },

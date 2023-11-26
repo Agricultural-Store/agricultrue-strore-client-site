@@ -1,6 +1,6 @@
 "use client";
 import { Box, IconButton, Typography } from "@mui/material";
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import CustomizedDrawer from "../shared/CustomizedDrawer";
 import CloseIcon from "../shared/icons/CloseIcon";
 import ProductInCartList from "./ProductInCartList";
@@ -20,8 +20,9 @@ type Props = {
 
 const Cart = ({ onClose, open }: Props) => {
   const { product, setProduct } = useContext(CartContext);
+  const ref = useRef(false);
 
-  const { status } = useSession();
+  const { status, data: authData } = useSession();
   const { media } = useMedia();
 
   const { data, mutate } = useUserCar();
@@ -32,7 +33,14 @@ const Cart = ({ onClose, open }: Props) => {
   };
 
   useEffect(() => {
-    mutate();
+    console.log(ref.current);
+    if (!ref.current) {
+      ref.current = true;
+      return;
+    }
+    if (authData) {
+      mutate();
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [status]);
 

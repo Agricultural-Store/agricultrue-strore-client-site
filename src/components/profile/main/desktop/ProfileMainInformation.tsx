@@ -18,7 +18,7 @@ const ProfileMainInformation = ({ data }: Props) => {
       >
         <Grid
           item
-          xs={2.5}
+          xs={3}
           fontWeight={500}
           lineHeight="30px"
         >
@@ -26,7 +26,7 @@ const ProfileMainInformation = ({ data }: Props) => {
         </Grid>
         <Grid
           item
-          xs={9}
+          xs={8}
         >
           {value}
         </Grid>

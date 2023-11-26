@@ -20,7 +20,7 @@ const ProfileMainAccount = () => {
         </Grid>
         <Grid
           item
-          xs={9}
+          xs={8}
         >
           {value}
         </Grid>

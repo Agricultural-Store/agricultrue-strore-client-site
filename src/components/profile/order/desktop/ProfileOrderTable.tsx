@@ -58,7 +58,21 @@ const ProfileOrderTable = ({ products }: Props) => {
                     component="img"
                     src={product.productImage}
                   ></Box>
-                  <Typography fontSize="18px">{product.productName}</Typography>
+                  <Box>
+                    <Typography fontSize="18px">{product.productName}</Typography>
+                    <Typography
+                      fontSize="14px"
+                      color="#777E90"
+                    >
+                      Mã sản phẩm: #{product.id}
+                    </Typography>
+                    <Typography
+                      fontSize="14px"
+                      color="#777E90"
+                    >
+                      Phân loại: {product.productCategory}
+                    </Typography>
+                  </Box>
                 </TableCell>
                 <TableCell align="center">{product.quantity}</TableCell>
                 <TableCell
@@ -74,10 +88,10 @@ const ProfileOrderTable = ({ products }: Props) => {
                       color: "color.textPrimary",
                     }}
                   >
-                    {product.temporaryPrice?.toLocaleString()}đ
+                    {product.totalPrice?.toLocaleString()}đ
                   </Typography>
                   <Typography component="span">
-                    {product.totalPrice?.toLocaleString()}đ
+                    {product.temporaryPrice?.toLocaleString()}đ
                   </Typography>
                 </TableCell>
               </TableRow>

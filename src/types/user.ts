@@ -43,6 +43,7 @@ export type UserUpdateInput = Partial<UserProfile> & {
   detailAddress?: string;
   email?: string;
   city?: string;
+  image?: string;
 };
 
 export interface UserOrder {

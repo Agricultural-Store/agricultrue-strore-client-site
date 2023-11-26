@@ -1,6 +1,6 @@
 "use client";
 
-import { Avatar, Box, IconButton, Typography } from "@mui/material";
+import { Box, IconButton, Typography } from "@mui/material";
 import React, { useState } from "react";
 import EditPenIcon from "../../../shared/icons/EditPenIcon";
 import ProfileMainInformation from "./ProfileMainInformation";
@@ -54,10 +54,12 @@ const ProfileMainDesktop = () => {
             px="24px"
           >
             <Box sx={{ width: "86px", height: "86px", position: "relative" }}>
-              <Avatar
-                sx={{ width: "86px", height: "86px" }}
+              <Box
+                sx={{ width: "86px", height: "86px", borderRadius: "50%" }}
+                component="img"
+                alt={data?.data.name}
                 src={data?.data.avatar}
-              ></Avatar>
+              ></Box>
               <IconButton
                 onClick={() => setOpen(true)}
                 sx={{

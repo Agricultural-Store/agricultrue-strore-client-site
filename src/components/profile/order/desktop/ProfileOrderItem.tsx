@@ -65,7 +65,7 @@ const ProfileOrderItem = ({ order }: Props) => {
           fontSize="18px"
           fontWeight={600}
         >
-          {(+(order?.totalPrice || 0))?.toLocaleString()}đ
+          {(+(order?.totalPrice || 0) - +(order?.discountPrice || 0))?.toLocaleString()}đ
         </Typography>
       </Box>
     </Box>

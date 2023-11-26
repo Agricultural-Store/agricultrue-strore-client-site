@@ -1,4 +1,7 @@
 import CloseIcon from "@/components/shared/icons/CloseIcon";
+import useImageImport from "@/hooks/shared/useImageImport";
+import useUserProfileImageUpdate from "@/hooks/user/useUserProfileImageUpdate";
+import { AppContext } from "@/providers/AppContext";
 import {
   Dialog,
   DialogContent,
@@ -8,7 +11,7 @@ import {
   Button,
   Grid,
 } from "@mui/material";
-import React from "react";
+import React, { ChangeEvent, useContext, useState } from "react";
 
 type Props = {
   open: boolean;
@@ -17,8 +20,52 @@ type Props = {
 };
 
 const ProfileMainImageDialog = ({ open, onOpen, images }: Props) => {
+  const [url, setUrl] = useState("");
+  const [image, setImage] = useState("");
+
+  const { setIsLoading } = useContext(AppContext);
+
+  const { trigger } = useImageImport();
+  const { trigger: imageTrigger } = useUserProfileImageUpdate();
   const handleClose = () => {
     onOpen(false);
+  };
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const objectUrl = URL.createObjectURL(file);
+      setUrl(objectUrl);
+      const formData = new FormData();
+      formData.append("file", file as unknown as string);
+      trigger({
+        body: formData,
+      }).then((res) => {
+        console.log(res);
+        if (res.statusCode === 200) {
+          setImage?.(res.data.filename || "");
+        }
+      });
+    }
+  };
+
+  const handleSubmit = () => {
+    setIsLoading(true);
+    imageTrigger(
+      {
+        body: {
+          image,
+        },
+      },
+      {
+        onError: () => {
+          setIsLoading(false);
+        },
+      },
+    ).then((res) => {
+      if (res.statusCode === 200) handleClose();
+      setIsLoading(false);
+    });
   };
 
   return (
@@ -102,6 +149,7 @@ const ProfileMainImageDialog = ({ open, onOpen, images }: Props) => {
                 id="image-update-bg"
                 accept="image/*"
                 style={{ visibility: "hidden", display: "none" }}
+                onChange={handleChange}
               />
               <label
                 htmlFor="image-update-bg"
@@ -117,17 +165,30 @@ const ProfileMainImageDialog = ({ open, onOpen, images }: Props) => {
                   cursor: "pointer",
                 }}
               >
-                <Box
-                  component="img"
-                  src="/images/add_photo_alternate.svg"
-                ></Box>
-                <Typography
-                  fontSize="12px"
-                  lineHeight="20px"
-                  mt="4px"
-                >
-                  Tải ảnh lên ...
-                </Typography>
+                {url ? (
+                  <Box
+                    component="img"
+                    width="100%"
+                    height="100%"
+                    overflow="hidden"
+                    sx={{ objectFit: "cover" }}
+                    src={url}
+                  ></Box>
+                ) : (
+                  <>
+                    <Box
+                      component="img"
+                      src="/images/add_photo_alternate.svg"
+                    ></Box>
+                    <Typography
+                      fontSize="12px"
+                      lineHeight="20px"
+                      mt="4px"
+                    >
+                      Tải ảnh lên ...
+                    </Typography>
+                  </>
+                )}
               </label>
             </Grid>
           </Grid>
@@ -135,6 +196,7 @@ const ProfileMainImageDialog = ({ open, onOpen, images }: Props) => {
             variant="contained"
             fullWidth
             sx={{ height: "42px" }}
+            onClick={handleSubmit}
           >
             Lưu thay đổi
           </Button>

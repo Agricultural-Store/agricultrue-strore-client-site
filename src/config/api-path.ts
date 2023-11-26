@@ -28,9 +28,11 @@ export const userApi = {
   deleteCart: (id?: number) => `${userApiBase}/cart/${id}`,
   order: `${userApiBase}/order`,
   orderDetail: (id?: number) => `${userApiBase}/order/${id}`,
+  updateOrderStatus: (id?: number) => `/order/status/${id}`,
   favorite: `${userApiBase}/favorites`,
   deleteFavorite: (id?: number) => `${userApiBase}/favorites/${id}`,
   addFavorite: (id?: number) => `${userApiBase}/favorites/${id}`,
+  updateProfileImage: `${userApiBase}/profile/image`,
 };
 
 export const productApi = {

@@ -1,7 +1,11 @@
+import { userApi } from "@/config/api-path";
+import { useEnqueueSnackbar } from "@/hooks/shared/useEnqueueSnackbar";
+import useUserOrderStatusUpdate from "@/hooks/user/useUserOrderStatusUpdate";
+import { AppContext } from "@/providers/AppContext";
 import { UserOrder } from "@/types/user";
 import { Box, Button, Divider, Typography } from "@mui/material";
 import { useRouter } from "next-intl/client";
-import React from "react";
+import React, { useContext } from "react";
 
 type Props = {
   order?: UserOrder;
@@ -9,12 +13,36 @@ type Props = {
 
 const ProfileOrderDetailSummary = ({ order }: Props) => {
   const router = useRouter();
+  const { trigger } = useUserOrderStatusUpdate(order?.id);
+  const { setIsLoading } = useContext(AppContext);
+
+  const [setEnqueue] = useEnqueueSnackbar();
 
   const handleClickReBuy = () => {
     router.push("/product");
   };
 
-  const handleCancel = () => {};
+  const handleCancel = () => {
+    setIsLoading(true);
+    trigger(
+      {
+        path: userApi.updateOrderStatus(order?.id),
+        body: {
+          status: "cancel",
+        },
+      },
+      {
+        onError: () => {
+          setIsLoading(false);
+        },
+      },
+    ).then((res) => {
+      if (res.statusCode === 200) {
+        setEnqueue("Hủy đơn hàng thành công", "success");
+        setIsLoading(false);
+      }
+    });
+  };
 
   return (
     <Box>
@@ -84,6 +112,7 @@ const ProfileOrderDetailSummary = ({ order }: Props) => {
           variant="outlined"
           fullWidth
           color="error"
+          disabled={order?.status !== "pending" ? true : false}
           sx={{ textTransform: "capitalize" }}
           onClick={handleCancel}
         >
