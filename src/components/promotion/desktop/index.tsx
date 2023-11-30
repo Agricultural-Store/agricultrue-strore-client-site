@@ -8,15 +8,15 @@ import { Container } from "@mui/material";
 const PromotionDesktop = () => {
   return (
     <>
-      <PromotionBanner />
       <Container
         sx={{
           paddingX: {
-            sm: "48px !important",
+            sm: "0px !important",
             lg: "0px !important",
           },
         }}
       >
+        <PromotionBanner />
         <PromotionComboList />
       </Container>
       <Container

@@ -6,11 +6,20 @@ import ContactInformation from "./ContactInformation";
 const ContactDesktop = () => {
   return (
     <Box>
-      <Box
-        component="img"
-        src="/images/contact.png"
-        width="100%"
-      />
+      <Container
+        sx={{
+          paddingX: {
+            sm: "0px !important",
+            lg: "0px !important",
+          },
+        }}
+      >
+        <Box
+          component="img"
+          src="/images/contact.png"
+          width="100%"
+        />
+      </Container>
       <Container
         sx={{
           paddingX: {

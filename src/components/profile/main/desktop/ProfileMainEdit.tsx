@@ -325,21 +325,21 @@ const ProfileMainEdit = ({ user, onOpen, open }: Props) => {
             onChange={handleChangeWard}
             size="small"
           />
+           <CustomizedInput
+            label="Đường"
+            placeholder="Nhập tên đường"
+            fullWidth
+            name="street"
+            value={address.street}
+            onChange={handleChangeAddressInput}
+            size="small"
+          />
           <CustomizedInput
             label="Số nhà"
             placeholder="Nhập số nhà"
             fullWidth
             name="home"
             value={address.home}
-            onChange={handleChangeAddressInput}
-            size="small"
-          />
-          <CustomizedInput
-            label="Đường"
-            placeholder="Nhập tên đường"
-            fullWidth
-            name="street"
-            value={address.street}
             onChange={handleChangeAddressInput}
             size="small"
           />

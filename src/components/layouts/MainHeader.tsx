@@ -55,8 +55,9 @@ const MainHeader = () => {
       )}
       <Box
         sx={{
-          position: "fixed",
-          top: 0,
+          // position: "fixed",
+          // top: 0,
+          transform: "translateX(-2.5px)",
           zIndex: 1000,
           height: "65px",
           width: "100%",

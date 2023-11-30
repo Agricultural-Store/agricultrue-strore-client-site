@@ -168,6 +168,7 @@ const OrderAddressEdit = ({ address: addressProps, onOpen, open }: Props) => {
       if (res.statusCode === 200) {
         setEnqueue("Cập nhật địa chỉ thành công", "success");
         setIsLoading(false);
+        handleClose();
       }
     });
   };
@@ -305,20 +306,20 @@ const OrderAddressEdit = ({ address: addressProps, onOpen, open }: Props) => {
             size="small"
           />
           <CustomizedInput
-            label="Số nhà"
-            placeholder="Nhập số nhà"
-            fullWidth
-            name="home"
-            value={address.home}
-            onChange={handleChangeAddressInput}
-            size="small"
-          />
-          <CustomizedInput
             label="Đường"
             placeholder="Nhập tên đường"
             fullWidth
             name="street"
             value={address.street}
+            onChange={handleChangeAddressInput}
+            size="small"
+          />
+          <CustomizedInput
+            label="Số nhà"
+            placeholder="Nhập số nhà"
+            fullWidth
+            name="home"
+            value={address.home}
             onChange={handleChangeAddressInput}
             size="small"
           />

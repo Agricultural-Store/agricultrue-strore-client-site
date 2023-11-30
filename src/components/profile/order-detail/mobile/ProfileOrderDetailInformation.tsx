@@ -1,3 +1,4 @@
+import { PaymentMethod } from "@/types/order";
 import { UserOrder } from "@/types/user";
 import { Box, Typography } from "@mui/material";
 import React from "react";
@@ -98,7 +99,9 @@ const ProfileOrderDetailInformation = ({ order }: Props) => {
               component="span"
               fontSize="inherit"
             >
-              {order?.paymentMethod}
+              {order?.paymentMethod === PaymentMethod.CASH
+                ? "Thanh toán trực tiếp"
+                : "Thanh toán bằng thẻ tín dụng"}
             </Typography>
           </Typography>
         </Box>

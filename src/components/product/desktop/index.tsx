@@ -8,7 +8,16 @@ import { Container } from "@mui/material";
 const ProductDesktop = () => {
   return (
     <>
-      <ProductBanner />
+      <Container
+        sx={{
+          paddingX: {
+            sm: "0px !important",
+            lg: "0px !important",
+          },
+        }}
+      >
+        <ProductBanner />
+      </Container>
       <Container
         sx={{
           paddingX: {
@@ -18,9 +27,9 @@ const ProductDesktop = () => {
         }}
       >
         <ProductList />
+        <ProductCertification />
+        <ProductHelper />
       </Container>
-      <ProductCertification />
-      <ProductHelper />
     </>
   );
 };

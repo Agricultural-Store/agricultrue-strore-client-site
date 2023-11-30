@@ -42,24 +42,23 @@ const ProfileLayout = ({ children }: Props) => {
   }
 
   return (
-    <Box
-      p="64px 0px"
-      bgcolor="color.bgNeutral200"
+    <Container
+      sx={{
+        paddingX: {
+          sm: "0px !important",
+          lg: "0px !important",
+        },
+      }}
     >
-      <Container
-        sx={{
-          paddingX: {
-            sm: "48px !important",
-            lg: "0px !important",
-          },
-          display: "flex",
-          justifyContent: "space-between",
-        }}
+      <Box
+        p="64px 10px"
+        bgcolor="color.bgNeutral200"
+        sx={{ display: "flex", justifyContent: "space-between" }}
       >
         {!media1100 && <ProfileBar />}
         {children}
-      </Container>
-    </Box>
+      </Box>
+    </Container>
   );
 };
 

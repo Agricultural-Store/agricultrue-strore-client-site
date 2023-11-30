@@ -26,8 +26,8 @@ const ProductDetailDesktop = () => {
         <ProductDetailBreadcrumbs category={data?.data.productCategory} />
         <ProductDetailBasicInfo product={data?.data} />
         <ProductDetailCenter product={data?.data} />
+        <ProductDetailRelated products={data?.data?.productRelated} />
       </Container>
-      <ProductDetailRelated products={data?.data?.productRelated} />
       {(isLoading || isValidating) && <RootLoading />}
     </>
   );
