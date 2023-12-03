@@ -52,7 +52,7 @@ const NotificationOrderItem = ({ data, onClick }: Props) => {
         <Box
           display="flex"
           alignItems="center"
-          onClick={() => onClick?.(data?.id)}
+          onClick={() => onClick?.(+(data?.recordId || ""))}
           sx={{ cursor: "pointer" }}
         >
           <Typography
@@ -80,7 +80,7 @@ const NotificationOrderItem = ({ data, onClick }: Props) => {
           fontSize="16px"
           fontWeight={500}
         >
-          #{data.id}
+          #{data.recordId}
         </Typography>
       </Box>
       <Box
