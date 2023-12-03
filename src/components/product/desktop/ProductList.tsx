@@ -135,7 +135,7 @@ const ProductList = () => {
             alignItems: "center",
           }}
         >
-          <Typography sx={{ fontSize: "28px", fontWeight: "bold" }}>Gạo Dẻo</Typography>
+          <Typography sx={{ fontSize: "28px", fontWeight: "bold" }}>Gạo</Typography>
           <CustomizedSelect
             menuItems={menuItems}
             value={"popular"}

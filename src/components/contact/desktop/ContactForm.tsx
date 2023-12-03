@@ -4,7 +4,7 @@ import { AppContext } from "@/providers/AppContext";
 import { ContactInput } from "@/types/contact";
 import { Box, Button, Typography } from "@mui/material";
 import { useSession } from "next-auth/react";
-import React, { ChangeEvent, useContext, useState } from "react";
+import React, { ChangeEvent, useContext, useEffect, useState } from "react";
 
 const ContactForm = () => {
   const [input, setInput] = useState<ContactInput>({
@@ -13,6 +13,8 @@ const ContactForm = () => {
     name: "",
     phone: "",
   });
+
+  const [error, setError] = useState(true);
 
   const { setIsCompleted, setIsLoading, setOpenAuth } = useContext(AppContext);
 
@@ -39,12 +41,27 @@ const ContactForm = () => {
         .then(() => {
           setIsLoading(false);
           setIsCompleted(true);
+          setInput({
+            feedback: "",
+            mail: "",
+            name: "",
+            phone: "",
+          });
         })
         .catch(() => {
           setIsLoading(false);
         });
     }
   };
+
+  useEffect(() => {
+    const isEmpty = Object.values(input).includes("");
+    if (isEmpty) {
+      setError(true);
+    } else {
+      setError(false);
+    }
+  }, [input]);
 
   return (
     <Box width="45%">
@@ -64,6 +81,7 @@ const ContactForm = () => {
           label="Họ tên"
           name="name"
           placeholder="Nhập họ tên"
+          value={input.name}
           onChange={handleChange}
         />
         <CustomizedInput
@@ -72,6 +90,7 @@ const ContactForm = () => {
           type="number"
           name="phone"
           placeholder="Nhập số điện thoại"
+          value={input.phone}
           onChange={handleChange}
         />
         <CustomizedInput
@@ -79,6 +98,7 @@ const ContactForm = () => {
           label="Email"
           placeholder="Nhập email"
           name="mail"
+          value={input.mail}
           onChange={handleChange}
         />
         <CustomizedInput
@@ -88,11 +108,13 @@ const ContactForm = () => {
           name="feedback"
           onChange={handleChange}
           multiline
+          value={input.feedback}
           rows={5}
         />
         <Button
           variant="contained"
           fullWidth
+          disabled={error}
           onClick={handleSubmit}
           // sx={{ mt: "48px" }}
         >

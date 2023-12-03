@@ -1,9 +1,10 @@
 import CustomizedCheckbox from "@/components/shared/CustomizedCheckbox";
 import SearchBox from "@/components/shared/SearchBox";
+import useCategoryList from "@/hooks/category/useCategoryList";
 import useMedia from "@/hooks/shared/useMedia";
 import { ProductFilterParams } from "@/types/product";
 import { Box, Typography, Divider } from "@mui/material";
-import React, { ChangeEvent, Dispatch, useState } from "react";
+import React, { ChangeEvent, Dispatch } from "react";
 
 type Props = {
   setOptions: Dispatch<React.SetStateAction<ProductFilterParams>>;
@@ -11,36 +12,7 @@ type Props = {
 };
 
 const ProductFilter = ({ setOptions, options }: Props) => {
-  const [categories] = useState([
-    {
-      categoryName: "Gạo Tấm",
-      id: 1,
-    },
-    {
-      categoryName: "Gạo Lứt",
-      id: 2,
-    },
-    {
-      categoryName: "Gạo Dẻo",
-      id: 3,
-    },
-    {
-      categoryName: "Gạo Khô",
-      id: 4,
-    },
-    {
-      categoryName: "Gạo Nấu Cơm",
-      id: 5,
-    },
-    {
-      categoryName: "Gạo Nấu Xôi, Chè",
-      id: 6,
-    },
-    {
-      categoryName: "Gạo Làm Bánh",
-      id: 7,
-    },
-  ]);
+  const { data } = useCategoryList();
 
   const { media } = useMedia(1000);
   const { media: mediaMobile } = useMedia();
@@ -126,7 +98,7 @@ const ProductFilter = ({ setOptions, options }: Props) => {
               width="300%"
               sx={{ gap: "10px" }}
             >
-              {categories.map((category) => (
+              {data?.data?.map((category) => (
                 <Box
                   mb="8px"
                   key={category.id}
@@ -186,7 +158,7 @@ const ProductFilter = ({ setOptions, options }: Props) => {
             width="200%"
             alignItems="center"
           >
-            {categories.map((category) => (
+            {data?.data?.map((category) => (
               <Box
                 mb="8px"
                 key={category.id}

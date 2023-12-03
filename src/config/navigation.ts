@@ -17,7 +17,7 @@ export const mobileNavigation = [
   },
   {
     label: "Đơn hàng",
-    href: "/order",
+    href: "/profile/order",
   },
   {
     label: "Tin tức",

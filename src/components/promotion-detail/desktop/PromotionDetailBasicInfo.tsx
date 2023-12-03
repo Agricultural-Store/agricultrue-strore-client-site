@@ -15,11 +15,16 @@ type Props = {
 
 const PromotionDetailBasicInfo = ({ combo }: Props) => {
   const [index, setIndex] = useState(0);
+  const [count, setCount] = useState(1);
   const { setOpenCart } = useContext(AppContext);
   const { setProduct } = useContext(CartContext);
 
   const handlePreviousImage = () => {
     setIndex((pre) => pre - 1);
+  };
+
+  const handleChange = (value: number) => {
+    setCount(value);
   };
 
   const handleNextImage = () => {
@@ -30,7 +35,7 @@ const PromotionDetailBasicInfo = ({ combo }: Props) => {
     if (combo)
       setProduct?.({
         id: combo.id,
-        productCount: 1,
+        productCount: count,
         productDiscount: combo.comboDiscount,
         productImage: combo.comboImages?.[0] || "",
         productName: combo.comboName,
@@ -183,6 +188,7 @@ const PromotionDetailBasicInfo = ({ combo }: Props) => {
           <CustomizedQuantityInput
             defaultValue={1}
             maxValue={10}
+            onChange={handleChange}
           />
         </Box>
         <Box sx={{ display: "flex", gap: "16px", mt: "20px", height: "42px" }}>

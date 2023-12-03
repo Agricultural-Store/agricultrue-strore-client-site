@@ -125,7 +125,7 @@ const ProductList = () => {
             mt: "34px",
           }}
         >
-          <Typography sx={{ fontSize: "20px", fontWeight: "bold" }}>Gạo Dẻo</Typography>
+          <Typography sx={{ fontSize: "20px", fontWeight: "bold" }}>Gạo</Typography>
           <CustomizedSelect
             menuItems={menuItems}
             width="120px"
