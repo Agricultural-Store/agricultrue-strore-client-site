@@ -1,31 +1,33 @@
 import { IconButton, Menu, Box, Divider, Typography } from "@mui/material";
 import React, { useState } from "react";
-import CustomizedInput from "../shared/CustomizedInput";
-import MuiSearchIcon from "@mui/icons-material/Search";
-import SearchItem from "./SearchItem";
-import useProductList from "@/hooks/product/useProductList";
-import CustomizedLoading from "../shared/CustomizedLoading";
-import FindInPageOutlinedIcon from "@mui/icons-material/FindInPageOutlined";
+import NotificationOrderItem from "./NotificationOrderItem";
+import RotateRightIcon from "../shared/icons/RotateRightIcon";
 import NotificationIcon from "../shared/icons/NotificationIcon";
+import useNotificationList from "@/hooks/notification/useNotificationList";
+import CustomizedLoading from "../shared/CustomizedLoading";
+
+import FindInPageOutlinedIcon from "@mui/icons-material/FindInPageOutlined";
+import { useRouter } from "next-intl/client";
 
 const NotificationMenu = () => {
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-  const [keyword, setKeyword] = useState("");
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
+  const router = useRouter();
 
-  const { data, isLoading, isValidating } = useProductList({
-    limit: 5,
-    offset: 0,
-    searchField: "productName",
-    searchValue: keyword,
-  });
+  const { data, isLoading, isValidating, mutate } = useNotificationList();
 
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
+    mutate();
   };
 
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  const handleItemClick = (id?: number) => {
+    router.push(`/profile/order/order-detail/${id}`);
+    handleClose();
   };
 
   return (
@@ -67,64 +69,67 @@ const NotificationMenu = () => {
         }}
       >
         <Box
-          width="300px"
-          height="300px"
-          py="8px"
-          px="16px"
+          width="400px"
+          maxHeight="600px"
+          py="12px"
+          px="24px"
         >
-          <CustomizedInput
-            size="small"
-            value={keyword}
-            fullWidth
-            placeholder="Nhập tên sản phẩm"
-            onChange={(e) => setKeyword(e.target.value)}
-            endAdornment={<MuiSearchIcon color="primary" />}
-          />
-          <Divider sx={{ my: "16px" }}></Divider>
-          <Box>
-            {(isLoading || isValidating) && (
-              <Box
-                display="flex"
-                justifyContent="center"
-              >
-                <CustomizedLoading
-                  color="green"
-                  size="small"
-                />
-              </Box>
-            )}
+          <Typography
+            fontSize="20px"
+            fontWeight={600}
+            mb="16px"
+          >
+            Thông báo
+          </Typography>
 
-            {!isLoading &&
-              !isValidating &&
-              data?.data.map((product, index, arr) => (
-                <React.Fragment key={product.id}>
-                  <SearchItem
-                    data={product}
-                    setAnchorEl={setAnchorEl}
+          {(isLoading || isValidating) && (
+            <Box
+              display="flex"
+              justifyContent="center"
+            >
+              <CustomizedLoading
+                color="green"
+                size="small"
+              />
+            </Box>
+          )}
+          {!isLoading &&
+            !isValidating &&
+            Array.isArray(data?.data) &&
+            data?.data.map((d) => {
+              return (
+                <React.Fragment key={d.id}>
+                  <NotificationOrderItem
+                    data={d}
+                    onClick={handleItemClick}
                   />
-                  {arr.length !== index + 1 && (
-                    <Divider
-                      variant="middle"
-                      sx={{ my: "8px" }}
-                    ></Divider>
-                  )}
+                  <Divider sx={{ my: "16px" }}></Divider>
                 </React.Fragment>
-              ))}
-            {!isLoading && !isValidating && data?.data.length == 0 && (
-              <Box
-                textAlign="center"
-                color="color.textNeutral500"
-              >
-                <FindInPageOutlinedIcon
-                  color="inherit"
-                  sx={{ fontSize: "48px" }}
-                />
-                <Typography fontSize="14px">Không tìm thấy kết quả nào</Typography>
-              </Box>
-            )}
+              );
+            })}
+          {!isLoading && !isValidating && data?.data.length == 0 && (
+            <Box
+              textAlign="center"
+              color="color.textNeutral500"
+            >
+              <FindInPageOutlinedIcon
+                color="inherit"
+                sx={{ fontSize: "48px" }}
+              />
+              <Typography fontSize="14px">Không có thông báo</Typography>
+            </Box>
+          )}
 
-            <Box height="16px"></Box>
-          </Box>
+          {!isLoading && !isValidating && (
+            <Box
+              textAlign="center"
+              pb="20px"
+            >
+              <IconButton onClick={() => mutate()}>
+                <RotateRightIcon />
+              </IconButton>
+            </Box>
+          )}
         </Box>
       </Menu>
     </div>

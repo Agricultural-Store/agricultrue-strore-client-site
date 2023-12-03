@@ -1,10 +1,10 @@
 "use client";
 import { NewsContext } from "@/providers/NewsContext";
 import React, { useContext } from "react";
-import NewsItem from "../NewsItem";
 import { Box, Container, Divider, Grid, Typography } from "@mui/material";
 import FindInPageOutlinedIcon from "@mui/icons-material/FindInPageOutlined";
 import { useRouter } from "next-intl/client";
+import NewsPageItem from "../NewsPageItem";
 
 const NewsPageList = () => {
   const { news } = useContext(NewsContext);
@@ -23,6 +23,21 @@ const NewsPageList = () => {
         },
       }}
     >
+      <Box
+        sx={{
+          height: {
+            md: "600px",
+            xs: "400px",
+          },
+          position: "relative",
+        }}
+      >
+        <Box
+          component="img"
+          src="/images/promotion-banner.png"
+          sx={{ width: "100%", height: "100%", objectFit: "cover" }}
+        />
+      </Box>
       <Box sx={{ p: "64px 48px" }}>
         <Typography
           sx={{ textAlign: "center", fontSize: "28px", mb: "48px", fontWeight: 600 }}
@@ -68,7 +83,7 @@ const NewsPageList = () => {
           )}
 
           {news?.map((_news) => (
-            <NewsItem
+            <NewsPageItem
               news={_news}
               onClick={handleClick}
               key={_news.id}

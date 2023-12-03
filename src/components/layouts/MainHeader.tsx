@@ -15,7 +15,7 @@ import NextIntlLink from "next-intl/link";
 import { useSession } from "next-auth/react";
 import ProfilePopup from "./ProfilePopup";
 import SearchMenu from "./SearchMenu";
-// import NotificationMenu from "./NotificationMenu";
+import NotificationMenu from "./NotificationMenu";
 
 const MainHeader = () => {
   const [open, setOpen] = useState(false);
@@ -102,7 +102,7 @@ const MainHeader = () => {
           }}
         >
           <SearchMenu />
-          {/* {status === "authenticated" && <NotificationMenu />} */}
+          {status === "authenticated" && <NotificationMenu />}
           <IconButton
             sx={{ height: "40px", width: "40px" }}
             onClick={() => setOpenCart(true)}

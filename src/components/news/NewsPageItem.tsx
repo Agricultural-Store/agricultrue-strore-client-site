@@ -19,7 +19,7 @@ type Props = {
   onClick?: (id?: number) => void;
 };
 
-const NewsItem = ({ news, onClick }: Props) => {
+const NewsPageItem = ({ news, onClick }: Props) => {
   const handleClick = (id?: number) => {
     onClick?.(id);
   };
@@ -27,7 +27,7 @@ const NewsItem = ({ news, onClick }: Props) => {
   return (
     <Grid
       item
-      md={3}
+      md={4}
       sm={4}
       xs={12}
       px={"10px"}
@@ -43,6 +43,8 @@ const NewsItem = ({ news, onClick }: Props) => {
             md: "254px",
           },
           borderRadius: 0,
+          width: "100%",
+          bgcolor: "color.bgPrimaryWithOpacity",
         }}
       >
         <CardMedia
@@ -58,6 +60,7 @@ const NewsItem = ({ news, onClick }: Props) => {
             flexDirection: "column",
             gap: "8px",
             p: 0,
+            px: "16px",
             pt: "16px",
           }}
         >
@@ -71,7 +74,7 @@ const NewsItem = ({ news, onClick }: Props) => {
               color: "#777E90",
             }}
           >
-            Tin Tức | Nông nghiệp
+            Tin Tức {news?.newsCategory ? `| ${news.newsCategory}` : ""}
           </Typography>
           <Typography
             className="line-clamp"
@@ -80,6 +83,7 @@ const NewsItem = ({ news, onClick }: Props) => {
                 lg: "20px",
                 xs: "16px",
               },
+              minHeight: "48px",
             }}
           >
             {news?.newsTitle}
@@ -102,10 +106,10 @@ const NewsItem = ({ news, onClick }: Props) => {
             }}
           ></Box>
         </CardContent>
-        <CardActions sx={{ p: 0, pb: "16px" }}>
+        <CardActions sx={{ p: 0, px: "16px", pb: "16px" }}>
           <Button
             variant="text"
-            sx={{ display: "flex", alignItems: "center", pl: 0 }}
+            sx={{ display: "flex", alignItems: "center" }}
           >
             <Box
               onClick={() => handleClick(news?.id)}
@@ -127,4 +131,4 @@ const NewsItem = ({ news, onClick }: Props) => {
   );
 };
 
-export default NewsItem;
+export default NewsPageItem;

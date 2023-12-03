@@ -6,6 +6,7 @@ export const orderApiBase = `/order`;
 export const newsApiBase = `/news`;
 export const paymentApiBase = `/payment`;
 export const contactApiBase = `/contact`;
+export const notificationApiBase = `/notification`;
 
 export const authApi = {
   login: `${authApiBase}/login`,
@@ -65,4 +66,8 @@ export const paymentApi = {
 
 export const contactApi = {
   createContact: `${contactApiBase}`,
+};
+
+export const notificationApi = {
+  list: `/user${notificationApiBase}`,
 };
