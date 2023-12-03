@@ -31,7 +31,6 @@ const CustomizedLogoutDialog = ({ open, onOpen }: Props) => {
 
   const handleLogout = () => {
     setIsLoading(true);
-    console.log(pathname.split("/")[1]);
     if (pathname.split("/")[1] === "profile") {
       router.replace("/");
     }
@@ -82,7 +81,7 @@ const CustomizedLogoutDialog = ({ open, onOpen }: Props) => {
             transform: "translate(50%, -50%)",
           }}
         >
-          <IconButton>
+          <IconButton onClick={handleClose}>
             <CloseIcon />
           </IconButton>
         </Box>
