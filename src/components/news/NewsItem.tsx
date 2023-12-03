@@ -41,7 +41,6 @@ const NewsItem = ({ news, onClick }: Props) => {
             lg: "294px",
             md: "254px",
           },
-
           borderRadius: 0,
         }}
       >
@@ -84,17 +83,23 @@ const NewsItem = ({ news, onClick }: Props) => {
           >
             {news?.newsTitle}
           </Typography>
-          <Typography
-            className="line-clamp"
+          <Box
+            component="div"
+            maxHeight="100px"
+            minHeight="100px"
+            overflow="hidden"
+            dangerouslySetInnerHTML={{ __html: news?.newsContent || "" }}
             sx={{
               fontSize: {
                 lg: "16px",
                 xs: "14px",
               },
+              "*": {
+                fontSize: "14px !important",
+                fontWeight: 400,
+              },
             }}
-          >
-            Sạch từ sản xuất đến bàn ăn không chỉ là câu chuyện của cây lúa, mà vựa ...
-          </Typography>
+          ></Box>
         </CardContent>
         <CardActions sx={{ p: 0, pb: "16px" }}>
           <Button

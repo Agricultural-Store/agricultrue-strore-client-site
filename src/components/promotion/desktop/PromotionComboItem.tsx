@@ -55,7 +55,13 @@ const PromotionComboItem = ({ image, title, description, id }: Props) => {
           minHeight="100px"
           maxHeight="100px"
           overflow="hidden"
-          fontSize="16px"
+          fontSize="14px"
+          sx={{
+            "*": {
+              fontSize: "14px !important",
+              fontWeight: 400,
+            },
+          }}
         ></Box>
       </CardContent>
       <CardActions>

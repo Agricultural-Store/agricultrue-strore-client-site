@@ -4,8 +4,10 @@ export interface News {
   newsContent: string;
   newImage: string;
   userId: number;
-  createAt: Date;
-  updateAt: Date;
+  createAt: string;
+  updateAt: string;
+  newsCategory?: string;
+  publisherDate?: string;
 }
 
 export interface NewsContextType {

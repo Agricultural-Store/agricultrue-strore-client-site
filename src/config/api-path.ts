@@ -5,6 +5,7 @@ export const productComboApiBase = `/product-combo`;
 export const orderApiBase = `/order`;
 export const newsApiBase = `/news`;
 export const paymentApiBase = `/payment`;
+export const contactApiBase = `/contact`;
 
 export const authApi = {
   login: `${authApiBase}/login`,
@@ -55,8 +56,13 @@ export const orderApi = {
 
 export const newsApi = {
   list: newsApiBase,
+  detail: (id?: number) => `${newsApiBase}/${id}`,
 };
 
 export const paymentApi = {
   createPaymentKey: `${paymentApiBase}/create`,
+};
+
+export const contactApi = {
+  createContact: `${contactApiBase}`,
 };
