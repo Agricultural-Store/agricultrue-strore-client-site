@@ -7,20 +7,22 @@ import YoutubeIcon from "../shared/icons/YoutubeIcon";
 
 const FooterDesktop = () => {
   return (
-    <Box
-      position="relative"
-      height="400px"
-      bgcolor="#F4F5F6"
+    <Container
+      sx={{
+        width: "100%",
+
+        paddingX: {
+          sm: "0px !important",
+          lg: "0px !important",
+        },
+      }}
     >
-      <Container
-        sx={{
-          width: "100%",
-          pt: "48px",
-          paddingX: {
-            sm: "48px !important",
-            lg: "0px !important",
-          },
-        }}
+      <Box
+        position="relative"
+        height="400px"
+        bgcolor="#F4F5F6"
+        pl="20px"
+        pt="48px"
       >
         <Box
           sx={{
@@ -144,8 +146,8 @@ const FooterDesktop = () => {
             </Box>
           </Box>
         </Box>
-      </Container>
-    </Box>
+      </Box>
+    </Container>
   );
 };
 

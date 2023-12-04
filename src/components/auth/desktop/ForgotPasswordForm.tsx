@@ -104,7 +104,7 @@ const ForgotPasswordForm = ({ token, setActive }: Props) => {
         <CustomizedInput
           label="Nhập lại mật khẩu"
           placeholder="Nhập lại mật khẩu"
-          type="password"
+          type={showConfirmPassword ? "text" : "password"}
           name="newPassword"
           onChange={handleChangeConfirmPassword}
           sx={{ width: "400px", height: "48px", pr: "5px" }}

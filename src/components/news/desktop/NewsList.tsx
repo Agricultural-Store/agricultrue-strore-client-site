@@ -95,7 +95,7 @@ const NewsListDesktop = () => {
               <Grid
                 container
                 justifyContent="space-around"
-                px="48px"
+                px="24px"
                 width={"25%"}
                 key={index}
               >
@@ -118,7 +118,7 @@ const NewsListDesktop = () => {
             transform: "translateY(50%)",
             display: "flex",
             justifyContent: "space-between",
-            px: "18px",
+            px: "0px",
           }}
         >
           <IconButton onClick={handlePrevious}>
