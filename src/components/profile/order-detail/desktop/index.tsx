@@ -12,25 +12,6 @@ import useUserOrderDetail from "@/hooks/user/useUserOrderDetail";
 import { useParams } from "next/navigation";
 import RootLoading from "@/app/[locale]/loading";
 
-const itemsStepper = [
-  {
-    label: "Chờ xác nhận",
-    date: "01/01/2023",
-  },
-  {
-    label: "Chuẩn bị hàng",
-    date: "02/01/2023",
-  },
-  {
-    label: "Đang vận chuyển",
-    date: "03/01/2023",
-  },
-  {
-    label: "Đã giao hàng",
-    date: "04/01/2023",
-  },
-];
-
 const ProfileOrderDetailDesktop = () => {
   const [step, setStep] = useState(1);
 
@@ -38,6 +19,25 @@ const ProfileOrderDetailDesktop = () => {
   const { media: media1200 } = useMedia(1200);
 
   const { data, isLoading, isValidating } = useUserOrderDetail(+(params.id && params.id));
+
+  const itemsStepper = [
+    {
+      label: "Chờ xác nhận",
+      date: new Date(data?.data.createAt || Date.now()).toLocaleDateString(),
+    },
+    {
+      label: "Chuẩn bị hàng",
+      date: new Date(data?.data.updateAt || Date.now()).toLocaleDateString(),
+    },
+    {
+      label: "Đang vận chuyển",
+      date: new Date(data?.data.updateAt || Date.now()).toLocaleDateString(),
+    },
+    {
+      label: "Đã giao hàng",
+      date: new Date(data?.data.updateAt || Date.now()).toLocaleDateString(),
+    },
+  ];
 
   useEffect(() => {
     if (data?.data) {
