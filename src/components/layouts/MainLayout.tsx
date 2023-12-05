@@ -7,7 +7,6 @@ import { AppContext } from "@/providers/AppContext";
 import RootLoading from "@/app/[locale]/loading";
 import useMedia from "@/hooks/shared/useMedia";
 import CustomizedSuccess from "../shared/CustomizedSuccess";
-import { Container } from "@mui/material";
 
 type Props = {
   children: ReactNode;
@@ -30,15 +29,7 @@ const MainLayout = ({ children }: Props) => {
 
   return (
     <main style={{ height: "100vh", overflow: "hidden" }}>
-      <Container
-        sx={{
-          paddingX: {
-            sm: "0px !important",
-          },
-        }}
-      >
-        <MainHeader />
-      </Container>
+      <MainHeader />
       <div
         className="scroll-view"
         style={{

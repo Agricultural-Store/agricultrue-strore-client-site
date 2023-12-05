@@ -1,5 +1,5 @@
 "use client";
-import { Box, Container, Divider, Typography } from "@mui/material";
+import { Box, Divider, Typography } from "@mui/material";
 import React from "react";
 import FacebookIcon from "../shared/icons/FacebookIcon";
 import InstagramIcon from "../shared/icons/InstagramIcon";
@@ -7,22 +7,25 @@ import YoutubeIcon from "../shared/icons/YoutubeIcon";
 
 const FooterDesktop = () => {
   return (
-    <Container
-      sx={{
-        width: "100%",
-
-        paddingX: {
-          sm: "0px !important",
-          lg: "0px !important",
-        },
-      }}
+    <Box
+      position="relative"
+      height="400px"
+      bgcolor="#F4F5F6"
+      pl="20px"
+      pt="48px"
     >
       <Box
-        position="relative"
-        height="400px"
-        bgcolor="#F4F5F6"
-        pl="20px"
-        pt="48px"
+        width={{
+          lg: "85%",
+          sm: "100%",
+        }}
+        sx={{
+          m: "0 auto",
+          paddingX: {
+            sm: "48px !important",
+            lg: "0px !important",
+          },
+        }}
       >
         <Box
           sx={{
@@ -147,7 +150,7 @@ const FooterDesktop = () => {
           </Box>
         </Box>
       </Box>
-    </Container>
+    </Box>
   );
 };
 

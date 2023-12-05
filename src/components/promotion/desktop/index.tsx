@@ -3,32 +3,43 @@ import PromotionBanner from "./PromotionBanner";
 import PromotionRating from "./PromotionRating";
 import PromotionComboList from "./PromotionComboList";
 import PromotionHelper from "./PromotionHelper";
-import { Container } from "@mui/material";
+import { Box } from "@mui/material";
 
 const PromotionDesktop = () => {
   return (
     <>
-      <Container
+      <PromotionBanner />
+      <Box
+        width={{
+          lg: "85%",
+          sm: "100%",
+        }}
         sx={{
+          m: "0 auto",
           paddingX: {
             sm: "0px !important",
             lg: "0px !important",
           },
         }}
       >
-        <PromotionBanner />
         <PromotionComboList />
-      </Container>
-      <Container
+      </Box>
+      <PromotionRating />
+      <Box
+        width={{
+          lg: "85%",
+          sm: "100%",
+        }}
         sx={{
+          m: "0 auto",
           paddingX: {
             sm: "0px !important",
+            lg: "0px !important",
           },
         }}
       >
-        <PromotionRating />
         <PromotionHelper />
-      </Container>
+      </Box>
     </>
   );
 };

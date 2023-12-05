@@ -57,67 +57,81 @@ const HomeOutstanding = () => {
         borderRadius: "6px",
       }}
     >
-      <Typography
+      <Box
+        width={{
+          lg: "85%",
+          sm: "100%",
+        }}
         sx={{
-          textTransform: "capitalize",
-          fontSize: {
-            lg: "32px",
-            sm: "28px",
+          m: "0 auto",
+          paddingX: {
+            sm: "0px !important",
+            lg: "0px !important",
           },
-          lineHeight: "48px",
-          textAlign: "center",
-          fontWeight: 600,
         }}
       >
-        Những điểm nổi bật
-      </Typography>
-      <Box sx={{ my: "48px", display: "flex", justifyContent: "space-between" }}>
-        {content.map((co, index) => (
-          <motion.div
-            initial="offscreen"
-            whileInView="onscreen"
-            viewport={{ once: true }}
-            style={{ width: "100%" }}
-            key={co.icon}
-          >
-            <motion.div variants={bottomVariants(0.25 * index)}>
-              <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  mx: "18px",
-                }}
-              >
+        <Typography
+          sx={{
+            textTransform: "capitalize",
+            fontSize: {
+              lg: "32px",
+              sm: "28px",
+            },
+            lineHeight: "48px",
+            textAlign: "center",
+            fontWeight: 600,
+          }}
+        >
+          Những điểm nổi bật
+        </Typography>
+        <Box sx={{ my: "48px", display: "flex", justifyContent: "space-between" }}>
+          {content.map((co, index) => (
+            <motion.div
+              initial="offscreen"
+              whileInView="onscreen"
+              viewport={{ once: true }}
+              style={{ width: "100%" }}
+              key={co.icon}
+            >
+              <motion.div variants={bottomVariants(0.25 * index)}>
                 <Box
-                  component="img"
-                  src={co.icon}
-                ></Box>
-                <Typography
-                  className="line-clamp-1"
                   sx={{
-                    fontSize: {
-                      lg: "20px",
-                      sm: "18px",
-                    },
-                    lineHeight: "30px",
-                    pt: "24px",
-                    pb: "12px",
-                    fontWeight: 600,
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    mx: "18px",
                   }}
                 >
-                  {co.title}
-                </Typography>
-                <Typography
-                  className="line-clamp-3"
-                  sx={{ textAlign: "center", fontSize: { lg: "16px", sm: "14px" } }}
-                >
-                  {co.content}
-                </Typography>
-              </Box>
+                  <Box
+                    component="img"
+                    src={co.icon}
+                  ></Box>
+                  <Typography
+                    className="line-clamp-1"
+                    sx={{
+                      fontSize: {
+                        lg: "20px",
+                        sm: "18px",
+                      },
+                      lineHeight: "30px",
+                      pt: "24px",
+                      pb: "12px",
+                      fontWeight: 600,
+                    }}
+                  >
+                    {co.title}
+                  </Typography>
+                  <Typography
+                    className="line-clamp-3"
+                    sx={{ textAlign: "center", fontSize: { lg: "16px", sm: "14px" } }}
+                  >
+                    {co.content}
+                  </Typography>
+                </Box>
+              </motion.div>
             </motion.div>
-          </motion.div>
-        ))}
+          ))}
+        </Box>
       </Box>
     </Box>
   );

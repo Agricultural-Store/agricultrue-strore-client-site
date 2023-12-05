@@ -27,6 +27,7 @@ const NewsPageItem = ({ news, onClick }: Props) => {
   return (
     <Grid
       item
+      lg={3}
       md={4}
       sm={4}
       xs={12}
@@ -90,8 +91,8 @@ const NewsPageItem = ({ news, onClick }: Props) => {
           </Typography>
           <Box
             component="div"
-            maxHeight="100px"
-            minHeight="100px"
+            maxHeight="60px"
+            minHeight="60px"
             overflow="hidden"
             dangerouslySetInnerHTML={{ __html: news?.newsContent || "" }}
             sx={{

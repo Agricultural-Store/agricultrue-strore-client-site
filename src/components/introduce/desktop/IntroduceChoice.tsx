@@ -46,62 +46,76 @@ const IntroduceChoice = () => {
 
   return (
     <Box sx={{ bgcolor: "color.bgPrimaryWithOpacity", p: "48px" }}>
-      <Typography sx={{ fontSize: "28px", textAlign: "center", fontWeight: 600 }}>
-        Tại sao nên chọn hương gạo quê
-      </Typography>
-      <Typography sx={{ textAlign: "center", mt: "16px", mb: "64px" }}>
-        Kho tàng thiên nhiên nằm giữa trái tim đất Việt, nơi sản xuất những giống gạo tinh
-        túy, chất lượng và đặc trưng.
-      </Typography>
-      <Grid
-        container
-        spacing={3}
-        rowSpacing={4}
+      <Box
+        width={{
+          lg: "85%",
+          sm: "100%",
+        }}
+        sx={{
+          m: "0 auto",
+          paddingX: {
+            sm: "48px !important",
+            lg: "0px !important",
+          },
+        }}
       >
-        {items.map((item) => (
-          <Grid
-            item
-            xs={4}
-            key={item.title}
-          >
-            <Box
-              p="9px"
-              mb="24px"
-              width="60px"
-              height="60px"
-              border="1px solid #C3C2C1"
+        <Typography sx={{ fontSize: "28px", textAlign: "center", fontWeight: 600 }}>
+          Tại sao nên chọn hương gạo quê
+        </Typography>
+        <Typography sx={{ textAlign: "center", mt: "16px", mb: "64px" }}>
+          Kho tàng thiên nhiên nằm giữa trái tim đất Việt, nơi sản xuất những giống gạo
+          tinh túy, chất lượng và đặc trưng.
+        </Typography>
+        <Grid
+          container
+          spacing={3}
+          rowSpacing={4}
+        >
+          {items.map((item) => (
+            <Grid
+              item
+              xs={4}
+              key={item.title}
             >
               <Box
-                component="img"
-                src={item.icon}
-              />
-            </Box>
-            <Typography
-              sx={{
-                fontSize: {
-                  lg: "20px",
-                  sm: "18px",
-                },
-                fontWeight: 500,
-                mb: "8px",
-              }}
-            >
-              {item.title}
-            </Typography>
-            <Typography
-              sx={{
-                fontWeight: 400,
-                fontSize: {
-                  lg: "16px",
-                  sm: "14px",
-                },
-              }}
-            >
-              {item.content}
-            </Typography>
-          </Grid>
-        ))}
-      </Grid>
+                p="9px"
+                mb="24px"
+                width="60px"
+                height="60px"
+                border="1px solid #C3C2C1"
+              >
+                <Box
+                  component="img"
+                  src={item.icon}
+                />
+              </Box>
+              <Typography
+                sx={{
+                  fontSize: {
+                    lg: "20px",
+                    sm: "18px",
+                  },
+                  fontWeight: 500,
+                  mb: "8px",
+                }}
+              >
+                {item.title}
+              </Typography>
+              <Typography
+                sx={{
+                  fontWeight: 400,
+                  fontSize: {
+                    lg: "16px",
+                    sm: "14px",
+                  },
+                }}
+              >
+                {item.content}
+              </Typography>
+            </Grid>
+          ))}
+        </Grid>
+      </Box>
     </Box>
   );
 };

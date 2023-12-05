@@ -11,9 +11,24 @@ const PromotionLayout = ({ children }: Props) => {
   return (
     <>
       {children}
-      <Box sx={{ pb: "48px", mt: "48px" }}>
+      <Box
+        width={{
+          lg: "85%",
+          sm: "100%",
+        }}
+        sx={{
+          m: "0 auto",
+          pb: "48px",
+          mt: "48px",
+          paddingX: {
+            sm: "48px !important",
+            lg: "0px !important",
+          },
+        }}
+      >
         <News />
       </Box>
+
       <FooterImage />
     </>
   );

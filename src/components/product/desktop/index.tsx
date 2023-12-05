@@ -3,23 +3,19 @@ import ProductBanner from "./ProductBanner";
 import ProductList from "./ProductList";
 import ProductCertification from "./ProductCertification";
 import ProductHelper from "./ProductHelper";
-import { Container } from "@mui/material";
+import { Box } from "@mui/material";
 
 const ProductDesktop = () => {
   return (
     <>
-      <Container
-        sx={{
-          paddingX: {
-            sm: "0px !important",
-            lg: "0px !important",
-          },
+      <ProductBanner />
+      <Box
+        width={{
+          lg: "85%",
+          sm: "100%",
         }}
-      >
-        <ProductBanner />
-      </Container>
-      <Container
         sx={{
+          m: "0 auto",
           paddingX: {
             sm: "48px !important",
             lg: "0px !important",
@@ -27,9 +23,23 @@ const ProductDesktop = () => {
         }}
       >
         <ProductList />
-        <ProductCertification />
+      </Box>
+      <ProductCertification />
+      <Box
+        width={{
+          lg: "85%",
+          sm: "100%",
+        }}
+        sx={{
+          m: "0 auto",
+          paddingX: {
+            sm: "48px !important",
+            lg: "0px !important",
+          },
+        }}
+      >
         <ProductHelper />
-      </Container>
+      </Box>
     </>
   );
 };

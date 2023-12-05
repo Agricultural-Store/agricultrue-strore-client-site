@@ -5,7 +5,7 @@ import HomeDesktop from "./desktop";
 import { AppContext } from "@/providers/AppContext";
 import { useSearchParams } from "next/navigation";
 import HomeMobile from "./mobile";
-import { Box, Container } from "@mui/material";
+import { Box } from "@mui/material";
 import News from "../news";
 import FooterImage from "../layouts/FooterImage";
 import { motion, AnimatePresence } from "framer-motion";
@@ -42,18 +42,23 @@ const Home = () => {
         exit={{ opacity: 0, y: 20 }}
       >
         <HomeDesktop />;
-        <Container
+        <Box
+          width={{
+            lg: "85%",
+            sm: "100%",
+          }}
           sx={{
+            m: "0 auto",
+            pb: "48px",
+            mt: "48px",
             paddingX: {
-              sm: "0px !important",
+              sm: "48px !important",
               lg: "0px !important",
             },
           }}
         >
-          <Box sx={{ pb: "48px", mt: "48px" }}>
-            <News />
-          </Box>
-        </Container>
+          <News />
+        </Box>
         <FooterImage />
       </motion.div>
     </AnimatePresence>

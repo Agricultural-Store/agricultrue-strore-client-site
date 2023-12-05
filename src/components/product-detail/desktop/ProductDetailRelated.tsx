@@ -61,7 +61,7 @@ const ProductDetailRelated = ({ products }: Props) => {
       <Grid
         container
         py="48px"
-        justifyContent="space-evenly"
+        justifyContent="start"
       >
         {renderItem()}
       </Grid>

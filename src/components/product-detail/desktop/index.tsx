@@ -5,7 +5,7 @@ import ProductDetailRelated from "./ProductDetailRelated";
 import useProductDetail from "@/hooks/product/useProductDetail";
 import { useParams } from "next/navigation";
 import RootLoading from "@/app/[locale]/loading";
-import { Container } from "@mui/material";
+import { Box } from "@mui/material";
 import ProductDetailBreadcrumbs from "./ProductDetailBreadcrumbs";
 
 const ProductDetailDesktop = () => {
@@ -15,8 +15,13 @@ const ProductDetailDesktop = () => {
 
   return (
     <>
-      <Container
+      <Box
+        width={{
+          lg: "85%",
+          sm: "100%",
+        }}
         sx={{
+          m: "0 auto",
           paddingX: {
             sm: "48px !important",
             lg: "0px !important",
@@ -27,7 +32,7 @@ const ProductDetailDesktop = () => {
         <ProductDetailBasicInfo product={data?.data} />
         <ProductDetailCenter product={data?.data} />
         <ProductDetailRelated products={data?.data?.productRelated} />
-      </Container>
+      </Box>
       {(isLoading || isValidating) && <RootLoading />}
     </>
   );

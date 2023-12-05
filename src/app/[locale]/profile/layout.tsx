@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, Container } from "@mui/material";
+import { Box } from "@mui/material";
 import { useSession } from "next-auth/react";
 import { usePathname } from "next-intl/client";
 import { redirect } from "next/navigation";
@@ -42,8 +42,13 @@ const ProfileLayout = ({ children }: Props) => {
   }
 
   return (
-    <Container
+    <Box
+      width={{
+        lg: "85%",
+        sm: "100%",
+      }}
       sx={{
+        m: "0 auto",
         paddingX: {
           sm: "0px !important",
           lg: "0px !important",
@@ -58,7 +63,7 @@ const ProfileLayout = ({ children }: Props) => {
         {!media1100 && <ProfileBar />}
         {children}
       </Box>
-    </Container>
+    </Box>
   );
 };
 

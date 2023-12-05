@@ -53,80 +53,97 @@ const MainHeader = () => {
           onClose={setOpen}
         />
       )}
+
       <Box
         sx={{
           // position: "fixed",
           // top: 0,
-          transform: "translateX(-2.5px)",
+
           zIndex: 1000,
           height: "65px",
           width: "100%",
           bgcolor: "primary.main",
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
           px: media ? "10px" : "48px",
         }}
       >
         <Box
+          width={{
+            lg: "85%",
+            sm: "100%",
+          }}
           sx={{
-            height: "42px",
+            height: "65px",
+            transform: "translateX(-2.5px)",
             display: "flex",
-            justifyContent: "flex-start",
+            justifyContent: "space-between",
             alignItems: "center",
+            m: "0 auto",
+            paddingX: {
+              sm: "48px !important",
+              lg: "0px !important",
+            },
           }}
         >
-          {media ? (
-            <IconButton onClick={handleOpen}>
-              <MenuIcon sx={{ color: "white", mr: "5px", fontSize: "25px" }} />
-            </IconButton>
-          ) : (
-            <NextIntlLink href="/">
-              <Box
-                component="img"
-                src="/images/logo.png"
-                width={media375 ? "150px" : undefined}
-                mt="6px"
-              />
-            </NextIntlLink>
-          )}
-
-          {!media ? <AppBarDesktop /> : <div></div>}
-        </Box>
-        <Box
-          sx={{
-            width: "352px",
-            display: "flex",
-            justifyContent: "end",
-            alignItems: "center",
-          }}
-        >
-          <SearchMenu />
-          {status === "authenticated" && <NotificationMenu />}
-          <IconButton
-            sx={{ height: "40px", width: "40px" }}
-            onClick={() => setOpenCart(true)}
+          <Box
+            sx={{
+              height: "42px",
+              display: "flex",
+              justifyContent: "flex-start",
+              alignItems: "center",
+            }}
           >
-            <CartIcon />
-          </IconButton>
-          {status === "authenticated" ? (
-            <>
-              <IconButton onClick={handleShowUserMenu}>
-                <Avatar sizes="10px" />
+            {media ? (
+              <IconButton onClick={handleOpen}>
+                <MenuIcon sx={{ color: "white", mr: "5px", fontSize: "25px" }} />
               </IconButton>
-              <ProfilePopup
-                anchorElUser={anchorElUser}
-                setAnchorElUser={setAnchorElUser}
-              />
-            </>
-          ) : (
+            ) : (
+              <NextIntlLink href="/">
+                <Box
+                  component="img"
+                  src="/images/logo.png"
+                  width={media375 ? "150px" : undefined}
+                  mt="6px"
+                />
+              </NextIntlLink>
+            )}
+
+            {!media ? <AppBarDesktop /> : <div></div>}
+          </Box>
+          <Box
+            sx={{
+              width: "352px",
+              display: "flex",
+              justifyContent: "end",
+              alignItems: "center",
+            }}
+          >
+            <SearchMenu />
+            {status === "authenticated" && <NotificationMenu />}
             <IconButton
-              onClick={handleOpenAuth}
               sx={{ height: "40px", width: "40px" }}
+              onClick={() => setOpenCart(true)}
             >
-              <ProfileIcon />
+              <CartIcon />
             </IconButton>
-          )}
+            {status === "authenticated" ? (
+              <>
+                <IconButton onClick={handleShowUserMenu}>
+                  <Avatar sizes="10px" />
+                </IconButton>
+                <ProfilePopup
+                  anchorElUser={anchorElUser}
+                  setAnchorElUser={setAnchorElUser}
+                />
+              </>
+            ) : (
+              <IconButton
+                onClick={handleOpenAuth}
+                sx={{ height: "40px", width: "40px" }}
+              >
+                <ProfileIcon />
+              </IconButton>
+            )}
+          </Box>
         </Box>
       </Box>
       <Cart

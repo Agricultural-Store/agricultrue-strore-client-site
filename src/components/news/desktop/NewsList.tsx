@@ -94,7 +94,7 @@ const NewsListDesktop = () => {
             return (
               <Grid
                 container
-                justifyContent="space-around"
+                justifyContent="start"
                 px="24px"
                 width={"25%"}
                 key={index}

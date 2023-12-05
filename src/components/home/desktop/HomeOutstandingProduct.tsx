@@ -70,6 +70,8 @@ const HomeOutstandingProduct = () => {
     });
   }, [matchesLg, matchesMd, matchesSm, matchesXs]);
 
+  console.log(data);
+
   return (
     <Box
       sx={{

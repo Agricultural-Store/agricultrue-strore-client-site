@@ -7,22 +7,19 @@ import HomeOutstanding from "./HomeOutstanding";
 import HomeVision from "./HomeVision";
 import HomeOutstandingProduct from "./HomeOutstandingProduct";
 import HomeRating from "./HomeRating";
-import { Container } from "@mui/material";
+import { Box } from "@mui/material";
 
 const HomeDesktop = () => {
   return (
     <>
-      <Container
-        sx={{
-          paddingX: {
-            sm: "0px !important",
-          },
+      <HomeBanner />
+      <Box
+        width={{
+          lg: "85%",
+          sm: "100%",
         }}
-      >
-        <HomeBanner />
-      </Container>
-      <Container
         sx={{
+          m: "0 auto",
           paddingX: {
             sm: "48px !important",
             lg: "0px !important",
@@ -30,18 +27,15 @@ const HomeDesktop = () => {
         }}
       >
         <HomeIntroduce />
-      </Container>
-      <Container
-        sx={{
-          paddingX: {
-            sm: "0px !important",
-          },
+      </Box>
+      <HomeOutstanding />
+      <Box
+        width={{
+          lg: "85%",
+          sm: "100%",
         }}
-      >
-        <HomeOutstanding />
-      </Container>
-      <Container
         sx={{
+          m: "0 auto",
           paddingX: {
             sm: "48px !important",
             lg: "0px !important",
@@ -50,18 +44,16 @@ const HomeDesktop = () => {
       >
         <HomeMiddleIntroduce />
         <HomeVision />
-      </Container>
-      <Container
-        sx={{
-          paddingX: {
-            sm: "0px !important",
-          },
+      </Box>
+      <HomeCertification />
+
+      <Box
+        width={{
+          lg: "85%",
+          sm: "100%",
         }}
-      >
-        <HomeCertification />
-      </Container>
-      <Container
         sx={{
+          m: "0 auto",
           paddingX: {
             sm: "48px !important",
             lg: "0px !important",
@@ -69,16 +61,8 @@ const HomeDesktop = () => {
         }}
       >
         <HomeOutstandingProduct />
-      </Container>
-      <Container
-        sx={{
-          paddingX: {
-            sm: "0px !important",
-          },
-        }}
-      >
-        <HomeRating />
-      </Container>
+      </Box>
+      <HomeRating />
     </>
   );
 };

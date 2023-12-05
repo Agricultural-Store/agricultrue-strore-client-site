@@ -1,7 +1,7 @@
 "use client";
 import React, { useContext, useEffect } from "react";
 import OrderDesktop from "./desktop";
-import { Container } from "@mui/material";
+import { Box } from "@mui/material";
 import useMedia from "@/hooks/shared/useMedia";
 import OrderMobile from "./mobile";
 import { CartContext } from "@/providers/CartContext";
@@ -27,9 +27,14 @@ const Order = () => {
   }
 
   return (
-    <Container
+    <Box
+      width={{
+        lg: "85%",
+        sm: "100%",
+      }}
       sx={{
-        py: "48px",
+        m: "0 auto",
+        pt: "48px",
         paddingX: {
           sm: "48px !important",
           lg: "0px !important",
@@ -37,7 +42,7 @@ const Order = () => {
       }}
     >
       <OrderDesktop />
-    </Container>
+    </Box>
   );
 };
 

@@ -44,59 +44,74 @@ const HomeCertification = () => {
         borderRadius: "6px",
       }}
     >
-      <Typography
-        sx={{
-          fontSize: {
-            lg: "28px",
-            sm: "24px",
-          },
-          lineHeight: "42px",
-          fontWeight: 600,
-        }}
-      >
-        Chứng nhận sản phẩm
-      </Typography>
-      <Typography
-        sx={{
-          width: "80%",
-          mx: "auto",
-          fontSize: {
-            lg: "16px",
-            sm: "14px",
-          },
-          lineHeight: "28px",
-          textAlign: "center",
-          mt: "16px",
-        }}
-      >
-        Vùng Đồng Bằng Sông Cửu Long đã có nhiều cố gắng trong việc nâng cao chất lượng và
-        uy tín của sản phẩm gạo trên thị trường quốc tế.
-      </Typography>
       <Box
+        width={{
+          lg: "85%",
+          sm: "100%",
+        }}
         sx={{
-          display: "flex",
-          justifyContent: "space-around",
-          gap: 5,
-          mt: "24px",
-          py: "24px",
+          m: "0 auto",
+          paddingX: {
+            sm: "0px !important",
+            lg: "0px !important",
+          },
         }}
       >
-        {certifications.map((certification, index) => (
-          <motion.div
-            initial="offscreen"
-            whileInView="onscreen"
-            viewport={{ once: true }}
-            style={{ width: "100%" }}
-            key={certification}
-          >
-            <motion.div variants={opacityVariants(0.1 * index)}>
-              <Box
-                component="img"
-                src={certification}
-              />
+        <Typography
+          sx={{
+            fontSize: {
+              lg: "28px",
+              sm: "24px",
+            },
+            lineHeight: "42px",
+            fontWeight: 600,
+            textAlign: "center",
+          }}
+        >
+          Chứng nhận sản phẩm
+        </Typography>
+        <Typography
+          sx={{
+            width: "80%",
+            mx: "auto",
+            fontSize: {
+              lg: "16px",
+              sm: "14px",
+            },
+            lineHeight: "28px",
+            textAlign: "center",
+            mt: "16px",
+          }}
+        >
+          Vùng Đồng Bằng Sông Cửu Long đã có nhiều cố gắng trong việc nâng cao chất lượng
+          và uy tín của sản phẩm gạo trên thị trường quốc tế.
+        </Typography>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "space-around",
+            gap: 5,
+            mt: "24px",
+            py: "24px",
+          }}
+        >
+          {certifications.map((certification, index) => (
+            <motion.div
+              initial="offscreen"
+              whileInView="onscreen"
+              viewport={{ once: true }}
+              style={{ width: "100%" }}
+              key={certification}
+            >
+              <motion.div variants={opacityVariants(0.1 * index)}>
+                <Box
+                  component="img"
+                  src={certification}
+                />
+              </motion.div>
             </motion.div>
-          </motion.div>
-        ))}
+          ))}
+        </Box>
       </Box>
     </Box>
   );

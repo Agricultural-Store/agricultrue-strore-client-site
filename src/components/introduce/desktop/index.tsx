@@ -3,23 +3,42 @@ import IntroduceBanner from "./IntroduceBanner";
 import IntroduceStory from "./IntroduceStory";
 import IntroduceChoice from "./IntroduceChoice";
 import IntroduceMoreContent from "./IntroduceMoreContent";
-import { Container } from "@mui/material";
-
+import { Box } from "@mui/material";
 const IntroduceDesktop = () => {
   return (
     <>
-      <Container
+      <IntroduceBanner />
+      <Box
+        width={{
+          lg: "85%",
+          sm: "100%",
+        }}
         sx={{
+          m: "0 auto",
           paddingX: {
-            sm: "0px !important",
+            sm: "48px !important",
+            lg: "0px !important",
           },
         }}
       >
-        <IntroduceBanner />
         <IntroduceStory />
-        <IntroduceChoice />
+      </Box>
+      <IntroduceChoice />
+      <Box
+        width={{
+          lg: "85%",
+          sm: "100%",
+        }}
+        sx={{
+          m: "0 auto",
+          paddingX: {
+            sm: "48px !important",
+            lg: "0px !important",
+          },
+        }}
+      >
         <IntroduceMoreContent />
-      </Container>
+      </Box>
     </>
   );
 };

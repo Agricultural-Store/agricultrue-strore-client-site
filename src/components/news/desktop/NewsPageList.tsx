@@ -1,7 +1,7 @@
 "use client";
 import { NewsContext } from "@/providers/NewsContext";
 import React, { useContext } from "react";
-import { Box, Container, Divider, Grid, Typography } from "@mui/material";
+import { Box, Divider, Grid, Typography } from "@mui/material";
 import FindInPageOutlinedIcon from "@mui/icons-material/FindInPageOutlined";
 import { useRouter } from "next-intl/client";
 import NewsPageItem from "../NewsPageItem";
@@ -15,14 +15,7 @@ const NewsPageList = () => {
   };
 
   return (
-    <Container
-      sx={{
-        paddingX: {
-          sm: "0px !important",
-          lg: "0px !important",
-        },
-      }}
-    >
+    <>
       <Box
         sx={{
           height: {
@@ -38,21 +31,34 @@ const NewsPageList = () => {
           sx={{ width: "100%", height: "100%", objectFit: "cover" }}
         />
       </Box>
-      <Box sx={{ p: "64px 48px" }}>
-        <Typography
-          sx={{ textAlign: "center", fontSize: "28px", mb: "48px", fontWeight: 600 }}
-        >
-          Bài viết
-        </Typography>
-        <Divider sx={{ my: "8px" }}></Divider>
-        <Grid
-          container
-          spacing={4}
-          rowSpacing={6}
-          flexWrap="wrap"
-          mt="20px"
-        >
-          {/* {(isLoading || isValidating) && (
+      <Box
+        width={{
+          lg: "85%",
+          sm: "100%",
+        }}
+        sx={{
+          m: "0 auto",
+          paddingX: {
+            sm: "0px !important",
+            lg: "0px !important",
+          },
+        }}
+      >
+        <Box sx={{ p: "64px 48px" }}>
+          <Typography
+            sx={{ textAlign: "center", fontSize: "28px", mb: "48px", fontWeight: 600 }}
+          >
+            Bài viết
+          </Typography>
+          <Divider sx={{ my: "8px" }}></Divider>
+          <Grid
+            container
+            spacing={4}
+            rowSpacing={6}
+            flexWrap="wrap"
+            mt="20px"
+          >
+            {/* {(isLoading || isValidating) && (
           <Grid
             item
             xs={12}
@@ -67,31 +73,32 @@ const NewsPageList = () => {
           </Grid>
         )} */}
 
-          {news?.length === 0 && (
-            <Grid
-              item
-              xs={12}
-              textAlign="center"
-              color="color.textNeutral500"
-            >
-              <FindInPageOutlinedIcon
-                color="inherit"
-                sx={{ fontSize: "60px" }}
-              />
-              <Typography>Không tìm thấy kết quả nào</Typography>
-            </Grid>
-          )}
+            {news?.length === 0 && (
+              <Grid
+                item
+                xs={12}
+                textAlign="center"
+                color="color.textNeutral500"
+              >
+                <FindInPageOutlinedIcon
+                  color="inherit"
+                  sx={{ fontSize: "60px" }}
+                />
+                <Typography>Không tìm thấy kết quả nào</Typography>
+              </Grid>
+            )}
 
-          {news?.map((_news) => (
-            <NewsPageItem
-              news={_news}
-              onClick={handleClick}
-              key={_news.id}
-            />
-          ))}
-        </Grid>
+            {news?.map((_news) => (
+              <NewsPageItem
+                news={_news}
+                onClick={handleClick}
+                key={_news.id}
+              />
+            ))}
+          </Grid>
+        </Box>
       </Box>
-    </Container>
+    </>
   );
 };
 

@@ -1,7 +1,5 @@
 "use client";
 
-import CustomizedInput from "@/components/shared/CustomizedInput";
-import SearchGrayIcon from "@/components/shared/icons/SearchGrayIcon";
 import { Box, Typography } from "@mui/material";
 import React from "react";
 import ProfileOrderTab from "./ProfileOrderTab";
@@ -15,10 +13,7 @@ const ProfileOrderDesktop = () => {
       width={media ? "100%" : "calc(100% - 250px)"}
       pl="48px"
     >
-      <Box
-       
-        width="100%"
-      >
+      <Box width="100%">
         <Box
           width="100%"
           display="flex"
@@ -33,14 +28,6 @@ const ProfileOrderDesktop = () => {
           >
             Thông tin đơn hàng
           </Typography>
-          <Box>
-            <CustomizedInput
-              size="small"
-              sx={{ width: "203px" }}
-              endAdornment={<SearchGrayIcon />}
-              placeholder="Tìm kiếm"
-            />
-          </Box>
         </Box>
         <ProfileOrderTab />
       </Box>
