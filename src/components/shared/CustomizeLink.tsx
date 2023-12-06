@@ -29,6 +29,7 @@ const CustomizeLink = ({ children, href, sx, activeColor }: Props) => {
           fontWeight: 500,
           width: "100%",
           fontSize: "inherit",
+          whiteSpace: "nowrap",
           ...sx,
         }}
       >

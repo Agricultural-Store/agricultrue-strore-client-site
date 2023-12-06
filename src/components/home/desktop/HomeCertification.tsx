@@ -36,10 +36,7 @@ const HomeCertification = () => {
         py: "48px",
         bgcolor: `color.bgPrimaryWithOpacity`,
         mt: "64px",
-        display: "flex",
-        justifyContent: "center",
-        flexDirection: "column",
-        alignItems: "center",
+
         width: "100%",
         borderRadius: "6px",
       }}
@@ -50,6 +47,10 @@ const HomeCertification = () => {
           sm: "100%",
         }}
         sx={{
+          display: "flex",
+          justifyContent: "center",
+          flexDirection: "column",
+          alignItems: "center",
           m: "0 auto",
           paddingX: {
             sm: "0px !important",

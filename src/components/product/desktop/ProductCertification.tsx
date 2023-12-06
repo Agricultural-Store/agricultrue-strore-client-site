@@ -11,10 +11,7 @@ const ProductCertification = () => {
 
         bgcolor: `color.bgPrimaryWithOpacity`,
         mt: "64px",
-        display: "flex",
-        justifyContent: "center",
-        flexDirection: "column",
-        alignItems: "center",
+
         width: "100%",
       }}
     >
@@ -24,6 +21,10 @@ const ProductCertification = () => {
           sm: "100%",
         }}
         sx={{
+          display: "flex",
+          justifyContent: "center",
+          flexDirection: "column",
+          alignItems: "center",
           m: "0 auto",
           paddingX: {
             sm: "0px !important",
