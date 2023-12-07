@@ -1,5 +1,5 @@
 import CustomizedQuantityInput from "@/components/shared/CustomizedQuantityInput";
-import FavoriteIcon from "@/components/shared/icons/FavoriteIcon";
+// import FavoriteIcon from "@/components/shared/icons/FavoriteIcon";
 import NextArrowIcon from "@/components/shared/icons/NextArrowIcon";
 import PreviousIcon from "@/components/shared/icons/PreviousArrowIcon";
 import { AppContext } from "@/providers/AppContext";
@@ -192,7 +192,7 @@ const PromotionDetailBasicInfo = ({ combo }: Props) => {
           >
             Thêm vào giỏ hàng
           </Button>
-          <Button
+          {/* <Button
             sx={{
               textTransform: "capitalize",
               minWidth: "42px",
@@ -204,7 +204,7 @@ const PromotionDetailBasicInfo = ({ combo }: Props) => {
             color="error"
           >
             <FavoriteIcon />
-          </Button>
+          </Button> */}
         </Box>
         {/* <Box>
           <Typography
