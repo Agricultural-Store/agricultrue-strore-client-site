@@ -24,6 +24,7 @@ const PromotionDetailRatingItem = ({ rating }: Props) => {
           minWidth="50px"
           height="50px"
           borderRadius="50%"
+          sx={{objectFit:'cover' }}
           src={rating.user?.avatar || "/images/profile-avatar.svg"}
         />
         <Box>
