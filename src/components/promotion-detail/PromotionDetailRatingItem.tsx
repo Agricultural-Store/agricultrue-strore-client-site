@@ -20,6 +20,10 @@ const PromotionDetailRatingItem = ({ rating }: Props) => {
       <Box sx={{ display: "flex", alignItems: "center", gap: "10px" }}>
         <Box
           component="img"
+          maxWidth="50px"
+          minWidth="50px"
+          height="50px"
+          borderRadius="50%"
           src={rating.user?.avatar || "/images/profile-avatar.svg"}
         />
         <Box>
