@@ -245,9 +245,10 @@ const ProductDetailBasicInfo = ({ product }: Props) => {
           </Typography>
         </Box>
         <Typography sx={{ lineHeight: "28px", fontSize: "14px", mt: "16px" }}>
-          Gạo ST25 là một loại gạo thơm mới được phát triển tại Việt Nam, đã được vinh
+        {product?.productSummaryDescription ||
+            `Là một loại gạo thơm mới được phát triển tại Việt Nam, đã được vinh
           danh là loại gạo ngon nhất thế giới trong cuộc thi The World’s Best Rice tổ chức
-          tại Philippines năm 2019.
+          tại Philippines năm 2019.`}
         </Typography>
         <Box sx={{ display: "flex", gap: "12px", alignItems: "center", mt: "16px" }}>
           <Typography>Số lượng</Typography>
