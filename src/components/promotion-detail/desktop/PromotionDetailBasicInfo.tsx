@@ -105,7 +105,7 @@ const PromotionDetailBasicInfo = ({ combo }: Props) => {
           </Box>
           <Grid
             container
-            justifyContent="space-between"
+            justifyContent="start"
             mt="20px"
             spacing={1}
           >

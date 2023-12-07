@@ -167,7 +167,7 @@ const ProductDetailBasicInfo = ({ product }: Props) => {
           </Box>
           <Grid
             container
-            justifyContent="space-between"
+            justifyContent="start"
             mt="20px"
             spacing={1}
           >
