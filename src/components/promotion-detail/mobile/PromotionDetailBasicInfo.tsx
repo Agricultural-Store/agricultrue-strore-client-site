@@ -180,7 +180,7 @@ const PromotionDetailBasicInfo = ({ combo }: Props) => {
           <Typography>Số lượng</Typography>
           <CustomizedQuantityInput
             defaultValue={1}
-            maxValue={10}
+            maxValue={100}
           />
         </Box>
         <Box sx={{ display: "flex", gap: "16px", mt: "20px", height: "42px" }}>

@@ -256,7 +256,7 @@ const ProductDetailBasicInfo = ({ product }: Props) => {
           <Typography>Số lượng</Typography>
           <CustomizedQuantityInput
             defaultValue={1}
-            maxValue={10}
+            maxValue={product?.productQuantity || 1}
             onChange={handleChange}
           />
         </Box>

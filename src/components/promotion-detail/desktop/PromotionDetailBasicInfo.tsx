@@ -187,7 +187,7 @@ const PromotionDetailBasicInfo = ({ combo }: Props) => {
           <Typography>Số lượng</Typography>
           <CustomizedQuantityInput
             defaultValue={1}
-            maxValue={10}
+            maxValue={100}
             onChange={handleChange}
           />
         </Box>
